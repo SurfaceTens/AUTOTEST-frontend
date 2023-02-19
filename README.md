@@ -10,7 +10,7 @@ Finalmente, se podrán obtener una serie de estadísticas, como qué pregunta es
 
 **Diagrama de Clases**
 
-[](https://minisdefeet-my.sharepoint.com/:i:/g/personal/acing_alu45_siycd_carrasco_minisdefeet_onmicrosoft_com/EW726kLdGhRHpW4lmszNL-UBOgu7gDfBovtOiSzbrIwWXQ?e=cczTWl)
+![Diagrama de clases](https://minisdefeet-my.sharepoint.com/:i:/g/personal/acing_alu45_siycd_carrasco_minisdefeet_onmicrosoft_com/EW726kLdGhRHpW4lmszNL-UBOgu7gDfBovtOiSzbrIwWXQ?e=cczTWl)
 
 
 **Cumplimiento de requisitos**
@@ -18,9 +18,9 @@ Finalmente, se podrán obtener una serie de estadísticas, como qué pregunta es
 
 **1. Herencia:** El supertipo Pregunta tendrá los subtipos PreguntaConImagen y PreguntaConAudio.
 
-**2. Relación One-To-Many: **Relación entre Pregunta y Exámen.
+**2. Relación One-To-Many:** Relación entre Pregunta y Exámen.
 
-**3. Método personalizado: **generarExamen(). Este método generará un exámen con preguntas obtenidas de forma aleatoria en función del nivel de dificultad seleccionado. El exámen se podrá realizar y se mostrará la nota al finalizar.
+**3. Método personalizado:** generarExamen(). Este método generará un exámen con preguntas obtenidas de forma aleatoria en función del nivel de dificultad seleccionado. El exámen se podrá realizar y se mostrará la nota al finalizar.
 
 **4. Listado:** Se mostrarán todas las preguntas existentes, junto con la dificultad teórica. pudiendo ser modificadas o eliminadas. También es deseable que se muestre la dificultad "real" es decir, tasa de acierto que ha tenido la pregunta.
 
