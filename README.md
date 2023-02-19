@@ -22,9 +22,9 @@ Finalmente, se podrán obtener una serie de estadísticas, como qué pregunta es
 
 **3. Método personalizado:** generarExamen(). Este método generará un exámen con preguntas obtenidas de forma aleatoria en función del nivel de dificultad seleccionado. El exámen se podrá realizar y se mostrará la nota al finalizar.
 
-**4. Listado:** Se mostrarán todas las preguntas existentes, junto con la dificultad teórica. pudiendo ser modificadas o eliminadas. También es deseable que se muestre la dificultad "real" es decir, tasa de acierto que ha tenido la pregunta.
+**4. Listado:** Se mostrarán todas las preguntas existentes; entre otros datos, se mostrará la dificultad teórica. También es deseable que se muestre la dificultad "real" es decir, tasa de acierto que ha tenido la pregunta.
 
-**5. CRUD:** El CRUD se materializará en la clase Pregunta.
+**5. CRUD:** Se podrá hacer CRUD de Preguntas. 
 
 **6. URLs del proyecto:**
 
