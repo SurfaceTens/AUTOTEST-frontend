@@ -10,30 +10,30 @@ Finalmente, se podrán obtener una serie de estadísticas, como qué pregunta es
 
 **Diagrama de Clases**
 
-file:///home/samot/Im%C3%A1genes/Capturas%20de%20pantalla/Captura%20desde%202023-02-19%2022-27-26.png
+
 
 
 **Cumplimiento de requisitos**
 
 
-**Herencia:** El supertipo Pregunta tendrá los subtipos PreguntaConImagen y PreguntaConAudio.
+**1. Herencia:** El supertipo Pregunta tendrá los subtipos PreguntaConImagen y PreguntaConAudio.
 
-**Relación One-To-Many: **Relación entre Pregunta y Exámen.
+**2. Relación One-To-Many: **Relación entre Pregunta y Exámen.
 
-**Método personalizado: **generarExamen(). Este método generará un exámen con preguntas obtenidas de forma aleatoria en función del nivel de dificultad seleccionado.
+**3. Método personalizado: **generarExamen(). Este método generará un exámen con preguntas obtenidas de forma aleatoria en función del nivel de dificultad seleccionado. El exámen se podrá realizar y se mostrará la nota al finalizar.
 
-**Listado:** Se mostrarán todas las preguntas existentes, junto con la dificultad teórica. pudiendo ser modificadas o eliminadas. También es deseable que se muestre la dificultad "real" es decir, tasa de acierto que ha tenido la pregunta.
+**4. Listado:** Se mostrarán todas las preguntas existentes, junto con la dificultad teórica. pudiendo ser modificadas o eliminadas. También es deseable que se muestre la dificultad "real" es decir, tasa de acierto que ha tenido la pregunta.
 
-**CRUD:** El CRUD se materializará en la clase Pregunta.
+**5. CRUD:** El CRUD se materializará en la clase Pregunta.
 
-**URLs del proyecto:**
+**6. URLs del proyecto:**
 
 Repositorio proyecto: https://git.institutomilitar.com/samotcarrasco/autoescuela-online
 
 Librería: https://github.com/... (pendiente)
 
 
-**Despliegue en Internet:**
+**7. Despliegue en Internet:**
 
 API: pendiente
 
