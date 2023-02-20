@@ -1,6 +1,7 @@
 # AUTOTEST
 
 **Descripción**
+
 Proyecto que permitirá a los alumnos de una autoescuela realizar exámenes online. En principio, las pregutas estarán relacionadas con el temario de obtención del permiso de conducir B, aunque el sistema estará preparado para poder ser reutilizado en exámenes de otra temática, como por ejemplo, exámenes de oposiciones.
 
 Se podrán dar de alta preguntas de diferente tipología y dificultad, que servirán como repositorio centralizado para el personal de la autoescuela. 
