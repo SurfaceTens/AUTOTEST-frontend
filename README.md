@@ -17,15 +17,15 @@ Finalmente, se podrán obtener una serie de estadísticas, como qué pregunta es
 **Cumplimiento de requisitos**
 
 
-**1. Herencia:** El supertipo Pregunta tendrá los subtipos PreguntaConImagen y PreguntaConAudio.
+**1. Herencia:** El supertipo `Pregunta` tendrá los subtipos `PreguntaConImagen` y `PreguntaConAudio`.
 
-**2. Relación One-To-Many:** Relación entre Pregunta y Exámen.
+**2. Relación One-To-Many:** Relación entre `Pregunta` y `Exámen`.
 
-**3. Método personalizado:** generarExamen(). Este método generará un exámen con preguntas obtenidas de forma aleatoria en función del nivel de dificultad seleccionado. El exámen se podrá realizar y se mostrará la nota al finalizar.
+**3. Método personalizado:**` generarExamen()`. Este método generará un exámen con preguntas obtenidas de forma aleatoria en función del nivel de dificultad seleccionado. El exámen se podrá realizar y se mostrará la nota al finalizar.
 
 **4. Listado:** Se mostrarán todas las preguntas existentes; entre otros datos, se mostrará la dificultad teórica. También es deseable que se muestre la dificultad "real" es decir, tasa de acierto que ha tenido la pregunta.
 
-**5. CRUD:** Se podrá hacer CRUD de las entidades Pregunta y Usuario
+**5. CRUD:** Se podrá hacer CRUD de las entidades `Pregunta` y `Alumno`
 
 **6. URLs del proyecto:**
 
