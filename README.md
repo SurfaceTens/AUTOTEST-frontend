@@ -25,7 +25,7 @@ Finalmente, se podrán obtener una serie de estadísticas, como qué pregunta es
 
 **4. Listado:** Se mostrarán todas las preguntas existentes; entre otros datos, se mostrará la dificultad teórica. También es deseable que se muestre la dificultad "real" es decir, tasa de acierto que ha tenido la pregunta.
 
-**5. CRUD:** Se podrá hacer CRUD de Preguntas. 
+**5. CRUD:** Se podrá hacer CRUD de las entidades Pregunta y Usuario
 
 **6. URLs del proyecto:**
 
