@@ -19,7 +19,7 @@ Finalmente, se podrán obtener una serie de estadísticas, como qué pregunta es
 
 **1. Herencia:** El supertipo `Pregunta` tendrá los subtipos `PreguntaConImagen` y `PreguntaConAudio`.
 
-**2. Relación One-To-Many:** Relación entre `Pregunta` y `Exámen`.
+**2. Relación One-To-Many:** Relación entre `Pregunta` y `ExamenTest`.
 
 **3. Método personalizado:**` generarExamen()`. Este método generará un exámen con preguntas obtenidas de forma aleatoria en función del nivel de dificultad seleccionado. El exámen se podrá realizar y se mostrará la nota al finalizar.
 
