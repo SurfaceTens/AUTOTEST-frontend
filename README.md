@@ -10,7 +10,7 @@ Finalmente, se podrán obtener una serie de estadísticas, como qué pregunta es
 
 **Diagrama de Clases**
 
-![Diagrama_de_clases](https://git.institutomilitar.com/samotcarrasco/autoescuela-online/-/wikis/uploads/5003c8f07b4fe39b93f02e537effd058/Diagrama_de_clases.png)
+![Diagrama_de_clases](https://git.institutomilitar.com/samotcarrasco/autoescuela-online/-/wikis/uploads/686a638adada708784fbf9f2e41914c2/Diagrama_de_Clases.png)
 
 
 **Cumplimiento de requisitos**
