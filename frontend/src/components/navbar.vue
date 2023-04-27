@@ -4,7 +4,7 @@
       <div class="d-flex justify-content-start align-items-center">
         <div class="">
           <a href="#">
-            <img src="/images/logo-placeholder.png" alt="Logo" width="40" height="40">
+            <img src="@/assets/logoAutotest.png" alt="Logo" width="40" height="40">
           </a>
         </div>
       </div>
@@ -65,7 +65,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .navbar {
     background: var(--gradiente-navbar);
     height: calc(var(--proporcion-navbar) * 100vh);
