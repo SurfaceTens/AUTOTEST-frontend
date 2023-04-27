@@ -1,5 +1,19 @@
 import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import App from '@/App.vue'
 
-createApp(App).mount('#app')
+// Definir la constante de rutas.
+const routes = [
+  // ...
+]
+
+// Crear el router.
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+})
+
+// Montar App con el router.
+createApp(App)
+  .use(router)
+  .mount('#app')

@@ -1,89 +1,148 @@
+/* Variables de tamaño y proporción de pantalla */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  --ancho-max-contenedor: 1280px;
+  --ancho-max-logo: 120px;
+  --ancho-max-navbar: 768px;
+  --proporcion-logo: 0.75;
+  --proporcion-navbar: 0.1;
+  --proporcion-tarjeta: 0.2;
+  --proporcion-imagen-tarjeta: 0.6;
+  --proporcion-info-tarjeta: 0.4;
+  --tiempo-transicion: 0.2s;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* Variables de color */
+:root {
+  --color-primario: #39ac39;
+  --color-secundario: #ffffff;
+  --color-fondo: #f1f1f1;
+  --color-borde: #242424;
+  --gradiente-navbar: linear-gradient(to bottom, #e0f3ff, #d1e9ff, #c1dfff, #b0d6ff, #9fcdff);
 }
 
+/* Fuentes y tipografía */
+:root {
+  --fuente-predeterminada: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --peso-fuente-normal: 400;
+  --tamano-fuente-normal: 16px;
+  --altura-linea-normal: 1.5;
+}
+
+/* Estilos generales */
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: var(--fuente-predeterminada);
+  font-weight: var(--peso-fuente-normal);
+  font-size: var(--tamano-fuente-normal);
+  line-height: var(--altura-linea-normal);
+  color: var(--color-borde);
+  background-color: var(--color-secundario);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  font-weight: 500;
+  color: var(--color-primario);
+  text-decoration: none;
+  transition: color var(--tiempo-transicion);
+}
+
+a:hover {
+  color: darken(var(--color-primario), 10%);
 }
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: none;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--color-primario);
+  color: var(--color-secundario);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color var(--tiempo-transicion), color var(--tiempo-transicion);
 }
+
 button:hover {
-  border-color: #646cff;
+  background-color: darken(var(--color-primario), 10%);
 }
+
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-primario);
 }
 
+/* Componentes */
+/* Tarjeta */
 .card {
-  padding: 2em;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.1);
+  background-color: var(--colorFondoSecundario);
 }
 
-#app {
+.card_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.card_title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--colorTextoPrimario);
+}
+
+.card_content {
+  color: var(--colorTextoSecundario);
+  line-height: 1.5;
+}
+
+.card_content h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+}
+
+.card_content p {
+  margin-bottom: 1.5em;
+}
+
+.card_content button {
+  margin-top: 1em;
+}
+
+/* Contenedor */
+.container {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Botones */
+.btn-primary {
+  background-color: var(--color-primario);
+  color: var(--color-secundario);
+}
+
+/* Fondo primario */
+.bg-primary {
+  background-color: var(--color-primario);
+}
+
+/* Texto primario */
+.text-primary {
+  color: var(--color-primario);
+}
+
+/* Fondo oscuro */
+.bg-dark {
+  background-color: var(--color-oscuro);
+  color: var(--color-secundario);
+}
+
+/* Texto oscuro */
+.text-dark {
+  color: var(--color-oscuro);
 }
