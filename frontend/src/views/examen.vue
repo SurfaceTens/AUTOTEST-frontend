@@ -12,7 +12,7 @@
 
 <script>
 import axios from "axios";
-import pregunta from "@/components/pregunta.vue";
+import pregunta from "@/views/pregunta.vue";
 
 export default {
   name: "examen",
