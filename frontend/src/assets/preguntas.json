@@ -1,0 +1,63 @@
+[
+    {
+      "dificultad": "facil",
+      "tema": "Alimentación",
+      "enunciado": "¿Qué ave es famosa por comer carroña?",
+      "correcta": "buitre",
+      "incorrectas": [
+        "Águila",
+        "Colibrí",
+        "Loro"
+      ],
+      "imagen": "buitre.jpg"
+    },
+    {
+      "dificultad": "facil",
+      "tema": "Nidos",
+      "enunciado": "¿Cómo se llama el nido de los pájaros?",
+      "correcta": "nido",
+      "incorrectas": [
+        "Casa",
+        "Refugio",
+        "Cama"
+      ],
+      "imagen": "nido.png"
+    },
+    {
+      "dificultad": "facil",
+      "tema": "Migración",
+      "enunciado": "¿Qué ave emprende una de las migraciones más largas del mundo?",
+      "correcta": "golondrina",
+      "incorrectas": [
+        "Pato",
+        "Búho",
+        "Gallina"
+      ],
+      "imagen": "golondrina.jpg"
+    },
+    {
+      "dificultad": "medio",
+      "tema": "Especies en peligro de extinción",
+      "enunciado": "¿Cuál es el ave más amenazada de Sudamérica?",
+      "correcta": "condor de california",
+      "incorrectas": [
+        "Guacamayo",
+        "Cóndor de los Andes",
+        "Águila Imperial Ibérica"
+      ],
+      "imagen": "condorcalifornia.jpg"
+    },
+    {
+      "dificultad": "dificil",
+      "tema": "Hábitats",
+      "enunciado": "¿En qué país se encuentra el hábitat del colibrí abeja?",
+      "correcta": "cuba",
+      "incorrectas": [
+        "Brasil",
+        "México",
+        "Argentina"
+      ],
+      "imagen": "colibriabeja.jpg"
+    }
+  ]
+  

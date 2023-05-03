@@ -1,0 +1,21 @@
+📁 src/
+  📁 assets/
+    📄 preguntas.json
+    📄 usuarios.json
+  📁 components/
+    📄 menu.vue
+    📄 navbar.vue
+  📁 router/
+    📄 index.js
+  📁 views/
+    📄 examen.vue
+    📄 home.vue
+    📄 nuevaPregunta.vue
+    📄 nuevaUsuario.vue
+    📄 pregunta.vue
+    📄 preguntas.vue
+    📄 usuarios.vue
+  📄 App.vue
+  📄 main.js
+  📄 style.css
+
