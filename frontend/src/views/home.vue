@@ -1,7 +1,7 @@
 <template>
     <div>
-      <h1>Mensaje en home.vue</h1>
-      <p>Esta es una aplicación de prueba para demostrar cómo construir una aplicación web con Vue.js y Vite.</p>
+      <h1>Home</h1>
+      <p>Esta página habla de la autoescuela.</p>
     </div>
   </template>
   

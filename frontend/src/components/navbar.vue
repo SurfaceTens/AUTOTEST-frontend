@@ -2,9 +2,9 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-custom my-custom-nav">
     <div class="container-fluid">
       <div class="d-flex justify-content-start align-items-center">
-        <div class="">
+        <div class="navbar-brand">
           <a href="#">
-            <img src="@/assets/logoAutotest.png" alt="Logo" width="40" height="40">
+            <img src="@/assets/logoAutotest.png" alt="Logo">
           </a>
         </div>
       </div>

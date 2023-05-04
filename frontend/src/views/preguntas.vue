@@ -3,7 +3,7 @@
       <h1>Preguntas</h1>
       <ul>
         <li v-for="(pregunta, index) in preguntas" :key="index">
-          <router-link :to="'/preguntas/' + pregunta.id">{{ pregunta.texto }}</router-link>
+          <router-link :to="'/preguntas/' + pregunta.id">{{ pregunta.enunciado }}</router-link>
         </li>
       </ul>
     </div>

@@ -1,5 +1,6 @@
 [
     {
+      "id": 1,
       "dificultad": "facil",
       "tema": "Alimentación",
       "enunciado": "¿Qué ave es famosa por comer carroña?",
@@ -12,6 +13,7 @@
       "imagen": "buitre.jpg"
     },
     {
+      "id": 2,
       "dificultad": "facil",
       "tema": "Nidos",
       "enunciado": "¿Cómo se llama el nido de los pájaros?",
@@ -24,6 +26,7 @@
       "imagen": "nido.png"
     },
     {
+      "id": 3,
       "dificultad": "facil",
       "tema": "Migración",
       "enunciado": "¿Qué ave emprende una de las migraciones más largas del mundo?",
@@ -36,6 +39,7 @@
       "imagen": "golondrina.jpg"
     },
     {
+      "id": 4,
       "dificultad": "medio",
       "tema": "Especies en peligro de extinción",
       "enunciado": "¿Cuál es el ave más amenazada de Sudamérica?",
@@ -48,6 +52,7 @@
       "imagen": "condorcalifornia.jpg"
     },
     {
+      "id": 5,
       "dificultad": "dificil",
       "tema": "Hábitats",
       "enunciado": "¿En qué país se encuentra el hábitat del colibrí abeja?",

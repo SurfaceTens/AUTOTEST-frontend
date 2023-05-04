@@ -1,9 +1,9 @@
 /* Variables de tamaño y proporción de pantalla */
 :root {
   --ancho-max-contenedor: 1280px;
-  --ancho-max-logo: 120px;
+  --ancho-max-logo: 35px;
   --ancho-max-navbar: 768px;
-  --proporcion-logo: 0.75;
+  --proporcion-logo: 1.35;
   --proporcion-navbar: 0.1;
   --proporcion-tarjeta: 0.2;
   --proporcion-imagen-tarjeta: 0.6;
@@ -11,7 +11,7 @@
   --tiempo-transicion: 0.2s;
 }
 
-/* Variables de color */
+/* Colores */
 :root {
   --color-primario: #39ac39;
   --color-secundario: #ffffff;
