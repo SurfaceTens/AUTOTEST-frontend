@@ -33,7 +33,7 @@ export default {
           return {
             id: key,
             stem: response.data[key].stem,
-            alternativas: response.data[key].alternativas,
+            alternativas: response.data[key].incorrectas,
           };
         });
       })
