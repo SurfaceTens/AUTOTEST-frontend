@@ -63,6 +63,31 @@
         "Argentina"
       ],
       "imagen": "colibriabeja.jpg"
+    },
+    {
+      "id": 6,
+      "dificultad": "facil",
+      "tema": "Vuelo",
+      "enunciado": "¿Cuál es el ave que puede volar hacia atrás?",
+      "correcta": "colibrí",
+      "incorrectas": [
+        "Águila",
+        "Buitre",
+        "Loro"
+      ]
+    },
+    {
+      "id": 7,
+      "dificultad": "medio",
+      "tema": "Comportamiento",
+      "enunciado": "¿Qué ave es conocida por imitar sonidos y hablar?",
+      "correcta": "loro",
+      "incorrectas": [
+        "Buitre",
+        "Águila",
+        "Colibrí"
+      ]
     }
+    
   ]
   
