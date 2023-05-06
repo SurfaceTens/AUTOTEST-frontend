@@ -1,18 +1,18 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import './style.css'
-
-// Import views for the router.
 import App from '@/App.vue'
+
+// Importar las views.
 import Home from "@/views/home.vue";
 import Examen from "@/views/examen.vue";
 import Preguntas from "@/views/preguntas.vue";
-import Pregunta from "@/views/pregunta.vue"; // Add the import statement for Pregunta component
+import Pregunta from "@/views/pregunta.vue";
 import Usuarios from "@/views/usuarios.vue";
 import NuevaPregunta from "@/views/nuevaPregunta.vue";
 import NuevoUsuario from "@/views/nuevoUsuario.vue";
 
-// Define the routes constant.
+// Definir las rutas.
 const routes = [
   {
     path: "/",
@@ -51,13 +51,13 @@ const routes = [
   },
 ];
 
-// Create the router.
+// Crear el router.
 const router = createRouter({
   history: createWebHistory(),
   routes,
 })
 
-// Mount App with the router.
+// Mountar App.
 createApp(App)
   .use(router)
   .mount('#app')
