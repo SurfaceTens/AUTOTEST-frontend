@@ -30,15 +30,18 @@ export default {
   computed: {
     // Hacer un array con las alternativas.
     alternativas() {
-      const correcta = preguntas[this.pregunta.id].correcta;
-      const incorrectas = preguntas[this.pregunta.id].incorrectas;
-      console.log("correcta:", correcta);
-      console.log("incorrectas:", incorrectas);
-      return [correcta, ...incorrectas];
+      if (this.pregunta) {
+        const questionIndex = this.pregunta.id - 1; // Adjust the index
+        if (Array.isArray(preguntas) && questionIndex >= 0 && questionIndex < preguntas.length) {
+          const correcta = preguntas[questionIndex].correcta;
+          const incorrectas = preguntas[questionIndex].incorrectas;
+          return [correcta, ...incorrectas];
+        }
+      }
+      return [];
     },
     // Crear un array desordenado.
     alternativasAleatorias() {
-      console.log(this.alternativas); // Log the contents of the array
       return this.desordenarArray(this.alternativas);
     },
   },
@@ -63,10 +66,18 @@ export default {
     },
   },
   created() {
-    // Acceder a la ID desde la ruta
+    // Acceder a la ID desde la ruta y convertirla en entero
     const id = parseInt(this.$route.params.id);
-    // Encontrar la pregunta que tiene esa id en el json.
+
+    // Encontrar la pregunta que tiene el mismo ID en el json
     this.pregunta = preguntas.find((pregunta) => pregunta.id === id);
+    console.log('Pregunta obtenida:', this.pregunta);
+
+    // Verificar si se encontró la pregunta o no
+    if (!this.pregunta) {
+      console.error('Pregunta no encontrada');
+      this.$router.push('/preguntaNoEncontrada');
+    }
   },
 };
 </script>
