@@ -87,7 +87,325 @@
         "Águila",
         "Colibrí"
       ]
-    }
+    },
+      {
+        "id": 8,
+        "dificultad": "medio",
+        "tema": "Anatomía",
+        "enunciado": "¿Cuál es el ave con el pico más largo en relación a su cuerpo?",
+        "correcta": "tucán",
+        "incorrectas": [
+          "Pelícano",
+          "Flamenco",
+          "Loro"
+        ]
+      },
+      {
+        "id": 9,
+        "dificultad": "dificil",
+        "tema": "Reproducción",
+        "enunciado": "¿Cuál es el ave que pone el huevo más grande en comparación con su tamaño corporal?",
+        "correcta": "avestruz",
+        "incorrectas": [
+          "Pingüino Emperador",
+          "Colibrí",
+          "Pato"
+        ],
+        "imagen": "avestruz.jpg"
+      },
+      {
+        "id": 10,
+        "dificultad": "facil",
+        "tema": "Hábitat",
+        "enunciado": "¿En qué tipo de hábitat se encuentra el pingüino?",
+        "correcta": "polo sur",
+        "incorrectas": [
+          "Desierto",
+          "Selva tropical",
+          "Montaña"
+        ],
+        "imagen": "pinguino.jpg"
+      },
+      {
+        "id": 11,
+        "dificultad": "medio",
+        "tema": "Alimentación",
+        "enunciado": "¿Qué ave es conocida por su capacidad para pescar?",
+        "correcta": "martín pescador",
+        "incorrectas": [
+          "Avestruz",
+          "Buitre",
+          "Colibrí"
+        ],
+        "imagen": "martinpescador.jpg"
+      },
+      {
+        "id": 12,
+        "dificultad": "facil",
+        "tema": "Comportamiento",
+        "enunciado": "¿Qué ave construye nidos en forma de colonias en acantilados marinos?",
+        "correcta": "alcatraz",
+        "incorrectas": [
+          "Cigüeña",
+          "Águila",
+          "Loro"
+        ],
+        "imagen": "alcatraz.jpg"
+      },
+      {
+        "id": 13,
+        "dificultad": "facil",
+        "tema": "Migración",
+        "enunciado": "¿Qué ave es conocida por realizar la migración más larga del mundo?",
+        "correcta": "golondrina de mar",
+        "incorrectas": [
+          "Águila",
+          "Colibrí",
+          "Pingüino"
+        ]
+      },
+      {
+        "id": 14,
+        "dificultad": "medio",
+        "tema": "Anatomía",
+        "enunciado": "¿Qué ave tiene el cuello más largo en relación a su cuerpo?",
+        "correcta": "cisne",
+        "incorrectas": [
+          "Pato",
+          "Ganso",
+          "Flamenco"
+        ],
+        "imagen": "cisne.jpg"
+      },
+      {
+        "id": 15,
+        "dificultad": "facil",
+        "tema": "Nidos",
+        "enunciado": "¿Qué ave construye nidos flotantes en el agua?",
+        "correcta": "jacana",
+        "incorrectas": [
+          "Gaviota",
+          "Paloma",
+          "Cuervo"
+        ],
+        "imagen": "jacana.jpg"
+      },
+      {
+        "id": 16,
+        "dificultad": "dificil",
+        "tema": "Alimentación",
+        "enunciado": "¿Qué ave se alimenta principalmente de frutas y néctar?",
+        "correcta": "loro",
+        "incorrectas": [
+          "Buitre",
+          "Águila",
+          "Colibrí"
+        ],
+        "imagen": "loro.jpg"
+      },
+      {
+        "id": 17,
+        "dificultad": "medio",
+        "tema": "Vuelo",
+        "enunciado": "¿Qué ave tiene la envergadura más grande?",
+        "correcta": "albatros",
+        "incorrectas": [
+          "Cuervo",
+          "Aguilucho",
+          "Gaviota"
+        ],
+        "imagen": "albatros.jpg"
+      },
+      {
+        "id": 18,
+        "dificultad": "facil",
+        "tema": "Hábitats",
+        "enunciado": "¿En qué continente se encuentra la mayor diversidad de aves?",
+        "correcta": "sudamérica",
+        "incorrectas": [
+          "África",
+          "Asia",
+          "Europa"
+        ]
+      },
+      {
+        "id": 19,
+        "dificultad": "medio",
+        "tema": "Comportamiento",
+        "enunciado": "¿Qué ave es conocida por hacer danzas de apareamiento elaboradas?",
+        "correcta": "ave del paraíso",
+        "incorrectas": [
+          "Cigüeña",
+          "Gorrión",
+          "Pavo real"
+        ],
+        "imagen": "avedelparaiso.jpg"
+      },
+      {
+        "id": 20,
+        "dificultad": "facil",
+        "tema": "Anatomía",
+        "enunciado": "¿Qué ave tiene una cresta en la cabeza?",
+        "correcta": "gallo",
+        "incorrectas": [
+          "Pato",
+          "Ganso",
+          "Pavo"
+        ],
+        "imagen": "gallo.jpg"
+      },
+      {
+        "id": 21,
+        "dificultad": "dificil",
+        "tema": "Especies en peligro de extinción",
+        "enunciado": "¿Cuál de estas aves es considerada en peligro crítico de extinción?",
+        "correcta": "águila filipina",
+        "incorrectas": [
+          "Lechuza común",
+          "Cigüeña negra",
+          "Pingüino emperador"
+        ],
+        "imagen": "aguilafilipina.jpg"
+      },
+      {
+        "id": 22,
+        "dificultad": "medio",
+        "tema": "Migración",
+        "enunciado": "¿Qué ave realiza migraciones en forma de 'V'?",
+        "correcta": "ganso",
+        "incorrectas": [
+          "Cisne",
+          "Pato",
+          "Flamenco"
+        ],
+        "imagen": "ganso.jpg"
+      },
+      {
+        "id": 23,
+        "dificultad": "facil",
+        "tema": "Alimentación",
+        "enunciado": "¿Qué ave se alimenta principalmente de néctar?",
+        "correcta": "colibrí",
+        "incorrectas": [
+          "Buitre",
+          "Gaviota",
+          "Lechuza"
+        ]
+      },
+      {
+        "id": 24,
+        "dificultad": "facil",
+        "tema": "Nidos",
+        "enunciado": "¿Qué material utilizan las aves para construir sus nidos?",
+        "correcta": "ramitas",
+        "incorrectas": [
+          "Hojas",
+          "Hierba",
+          "Barro"
+        ],
+        "imagen": "nidoaves.jpg"
+      },
+      {
+        "id": 25,
+        "dificultad": "facil",
+        "tema": "Vuelo",
+        "enunciado": "¿Cuál es el ave más grande que puede volar?",
+        "correcta": "albatros",
+        "incorrectas": [
+          "Águila",
+          "Buitre",
+          "Cóndor"
+        ],
+        "imagen": "albatros.jpg"
+      },
+      {
+        "id": 26,
+        "dificultad": "medio",
+        "tema": "Comportamiento",
+        "enunciado": "¿Qué ave es conocida por enterrar comida y encontrarla más tarde?",
+        "correcta": "urraca",
+        "incorrectas": [
+          "Búho",
+          "Águila",
+          "Colibrí"
+        ]
+      },
+      {
+        "id": 27,
+        "dificultad": "dificil",
+        "tema": "Hábitats",
+        "enunciado": "¿En qué lugar se encuentra el hábitat de los pingüinos emperador?",
+        "correcta": "antártida",
+        "incorrectas": [
+          "Ártico",
+          "Australia",
+          "Groenlandia"
+        ],
+        "imagen": "pinguinoemperador.jpg"
+      },
+      {
+        "id": 28,
+        "dificultad": "facil",
+        "tema": "Reproducción",
+        "enunciado": "¿Qué ave pone los huevos más grandes en relación a su tamaño corporal?",
+        "correcta": "kiwi",
+        "incorrectas": [
+          "Gallina",
+          "Ganso",
+          "Pato"
+        ]
+      },
+      {
+        "id": 29,
+        "dificultad": "facil",
+        "tema": "Migración",
+        "enunciado": "¿Qué ave realiza una migración anual desde el Polo Norte hasta la Antártida?",
+        "correcta": "ganso de las nieves",
+        "incorrectas": [
+          "Pato",
+          "Águila",
+          "Cóndor"
+        ],
+        "imagen": "gansonieves.jpg"
+      },
+      {
+        "id": 30,
+        "dificultad": "facil",
+        "tema": "Alimentación",
+        "enunciado": "¿Qué ave se alimenta principalmente de peces?",
+        "correcta": "águila pescadora",
+        "incorrectas": [
+          "Buitre",
+          "Gallina",
+          "Loro"
+        ]
+      },
+      {
+        "id": 31,
+        "dificultad": "medio",
+        "tema": "Nidos",
+        "enunciado": "¿Cuál es el nombre del nido de las avispas?",
+        "correcta": "panal",
+        "incorrectas": [
+          "Colmena",
+          "Casa",
+          "Refugio"
+        ],
+        "imagen": "nidoavispas.jpg"
+      },
+      {
+        "id": 32,
+        "dificultad": "dificil",
+        "tema": "Especies en peligro de extinción",
+        "enunciado": "¿Cuál es el ave más amenazada del mundo?",
+        "correcta": "águila de Haast",
+        "incorrectas": [
+          "Cóndor de los Andes",
+          "Guacamayo",
+          "Cóndor de California"
+        ],
+        "imagen": "aguilahaast.jpg"
+      }                  
     
   ]
   
