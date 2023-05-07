@@ -31,7 +31,7 @@ export default {
     // Hacer un array con las alternativas.
     alternativas() {
       if (this.pregunta) {
-        const questionIndex = this.pregunta.id - 1; // Adjust the index
+        const questionIndex = this.pregunta.id - 1;
         if (Array.isArray(preguntas) && questionIndex >= 0 && questionIndex < preguntas.length) {
           const correcta = preguntas[questionIndex].correcta;
           const incorrectas = preguntas[questionIndex].incorrectas;
