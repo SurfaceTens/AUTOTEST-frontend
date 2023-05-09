@@ -1,3 +1,8 @@
+/* Importa los estilos de PrimeVue */
+@import 'primevue/resources/themes/saga-blue/theme.css';
+@import 'primevue/resources/primevue.min.css';
+@import 'primeicons/primeicons.css';
+
 /* Variables de tamaño y proporción de pantalla */
 :root {
   --ancho-max-contenedor: 1280px;
