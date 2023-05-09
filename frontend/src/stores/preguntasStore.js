@@ -16,9 +16,6 @@ export const preguntasStore = defineStore('preguntas', {
     },
     getPreguntas() {
       return this.preguntas
-    },
-    get30PreguntasAleatorias() {
-      return this.preguntas
     }
   }
 });
