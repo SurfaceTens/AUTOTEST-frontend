@@ -15,10 +15,14 @@ export default {
   },
   methods: {
     ...mapActions(preguntasStore, ['getPreguntaPorId']),
-    ...mapActions(preguntasStore, ['getPreguntas'])
+    ...mapActions(preguntasStore, ['getPreguntas']),
+    ordenarPreguntas() {
+      this.preguntas.sort((a, b) => a.id - b.id);
+    }
   },
   created() {
     this.getPreguntas();
+    this.ordenarPreguntas();
   }
 };
 </script>
