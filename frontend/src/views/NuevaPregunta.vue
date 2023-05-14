@@ -34,7 +34,7 @@ export default {
   <div class="container">
     <div class="card">
       <div class="card_header">
-        <h2 class="card_title">Formulario para dar de alta una pregunta</h2>
+        <h2 class="card_title">Crear una nueva pregunta</h2>
       </div>
       <div class="card_content">
         <form @submit="submitForm">

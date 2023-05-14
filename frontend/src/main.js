@@ -9,7 +9,7 @@ import Home from "@/views/Home.vue"
 import Examen from "@/views/Examen.vue"
 import Preguntas from "@/views/Preguntas.vue"
 import Usuarios from "@/views/Usuarios.vue"
-import NuevaPregunta from "@/views/nuevaPregunta.vue"
+import NuevaPregunta from "@/views/NuevaPregunta.vue"
 import NuevoUsuario from "@/views/NuevoUsuario.vue"
 
 // Definir las rutas
