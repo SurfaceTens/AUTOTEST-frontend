@@ -5,12 +5,12 @@ import App from '@/App.vue'
 import { createPinia } from 'pinia'
 
 // Importar las vistas
-import Home from "@/views/home.vue"
-import Examen from "@/views/examen.vue"
-import Preguntas from "@/views/preguntas.vue"
-import Usuarios from "@/views/usuarios.vue"
+import Home from "@/views/Home.vue"
+import Examen from "@/views/Examen.vue"
+import Preguntas from "@/views/Preguntas.vue"
+import Usuarios from "@/views/Usuarios.vue"
 import NuevaPregunta from "@/views/nuevaPregunta.vue"
-import NuevoUsuario from "@/views/nuevoUsuario.vue"
+import NuevoUsuario from "@/views/NuevoUsuario.vue"
 
 // Definir las rutas
 const routes = [

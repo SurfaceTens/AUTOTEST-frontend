@@ -1,11 +1,11 @@
 <script>
 import { mapActions, mapState } from 'pinia';
 import { preguntasStore } from '@/stores/preguntasStore';
-import pregunta from '@/views/pregunta.vue';
+import Pregunta from '@/views/Pregunta.vue';
 
 export default {
     components: {
-        pregunta,
+        Pregunta,
     },
     data() {
         return {
@@ -135,7 +135,7 @@ export default {
             <h1>{{ tituloExamen }}</h1>
             <ul>
                 <li v-for="(pregunta) in preguntasTratadas" :key="pregunta.id">
-                    <pregunta :pregunta="pregunta" @opcionSeleccionada="seleccionarOpcion(pregunta, $event)"
+                    <Pregunta :pregunta="pregunta" @opcionSeleccionada="seleccionarOpcion(pregunta, $event)"
                         :respuestaCorrecta="pregunta.respuestaCorrecta"
                         :respuestaIncorrecta="pregunta.respuestaIncorrecta" />
                     <b-button-group size="sm" vertical>
@@ -159,7 +159,7 @@ export default {
             <h1>{{ tituloExamen }}</h1>
             <ul>
                 <li v-for="(pregunta) in preguntasTratadas" :key="pregunta.id">
-                    <pregunta :pregunta="pregunta" :respuestaCorrecta="pregunta.correcta"
+                    <Pregunta :pregunta="pregunta" :respuestaCorrecta="pregunta.correcta"
                         :respuestaSeleccionada="getRespuestaSeleccionada(pregunta.id)" />
                 </li>
 
