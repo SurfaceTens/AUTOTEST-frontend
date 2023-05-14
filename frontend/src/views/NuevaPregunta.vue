@@ -1,4 +1,5 @@
 <script>
+import { preguntasStore } from '@/stores/preguntasStore';
 
 export default {
   data() {
