@@ -17,48 +17,44 @@ export default {
   },
   methods: {
     submitForm() {
-    // Crear una copia de la pregunta para evitar modificar directamente los datos del formulario
-    const nuevaPregunta = { ...this.pregunta };
+      const nuevaPregunta = { ...this.pregunta };
+      nuevaPregunta.id = this.generarID();
 
-    // Generar un ID único para la nueva pregunta
-    nuevaPregunta.id = this.generarID();
+      if (!nuevaPregunta.imagen) {
+        nuevaPregunta.imagen = null;
+      }
 
-    // Si no se seleccionó una imagen, establecer el atributo imagen como null
-    if (!nuevaPregunta.imagen) {
-      nuevaPregunta.imagen = null;
+      const preguntasStore = this.$store.preguntasStore;
+
+      // Llamar a la acción para crear una nueva pregunta en el store
+      //preguntasStore.crearPreguntaAPI(nuevaPregunta)
+      //.then(() => {
+      // Realizar cualquier acción adicional después de crear la pregunta, como redirigir al usuario.
+      // this.$router.push('/');
+      //this.mostrarMensajeExito(); // Mostrar el mensaje emergente de éxito
+      //})
+      //.catch((error) => {
+      // Manejar el error en caso de que la creación de la pregunta falle.
+      //console.error(error);
+      //});
+    },
+
+    generarID() {
+      // Generar un ID único para la nueva pregunta (implementación personalizada)
+      const timestamp = Date.now();
+      const randomSuffix = Math.floor(Math.random() * 10000);
+      return `${timestamp}_${randomSuffix}`;
+    },
+
+    subirImagen(event) {
+      // Realizar las acciones necesarias para subir la imagen en el futuro
+      const file = event.target.files[0];
+      // Guardar la imagen en una ubicación específica y guardar la ruta en this.pregunta.imagen
+      console.log(file);
+    },
+    mostrarMensajeExito() {
+      this.$router.push('/exitoFormulario'); // Redirige al componente de éxito
     }
-
-    // Acceder al store de preguntas
-    const preguntasStore = this.$store.preguntasStore;
-
-    // Obtener el array de preguntas del store
-    const preguntas = preguntasStore.getPreguntas();
-
-    // Agregar la nueva pregunta al array de preguntas
-    preguntas.push(nuevaPregunta);
-
-    // Actualizar el array de preguntas en el store
-    preguntasStore.setPreguntas(preguntas);
-
-    // Redirigir al usuario a la página del examen o realizar cualquier otra acción necesaria
-    // this.$router.push('/examen');
-  },
-
-  generarID() {
-    // Generar un ID único para la nueva pregunta (implementación personalizada)
-    // Puedes utilizar un paquete externo o generar un ID único según tu preferencia
-    // Aquí hay un ejemplo simple utilizando la fecha y hora actual
-    const timestamp = Date.now();
-    const randomSuffix = Math.floor(Math.random() * 10000);
-    return `${timestamp}_${randomSuffix}`;
-  },
-
-  subirImagen(event) {
-    // Realizar las acciones necesarias para subir la imagen en el futuro
-    const file = event.target.files[0];
-    // Guardar la imagen en una ubicación específica y guardar la ruta en this.pregunta.imagen
-    console.log(file);
-  }
   },
 };
 </script>
@@ -82,7 +78,6 @@ export default {
               </select>
             </div>
           </div>
-
           <div class="form-group">
             <label for="tema" class="form-label">Tema:</label>
             <input type="text" id="tema" class="form-control" v-model="pregunta.tema"
@@ -118,7 +113,7 @@ export default {
             <label for="imagen" class="form-label">Imagen:</label>
             <input type="file" id="imagen" class="form-control-file" @change="subirImagen" accept="image/*" />
           </div>
-          <button type="submit" class="btn btn-primary">Guardar pregunta</button>
+          <button type="submit" class="btn btn-primary" @click="mostrarMensajeExito">Guardar pregunta</button>
         </form>
       </div>
     </div>
