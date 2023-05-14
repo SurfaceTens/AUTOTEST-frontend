@@ -1,11 +1,11 @@
 <script>
 import { mapActions, mapState } from 'pinia';
 import { preguntasStore } from '@/stores/preguntasStore';
-import pregunta from '@/views/pregunta.vue';
+import Pregunta from '@/views/Pregunta.vue';
 
 export default {
   components: {
-    pregunta,
+    Pregunta,
   },
   computed: {
     ...mapState(preguntasStore, ['preguntas']),
