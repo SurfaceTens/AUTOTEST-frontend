@@ -109,7 +109,7 @@ export default {
               <input type="text" class="form-control" v-model="alumno.direccion.pais" placeholder="País" />
           </div>
           <div class="form-group">
-            <button type="submit" class="btn btn-primary">Crear Alumno</button>
+            <button type="submit" class="btn btn-primary" @click="mostrarMensajeExito">Crear Alumno</button>
           </div>
         </form>
       </div>
