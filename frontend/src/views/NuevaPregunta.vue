@@ -17,15 +17,48 @@ export default {
   },
   methods: {
     submitForm() {
-      // Acciones para guardar la pregunta
-      console.log(this.pregunta);
-    },
-    handleImageUpload(event) {
-      const file = event.target.files[0];
-      // Realizar las acciones necesarias para subir la imagen en el futuro
-      // Guardar la imagen en una ubicación específica y guardar la ruta en this.pregunta.imagen
-      console.log(file);
-    },
+    // Crear una copia de la pregunta para evitar modificar directamente los datos del formulario
+    const nuevaPregunta = { ...this.pregunta };
+
+    // Generar un ID único para la nueva pregunta
+    nuevaPregunta.id = this.generarID();
+
+    // Si no se seleccionó una imagen, establecer el atributo imagen como null
+    if (!nuevaPregunta.imagen) {
+      nuevaPregunta.imagen = null;
+    }
+
+    // Acceder al store de preguntas
+    const preguntasStore = this.$store.preguntasStore;
+
+    // Obtener el array de preguntas del store
+    const preguntas = preguntasStore.getPreguntas();
+
+    // Agregar la nueva pregunta al array de preguntas
+    preguntas.push(nuevaPregunta);
+
+    // Actualizar el array de preguntas en el store
+    preguntasStore.setPreguntas(preguntas);
+
+    // Redirigir al usuario a la página del examen o realizar cualquier otra acción necesaria
+    // this.$router.push('/examen');
+  },
+
+  generarID() {
+    // Generar un ID único para la nueva pregunta (implementación personalizada)
+    // Puedes utilizar un paquete externo o generar un ID único según tu preferencia
+    // Aquí hay un ejemplo simple utilizando la fecha y hora actual
+    const timestamp = Date.now();
+    const randomSuffix = Math.floor(Math.random() * 10000);
+    return `${timestamp}_${randomSuffix}`;
+  },
+
+  subirImagen(event) {
+    // Realizar las acciones necesarias para subir la imagen en el futuro
+    const file = event.target.files[0];
+    // Guardar la imagen en una ubicación específica y guardar la ruta en this.pregunta.imagen
+    console.log(file);
+  }
   },
 };
 </script>
@@ -40,39 +73,50 @@ export default {
         <form @submit="submitForm">
           <div class="form-group">
             <label for="dificultad" class="form-label">Dificultad:</label>
-            <select id="dificultad" class="form-control" v-model="pregunta.dificultad">
-              <option value="facil">Fácil</option>
-              <option value="media">Media</option>
-              <option value="dificil">Difícil</option>
-            </select>
+            <div class="select-arrow">
+              <select id="dificultad" class="form-control" v-model="pregunta.dificultad">
+                <option value="" disabled selected>Selecciona la dificultad.</option>
+                <option value="facil">Fácil</option>
+                <option value="media">Media</option>
+                <option value="dificil">Difícil</option>
+              </select>
+            </div>
           </div>
+
           <div class="form-group">
             <label for="tema" class="form-label">Tema:</label>
-            <input type="text" id="tema" class="form-control" v-model="pregunta.tema" />
+            <input type="text" id="tema" class="form-control" v-model="pregunta.tema"
+              placeholder="Ingresa el tema de la pregunta." />
           </div>
           <div class="form-group">
             <label for="enunciado" class="form-label">Enunciado:</label>
-            <textarea id="enunciado" class="form-control" v-model="pregunta.enunciado"></textarea>
+            <textarea id="enunciado" class="form-control enunciado-textarea" v-model="pregunta.enunciado"
+              placeholder="Introduce el enunciado de la pregunta"></textarea>
           </div>
+
           <div class="form-group">
             <label for="correcta" class="form-label">Respuesta correcta:</label>
-            <input type="text" id="correcta" class="form-control" v-model="pregunta.correcta" />
+            <input type="text" id="correcta" class="form-control" v-model="pregunta.correcta"
+              placeholder="Ingresa la respuesta correcta." />
           </div>
           <div class="form-group">
             <label for="incorrecta1" class="form-label">Respuesta incorrecta 1:</label>
-            <input type="text" id="incorrecta1" class="form-control" v-model="pregunta.incorrectas[0]" />
+            <input type="text" id="incorrecta1" class="form-control" v-model="pregunta.incorrectas[0]"
+              placeholder="Ingresa una respuesta incorrecta." />
           </div>
           <div class="form-group">
             <label for="incorrecta2" class="form-label">Respuesta incorrecta 2:</label>
-            <input type="text" id="incorrecta2" class="form-control" v-model="pregunta.incorrectas[1]" />
+            <input type="text" id="incorrecta2" class="form-control" v-model="pregunta.incorrectas[1]"
+              placeholder="Ingresa una respuesta incorrecta." />
           </div>
           <div class="form-group">
             <label for="incorrecta3" class="form-label">Respuesta incorrecta 3:</label>
-            <input type="text" id="incorrecta3" class="form-control" v-model="pregunta.incorrectas[2]" />
+            <input type="text" id="incorrecta3" class="form-control" v-model="pregunta.incorrectas[2]"
+              placeholder="Ingresa una respuesta incorrecta." />
           </div>
           <div class="form-group">
             <label for="imagen" class="form-label">Imagen:</label>
-            <input type="file" id="imagen" class="form-control-file" @change="handleImageUpload" accept="image/*" />
+            <input type="file" id="imagen" class="form-control-file" @change="subirImagen" accept="image/*" />
           </div>
           <button type="submit" class="btn btn-primary">Guardar pregunta</button>
         </form>
@@ -83,6 +127,22 @@ export default {
 
 
 <style scoped>
+.select-arrow::after {
+  content: '↓';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.select-arrow {
+  position: relative;
+}
+
+
 .container {
   max-width: var(--ancho-max-contenedor);
   margin: 0 auto;
@@ -155,6 +215,12 @@ export default {
   border-radius: 4px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
+.enunciado-textarea {
+  height: 7.5rem;
+  resize: none;
+}
+
 
 .btn-primary {
   border-radius: 8px;
