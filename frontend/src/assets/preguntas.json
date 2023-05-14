@@ -3,411 +3,620 @@
         "preguntas": [
             {
                 "id": 1,
-                "dificultad": "facil",
-                "tema": "Alimentación",
-                "enunciado": "¿Qué ave es famosa por comer carroña?",
-                "correcta": "buitre",
+                "dificultad": "Fácil",
+                "tema": "Velocidad",
+                "enunciado": "¿Cuál es la velocidad máxima permitida en vías urbanas?",
+                "correcta": "50 km/h",
                 "incorrectas": [
-                    "Águila",
-                    "Colibrí",
-                    "Lorico"
-                ],
-                "imagen": "buitre.jpg"
-            },
-            {
+                  "30 km/h",
+                  "70 km/h",
+                  "90 km/h"
+                ]
+              },
+              {
                 "id": 2,
-                "dificultad": "facil",
-                "tema": "Nidos",
-                "enunciado": "¿Cómo se llama el nido de los pájaros?",
-                "correcta": "nido",
+                "dificultad": "Fácil",
+                "tema": "Alcohol y drogas",
+                "enunciado": "¿Cuál es la tasa máxima de alcohol permitida para los conductores noveles y profesionales?",
+                "correcta": "0,25 mg/l de aire espirado",
                 "incorrectas": [
-                    "Casa",
-                    "Refugio",
-                    "Cama"
-                ],
-                "imagen": "nido.png"
-            },
-            {
+                  "0,15 mg/l de aire espirado",
+                  "0,30 mg/l de aire espirado",
+                  "0,50 mg/l de aire espirado"
+                ]
+              },
+              {
                 "id": 3,
-                "dificultad": "facil",
-                "tema": "Migración",
-                "enunciado": "¿Qué ave emprende una de las migraciones más largas del mundo?",
-                "correcta": "golondrina",
+                "dificultad": "Media",
+                "tema": "Distancia de seguridad",
+                "enunciado": "¿Cuál es la distancia de seguridad recomendada para circular detrás de un vehículo en condiciones normales?",
+                "correcta": "20 metros",
                 "incorrectas": [
-                    "Pato",
-                    "Búho",
-                    "Gallina"
+                  "10 metros",
+                  "50 metros",
+                  "100 metros"
                 ],
-                "imagen": "golondrina.jpg"
-            },
-            {
+                "imagen": "imagen1.jpg"
+              },
+              {
                 "id": 4,
-                "dificultad": "medio",
-                "tema": "Especies en peligro de extinción",
-                "enunciado": "¿Cuál es el ave más amenazada de Sudamérica?",
-                "correcta": "condor de california",
+                "dificultad": "Fácil",
+                "tema": "Señales de tráfico",
+                "enunciado": "¿Qué indica una línea continua en el pavimento?",
+                "correcta": "No se puede adelantar",
                 "incorrectas": [
-                    "Guacamayo",
-                    "Cóndor de los Andes",
-                    "Águila Imperial Ibérica"
-                ],
-                "imagen": "condorcalifornia.jpg"
-            },
-            {
+                  "Se puede adelantar",
+                  "Se puede cambiar de carril",
+                  "Se puede estacionar"
+                ]
+              },
+              {
                 "id": 5,
-                "dificultad": "dificil",
-                "tema": "Hábitats",
-                "enunciado": "¿En qué país se encuentra el hábitat del colibrí abeja?",
-                "correcta": "cuba",
+                "dificultad": "Fácil",
+                "tema": "Señales de tráfico",
+                "enunciado": "¿Qué significa una señal de tráfico triangular con borde rojo y pictograma blanco en el centro?",
+                "correcta": "Peligro",
                 "incorrectas": [
-                    "Brasil",
-                    "México",
-                    "Argentina"
-                ],
-                "imagen": "colibriabeja.jpg"
-            },
-            {
+                  "Ceda el paso",
+                  "Stop",
+                  "Dirección obligatoria"
+                ]
+              },
+              {
                 "id": 6,
-                "dificultad": "facil",
-                "tema": "Vuelo",
-                "enunciado": "¿Cuál es el ave que puede volar hacia atrás?",
-                "correcta": "colibrí",
+                "dificultad": "Fácil",
+                "tema": "Permiso de conducir",
+                "enunciado": "¿Cuál es la edad mínima para obtener el permiso de conducir de la clase B?",
+                "correcta": "18 años",
                 "incorrectas": [
-                    "Águila",
-                    "Buitre",
-                    "Loro"
+                  "16 años",
+                  "21 años",
+                  "25 años"
                 ]
-            },
-            {
+              },
+              {
                 "id": 7,
-                "dificultad": "medio",
-                "tema": "Comportamiento",
-                "enunciado": "¿Qué ave es conocida por imitar sonidos y hablar?",
-                "correcta": "loro",
+                "dificultad": "Media",
+                "tema": "Normas de circulación",
+                "enunciado": "¿Cuál es el procedimiento correcto al aproximarse a una glorieta?",
+                "correcta": "Ceder el paso a los vehículos que circulan dentro de la glorieta",
                 "incorrectas": [
-                    "Buitre",
-                    "Águila",
-                    "Colibrí"
+                  "Acelerar para entrar rápidamente en la glorieta",
+                  "Tener preferencia sobre los vehículos que circulan dentro de la glorieta",
+                  "Frenar bruscamente antes de entrar en la glorieta"
                 ]
-            },
-            {
+              },
+              {
                 "id": 8,
-                "dificultad": "medio",
-                "tema": "Anatomía",
-                "enunciado": "¿Cuál es el ave con el pico más largo en relación a su cuerpo?",
-                "correcta": "tucán",
+                "dificultad": "Fácil",
+                "tema": "Señales de tráfico",
+                "enunciado": "¿Qué indica una señal de tráfico circular con fondo azul y pictograma blanco en el centro?",
+                "correcta": "Zona de estacionamiento",
                 "incorrectas": [
-                    "Pelícano",
-                    "Flamenco",
-                    "Loro"
+                  "Zona de carga y descarga",
+                  "Zona peatonal",
+                  "Obligación de circular en sentido contrario"
                 ]
-            },
-            {
+              },
+              {
                 "id": 9,
-                "dificultad": "dificil",
-                "tema": "Reproducción",
-                "enunciado": "¿Cuál es el ave que pone el huevo más grande en comparación con su tamaño corporal?",
-                "correcta": "avestruz",
+                "dificultad": "Media",
+                "tema": "Seguridad vial",
+                "enunciado": "¿Cuál es la distancia mínima de seguridad que se debe mantener al adelantar a un ciclista?",
+                "correcta": "1,5 metros",
                 "incorrectas": [
-                    "Pingüino Emperador",
-                    "Colibrí",
-                    "Pato"
+                  "1 metro",
+                  "2 metros",
+                  "3 metros"
                 ],
-                "imagen": "avestruz.jpg"
-            },
-            {
+                "imagen": "imagen2.jpg"
+              },
+              {
                 "id": 10,
-                "dificultad": "facil",
-                "tema": "Hábitat",
-                "enunciado": "¿En qué tipo de hábitat se encuentra el pingüino?",
-                "correcta": "polo sur",
+                "dificultad": "Fácil",
+                "tema": "Prioridad de paso",
+                "enunciado": "¿Qué debe hacer un conductor al acercarse a un paso de peatones donde haya peatones esperando para cruzar?",
+                "correcta": "Reducir la velocidad y ceder el paso",
                 "incorrectas": [
-                    "Desierto",
-                    "Selva tropical",
-                    "Montaña"
-                ],
-                "imagen": "pinguino.jpg"
-            },
-            {
+                  "Acelerar para pasar rápidamente",
+                  "Hacer sonar la bocina para advertir a los peatones",
+                  "Ignorar a los peatones y seguir adelante"
+                ]
+              },
+              {
                 "id": 11,
-                "dificultad": "medio",
-                "tema": "Alimentación",
-                "enunciado": "¿Qué ave es conocida por su capacidad para pescar?",
-                "correcta": "martín pescador",
+                "dificultad": "Media",
+                "tema": "Normas de circulación",
+                "enunciado": "¿Cuál es el límite de velocidad en una vía urbana con un único carril por sentido de circulación?",
+                "correcta": "50 km/h",
                 "incorrectas": [
-                    "Avestruz",
-                    "Buitre",
-                    "Colibrí"
+                  "30 km/h",
+                  "70 km/h",
+                  "90 km/h"
                 ],
-                "imagen": "martinpescador.jpg"
-            },
-            {
+                "imagen": "imagen3.jpg"
+              },
+              {
                 "id": 12,
-                "dificultad": "facil",
-                "tema": "Comportamiento",
-                "enunciado": "¿Qué ave construye nidos en forma de colonias en acantilados marinos?",
-                "correcta": "alcatraz",
+                "dificultad": "Difícil",
+                "tema": "Conducción eficiente",
+                "enunciado": "¿Cuál de los siguientes factores puede ayudar a reducir el consumo de combustible?",
+                "correcta": "Mantener una velocidad constante y moderada",
                 "incorrectas": [
-                    "Cigüeña",
-                    "Águila",
-                    "Loro"
-                ],
-                "imagen": "alcatraz.jpg"
-            },
-            {
+                  "Acelerar rápidamente después de cada semáforo",
+                  "Dejar el motor encendido cuando el vehículo está detenido",
+                  "Llevar una carga adicional innecesaria en el maletero"
+                ]
+              },
+              {
                 "id": 13,
-                "dificultad": "facil",
-                "tema": "Migración",
-                "enunciado": "¿Qué ave es conocida por realizar la migración más larga del mundo?",
-                "correcta": "golondrina de mar",
+                "dificultad": "Fácil",
+                "tema": "Señales de tráfico",
+                "enunciado": "¿Qué indica esta señal de tráfico?",
+                "correcta": "Ceda el paso",
                 "incorrectas": [
-                    "Águila",
-                    "Colibrí",
-                    "Pingüino"
-                ]
-            },
-            {
+                  "Prohibido el paso",
+                  "Paso peatonal",
+                  "Zona de carga y descarga"
+                ],
+                "imagen": "imagen13.jpg"
+              },
+              {
                 "id": 14,
-                "dificultad": "medio",
-                "tema": "Anatomía",
-                "enunciado": "¿Qué ave tiene el cuello más largo en relación a su cuerpo?",
-                "correcta": "cisne",
+                "dificultad": "Media",
+                "tema": "Normas de circulación",
+                "enunciado": "¿Cuál es la velocidad máxima permitida en una vía urbana?",
+                "correcta": "50 km/h",
                 "incorrectas": [
-                    "Pato",
-                    "Ganso",
-                    "Flamenco"
-                ],
-                "imagen": "cisne.jpg"
-            },
-            {
+                  "30 km/h",
+                  "60 km/h",
+                  "90 km/h"
+                ]
+              },
+              {
                 "id": 15,
-                "dificultad": "facil",
-                "tema": "Nidos",
-                "enunciado": "¿Qué ave construye nidos flotantes en el agua?",
-                "correcta": "jacana",
+                "dificultad": "Difícil",
+                "tema": "Conducción segura",
+                "enunciado": "¿Cuál es la distancia de seguridad recomendada para circular a una velocidad de 120 km/h?",
+                "correcta": "120 metros",
                 "incorrectas": [
-                    "Gaviota",
-                    "Paloma",
-                    "Cuervo"
-                ],
-                "imagen": "jacana.jpg"
-            },
-            {
+                  "20 metros",
+                  "50 metros",
+                  "80 metros"
+                ]
+              },
+              {
                 "id": 16,
-                "dificultad": "dificil",
-                "tema": "Alimentación",
-                "enunciado": "¿Qué ave se alimenta principalmente de frutas y néctar?",
-                "correcta": "loro",
+                "dificultad": "Fácil",
+                "tema": "Señales de tráfico",
+                "enunciado": "¿Qué indica esta señal de tráfico?",
+                "correcta": "Paso a nivel sin barreras",
                 "incorrectas": [
-                    "Buitre",
-                    "Águila",
-                    "Colibrí"
+                  "Prohibido el paso de vehículos",
+                  "Fin de prohibición de adelantar",
+                  "Zona escolar"
                 ],
-                "imagen": "loro.jpg"
-            },
-            {
+                "imagen": "imagen16.jpg"
+              },
+              {
                 "id": 17,
-                "dificultad": "medio",
-                "tema": "Vuelo",
-                "enunciado": "¿Qué ave tiene la envergadura más grande?",
-                "correcta": "albatros",
+                "dificultad": "Media",
+                "tema": "Normas de circulación",
+                "enunciado": "¿Cuál es la distancia mínima de seguridad que se debe dejar al adelantar a un ciclista?",
+                "correcta": "1,5 metros",
                 "incorrectas": [
-                    "Cuervo",
-                    "Aguilucho",
-                    "Gaviota"
-                ],
-                "imagen": "albatros.jpg"
-            },
-            {
+                  "1 metro",
+                  "2 metros",
+                  "3 metros"
+                ]
+              },
+              {
                 "id": 18,
-                "dificultad": "facil",
-                "tema": "Hábitats",
-                "enunciado": "¿En qué continente se encuentra la mayor diversidad de aves?",
-                "correcta": "sudamérica",
+                "dificultad": "Difícil",
+                "tema": "Conducción segura",
+                "enunciado": "¿Cuál es la acción correcta al encontrarte con una fuerte lluvia mientras conduces?",
+                "correcta": "Reducir la velocidad y aumentar la distancia de seguridad",
                 "incorrectas": [
-                    "África",
-                    "Asia",
-                    "Europa"
+                  "Acelerar para salir rápido de la lluvia",
+                  "Encender las luces largas",
+                  "Seguir la velocidad normal"
                 ]
-            },
-            {
+              },
+              {
                 "id": 19,
-                "dificultad": "medio",
-                "tema": "Comportamiento",
-                "enunciado": "¿Qué ave es conocida por hacer danzas de apareamiento elaboradas?",
-                "correcta": "ave del paraíso",
+                "dificultad": "Fácil",
+                "tema": "Señales de tráfico",
+                "enunciado": "¿Qué indica esta señal de tráfico?",
+                "correcta": "Cruce de peatones",
                 "incorrectas": [
-                    "Cigüeña",
-                    "Gorrión",
-                    "Pavo real"
+                  "Prohibido el paso de peatones",
+                  "Paso de peatones en zigzag",
+                  "Fin de zona peatonal"
                 ],
-                "imagen": "avedelparaiso.jpg"
-            },
-            {
+                "imagen": "imagen19.jpg"
+              },
+              {
                 "id": 20,
-                "dificultad": "facil",
-                "tema": "Anatomía",
-                "enunciado": "¿Qué ave tiene una cresta en la cabeza?",
-                "correcta": "gallo",
+                "dificultad": "Media",
+                "tema": "Normas de circulación",
+                "enunciado": "¿Cuál es la velocidad máxima permitida en una autopista?",
+                "correcta": "120 km/h",
                 "incorrectas": [
-                    "Pato",
-                    "Ganso",
-                    "Pavo"
-                ],
-                "imagen": "gallo.jpg"
-            },
-            {
+                  "80 km/h",
+                  "100 km/h",
+                  "140 km/h"
+                ]
+              },
+              {
                 "id": 21,
-                "dificultad": "dificil",
-                "tema": "Especies en peligro de extinción",
-                "enunciado": "¿Cuál de estas aves es considerada en peligro crítico de extinción?",
-                "correcta": "águila filipina",
+                "dificultad": "Fácil",
+                "tema": "Señalización",
+                "enunciado": "¿Cuál es la señal que prohíbe el paso de vehículos a motor?",
+                "correcta": "Señal de prohibición",
                 "incorrectas": [
-                    "Lechuza común",
-                    "Cigüeña negra",
-                    "Pingüino emperador"
-                ],
-                "imagen": "aguilafilipina.jpg"
-            },
-            {
+                  "Señal de peligro",
+                  "Señal de prioridad",
+                  "Señal de obligación"
+                ]
+              },
+              {
                 "id": 22,
-                "dificultad": "medio",
-                "tema": "Migración",
-                "enunciado": "¿Qué ave realiza migraciones en forma de 'V'?",
-                "correcta": "ganso",
+                "dificultad": "Fácil",
+                "tema": "Normas de circulación",
+                "enunciado": "¿Qué significa una línea continua en el centro de la calzada?",
+                "correcta": "Prohibición de adelantamiento",
                 "incorrectas": [
-                    "Cisne",
-                    "Pato",
-                    "Flamenco"
-                ],
-                "imagen": "ganso.jpg"
-            },
-            {
+                  "Fin de prohibición de adelantamiento",
+                  "Cambio de sentido obligatorio",
+                  "Zona de estacionamiento"
+                ]
+              },
+              {
                 "id": 23,
-                "dificultad": "facil",
-                "tema": "Alimentación",
-                "enunciado": "¿Qué ave se alimenta principalmente de néctar?",
-                "correcta": "colibrí",
+                "dificultad": "Fácil",
+                "tema": "Normas de circulación",
+                "enunciado": "¿Cuál es la distancia de seguridad recomendada para circular detrás de un vehículo en condiciones normales?",
+                "correcta": "Dos segundos",
                 "incorrectas": [
-                    "Buitre",
-                    "Gaviota",
-                    "Lechuza"
+                  "Un segundo",
+                  "Tres segundos",
+                  "Cinco segundos"
                 ]
-            },
-            {
+              },
+              {
                 "id": 24,
-                "dificultad": "facil",
-                "tema": "Nidos",
-                "enunciado": "¿Qué material utilizan las aves para construir sus nidos?",
-                "correcta": "ramitas",
+                "dificultad": "Fácil",
+                "tema": "Sistemas de seguridad",
+                "enunciado": "¿Cuál es la función principal de los airbags en un vehículo?",
+                "correcta": "Proteger a los ocupantes en caso de colisión",
                 "incorrectas": [
-                    "Hojas",
-                    "Hierba",
-                    "Barro"
-                ],
-                "imagen": "nidoaves.jpg"
-            },
-            {
+                  "Evitar el robo del vehículo",
+                  "Mejorar la aerodinámica del vehículo",
+                  "Reducir el consumo de combustible"
+                ]
+              },
+              {
                 "id": 25,
-                "dificultad": "facil",
-                "tema": "Vuelo",
-                "enunciado": "¿Cuál es el ave más grande que puede volar?",
-                "correcta": "albatros",
+                "dificultad": "Media",
+                "tema": "Normas de circulación",
+                "enunciado": "¿Cuál es la sanción por conducir bajo los efectos del alcohol y superar la tasa permitida?",
+                "correcta": "Sanción económica, retirada de puntos del carnet y posible pérdida de la vigencia del carnet",
                 "incorrectas": [
-                    "Águila",
-                    "Buitre",
-                    "Cóndor"
-                ],
-                "imagen": "albatros.jpg"
-            },
-            {
+                  "Amonestación verbal",
+                  "Advertencia por escrito",
+                  "Realización de un curso de sensibilización vial"
+                ]
+              },
+              {
                 "id": 26,
-                "dificultad": "medio",
-                "tema": "Comportamiento",
-                "enunciado": "¿Qué ave es conocida por enterrar comida y encontrarla más tarde?",
-                "correcta": "urraca",
+                "dificultad": "Media",
+                "tema": "Conducción segura",
+                "enunciado": "¿Cuál es la velocidad máxima permitida en vías urbanas?",
+                "correcta": "50 km/h",
                 "incorrectas": [
-                    "Búho",
-                    "Águila",
-                    "Colibrí"
+                  "40 km/h",
+                  "60 km/h",
+                  "70 km/h"
                 ]
-            },
-            {
+              },
+              {
                 "id": 27,
-                "dificultad": "dificil",
-                "tema": "Hábitats",
-                "enunciado": "¿En qué lugar se encuentra el hábitat de los pingüinos emperador?",
-                "correcta": "antártida",
+                "dificultad": "Media",
+                "tema": "Señalización",
+                "enunciado": "¿Qué indica la señal de stop?",
+                "correcta": "Obligación de detenerse",
                 "incorrectas": [
-                    "Ártico",
-                    "Australia",
-                    "Groenlandia"
-                ],
-                "imagen": "pinguinoemperador.jpg"
-            },
-            {
+                  "Ceda el paso",
+                  "Paso permitido",
+                  "Fin de la vía"
+                ]
+              },
+              {
                 "id": 28,
-                "dificultad": "facil",
-                "tema": "Reproducción",
-                "enunciado": "¿Qué ave pone los huevos más grandes en relación a su tamaño corporal?",
-                "correcta": "kiwi",
+                "dificultad": "Difícil",
+                "tema": "Conducción segura",
+                "enunciado": "¿Cuál es la forma correcta de sujetar el volante?",
+                "correcta": "Con las manos a las 9 y 3",
                 "incorrectas": [
-                    "Gallina",
-                    "Ganso",
-                    "Pato"
+                  "Con una sola mano",
+                  "Con las manos a las 10 y 2",
+                  "Con las manos a las 12"
                 ]
-            },
-            {
+              },
+              {
                 "id": 29,
-                "dificultad": "facil",
-                "tema": "Migración",
-                "enunciado": "¿Qué ave realiza una migración anual desde el Polo Norte hasta la Antártida?",
-                "correcta": "ganso de las nieves",
+                "dificultad": "Difícil",
+                "tema": "Normas de circulación",
+                "enunciado": "¿En qué casos está permitido el uso del teléfono móvil mientras se conduce?",
+                "correcta": "Solo con el uso de dispositivos de manos libres",
                 "incorrectas": [
-                    "Pato",
-                    "Águila",
-                    "Cóndor"
-                ],
-                "imagen": "gansonieves.jpg"
-            },
-            {
-                "id": 30,
-                "dificultad": "facil",
-                "tema": "Alimentación",
-                "enunciado": "¿Qué ave se alimenta principalmente de peces?",
-                "correcta": "águila pescadora",
-                "incorrectas": [
-                    "Buitre",
-                    "Gallina",
-                    "Loro"
+                  "En cualquier momento y situación",
+                  "Solo en paradas largas",
+                  "Solo para hacer llamadas de emergencia"
                 ]
-            },
-            {
+              },
+              {
+                "id": 30,
+                "dificultad": "Difícil",
+                "tema": "Sistemas de seguridad",
+                "enunciado": "¿Cuál es la finalidad de los cinturones de seguridad en un vehículo?",
+                "correcta": "Reducir el riesgo de lesiones en caso de accidente",
+                "incorrectas": [
+                  "Evitar multas de tráfico",
+                  "Mejorar el confort del conductor",
+                  "Facilitar la identificación del vehículo"
+                ]
+              },
+              {
                 "id": 31,
-                "dificultad": "medio",
-                "tema": "Nidos",
-                "enunciado": "¿Cuál es el nombre del nido de las avispas?",
-                "correcta": "panal",
+                "dificultad": "Fácil",
+                "tema": "Normas de circulación",
+                "enunciado": "¿Cuál es la distancia mínima de seguridad que se debe mantener al adelantar a un ciclista en vías interurbanas?",
+                "correcta": "1,5 metros",
                 "incorrectas": [
-                    "Colmena",
-                    "Casa",
-                    "Refugio"
-                ],
-                "imagen": "nidoavispas.jpg"
-            },
-            {
+                  "1 metro",
+                  "2 metros",
+                  "3 metros"
+                ]
+              },
+              {
                 "id": 32,
-                "dificultad": "dificil",
-                "tema": "Especies en peligro de extinción",
-                "enunciado": "¿Cuál es el ave más amenazada del mundo?",
-                "correcta": "águila de Haast",
+                "dificultad": "Fácil",
+                "tema": "Señalización",
+                "enunciado": "¿Qué indica la señal triangular con borde rojo?",
+                "correcta": "Peligro",
                 "incorrectas": [
-                    "Cóndor de los Andes",
-                    "Guacamayo",
-                    "Cóndor de California"
+                  "Prohibición",
+                  "Obligación",
+                  "Información"
+                ]
+              },
+              {
+                "id": 33,
+                "dificultad": "Media",
+                "tema": "Conducción segura",
+                "enunciado": "¿Qué deben hacer los peatones al cruzar una calzada por un paso de peatones regulado por semáforo?",
+                "correcta": "Seguir las indicaciones del semáforo",
+                "incorrectas": [
+                  "Cruzar rápidamente sin mirar",
+                  "Esperar siempre a que esté en verde",
+                  "Ceder el paso a los vehículos"
+                ]
+              },
+              {
+                "id": 34,
+                "dificultad": "Media",
+                "tema": "Normas de circulación",
+                "enunciado": "¿En qué casos está permitido estacionar en doble fila?",
+                "correcta": "Nunca",
+                "incorrectas": [
+                  "En zonas residenciales",
+                  "En calles estrechas",
+                  "Solo por un corto periodo de tiempo"
+                ]
+              },
+              {
+                "id": 35,
+                "dificultad": "Difícil",
+                "tema": "Señalización",
+                "enunciado": "¿Qué indica la señal cuadrada con fondo azul y una H en blanco?",
+                "correcta": "Hospital",
+                "incorrectas": [
+                  "Hotel",
+                  "Hospicio",
+                  "Helipuerto"
+                ]
+              },
+              {
+                "id": 36,
+                "dificultad": "Fácil",
+                "tema": "Normas de circulación",
+                "enunciado": "¿Cuál es la velocidad máxima permitida en una vía urbana para turismos y motocicletas?",
+                "correcta": "50 km/h",
+                "incorrectas": [
+                  "60 km/h",
+                  "70 km/h",
+                  "40 km/h"
                 ],
-                "imagen": "aguilahaast.jpg"
-            }
+                "imagen": "imagen36.jpg"
+              },
+              {
+                "id": 37,
+                "dificultad": "Fácil",
+                "tema": "Señalización",
+                "enunciado": "¿Qué indica la señal rectangular de color azul?",
+                "correcta": "Información",
+                "incorrectas": [
+                  "Peligro",
+                  "Prohibición",
+                  "Obligación"
+                ],
+                "imagen": "imagen37.jpg"
+              },
+              {
+                "id": 38,
+                "dificultad": "Media",
+                "tema": "Conducción segura",
+                "enunciado": "¿Qué significa una línea continua en el centro de la calzada?",
+                "correcta": "Prohibido adelantar",
+                "incorrectas": [
+                  "Permitido adelantar",
+                  "Solo se puede adelantar en tramos rectos",
+                  "Se puede adelantar si no hay vehículos en sentido contrario"
+                ],
+                "imagen": "imagen38.jpg"
+              },
+              {
+                "id": 39,
+                "dificultad": "Media",
+                "tema": "Normas de circulación",
+                "enunciado": "¿Cuál es la tasa máxima de alcohol permitida en sangre para los conductores noveles y profesionales?",
+                "correcta": "0,15 mg/l",
+                "incorrectas": [
+                  "0,25 mg/l",
+                  "0,30 mg/l",
+                  "0,50 mg/l"
+                ]
+              },
+              {
+                "id": 40,
+                "dificultad": "Difícil",
+                "tema": "Señalización",
+                "enunciado": "¿Qué indica la señal cuadrada con fondo blanco y una flecha hacia arriba en negro?",
+                "correcta": "Dirección obligatoria hacia arriba",
+                "incorrectas": [
+                  "Sentido único hacia arriba",
+                  "Salida de autopista hacia arriba",
+                  "Cambio de dirección hacia arriba"
+                ],
+                "imagen": "imagen40.jpg"
+              },
+              {
+                "id": 41,
+                "dificultad": "Fácil",
+                "tema": "Conducción segura",
+                "enunciado": "¿Cuál es la distancia de seguridad recomendada en condiciones normales de circulación?",
+                "correcta": "2 segundos",
+                "incorrectas": [
+                  "1 segundo",
+                  "3 segundos",
+                  "5 segundos"
+                ]
+              },
+              {
+                "id": 42,
+                "dificultad": "Fácil",
+                "tema": "Normas de circulación",
+                "enunciado": "¿Cuál es la velocidad máxima permitida en una autovía para turismos?",
+                "correcta": "120 km/h",
+                "incorrectas": [
+                  "100 km/h",
+                  "90 km/h",
+                  "130 km/h"
+                ],
+                "imagen": "imagen42.jpg"
+              },
+              {
+                "id": 43,
+                "dificultad": "Media",
+                "tema": "Señalización",
+                "enunciado": "¿Qué indica la señal circular de color rojo?",
+                "correcta": "Prohibición",
+                "incorrectas": [
+                  "Peligro",
+                  "Información",
+                  "Obligación"
+                ],
+                "imagen": "imagen43.jpg"
+              },
+              {
+                "id": 44,
+                "dificultad": "Media",
+                "tema": "Conducción segura",
+                "enunciado": "¿Qué tipo de luz se debe utilizar al circular por un túnel durante el día?",
+                "correcta": "Luz de cruce",
+                "incorrectas": [
+                  "Luz de posición",
+                  "Luz larga",
+                  "Luz antiniebla"
+                ]
+              },
+              {
+                "id": 45,
+                "dificultad": "Difícil",
+                "tema": "Normas de circulación",
+                "enunciado": "¿Cuál es la velocidad máxima permitida en una carretera convencional para turismos y motocicletas?",
+                "correcta": "90 km/h",
+                "incorrectas": [
+                  "80 km/h",
+                  "100 km/h",
+                  "70 km/h"
+                ],
+                "imagen": "imagen45.jpg"
+              },
+              {
+                "id": 46,
+                "dificultad": "Fácil",
+                "tema": "Señalización",
+                "enunciado": "¿Qué indica la señal triangular de color amarillo?",
+                "correcta": "Advertencia",
+                "incorrectas": [
+                  "Obligación",
+                  "Información",
+                  "Peligro"
+                ]
+              },
+              {
+                "id": 47,
+                "dificultad": "Fácil",
+                "tema": "Conducción segura",
+                "enunciado": "¿Cuál es el límite de alcohol en sangre permitido para conductores noveles y profesionales?",
+                "correcta": "0.15 mg/l",
+                "incorrectas": [
+                  "0.25 mg/l",
+                  "0.30 mg/l",
+                  "0.50 mg/l"
+                ]
+              },
+              {
+                "id": 48,
+                "dificultad": "Media",
+                "tema": "Normas de circulación",
+                "enunciado": "¿Cuál es la velocidad máxima permitida en una vía urbana para turismos?",
+                "correcta": "50 km/h",
+                "incorrectas": [
+                  "40 km/h",
+                  "60 km/h",
+                  "70 km/h"
+                ],
+                "imagen": "imagen48.jpg"
+              },
+              {
+                "id": 49,
+                "dificultad": "Media",
+                "tema": "Conducción segura",
+                "enunciado": "¿Qué debes hacer al aproximarte a un paso a nivel con barrera que comienza a descender?",
+                "correcta": "Detenerte antes de alcanzar la barrera",
+                "incorrectas": [
+                  "Acelerar para cruzar rápidamente",
+                  "Avanzar lentamente mientras la barrera desciende",
+                  "Pasar bajo la barrera si ves que no viene ningún tren"
+                ],
+                "imagen": "imagen49.jpg"
+              },
+              {
+                "id": 50,
+                "dificultad": "Difícil",
+                "tema": "Normas de circulación",
+                "enunciado": "¿Cuál es la velocidad máxima permitida en una autopista para camiones y vehículos articulados?",
+                "correcta": "90 km/h",
+                "incorrectas": [
+                  "80 km/h",
+                  "100 km/h",
+                  "110 km/h"
+                ],
+                "imagen": "imagen50.jpg"
+              }                                                                                    
         ]
     }
 }
