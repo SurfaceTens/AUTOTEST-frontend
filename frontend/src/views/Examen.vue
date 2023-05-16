@@ -9,7 +9,7 @@ export default {
     },
     data() {
         return {
-            numPreguntas: 30, // Numero de preguntas que debe tener el examen.
+            numPreguntas: 10, // Numero de preguntas que debe tener el examen.
             examenTerminado: false, // Variable para controlar el estado del examen.
             respuestasExamen: [], // Array para almacenar las respuestas del examen.
             tituloExamen: `Examen aleatorio de 10 preguntas`, // Título inicial del examen.

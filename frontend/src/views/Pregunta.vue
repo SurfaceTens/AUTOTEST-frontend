@@ -91,7 +91,7 @@ export default {
       <h3 class="card_title">{{ numero }} - {{ pregunta.enunciado }}</h3>
       <div>
         <!-- Mostrar la imagen de la pregunta si está disponible -->
-        <img v-if="pregunta.imagen" class="preguntaImg" :src="'src/assets/imagenesPreguntas/' + pregunta.imagen"
+        <img v-if="pregunta.imagen" class="preguntaImg" :src="'./imagenesPreguntas/' + pregunta.imagen"
           alt="Imagen de la pregunta" />
       </div>
     </div>
