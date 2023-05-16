@@ -12,6 +12,14 @@ export default {
     respuestaSeleccionada: {
       type: String,
       default: '',
+    },
+    numero: {
+      type: Number,
+      default: 0,
+    },
+    desorden: {
+      type: Boolean,
+      default: true,
     }
   },
   computed: {
@@ -24,7 +32,7 @@ export default {
       }
       return [];
     },
-    // Crear un array desordenado.
+    // Crear un array desordenado si queremos desorden.
     alternativasAleatorias() {
       return this.desordenarArray(this.alternativas);
     },
@@ -32,9 +40,11 @@ export default {
     alternativaSeleccionada() {
       return this.pregunta.respuesta;
     },
+
     mostrarRespuestas() {
       return this.respuestaCorrecta !== '' && this.respuestaSeleccionada !== '';
     },
+
     esRespuestaCorrecta() {
       return this.respuestaCorrecta === this.respuestaSeleccionada;
     }
@@ -78,10 +88,11 @@ export default {
 <template>
   <div class="card pregunta-card">
     <div class="card_header">
-      <h3 class="card_title">{{ pregunta.id }} - {{ pregunta.enunciado }}</h3>
+      <h3 class="card_title">{{ numero }} - {{ pregunta.enunciado }}</h3>
       <div>
         <!-- Mostrar la imagen de la pregunta si está disponible -->
-        <img v-if="pregunta.imagen" class="preguntaImg" :src="'src/assets/imagenesPreguntas/' + pregunta.imagen" alt="Imagen de la pregunta" />
+        <img v-if="pregunta.imagen" class="preguntaImg" :src="'src/assets/imagenesPreguntas/' + pregunta.imagen"
+          alt="Imagen de la pregunta" />
       </div>
     </div>
     <ul class="alternativas-list">
@@ -171,5 +182,4 @@ export default {
     flex-basis: 30%;
   }
 }
-
 </style>

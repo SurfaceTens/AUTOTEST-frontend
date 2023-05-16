@@ -9,7 +9,7 @@ export default {
     },
     data() {
         return {
-            numPreguntas: 10, // Numero de preguntas que debe tener el examen.
+            numPreguntas: 30, // Numero de preguntas que debe tener el examen.
             examenTerminado: false, // Variable para controlar el estado del examen.
             respuestasExamen: [], // Array para almacenar las respuestas del examen.
             tituloExamen: `Examen aleatorio de 10 preguntas`, // Título inicial del examen.
@@ -134,8 +134,8 @@ export default {
         <div v-if="!examenTerminado">
             <h1>{{ tituloExamen }}</h1>
             <ul>
-                <li v-for="(pregunta) in preguntasTratadas" :key="pregunta.id">
-                    <Pregunta :pregunta="pregunta" @opcionSeleccionada="seleccionarOpcion(pregunta, $event)"
+                <li v-for="(pregunta, index) in preguntasTratadas" :key="pregunta.id">
+                    <Pregunta :pregunta="pregunta" :numero="index + 1" @opcionSeleccionada="seleccionarOpcion(pregunta, $event)"
                         :respuestaCorrecta="pregunta.respuestaCorrecta"
                         :respuestaIncorrecta="pregunta.respuestaIncorrecta" />
                     <b-button-group size="sm" vertical>
@@ -158,8 +158,8 @@ export default {
         <div v-else>
             <h1>{{ tituloExamen }}</h1>
             <ul>
-                <li v-for="(pregunta) in preguntasTratadas" :key="pregunta.id">
-                    <Pregunta :pregunta="pregunta" :respuestaCorrecta="pregunta.correcta"
+                <li v-for="(pregunta, index) in preguntasTratadas" :key="pregunta.id">
+                    <Pregunta :pregunta="pregunta" :numero="index + 1" :desorden="false" :respuestaCorrecta="pregunta.correcta"
                         :respuestaSeleccionada="getRespuestaSeleccionada(pregunta.id)" />
                 </li>
 
