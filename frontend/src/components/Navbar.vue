@@ -1,17 +1,13 @@
 <script>
-import { mapState } from 'pinia';
+import { mapActions, mapState } from 'pinia';
 import { loginStore } from '@/stores/loginStore';
 
 export default {
   computed: {
-    ...mapState({
-      isAdmin: (state) => state.login.isAdmin,
-    })
+    ...mapState(loginStore, ['isAdmin'])
   },
   methods: {
-    ...mapActions({
-      toggleAdmin: loginStore.toggleAdmin,
-    })
+    ...mapActions(loginStore, ['toggleAdmin'])
   }
 }
 </script>
