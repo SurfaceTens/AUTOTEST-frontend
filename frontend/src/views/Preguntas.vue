@@ -1,5 +1,6 @@
 <script>
 import { mapActions, mapState } from 'pinia';
+import { loginStore } from '@/stores/loginStore';
 import { preguntasStore } from '@/stores/preguntasStore';
 import Pregunta from '@/views/Pregunta.vue';
 
@@ -8,6 +9,7 @@ export default {
     Pregunta,
   },
   computed: {
+    ...mapState(loginStore, ['isAdmin']),
     ...mapState(preguntasStore, ['preguntas']),
     pregunta() {
       return this.preguntas.find(p => p.id == this.$route.params.id);
@@ -28,7 +30,7 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div v-if="isAdmin">
     <h1>Preguntas con Pinia</h1>
     <table class="preguntas-table">
       <thead>
@@ -50,6 +52,10 @@ export default {
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div v-else>
+    <h1>No se dispone de los permisos para visualizar las preguntas</h1>
   </div>
 </template>
 

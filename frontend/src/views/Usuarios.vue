@@ -1,9 +1,11 @@
 <script>
 import { mapActions, mapState } from 'pinia';
+import { loginStore } from '@/stores/loginStore';
 import { usuariosStore } from '@/stores/usuariosStore';
 
 export default {
   computed: {
+    ...mapState(loginStore, ['isAdmin']),
     ...mapState(usuariosStore, ['usuarios']),
   },
   methods: {
@@ -16,7 +18,7 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div v-if="isAdmin">
     <h1>Usuarios con Pinia</h1>
     <table class="usuarios-table">
       <thead>
@@ -38,6 +40,10 @@ export default {
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div v-else>
+    <h1>No se dispone de los permisos para visualizar los usuarios</h1>
   </div>
 </template>
 

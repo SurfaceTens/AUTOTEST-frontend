@@ -10,7 +10,6 @@ export default {
     ...mapState(loginStore, ['isAdmin'])
   },
   methods: {
-    ...mapActions(loginStore, ['toggleAdmin']),
     ...mapActions(preguntasStore, ['getNumPreguntas']),
     ...mapActions(usuariosStore, ['getNumUsuarios'])
   }
