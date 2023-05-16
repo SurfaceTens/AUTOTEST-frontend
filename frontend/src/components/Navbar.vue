@@ -32,7 +32,7 @@ export default {
           <li class="nav-item">
             <router-link class="nav-link" to="/">Home</router-link>
           </li>
-          <li v-if="!isAdmin" class="nav-item">
+          <li v-if="isAdmin" class="nav-item">
             <router-link class="nav-link" to="/examen">Examen</router-link>
           </li>
           <li v-if="!isAdmin" class="nav-item dropdown">
