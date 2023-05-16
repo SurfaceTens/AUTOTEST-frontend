@@ -1,14 +1,17 @@
 <script>
+import { mapState } from 'pinia';
+import { loginStore } from '@/stores/loginStore';
+
 export default {
-  data() {
-    return {
-      isAdmin: false
-    }
+  computed: {
+    ...mapState({
+      isAdmin: (state) => state.login.isAdmin,
+    })
   },
   methods: {
-    toggleAdmin() {
-      this.isAdmin = !this.isAdmin
-    }
+    ...mapActions({
+      toggleAdmin: loginStore.toggleAdmin,
+    })
   }
 }
 </script>
@@ -32,10 +35,10 @@ export default {
           <li class="nav-item">
             <router-link class="nav-link" to="/">Home</router-link>
           </li>
-          <li v-if="isAdmin" class="nav-item">
+          <li v-if="!isAdmin" class="nav-item">
             <router-link class="nav-link" to="/examen">Examen</router-link>
           </li>
-          <li v-if="!isAdmin" class="nav-item dropdown">
+          <li v-if="isAdmin" class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="preguntasDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               Gestión de Preguntas
@@ -45,10 +48,10 @@ export default {
               <li><router-link class="dropdown-item" to="/preguntas">Ver Preguntas</router-link></li>
             </ul>
           </li>
-          <li v-if="isAdmin" class="nav-item">
+          <li v-if="!isAdmin" class="nav-item">
             <router-link class="nav-link" to="/nuevaPregunta">Crear pregunta</router-link>
           </li>
-          <li v-if="!isAdmin" class="nav-item dropdown">
+          <li v-if="isAdmin" class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="usuariosDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               Gestión de Usuarios
@@ -59,8 +62,8 @@ export default {
             </ul>
           </li>
         </ul>
-        <div class="toggle-login ">
-          <a class="nav-link" href="#" v-on:click="toggleAdmin">{{ isAdmin ? 'Modo Usuario' : 'Modo Administrador' }}</a>
+        <div class="toggle-login">
+          <a class="nav-link" href="#" v-on:click="toggleAdmin">{{ isAdmin ? 'Modo Administrador' : 'Modo Usuario' }}</a>
         </div>
       </div>
     </div>
