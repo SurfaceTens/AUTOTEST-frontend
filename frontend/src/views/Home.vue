@@ -43,8 +43,27 @@ export default {
     <div class="exam-section pregunta-card">
       <div class="exam-content card_header">
         <h1 class="card_title">Resumen de administración</h1>
-        <p class="card_description">Hay un total de {{ getNumPreguntas() }} preguntas</p>
-        <p class="card_description">Hay un total de {{ getNumUsuarios() }} usuarios</p>
+        <ul>
+          <li>
+            Hay un total de {{ getNumPreguntas() }} preguntas
+          </li>
+          <li>
+            Hay un total de {{ getNumUsuarios() }} usuarios
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="create-questions-section pregunta-card">
+      <div class="create-questions-content card_header">
+        <h1 class="card_title">Acciones</h1>
+        <p class="card_description">Accesos directos a las distintas funcionalidades administrativas.</p>
+        <div class="welcome-section">
+          <router-link to="/nuevaPregunta" class="btn-start btn-crear">Crear preguntas</router-link>
+          <router-link to="/preguntas" class="btn-start btn-examen">Ver preguntas</router-link>
+          <router-link to="/nuevoUsuario" class="btn-start btn-crear">Crear alumno</router-link>
+          <router-link to="/usuarios" class="btn-start btn-alumnos">Ver alumnos</router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -106,6 +125,10 @@ export default {
 
 .btn-crear {
   background-color: #409eff;
+}
+
+.btn-alumnos {
+  background-color: #ff4040;
 }
 
 @media (max-width: 768px) {
