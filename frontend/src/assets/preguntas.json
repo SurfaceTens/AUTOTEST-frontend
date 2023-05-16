@@ -54,7 +54,7 @@
                 "id": 5,
                 "dificultad": "Fácil",
                 "tema": "Señales de tráfico",
-                "enunciado": "¿Qué significa una señal de tráfico triangular con borde rojo y pictograma blanco en el centro?",
+                "enunciado": "¿Qué significa una señal de tráfico triangular con borde rojo y pictograma en el centro?",
                 "correcta": "Peligro",
                 "incorrectas": [
                   "Ceda el paso",
@@ -134,7 +134,7 @@
                   "70 km/h",
                   "90 km/h"
                 ],
-                "imagen": "imagen3.jpg"
+                "imagen": "imagen11.jpg"
               },
               {
                 "id": 12,
@@ -483,11 +483,11 @@
                 "dificultad": "Difícil",
                 "tema": "Señalización",
                 "enunciado": "¿Qué indica la señal cuadrada con fondo blanco y una flecha hacia arriba en negro?",
-                "correcta": "Dirección obligatoria hacia arriba",
+                "correcta": "Dirección obligatoria hacia adelante",
                 "incorrectas": [
                   "Sentido único hacia arriba",
-                  "Salida de autopista hacia arriba",
-                  "Cambio de dirección hacia arriba"
+                  "Salida de autopista hacia adelante",
+                  "Cambio de dirección hacia adelante"
                 ],
                 "imagen": "imagen40.jpg"
               },
@@ -595,12 +595,12 @@
                 "id": 49,
                 "dificultad": "Media",
                 "tema": "Conducción segura",
-                "enunciado": "¿Qué debes hacer al aproximarte a un paso a nivel con barrera que comienza a descender?",
-                "correcta": "Detenerte antes de alcanzar la barrera",
+                "enunciado": "¿Qué debe hacer al aproximarte a un paso a nivel con barrera que comienza a descender?",
+                "correcta": "Detenerse antes de alcanzar la barrera",
                 "incorrectas": [
                   "Acelerar para cruzar rápidamente",
                   "Avanzar lentamente mientras la barrera desciende",
-                  "Pasar bajo la barrera si ves que no viene ningún tren"
+                  "Pasar bajo la barrera si ve que no viene ningún tren"
                 ],
                 "imagen": "imagen49.jpg"
               },
