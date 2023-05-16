@@ -17,6 +17,9 @@ export const usuariosStore = defineStore('usuarios', {
         getUsuarios() {
             return this.usuarios;
         },
+        getNumUsuarios() {
+          return this.usuarios.length
+        },
 
         // Reemplazar la ruta /api/usuarios por la ruta de verdad de la API cuando llegue el momento.
 

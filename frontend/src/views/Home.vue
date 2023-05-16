@@ -1,15 +1,29 @@
 <script>
+import { mapActions, mapState } from 'pinia';
+import { loginStore } from '@/stores/loginStore';
+import { preguntasStore } from '@/stores/preguntasStore';
+import { usuariosStore } from '@/stores/usuariosStore';
+
 export default {
   name: 'Home',
+  computed: {
+    ...mapState(loginStore, ['isAdmin'])
+  },
+  methods: {
+    ...mapActions(loginStore, ['toggleAdmin']),
+    ...mapActions(preguntasStore, ['getNumPreguntas']),
+    ...mapActions(usuariosStore, ['getNumUsuarios'])
+  }
 };
 </script>
 
 <template>
-  <div class="welcome-section">
+  <div v-if="!isAdmin" class="welcome-section">
     <div class="exam-section pregunta-card">
       <div class="exam-content card_header">
         <h1 class="card_title">Prepárate para tu examen de conducir</h1>
-        <p class="card_description">Practica con nuestros exámenes aleatorios simulados basados en preguntas reales de la DGT.</p>
+        <p class="card_description">Practica con nuestros exámenes aleatorios simulados basados en preguntas reales de la
+          DGT.</p>
         <p></p>
         <router-link to="/examen" class="btn-start btn-examen">Comenzar el examen</router-link>
       </div>
@@ -17,9 +31,20 @@ export default {
     <div class="create-questions-section pregunta-card">
       <div class="create-questions-content card_header">
         <h1 class="card_title">Crea tus propias preguntas</h1>
-        <p class="card_description">Contribuye a nuestra comunidad de aprendizaje añadiendo tus preguntas y compartiéndolas con otros estudiantes.</p>
+        <p class="card_description">Contribuye a nuestra comunidad de aprendizaje añadiendo tus preguntas y
+          compartiéndolas con otros estudiantes.</p>
         <p></p>
         <router-link to="/nuevaPregunta" class="btn-start btn-crear">Crear preguntas</router-link>
+      </div>
+    </div>
+  </div>
+
+  <div v-else class="welcome-section">
+    <div class="exam-section pregunta-card">
+      <div class="exam-content card_header">
+        <h1 class="card_title">Resumen de administración</h1>
+        <p class="card_description">Hay un total de {{ getNumPreguntas() }} preguntas</p>
+        <p class="card_description">Hay un total de {{ getNumUsuarios() }} usuarios</p>
       </div>
     </div>
   </div>
@@ -27,10 +52,11 @@ export default {
 
 <style scoped>
 .welcome-section {
-  margin-top: 20px; /* Ajustado: separación superior */
-  padding: 20px; /* Añadido: padding en lugar de margen */
-  display: flex; /* Nuevo: utilizar flexbox */
-  justify-content: space-between; /* Nuevo: separar contenedores en la horizontal */
+  margin-top: 20px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 .pregunta-card {
@@ -39,8 +65,8 @@ export default {
   border-radius: 4px;
   padding: 20px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  display: inline-block; /* Nuevo: utilizar inline-block */
-  width: auto; /* Nuevo: ajustar al ancho del contenido */
+  display: inline-block;
+  width: auto;
 }
 
 .card_header {
@@ -84,8 +110,8 @@ export default {
 
 @media (max-width: 768px) {
   .welcome-section {
-    flex-direction: column; /* Nuevo: apilar contenedores en la vertical */
-    align-items: center; /* Nuevo: centrar contenedores en la horizontal */
+    flex-direction: column;
+    align-items: center;
   }
 }
 </style>

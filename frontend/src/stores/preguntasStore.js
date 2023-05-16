@@ -20,6 +20,9 @@ export const preguntasStore = defineStore('preguntas', {
     getPreguntas() {
       return this.preguntas
     },
+    getNumPreguntas() {
+      return this.preguntas.length
+    },
 
     //Reemplazar la ruta /api/preguntas por la ruta de verdad de la APi cuando llegue el momento.
 
