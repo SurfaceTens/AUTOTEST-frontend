@@ -22,6 +22,9 @@
   --color-secundario: #ffffff;
   --color-fondo: #f1f1f1;
   --color-borde: #242424;
+  --colorFondoSecundario: #ffffff;
+  --colorTextoPrimario: #242424;
+  --colorTextoSecundario: #666666;
   --gradiente-navbar: linear-gradient(to bottom, #e0f3ff, #d1e9ff, #c1dfff, #b0d6ff, #9fcdff);
 }
 

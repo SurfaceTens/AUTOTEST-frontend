@@ -81,8 +81,7 @@ export default {
       <h3 class="card_title">{{ pregunta.id }} - {{ pregunta.enunciado }}</h3>
       <div>
         <!-- Mostrar la imagen de la pregunta si está disponible -->
-        <img v-if="pregunta.imagen" :src="'@/assets/imagenesPreguntas/' + pregunta.imagen" alt="Imagen de la pregunta" />
-        <p v-else>No hay imagen disponible</p>
+        <img v-if="pregunta.imagen" class="preguntaImg" :src="'src/assets/imagenesPreguntas/' + pregunta.imagen" alt="Imagen de la pregunta" />
       </div>
     </div>
     <ul class="alternativas-list">
@@ -153,4 +152,24 @@ export default {
 .respuesta-incorrecta {
   box-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
 }
+
+.preguntaImg {
+  flex: 1 1 100%;
+  max-width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .preguntaImg {
+    flex-basis: 50%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .preguntaImg {
+    flex-basis: 30%;
+  }
+}
+
 </style>

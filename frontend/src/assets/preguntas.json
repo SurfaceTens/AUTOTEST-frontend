@@ -36,7 +36,7 @@
                   "50 metros",
                   "100 metros"
                 ],
-                "imagen": "imagen1.jpg"
+                "imagen": "imagen3.jpg"
               },
               {
                 "id": 4,
@@ -109,7 +109,7 @@
                   "2 metros",
                   "3 metros"
                 ],
-                "imagen": "imagen2.jpg"
+                "imagen": "imagen9.jpg"
               },
               {
                 "id": 10,
@@ -551,8 +551,7 @@
                   "80 km/h",
                   "100 km/h",
                   "70 km/h"
-                ],
-                "imagen": "imagen45.jpg"
+                ]
               },
               {
                 "id": 46,
@@ -588,8 +587,7 @@
                   "40 km/h",
                   "60 km/h",
                   "70 km/h"
-                ],
-                "imagen": "imagen48.jpg"
+                ]
               },
               {
                 "id": 49,
@@ -614,8 +612,7 @@
                   "80 km/h",
                   "100 km/h",
                   "110 km/h"
-                ],
-                "imagen": "imagen50.jpg"
+                ]
               }                                                                                    
         ]
     }
