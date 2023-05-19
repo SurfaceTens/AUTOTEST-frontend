@@ -1,4 +1,7 @@
 <script>
+import { mapActions } from 'pinia';
+import { preguntasStore } from '@/stores/preguntasStore';
+
 export default {
   props: {
     pregunta: {
@@ -51,36 +54,7 @@ export default {
   },
 
   methods: {
-    desordenarArray(array) {
-      // Algoritmo de Fisher-Yates para desordenar el array    
-      // Obtener la longitud del array y crear un valor temporal.
-      let indiceActual = array.length;
-      let valorTemporal, numAleatorio;
-
-      // Mientras no se hayan recorrido todos los elementos del array:
-      while (indiceActual !== 0) {
-        // Generar un índice aleatorio entre 0 y el actual.
-        numAleatorio = Math.floor(Math.random() * indiceActual);
-        indiceActual--;
-
-        // Intercambiar el contenido de ambos indices.
-        valorTemporal = array[indiceActual];
-        array[indiceActual] = array[numAleatorio];
-        array[numAleatorio] = valorTemporal;
-      }
-      return array;
-    },
-
-    asignarClaseRespuesta(opcion) {
-      if (this.mostrarRespuestas) {
-        if (opcion === this.respuestaCorrecta && this.esRespuestaCorrecta) {
-          return 'respuesta-correcta';
-        } else if (opcion === this.respuestaSeleccionada && !this.esRespuestaCorrecta) {
-          return 'respuesta-incorrecta';
-        }
-      }
-      return '';
-    }
+    ...mapActions(preguntasStore, ['desordenarArray']),
   },
 };
 </script>
@@ -98,11 +72,14 @@ export default {
     <ul class="alternativas-list">
       <li v-for="alternativa in alternativasAleatorias" :key="alternativa" class="alternativa-item" :class="{
         'alternativa-seleccionada': alternativa === alternativaSeleccionada,
-        'respuesta-correcta': mostrarRespuestas && alternativa === respuestaCorrecta && esRespuestaCorrecta,
-        'respuesta-incorrecta': mostrarRespuestas && alternativa === respuestaSeleccionada && !esRespuestaCorrecta && alternativa !== respuestaCorrecta
+        'respuesta-correcta': mostrarRespuestas && (alternativa === respuestaCorrecta || (!respuestaSeleccionada && alternativa === respuestaCorrecta)),
+        'respuesta-incorrecta': mostrarRespuestas && alternativa === respuestaSeleccionada && !esRespuestaCorrecta,
+        'respuesta-correcta-ignorada': !respuestaSeleccionada && alternativa === respuestaCorrecta && !esRespuestaCorrecta
       }" @click="$emit('opcionSeleccionada', alternativa)">
         {{ alternativa }}
       </li>
+
+
     </ul>
   </div>
 </template>
@@ -158,6 +135,10 @@ export default {
 
 .respuesta-correcta {
   box-shadow: 0 0 5px rgba(0, 255, 0, 0.8);
+}
+
+.respuesta-correcta-ignorada {
+  box-shadow: 0 0 5px rgba(255, 207, 0, 0.8);
 }
 
 .respuesta-incorrecta {

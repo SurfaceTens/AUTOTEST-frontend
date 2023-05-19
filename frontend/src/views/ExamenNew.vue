@@ -58,13 +58,20 @@ export default {
         },
 
         terminarExamen() {
-            if (confirm('¿Estás seguro de que deseas terminar el examen?')) {
-                this.guardarRespuestas();
-                this.mostrarRespuestas();
-                this.calcularPuntuacion();
-                this.examenTerminado = true;
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+            this.mostrarModal = true;
+        },
+
+        aceptarExamen() {
+            this.guardarRespuestas();
+            this.mostrarRespuestas();
+            this.calcularPuntuacion();
+            this.examenTerminado = true;
+            this.mostrarModal = false;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        },
+
+        cerrarModal() {
+            this.mostrarModal = false;
         },
 
         mostrarRespuestas() {
@@ -102,6 +109,7 @@ export default {
 
             this.tituloExamen = `Aciertos: ${acertadas} Resultado: ${resultado}`;
         },
+        
         generarNuevoExamen() {
             this.preguntasTratadas = this.randomizarYLimitarPreguntas(this.preguntas, this.numPreguntas);
             this.respuestasExamen = [];
@@ -124,7 +132,8 @@ export default {
             <h1>{{ tituloExamen }}</h1>
             <ul>
                 <li v-for="(pregunta, index) in preguntasTratadas" :key="pregunta.id">
-                    <Pregunta :pregunta="pregunta" :numero="index + 1" @opcionSeleccionada="seleccionarOpcion(pregunta, $event)"
+                    <Pregunta :pregunta="pregunta" :numero="index + 1"
+                        @opcionSeleccionada="seleccionarOpcion(pregunta, $event)"
                         :respuestaCorrecta="pregunta.respuestaCorrecta"
                         :respuestaIncorrecta="pregunta.respuestaIncorrecta" />
                     <b-button-group size="sm" vertical>
@@ -148,7 +157,8 @@ export default {
             <h1>{{ tituloExamen }}</h1>
             <ul>
                 <li v-for="(pregunta, index) in preguntasTratadas" :key="pregunta.id">
-                    <Pregunta :pregunta="pregunta" :numero="index + 1" :desorden="false" :respuestaCorrecta="pregunta.correcta"
+                    <Pregunta :pregunta="pregunta" :numero="index + 1" :desorden="false"
+                        :respuestaCorrecta="pregunta.correcta"
                         :respuestaSeleccionada="getRespuestaSeleccionada(pregunta.id)" />
                 </li>
 
@@ -156,6 +166,9 @@ export default {
             <div class="fin-examen">
                 <button @click="generarNuevoExamen" class="btn btn-secondary btn-lg">Hacer Otro</button>
             </div>
+
+            <!-- Agregar el componente FinExamen aquí -->
+            <FinExamen v-if="mostrarModal" @aceptarExamen="aceptarExamen" @cerrarModal="cerrarModal" />
 
         </div>
     </div>
