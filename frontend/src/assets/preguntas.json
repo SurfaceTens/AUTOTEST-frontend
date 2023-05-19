@@ -3,7 +3,7 @@
         "preguntas": [
             {
                 "id": 1,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Velocidad",
                 "enunciado": "¿Cuál es la velocidad máxima permitida en vías urbanas?",
                 "correcta": "50 km/h",
@@ -15,7 +15,7 @@
               },
               {
                 "id": 2,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Alcohol y drogas",
                 "enunciado": "¿Cuál es la tasa máxima de alcohol permitida para los conductores noveles y profesionales?",
                 "correcta": "0,25 mg/l de aire espirado",
@@ -27,7 +27,7 @@
               },
               {
                 "id": 3,
-                "dificultad": "Media",
+                "dificultad": 50,
                 "tema": "Distancia de seguridad",
                 "enunciado": "¿Cuál es la distancia de seguridad recomendada para circular detrás de un vehículo en condiciones normales?",
                 "correcta": "20 metros",
@@ -40,7 +40,7 @@
               },
               {
                 "id": 4,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Señales de tráfico",
                 "enunciado": "¿Qué indica una línea continua en el pavimento?",
                 "correcta": "No se puede adelantar",
@@ -52,7 +52,7 @@
               },
               {
                 "id": 5,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Señales de tráfico",
                 "enunciado": "¿Qué significa una señal de tráfico triangular con borde rojo y pictograma en el centro?",
                 "correcta": "Peligro",
@@ -64,7 +64,7 @@
               },
               {
                 "id": 6,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Permiso de conducir",
                 "enunciado": "¿Cuál es la edad mínima para obtener el permiso de conducir de la clase B?",
                 "correcta": "18 años",
@@ -76,7 +76,7 @@
               },
               {
                 "id": 7,
-                "dificultad": "Media",
+                "dificultad": 50,
                 "tema": "Normas de circulación",
                 "enunciado": "¿Cuál es el procedimiento correcto al aproximarse a una glorieta?",
                 "correcta": "Ceder el paso a los vehículos que circulan dentro de la glorieta",
@@ -88,7 +88,7 @@
               },
               {
                 "id": 8,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Señales de tráfico",
                 "enunciado": "¿Qué indica una señal de tráfico circular con fondo azul y pictograma blanco en el centro?",
                 "correcta": "Zona de estacionamiento",
@@ -100,7 +100,7 @@
               },
               {
                 "id": 9,
-                "dificultad": "Media",
+                "dificultad": 50,
                 "tema": "Seguridad vial",
                 "enunciado": "¿Cuál es la distancia mínima de seguridad que se debe mantener al adelantar a un ciclista?",
                 "correcta": "1,5 metros",
@@ -113,7 +113,7 @@
               },
               {
                 "id": 10,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Prioridad de paso",
                 "enunciado": "¿Qué debe hacer un conductor al acercarse a un paso de peatones donde haya peatones esperando para cruzar?",
                 "correcta": "Reducir la velocidad y ceder el paso",
@@ -125,7 +125,7 @@
               },
               {
                 "id": 11,
-                "dificultad": "Media",
+                "dificultad": 50,
                 "tema": "Normas de circulación",
                 "enunciado": "¿Cuál es el límite de velocidad en una vía urbana con un único carril por sentido de circulación?",
                 "correcta": "50 km/h",
@@ -138,7 +138,7 @@
               },
               {
                 "id": 12,
-                "dificultad": "Difícil",
+                "dificultad": 100,
                 "tema": "Conducción eficiente",
                 "enunciado": "¿Cuál de los siguientes factores puede ayudar a reducir el consumo de combustible?",
                 "correcta": "Mantener una velocidad constante y moderada",
@@ -150,7 +150,7 @@
               },
               {
                 "id": 13,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Señales de tráfico",
                 "enunciado": "¿Qué indica esta señal de tráfico?",
                 "correcta": "Ceda el paso",
@@ -163,7 +163,7 @@
               },
               {
                 "id": 14,
-                "dificultad": "Media",
+                "dificultad": 50,
                 "tema": "Normas de circulación",
                 "enunciado": "¿Cuál es la velocidad máxima permitida en una vía urbana?",
                 "correcta": "50 km/h",
@@ -175,7 +175,7 @@
               },
               {
                 "id": 15,
-                "dificultad": "Difícil",
+                "dificultad": 100,
                 "tema": "Conducción segura",
                 "enunciado": "¿Cuál es la distancia de seguridad recomendada para circular a una velocidad de 120 km/h?",
                 "correcta": "120 metros",
@@ -187,7 +187,7 @@
               },
               {
                 "id": 16,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Señales de tráfico",
                 "enunciado": "¿Qué indica esta señal de tráfico?",
                 "correcta": "Paso a nivel sin barreras",
@@ -200,7 +200,7 @@
               },
               {
                 "id": 17,
-                "dificultad": "Media",
+                "dificultad": 50,
                 "tema": "Normas de circulación",
                 "enunciado": "¿Cuál es la distancia mínima de seguridad que se debe dejar al adelantar a un ciclista?",
                 "correcta": "1,5 metros",
@@ -212,7 +212,7 @@
               },
               {
                 "id": 18,
-                "dificultad": "Difícil",
+                "dificultad": 100,
                 "tema": "Conducción segura",
                 "enunciado": "¿Cuál es la acción correcta al encontrarte con una fuerte lluvia mientras conduces?",
                 "correcta": "Reducir la velocidad y aumentar la distancia de seguridad",
@@ -224,7 +224,7 @@
               },
               {
                 "id": 19,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Señales de tráfico",
                 "enunciado": "¿Qué indica esta señal de tráfico?",
                 "correcta": "Cruce de peatones",
@@ -237,7 +237,7 @@
               },
               {
                 "id": 20,
-                "dificultad": "Media",
+                "dificultad": 50,
                 "tema": "Normas de circulación",
                 "enunciado": "¿Cuál es la velocidad máxima permitida en una autopista?",
                 "correcta": "120 km/h",
@@ -249,7 +249,7 @@
               },
               {
                 "id": 21,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Señalización",
                 "enunciado": "¿Cuál es la señal que prohíbe el paso de vehículos a motor?",
                 "correcta": "Señal de prohibición",
@@ -261,7 +261,7 @@
               },
               {
                 "id": 22,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Normas de circulación",
                 "enunciado": "¿Qué significa una línea continua en el centro de la calzada?",
                 "correcta": "Prohibición de adelantamiento",
@@ -273,7 +273,7 @@
               },
               {
                 "id": 23,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Normas de circulación",
                 "enunciado": "¿Cuál es la distancia de seguridad recomendada para circular detrás de un vehículo en condiciones normales?",
                 "correcta": "Dos segundos",
@@ -285,7 +285,7 @@
               },
               {
                 "id": 24,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Sistemas de seguridad",
                 "enunciado": "¿Cuál es la función principal de los airbags en un vehículo?",
                 "correcta": "Proteger a los ocupantes en caso de colisión",
@@ -297,7 +297,7 @@
               },
               {
                 "id": 25,
-                "dificultad": "Media",
+                "dificultad": 50,
                 "tema": "Normas de circulación",
                 "enunciado": "¿Cuál es la sanción por conducir bajo los efectos del alcohol y superar la tasa permitida?",
                 "correcta": "Sanción económica, retirada de puntos del carnet y posible pérdida de la vigencia del carnet",
@@ -309,7 +309,7 @@
               },
               {
                 "id": 26,
-                "dificultad": "Media",
+                "dificultad": 50,
                 "tema": "Conducción segura",
                 "enunciado": "¿Cuál es la velocidad máxima permitida en vías urbanas?",
                 "correcta": "50 km/h",
@@ -321,7 +321,7 @@
               },
               {
                 "id": 27,
-                "dificultad": "Media",
+                "dificultad": 50,
                 "tema": "Señalización",
                 "enunciado": "¿Qué indica la señal de stop?",
                 "correcta": "Obligación de detenerse",
@@ -333,7 +333,7 @@
               },
               {
                 "id": 28,
-                "dificultad": "Difícil",
+                "dificultad": 100,
                 "tema": "Conducción segura",
                 "enunciado": "¿Cuál es la forma correcta de sujetar el volante?",
                 "correcta": "Con las manos a las 9 y 3",
@@ -345,7 +345,7 @@
               },
               {
                 "id": 29,
-                "dificultad": "Difícil",
+                "dificultad": 100,
                 "tema": "Normas de circulación",
                 "enunciado": "¿En qué casos está permitido el uso del teléfono móvil mientras se conduce?",
                 "correcta": "Solo con el uso de dispositivos de manos libres",
@@ -357,7 +357,7 @@
               },
               {
                 "id": 30,
-                "dificultad": "Difícil",
+                "dificultad": 100,
                 "tema": "Sistemas de seguridad",
                 "enunciado": "¿Cuál es la finalidad de los cinturones de seguridad en un vehículo?",
                 "correcta": "Reducir el riesgo de lesiones en caso de accidente",
@@ -369,7 +369,7 @@
               },
               {
                 "id": 31,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Normas de circulación",
                 "enunciado": "¿Cuál es la distancia mínima de seguridad que se debe mantener al adelantar a un ciclista en vías interurbanas?",
                 "correcta": "1,5 metros",
@@ -381,7 +381,7 @@
               },
               {
                 "id": 32,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Señalización",
                 "enunciado": "¿Qué indica la señal triangular con borde rojo?",
                 "correcta": "Peligro",
@@ -393,7 +393,7 @@
               },
               {
                 "id": 33,
-                "dificultad": "Media",
+                "dificultad": 50,
                 "tema": "Conducción segura",
                 "enunciado": "¿Qué deben hacer los peatones al cruzar una calzada por un paso de peatones regulado por semáforo?",
                 "correcta": "Seguir las indicaciones del semáforo",
@@ -405,7 +405,7 @@
               },
               {
                 "id": 34,
-                "dificultad": "Media",
+                "dificultad": 50,
                 "tema": "Normas de circulación",
                 "enunciado": "¿En qué casos está permitido estacionar en doble fila?",
                 "correcta": "Nunca",
@@ -417,7 +417,7 @@
               },
               {
                 "id": 35,
-                "dificultad": "Difícil",
+                "dificultad": 100,
                 "tema": "Señalización",
                 "enunciado": "¿Qué indica la señal cuadrada con fondo azul y una H en blanco?",
                 "correcta": "Hospital",
@@ -429,7 +429,7 @@
               },
               {
                 "id": 36,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Normas de circulación",
                 "enunciado": "¿Cuál es la velocidad máxima permitida en una vía urbana para turismos y motocicletas?",
                 "correcta": "50 km/h",
@@ -442,7 +442,7 @@
               },
               {
                 "id": 37,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Señalización",
                 "enunciado": "¿Qué indica la señal rectangular de color azul?",
                 "correcta": "Información",
@@ -455,7 +455,7 @@
               },
               {
                 "id": 38,
-                "dificultad": "Media",
+                "dificultad": 50,
                 "tema": "Conducción segura",
                 "enunciado": "¿Qué significa una línea continua en el centro de la calzada?",
                 "correcta": "Prohibido adelantar",
@@ -468,7 +468,7 @@
               },
               {
                 "id": 39,
-                "dificultad": "Media",
+                "dificultad": 50,
                 "tema": "Normas de circulación",
                 "enunciado": "¿Cuál es la tasa máxima de alcohol permitida en sangre para los conductores noveles y profesionales?",
                 "correcta": "0,15 mg/l",
@@ -480,7 +480,7 @@
               },
               {
                 "id": 40,
-                "dificultad": "Difícil",
+                "dificultad": 100,
                 "tema": "Señalización",
                 "enunciado": "¿Qué indica la señal cuadrada con fondo blanco y una flecha hacia arriba en negro?",
                 "correcta": "Dirección obligatoria hacia adelante",
@@ -493,7 +493,7 @@
               },
               {
                 "id": 41,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Conducción segura",
                 "enunciado": "¿Cuál es la distancia de seguridad recomendada en condiciones normales de circulación?",
                 "correcta": "2 segundos",
@@ -505,7 +505,7 @@
               },
               {
                 "id": 42,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Normas de circulación",
                 "enunciado": "¿Cuál es la velocidad máxima permitida en una autovía para turismos?",
                 "correcta": "120 km/h",
@@ -518,7 +518,7 @@
               },
               {
                 "id": 43,
-                "dificultad": "Media",
+                "dificultad": 50,
                 "tema": "Señalización",
                 "enunciado": "¿Qué indica la señal circular de color rojo?",
                 "correcta": "Prohibición",
@@ -531,7 +531,7 @@
               },
               {
                 "id": 44,
-                "dificultad": "Media",
+                "dificultad": 50,
                 "tema": "Conducción segura",
                 "enunciado": "¿Qué tipo de luz se debe utilizar al circular por un túnel durante el día?",
                 "correcta": "Luz de cruce",
@@ -543,7 +543,7 @@
               },
               {
                 "id": 45,
-                "dificultad": "Difícil",
+                "dificultad": 100,
                 "tema": "Normas de circulación",
                 "enunciado": "¿Cuál es la velocidad máxima permitida en una carretera convencional para turismos y motocicletas?",
                 "correcta": "90 km/h",
@@ -555,7 +555,7 @@
               },
               {
                 "id": 46,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Señalización",
                 "enunciado": "¿Qué indica la señal triangular de color amarillo?",
                 "correcta": "Advertencia",
@@ -567,7 +567,7 @@
               },
               {
                 "id": 47,
-                "dificultad": "Fácil",
+                "dificultad": 25,
                 "tema": "Conducción segura",
                 "enunciado": "¿Cuál es el límite de alcohol en sangre permitido para conductores noveles y profesionales?",
                 "correcta": "0.15 mg/l",
@@ -579,7 +579,7 @@
               },
               {
                 "id": 48,
-                "dificultad": "Media",
+                "dificultad": 50,
                 "tema": "Normas de circulación",
                 "enunciado": "¿Cuál es la velocidad máxima permitida en una vía urbana para turismos?",
                 "correcta": "50 km/h",
@@ -591,7 +591,7 @@
               },
               {
                 "id": 49,
-                "dificultad": "Media",
+                "dificultad": 50,
                 "tema": "Conducción segura",
                 "enunciado": "¿Qué debe hacer al aproximarte a un paso a nivel con barrera que comienza a descender?",
                 "correcta": "Detenerse antes de alcanzar la barrera",
@@ -604,7 +604,7 @@
               },
               {
                 "id": 50,
-                "dificultad": "Difícil",
+                "dificultad": 100,
                 "tema": "Normas de circulación",
                 "enunciado": "¿Cuál es la velocidad máxima permitida en una autopista para camiones y vehículos articulados?",
                 "correcta": "90 km/h",

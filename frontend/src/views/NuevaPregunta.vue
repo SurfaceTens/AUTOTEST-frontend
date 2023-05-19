@@ -6,7 +6,7 @@ export default {
     return {
       pregunta: {
         id: null,
-        dificultad: '',
+        dificultad: 0,
         tema: '',
         enunciado: '',
         correcta: '',
