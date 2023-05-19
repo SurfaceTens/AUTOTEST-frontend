@@ -109,7 +109,7 @@ export default {
 
             this.tituloExamen = `Aciertos: ${acertadas} Resultado: ${resultado}`;
         },
-        
+
         generarNuevoExamen() {
             this.preguntasTratadas = this.randomizarYLimitarPreguntas(this.preguntas, this.numPreguntas);
             this.respuestasExamen = [];
@@ -150,6 +150,10 @@ export default {
             <div class="fin-examen">
                 <button @click="terminarExamen" class="btn btn-primary btn-lg">Terminar</button>
             </div>
+
+            <!-- Agregar el componente FinExamen aquí -->
+            <FinExamen v-if="mostrarModal" @aceptarExamen="aceptarExamen" @cerrarModal="cerrarModal" />
+
         </div>
 
         <!-- Versión del examen con respuestas resaltadas -->
@@ -166,9 +170,6 @@ export default {
             <div class="fin-examen">
                 <button @click="generarNuevoExamen" class="btn btn-secondary btn-lg">Hacer Otro</button>
             </div>
-
-            <!-- Agregar el componente FinExamen aquí -->
-            <FinExamen v-if="mostrarModal" @aceptarExamen="aceptarExamen" @cerrarModal="cerrarModal" />
 
         </div>
     </div>
