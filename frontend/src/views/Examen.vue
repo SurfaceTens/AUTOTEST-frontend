@@ -15,7 +15,8 @@ export default {
             numPreguntas: 30, // Numero de preguntas que debe tener el examen.
             examenTerminado: false, // Variable para controlar el estado del examen.
             respuestasExamen: [], // Array para almacenar las respuestas del examen.
-            tituloExamen: `Examen aleatorio de 30 preguntas`, // Título inicial del examen.
+            tituloExamen: `Lee detenidamente las preguntas y escoge la opción más adecuada.`, // Título inicial del examen.
+            notaExamen: '', // Nota del examen.
             mostrarModal: false, // Controlar la visibilidad de FinExamen.
         };
     },
@@ -58,13 +59,19 @@ export default {
         },
 
         terminarExamen() {
-            if (confirm('¿Estás seguro de que deseas terminar el examen?')) {
-                this.guardarRespuestas();
-                this.mostrarRespuestas();
-                this.calcularPuntuacion();
-                this.examenTerminado = true;
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+            this.mostrarModal = true;
+        },
+
+        aceptarExamen() {
+            this.guardarRespuestas();
+            this.mostrarRespuestas();
+            this.calcularPuntuacion();
+            this.examenTerminado = true;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        },
+
+        cerrarModal() {
+            this.mostrarModal = false;
         },
 
         mostrarRespuestas() {
@@ -100,13 +107,16 @@ export default {
                 resultado = "NO APTO";
             }
 
-            this.tituloExamen = `Aciertos: ${acertadas} Resultado: ${resultado}`;
+            this.tituloExamen = `Revisión del examen.`;
+            this.notaExamen = [acertadas,resultado];
         },
+
         generarNuevoExamen() {
             this.preguntasTratadas = this.randomizarYLimitarPreguntas(this.preguntas, this.numPreguntas);
             this.respuestasExamen = [];
-            this.tituloExamen = `Examen aleatorio de ${this.numPreguntas} preguntas`;
+            this.tituloExamen = `Lee detenidamente las preguntas y escoge la opción más adecuada.`;
             this.examenTerminado = false;
+            this.notaExamen = [];
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -124,7 +134,8 @@ export default {
             <h1>{{ tituloExamen }}</h1>
             <ul>
                 <li v-for="(pregunta, index) in preguntasTratadas" :key="pregunta.id">
-                    <Pregunta :pregunta="pregunta" :numero="index + 1" @opcionSeleccionada="seleccionarOpcion(pregunta, $event)"
+                    <Pregunta :pregunta="pregunta" :numero="index + 1"
+                        @opcionSeleccionada="seleccionarOpcion(pregunta, $event)"
                         :respuestaCorrecta="pregunta.respuestaCorrecta"
                         :respuestaIncorrecta="pregunta.respuestaIncorrecta" />
                     <b-button-group size="sm" vertical>
@@ -141,6 +152,10 @@ export default {
             <div class="fin-examen">
                 <button @click="terminarExamen" class="btn btn-primary btn-lg">Terminar</button>
             </div>
+
+            <!-- Modal FinExamen A-->
+            <FinExamen v-if="mostrarModal" :nota="notaExamen" :modalB="false" @aceptarExamen="aceptarExamen" @cerrarModal="cerrarModal" />
+
         </div>
 
         <!-- Versión del examen con respuestas resaltadas -->
@@ -148,14 +163,18 @@ export default {
             <h1>{{ tituloExamen }}</h1>
             <ul>
                 <li v-for="(pregunta, index) in preguntasTratadas" :key="pregunta.id">
-                    <Pregunta :pregunta="pregunta" :numero="index + 1" :desorden="false" :respuestaCorrecta="pregunta.correcta"
+                    <Pregunta :pregunta="pregunta" :numero="index + 1" :desorden="false"
+                        :respuestaCorrecta="pregunta.correcta"
                         :respuestaSeleccionada="getRespuestaSeleccionada(pregunta.id)" />
                 </li>
 
             </ul>
             <div class="fin-examen">
-                <button @click="generarNuevoExamen" class="btn btn-secondary btn-lg">Hacer Otro</button>
+                <button @click="generarNuevoExamen(); cerrarModal()" class="btn btn-success btn-lg">Hacer Otro</button>
             </div>
+
+            <!-- Modal FinExamen B-->
+            <FinExamen v-if="mostrarModal" :nota="notaExamen" :modalB="true" @generarNuevoExamen="generarNuevoExamen" @cerrarModal="cerrarModal" />
 
         </div>
     </div>

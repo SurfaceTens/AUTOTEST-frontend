@@ -6,7 +6,7 @@ import { createPinia } from 'pinia'
 
 // Importar las vistas
 import Home from "@/views/Home.vue"
-import Examen from "@/views/ExamenNew.vue"
+import Examen from "@/views/Examen.vue"
 import Preguntas from "@/views/Preguntas.vue"
 import Usuarios from "@/views/Usuarios.vue"
 import NuevaPregunta from "@/views/NuevaPregunta.vue"

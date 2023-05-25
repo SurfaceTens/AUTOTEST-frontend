@@ -10,27 +10,35 @@ export default {
             default: false
         }
     },
+    data() {
+        return {
+            colapsado: false
+        }
+    },
     methods: {
         aceptarExamen() {
-            // Realizar acciones al aceptar el examen
+            // Realizar acciones al aceptar el examen desde el componente Examen.
             this.$emit('aceptarExamen');
         },
         cerrarModal() {
-            // Cerrar el modal y volver al estado anterior
+            // Cerrar el modal y volver al estado anterior desde el componente Examen.
             this.$emit('cerrarModal');
         },
         generarNuevoExamen() {
             // Generar un nuevo examen desde el componente Examen.
             this.$emit('generarNuevoExamen');
         },
+        toggleColapsado() {
+            this.colapsado = !this.colapsado;
+        },
     },
 };
 </script>
 
 <template>
-    <div class="modal-overlay" @click="cerrarModal">
+    <div v-if="!modalB" class="modal-overlay" @click="cerrarModal">
         <div class="modal-container">
-            <div v-if="!modalB" class="card fin-examen-card">
+            <div class="card fin-examen-card">
                 <div class="card_header">
                     <h3 class="card_title">¿Deseas finalizar el examen?</h3>
                 </div>
@@ -39,19 +47,32 @@ export default {
                     <button @click="cerrarModal()" class="btn btn-secondary">Cerrar</button>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div v-else class="card fin-examen-card">
+    <div v-else>
+        <div class="modal-container">
+            <div v-if="!colapsado" class="card fin-examen-card modal-b" @click="toggleColapsado">
                 <div class="card_header">
-                    <h3 class="card_title">{{ nota }}</h3>
+                    <p class="card_subtitle">Aciertos: {{ nota[0] }}</p>
+                    <h3 class="card_title">{{ nota[1] }}</h3>
                 </div>
-                <div class="card_content">
-                    <!-- Aquí puedes agregar contenido adicional para mostrar información sobre el examen -->
-                </div>
-                <div class="card_buttons">
-                    <button @click="cerrarModal()" class="btn btn-secondary">Revisar</button>
-                    <button @click="generarNuevoExamen(); cerrarModal()" class="btn btn-success">Hacer Otro</button>
-                </div>
+                <ul class="color-list">
+                    <li class="color-item">
+                        <i class="fas fa-list"></i>
+                        <span class="red sombra">Rojo</span> <span class="espaciado">Incorrecta</span>
+                    </li>
+                    <li class="color-item">
+                        <i class="fas fa-list"></i>
+                        <span class="green sombra">Verde</span> <span class="espaciado">Correcta</span>
+                    </li>
+                    <li class="color-item">
+                        <i class="fas fa-list"></i>
+                        <span class="yellow sombra">Amarillo</span> <span class="espaciado">Solución</span>
+                    </li>
+                </ul>
             </div>
+            <div v-else class="card fin-examen-card modal-b collapsed" @click="toggleColapsado"></div>
         </div>
     </div>
 </template>
@@ -97,5 +118,109 @@ export default {
     display: flex;
     justify-content: flex-end;
     margin-top: 20px;
+}
+
+/* Estilos para la ventana flotante del modal B */
+.modal-b {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background-color: var(--color-fondo);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    width: 400px;
+    z-index: 9999;
+    pointer-events: auto;
+}
+
+.modal-b .card_buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.modal-b .collapse-icon {
+    position: absolute;
+    top: 10px;
+    right: -30px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.modal-b .collapse-icon:hover {
+    transform: rotate(-180deg);
+}
+
+.modal-b.collapsed .collapse-icon {
+    right: -10px;
+    transition: right 0.3s ease-in-out;
+}
+
+.modal-b.collapsed .collapse-icon i {
+    transform: rotate(-180deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+.modal-b.collapsed {
+    width: 30px;
+    cursor: pointer;
+}
+
+.modal-b.collapsed .card_header,
+.modal-b.collapsed .card_buttons {
+    display: none;
+}
+
+.card_subtitle {
+    margin: 0;
+    font-size: 14px;
+    color: var(--color-subtitle);
+}
+
+.color-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.color-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.color-item i {
+    margin-right: 10px;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.yellow {
+    color: rgb(255, 207, 0);
+}
+
+.sombra {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+
+.espaciado {
+    margin-left: 5px;
 }
 </style>
