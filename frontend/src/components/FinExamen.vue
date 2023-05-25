@@ -1,5 +1,15 @@
 <script>
 export default {
+    props: {
+        nota: {
+            type: String,
+            default: ''
+        },
+        modalB: {
+            type: Boolean,
+            default: false
+        }
+    },
     methods: {
         aceptarExamen() {
             // Realizar acciones al aceptar el examen
@@ -9,23 +19,37 @@ export default {
             // Cerrar el modal y volver al estado anterior
             this.$emit('cerrarModal');
         },
+        generarNuevoExamen() {
+            // Generar un nuevo examen desde el componente Examen.
+            this.$emit('generarNuevoExamen');
+        },
     },
 };
 </script>
 
 <template>
-    <div class="modal-overlay">
+    <div class="modal-overlay" @click="cerrarModal">
         <div class="modal-container">
-            <div class="card fin-examen-card">
+            <div v-if="!modalB" class="card fin-examen-card">
                 <div class="card_header">
                     <h3 class="card_title">¿Deseas finalizar el examen?</h3>
+                </div>
+                <div class="card_buttons">
+                    <button @click="aceptarExamen()" class="btn btn-primary">Aceptar</button>
+                    <button @click="cerrarModal()" class="btn btn-secondary">Cerrar</button>
+                </div>
+            </div>
+
+            <div v-else class="card fin-examen-card">
+                <div class="card_header">
+                    <h3 class="card_title">{{ nota }}</h3>
                 </div>
                 <div class="card_content">
                     <!-- Aquí puedes agregar contenido adicional para mostrar información sobre el examen -->
                 </div>
                 <div class="card_buttons">
-                    <button @click="aceptarExamen" class="btn btn-primary">Aceptar</button>
-                    <button @click="cerrarModal" class="btn btn-secondary">Cerrar</button>
+                    <button @click="cerrarModal()" class="btn btn-secondary">Revisar</button>
+                    <button @click="generarNuevoExamen(); cerrarModal()" class="btn btn-success">Hacer Otro</button>
                 </div>
             </div>
         </div>

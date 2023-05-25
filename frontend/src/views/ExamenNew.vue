@@ -15,7 +15,8 @@ export default {
             numPreguntas: 30, // Numero de preguntas que debe tener el examen.
             examenTerminado: false, // Variable para controlar el estado del examen.
             respuestasExamen: [], // Array para almacenar las respuestas del examen.
-            tituloExamen: `Examen aleatorio de 30 preguntas`, // Título inicial del examen.
+            tituloExamen: `Lee detenidamente las preguntas y escoge la opción más adecuada.`, // Título inicial del examen.
+            notaExamen: '', // Nota del examen.
             mostrarModal: false, // Controlar la visibilidad de FinExamen.
         };
     },
@@ -66,7 +67,6 @@ export default {
             this.mostrarRespuestas();
             this.calcularPuntuacion();
             this.examenTerminado = true;
-            this.mostrarModal = false;
             window.scrollTo({ top: 0, behavior: 'smooth' });
         },
 
@@ -107,14 +107,16 @@ export default {
                 resultado = "NO APTO";
             }
 
-            this.tituloExamen = `Aciertos: ${acertadas} Resultado: ${resultado}`;
+            this.tituloExamen = `Verde: Acierto.    Ámbar: Solución.    Rojo: Fallo.`;
+            this.notaExamen = `Aciertos: ${acertadas} Resultado: ${resultado}`;
         },
 
         generarNuevoExamen() {
             this.preguntasTratadas = this.randomizarYLimitarPreguntas(this.preguntas, this.numPreguntas);
             this.respuestasExamen = [];
-            this.tituloExamen = `Examen aleatorio de ${this.numPreguntas} preguntas`;
+            this.tituloExamen = `Lee detenidamente las preguntas y escoge la opción más adecuada.`;
             this.examenTerminado = false;
+            this.notaExamen = '';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -151,8 +153,8 @@ export default {
                 <button @click="terminarExamen" class="btn btn-primary btn-lg">Terminar</button>
             </div>
 
-            <!-- Agregar el componente FinExamen aquí -->
-            <FinExamen v-if="mostrarModal" @aceptarExamen="aceptarExamen" @cerrarModal="cerrarModal" />
+            <!-- Modal FinExamen A-->
+            <FinExamen v-if="mostrarModal" :nota="notaExamen" :modalB="false" @aceptarExamen="aceptarExamen" @cerrarModal="cerrarModal" />
 
         </div>
 
@@ -168,8 +170,11 @@ export default {
 
             </ul>
             <div class="fin-examen">
-                <button @click="generarNuevoExamen" class="btn btn-secondary btn-lg">Hacer Otro</button>
+                <button @click="generarNuevoExamen" class="btn btn-success btn-lg">Hacer Otro</button>
             </div>
+
+            <!-- Modal FinExamen B-->
+            <FinExamen v-if="mostrarModal" :nota="notaExamen" :modalB="true" @generarNuevoExamen="generarNuevoExamen" @cerrarModal="cerrarModal" />
 
         </div>
     </div>
