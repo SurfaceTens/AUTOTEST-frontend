@@ -13,6 +13,13 @@ import NuevaPregunta from "@/views/NuevaPregunta.vue"
 import NuevoUsuario from "@/views/NuevoUsuario.vue"
 import ExitoFormulario from "@/views/ExitoFormulario.vue"
 
+// Importar Prime Vue y Font Awesome
+import 'primevue/resources/primevue.min.css';
+import 'primevue/resources/themes/saga-blue/theme.css';
+import 'primeicons/primeicons.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
+
 // Definir las rutas
 const routes = [
   { path: "/",                      name: "Home",                 component: Home },

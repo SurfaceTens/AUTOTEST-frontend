@@ -59,21 +59,23 @@ export default {
                 </div>
                 <ul class="color-list">
                     <li class="color-item">
-                        <i class="fas fa-list"></i>
-                        <span class="red sombra">Rojo</span> <span class="espaciado">Incorrecta</span>
+                        <i class="fas fa-times red sombra"></i>
+                        <span>Incorrecta</span>
                     </li>
                     <li class="color-item">
-                        <i class="fas fa-list"></i>
-                        <span class="green sombra">Verde</span> <span class="espaciado">Correcta</span>
+                        <i class="fas fa-check green sombra"></i>
+                        <span>Correcta</span>
                     </li>
                     <li class="color-item">
-                        <i class="fas fa-list"></i>
-                        <span class="yellow sombra">Amarillo</span> <span class="espaciado">Solución</span>
+                        <i class="fas fa-lightbulb yellow sombra"></i>
+                        <span>Solución</span>
                     </li>
                 </ul>
             </div>
-            <div v-else class="card fin-examen-card modal-b collapsed" @click="toggleColapsado"></div>
-        </div>
+                <div v-else class="card fin-examen-card modal-b collapsed" @click="toggleColapsado">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
     </div>
 </template>
 
@@ -217,10 +219,5 @@ export default {
 
 .sombra {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-}
-
-
-.espaciado {
-    margin-left: 5px;
 }
 </style>
