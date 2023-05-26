@@ -57,7 +57,7 @@ export default {
                     <p class="card_subtitle">Aciertos: {{ nota[0] }}</p>
                     <h3 class="card_title">{{ nota[1] }}</h3>
                 </div>
-                <ul class="color-list">
+                <ul class="color-list two-columns"> <!-- Agregamos la clase "two-columns" -->
                     <li class="color-item">
                         <i class="fas fa-times red sombra"></i>
                         <span>Incorrecta</span>
@@ -69,6 +69,17 @@ export default {
                     <li class="color-item">
                         <i class="fas fa-lightbulb yellow sombra"></i>
                         <span>Solución</span>
+                    </li>
+                    <li class="color-item hidden">
+                        <i class="fas fa-circle red sombra"></i>
+                        <span>Vacio</span>
+                    </li>
+                    <li class="color-item" @click="generarNuevoExamen(); cerrarModal()">
+                        <i class="fas fa-redo sombra hover-yellow"> Nuevo Examen</i>
+                    </li>
+                    <li class="color-item hidden">
+                        <i class="fas fa-circle green sombra"></i>
+                        <span>Vacio</span>
                     </li>
                 </ul>
             </div>
@@ -124,26 +135,27 @@ export default {
 
 /* Estilos para la ventana flotante del modal B */
 .top-container {
-  position: fixed;
-  top: 200px;
-  right: 20px;
-  left: auto;
-  display: flex;
-  justify-content: flex-end;
+    position: fixed;
+    top: 200px;
+    right: 20px;
+    left: auto;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .modal-b {
-  position: relative;
-  top: 0;
-  right: 0;
-  transform: translateY(-50%);
-  background-color: var(--color-fondo);
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 20px;
-  width: 400px;
-  z-index: 9999;
-  pointer-events: auto;
+    position: relative;
+    top: 0;
+    right: 0;
+    transform: translateY(-50%);
+    background-color: var(--color-fondo);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    padding-bottom: 10px;
+    width: 350px;
+    z-index: 9999;
+    pointer-events: auto;
 }
 
 
@@ -180,7 +192,8 @@ export default {
 }
 
 .modal-b.collapsed {
-    width: 30px;
+    width: auto;
+    height: auto;
     cursor: pointer;
 }
 
@@ -201,10 +214,15 @@ export default {
     padding: 0;
 }
 
+.two-columns {
+    columns: 2;
+    column-gap: 120px;
+}
+
 .color-item {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .color-item i {
@@ -223,7 +241,15 @@ export default {
     color: rgb(255, 207, 0);
 }
 
+.hover-yellow:hover {
+  color: rgb(255, 207, 0);
+}
+
 .sombra {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.hidden {
+    visibility: hidden;
 }
 </style>
