@@ -83,8 +83,8 @@ export default {
                     </li>
                 </ul>
             </div>
-            <div v-else class="card fin-examen-card modal-b collapsed" @click="toggleColapsado">
-                <i class="fas fa-chevron-right"></i>
+            <div v-else class="card collapsed hover-green" @click="toggleColapsado">
+                <i class="fas fa-eye"></i>
             </div>
         </div>
     </div>
@@ -156,6 +156,7 @@ export default {
     width: 350px;
     z-index: 9999;
     pointer-events: auto;
+    cursor: pointer; /* Agregamos el cursor pointer */
 }
 
 
@@ -241,6 +242,10 @@ export default {
     color: rgb(255, 207, 0);
 }
 
+.hover-green:hover {
+  color: green;
+}
+
 .hover-yellow:hover {
   color: rgb(255, 207, 0);
 }
@@ -252,4 +257,5 @@ export default {
 .hidden {
     visibility: hidden;
 }
+
 </style>
