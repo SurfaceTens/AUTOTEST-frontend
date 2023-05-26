@@ -65,7 +65,7 @@ export default {
       <h3 class="card_title">{{ numero }} - {{ pregunta.enunciado }}</h3>
       <div>
         <!-- Mostrar la imagen de la pregunta si está disponible -->
-        <img v-if="pregunta.imagen" class="preguntaImg" :src="'./imagenesPreguntas/' + pregunta.imagen"
+        <img v-if="pregunta.imagen" class="preguntaImg img-fluid w-100" :src="'./imagenesPreguntas/' + pregunta.imagen"
           alt="Imagen de la pregunta" />
       </div>
     </div>
@@ -106,6 +106,11 @@ export default {
 
 .card_title {
   margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 
 .alternativas-list {
@@ -149,7 +154,7 @@ export default {
   flex: 1 1 100%;
   max-width: 100%;
   height: 200px;
-  object-fit: cover;
+  object-fit: fill;
 }
 
 @media (min-width: 768px) {
