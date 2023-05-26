@@ -50,7 +50,7 @@ export default {
         </div>
     </div>
 
-    <div v-else>
+    <div v-else class="top-container">
         <div class="modal-container">
             <div v-if="!colapsado" class="card fin-examen-card modal-b" @click="toggleColapsado">
                 <div class="card_header">
@@ -72,10 +72,10 @@ export default {
                     </li>
                 </ul>
             </div>
-                <div v-else class="card fin-examen-card modal-b collapsed" @click="toggleColapsado">
-                    <i class="fas fa-chevron-right"></i>
-                </div>
+            <div v-else class="card fin-examen-card modal-b collapsed" @click="toggleColapsado">
+                <i class="fas fa-chevron-right"></i>
             </div>
+        </div>
     </div>
 </template>
 
@@ -123,19 +123,29 @@ export default {
 }
 
 /* Estilos para la ventana flotante del modal B */
-.modal-b {
-    position: fixed;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    background-color: var(--color-fondo);
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    width: 400px;
-    z-index: 9999;
-    pointer-events: auto;
+.top-container {
+  position: fixed;
+  top: 200px;
+  right: 20px;
+  left: auto;
+  display: flex;
+  justify-content: flex-end;
 }
+
+.modal-b {
+  position: relative;
+  top: 0;
+  right: 0;
+  transform: translateY(-50%);
+  background-color: var(--color-fondo);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  width: 400px;
+  z-index: 9999;
+  pointer-events: auto;
+}
+
 
 .modal-b .card_buttons {
     display: flex;
@@ -157,10 +167,6 @@ export default {
     align-items: center;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
-}
-
-.modal-b .collapse-icon:hover {
-    transform: rotate(-180deg);
 }
 
 .modal-b.collapsed .collapse-icon {
