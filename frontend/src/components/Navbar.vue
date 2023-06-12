@@ -69,16 +69,16 @@ export default {
 <style scoped>
 .navbar {
   background: var(--gradiente-navbar);
-  height: calc(var(--proporcion-navbar) * 100vh);
+  height: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 999;
 }
 
 .navbar-brand {
@@ -146,7 +146,9 @@ export default {
 @media (max-width: 767px) {
   .navbar {
     height: auto;
+    position: sticky;
     padding: 1rem;
+    z-index: 999;
   }
 
   .navbar-brand {

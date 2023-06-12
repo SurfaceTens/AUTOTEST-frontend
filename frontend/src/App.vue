@@ -12,12 +12,15 @@ export default {
 
 <template>
   <div class="contenido-aplicacion">
-    <Navbar />
-    <div class="vistas-router">
-      <router-view />
+    <div class="contenedor-principal">
+      <div>
+        <Navbar />
+      </div>
+      <div class="contenedor-vistas">
+        <router-view />
+      </div>
     </div>
   </div>
-
 </template>
 
 <style>
@@ -26,7 +29,14 @@ export default {
     height: 100%;
   }
 
-  .vistas-router {
-    margin-top: calc(var(--proporcion-navbar) * 100vh);
+  .contenedor-principal {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .contenedor-vistas {
+    flex: 1;
   }
 </style>
+
