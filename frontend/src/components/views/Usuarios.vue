@@ -19,7 +19,6 @@ export default {
 
 <template>
   <div v-if="isAdmin">
-    <h1>Listado de usuarios con Pinia</h1>
     <table class="listado-table">
       <thead>
         <tr>
