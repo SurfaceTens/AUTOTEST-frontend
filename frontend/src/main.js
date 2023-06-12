@@ -5,20 +5,19 @@ import App from '@/App.vue'
 import { createPinia } from 'pinia'
 
 // Importar las vistas
-import Home from "@/views/Home.vue"
-import Examen from "@/views/Examen.vue"
-import Preguntas from "@/views/Preguntas.vue"
-import Usuarios from "@/views/Usuarios.vue"
-import NuevaPregunta from "@/views/NuevaPregunta.vue"
-import NuevoUsuario from "@/views/NuevoUsuario.vue"
-import ExitoFormulario from "@/views/ExitoFormulario.vue"
+import Home from "@/components/views/Home.vue"
+import Examen from "@/components/views/Examen.vue"
+import Preguntas from "@/components/views/Preguntas.vue"
+import Usuarios from "@/components/views/Usuarios.vue"
+import NuevaPregunta from "@/components/views/NuevaPregunta.vue"
+import NuevoUsuario from "@/components/views/NuevoUsuario.vue"
+import ExitoFormulario from "@/components/views/ExitoFormulario.vue"
 
 // Importar Prime Vue y Font Awesome
 import 'primevue/resources/primevue.min.css';
 import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primeicons/primeicons.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
 
 // Definir las rutas
 const routes = [
