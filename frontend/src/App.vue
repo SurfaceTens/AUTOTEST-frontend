@@ -17,7 +17,7 @@ export default {
       <router-view />
     </div>
   </div>
-  
+
 </template>
 
 <style>
