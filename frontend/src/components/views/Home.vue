@@ -111,7 +111,7 @@ export default {
   display: inline-block;
   padding: 0.8rem 1.5rem;
   font-size: 1.2rem;
-  color: #fff;
+  color: var(--color-secundario);
   text-decoration: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;

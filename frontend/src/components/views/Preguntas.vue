@@ -31,8 +31,8 @@ export default {
 
 <template>
   <div v-if="isAdmin">
-    <h1>Preguntas con Pinia</h1>
-    <table class="preguntas-table">
+    <h1>Listado de preguntas con Pinia</h1>
+    <table class="listado-table">
       <thead>
         <tr>
           <th>ID</th>
@@ -55,31 +55,6 @@ export default {
   </div>
 
   <div v-else>
-    <h1>No se dispone de los permisos para visualizar las preguntas</h1>
+    <h1>No se dispone de los permisos para visualizar el listado de preguntas</h1>
   </div>
 </template>
-
-
-<style scoped>
-.preguntas-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.preguntas-table th,
-.preguntas-table td {
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.preguntas-table th {
-  background-color: #f1f1f1;
-  font-weight: bold;
-}
-
-.preguntas-table tbody tr:hover {
-  background-color: #f9f9f9;
-}
-</style>
-

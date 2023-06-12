@@ -19,8 +19,8 @@ export default {
 
 <template>
   <div v-if="isAdmin">
-    <h1>Usuarios con Pinia</h1>
-    <table class="usuarios-table">
+    <h1>Listado de usuarios con Pinia</h1>
+    <table class="listado-table">
       <thead>
         <tr>
           <th>Nombre</th>
@@ -43,29 +43,6 @@ export default {
   </div>
 
   <div v-else>
-    <h1>No se dispone de los permisos para visualizar los usuarios</h1>
+    <h1>No se dispone de los permisos para visualizar el listado de usuarios</h1>
   </div>
 </template>
-
-<style scoped>
-.usuarios-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.usuarios-table th,
-.usuarios-table td {
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.usuarios-table th {
-  background-color: #f1f1f1;
-  font-weight: bold;
-}
-
-.usuarios-table tbody tr:hover {
-  background-color: #f9f9f9;
-}
-</style>

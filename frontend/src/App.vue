@@ -23,7 +23,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
   .contenido-aplicacion {
     width: 100%;
     height: 100%;

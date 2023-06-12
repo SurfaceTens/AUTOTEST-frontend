@@ -29,7 +29,7 @@ export default {
   
 <style scoped>
 .container {
-    max-width: 600px;
+    max-width: 768px;
     margin: 0 auto;
     padding: 2rem;
 }
@@ -37,12 +37,12 @@ export default {
 .card {
     border-radius: 8px;
     box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    background-color: var(--color-secundario);
 }
 
 .card-header {
     padding: 1rem;
-    background-color: #f8f9fa;
+    background-color: var(--color-fondo);
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
@@ -50,6 +50,7 @@ export default {
     margin: 0;
     font-size: 1.5rem;
     font-weight: 600;
+    color: var(--colorTextoPrimario);
 }
 
 .card-body {
