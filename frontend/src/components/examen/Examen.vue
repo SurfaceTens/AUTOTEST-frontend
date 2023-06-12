@@ -1,8 +1,8 @@
 <script>
 import { mapActions, mapState } from 'pinia';
 import { preguntasStore } from '@/stores/preguntasStore';
-import Pregunta from '@/components/Pregunta.vue';
-import FinExamen from '@/components/FinExamen.vue';
+import Pregunta from '@/components/pregunta/Pregunta.vue';
+import FinExamen from '@/components/examen/FinExamen.vue';
 
 
 export default {

@@ -2,7 +2,7 @@
 import { mapActions, mapState } from 'pinia';
 import { loginStore } from '@/stores/loginStore';
 import { preguntasStore } from '@/stores/preguntasStore';
-import Pregunta from '@/components/Pregunta.vue';
+import Pregunta from '@/components/pregunta/Pregunta.vue';
 
 export default {
   components: {

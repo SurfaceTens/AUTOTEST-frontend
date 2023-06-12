@@ -5,13 +5,13 @@ import App from '@/App.vue'
 import { createPinia } from 'pinia'
 
 // Importar las vistas
-import Home from "@/components/views/Home.vue"
-import Examen from "@/components/views/Examen.vue"
-import Preguntas from "@/components/views/Preguntas.vue"
-import Usuarios from "@/components/views/Usuarios.vue"
-import NuevaPregunta from "@/components/views/NuevaPregunta.vue"
-import NuevoUsuario from "@/components/views/NuevoUsuario.vue"
-import ExitoFormulario from "@/components/views/ExitoFormulario.vue"
+import Home from "@/components/Home.vue"
+import Examen from "@/components/examen/Examen.vue"
+import Preguntas from "@/components/pregunta/Preguntas.vue"
+import Usuarios from "@/components/usuario/Usuarios.vue"
+import NuevaPregunta from "@/components/pregunta/NuevaPregunta.vue"
+import NuevoUsuario from "@/components/usuario/NuevoUsuario.vue"
+import ExitoFormulario from "@/components/ExitoFormulario.vue"
 
 // Importar Prime Vue y Font Awesome
 import 'primevue/resources/primevue.min.css';
