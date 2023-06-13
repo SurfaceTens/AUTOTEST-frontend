@@ -41,7 +41,7 @@ export default {
     },
 
     generarID() {
-      // Generar un ID único para la nueva pregunta (implementación personalizada)
+      // Generar un ID único para la nueva pregunta
       const timestamp = Date.now()
       const randomSuffix = Math.floor(Math.random() * 10000)
       return `${timestamp}_${randomSuffix}`
@@ -72,7 +72,6 @@ export default {
             <label for="dificultad" class="form-label">Dificultad:</label>
             <div class="select-arrow">
               <select id="dificultad" class="form-control" v-model="pregunta.dificultad">
-                <option value="" disabled selected>Selecciona la dificultad.</option>
                 <option value="facil">Fácil</option>
                 <option value="media">Media</option>
                 <option value="dificil">Difícil</option>

@@ -42,7 +42,7 @@ export default {
     },
 
     generarID() {
-      // Generar un ID único para el nuevo alumno (implementación personalizada)
+      // Generar un ID único para el nuevo alumno
       const timestamp = Date.now()
       const randomSuffix = Math.floor(Math.random() * 10000)
       return `${timestamp}_${randomSuffix}`
