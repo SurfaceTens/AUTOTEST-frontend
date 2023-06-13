@@ -1,20 +1,20 @@
 <script>
-import { mapActions, mapState } from 'pinia';
-import { loginStore } from '@/stores/loginStore';
-import { usuariosStore } from '@/stores/usuariosStore';
+import { mapActions, mapState } from "pinia"
+import { loginStore } from "@/stores/loginStore"
+import { usuariosStore } from "@/stores/usuariosStore"
 
 export default {
   computed: {
-    ...mapState(loginStore, ['isAdmin']),
-    ...mapState(usuariosStore, ['usuarios']),
+    ...mapState(loginStore, ["isAdmin"]),
+    ...mapState(usuariosStore, ["usuarios"]),
   },
   methods: {
-    ...mapActions(usuariosStore, ['getUsuarios']),
+    ...mapActions(usuariosStore, ["getUsuarios"]),
   },
   created() {
-    this.getUsuarios();
+    this.getUsuarios()
   },
-};
+}
 </script>
 
 <template>

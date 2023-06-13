@@ -1,14 +1,14 @@
 <script>
-import { mapActions, mapState } from 'pinia';
-import { loginStore } from '@/stores/loginStore';
+import { mapActions, mapState } from "pinia"
+import { loginStore } from "@/stores/loginStore"
 
 export default {
   computed: {
-    ...mapState(loginStore, ['isAdmin'])
+    ...mapState(loginStore, ["isAdmin"]),
   },
   methods: {
-    ...mapActions(loginStore, ['toggleAdmin'])
-  }
+    ...mapActions(loginStore, ["toggleAdmin"]),
+  },
 }
 </script>
 
@@ -18,16 +18,23 @@ export default {
       <div class="d-flex justify-content-start align-items-center">
         <div class="navbar-brand">
           <a href="#">
-            <img src="@/assets/logoAutotest.png" alt="Logo">
+            <img src="@/assets/logoAutotest.png" alt="Logo" />
           </a>
         </div>
       </div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ">
+        <ul class="navbar-nav">
           <li class="nav-item">
             <router-link class="nav-link" to="/">Home</router-link>
           </li>
@@ -35,31 +42,51 @@ export default {
             <router-link class="nav-link" to="/examen">Examen</router-link>
           </li>
           <li v-if="isAdmin" class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="preguntasDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="preguntasDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               Gestión de Preguntas
             </a>
             <ul class="dropdown-menu" aria-labelledby="preguntasDropdown">
-              <li><router-link class="dropdown-item" to="/nuevaPregunta">Crear Pregunta</router-link></li>
-              <li><router-link class="dropdown-item" to="/preguntas">Ver Preguntas</router-link></li>
+              <li>
+                <router-link class="dropdown-item" to="/nuevaPregunta">Crear Pregunta</router-link>
+              </li>
+              <li>
+                <router-link class="dropdown-item" to="/preguntas">Ver Preguntas</router-link>
+              </li>
             </ul>
           </li>
           <li v-if="!isAdmin" class="nav-item">
             <router-link class="nav-link" to="/nuevaPregunta">Crear pregunta</router-link>
           </li>
           <li v-if="isAdmin" class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="usuariosDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="usuariosDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               Gestión de Usuarios
             </a>
             <ul class="dropdown-menu" aria-labelledby="usuariosDropdown">
-              <li><router-link class="dropdown-item" to="/nuevoUsuario">Crear Usuario</router-link></li>
+              <li>
+                <router-link class="dropdown-item" to="/nuevoUsuario">Crear Usuario</router-link>
+              </li>
               <li><router-link class="dropdown-item" to="/usuarios">Ver Usuarios</router-link></li>
             </ul>
           </li>
         </ul>
         <div class="toggle-login">
-          <a class="nav-link" href="#" v-on:click="toggleAdmin">{{ isAdmin ? 'Modo Administrador' : 'Modo Usuario' }}</a>
+          <a class="nav-link" href="#" v-on:click="toggleAdmin">{{
+            isAdmin ? "Modo Administrador" : "Modo Usuario"
+          }}</a>
         </div>
       </div>
     </div>
@@ -121,15 +148,13 @@ export default {
   color: var(--color-primario);
   text-decoration: none;
   transition: color var(--tiempo-transicion);
-  text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.8),
-    -1px -1px 1px rgba(0, 0, 0, 0.5),
+  text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.8), -1px -1px 1px rgba(0, 0, 0, 0.5),
     0 0 2px rgba(0, 0, 0, 0.3);
 }
 
 .nav-link:hover {
   color: inherit;
-  text-shadow: 3px 3px 3px rgba(255, 255, 255, 0.8),
-    -2px -2px 2px rgba(0, 0, 0, 0.5),
+  text-shadow: 3px 3px 3px rgba(255, 255, 255, 0.8), -2px -2px 2px rgba(0, 0, 0, 0.5),
     0 0 4px rgba(0, 0, 0, 0.3);
 }
 

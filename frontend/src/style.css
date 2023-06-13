@@ -1,7 +1,7 @@
 /* Importa los estilos de PrimeVue */
-@import 'primevue/resources/themes/saga-blue/theme.css';
-@import 'primevue/resources/primevue.min.css';
-@import 'primeicons/primeicons.css';
+@import "primevue/resources/themes/saga-blue/theme.css";
+@import "primevue/resources/primevue.min.css";
+@import "primeicons/primeicons.css";
 
 /* Variables de tamaño y proporción */
 :root {
@@ -103,8 +103,8 @@ button:focus-visible {
 
 /*Para los formularios de alta*/
 .select-arrow::after {
-  content: '↓';
-  font-family: 'Font Awesome 5 Free';
+  content: "↓";
+  font-family: "Font Awesome 5 Free";
   font-weight: 900;
   position: absolute;
   right: 10px;
@@ -116,7 +116,6 @@ button:focus-visible {
 .select-arrow {
   position: relative;
 }
-
 
 .container {
   max-width: var(--ancho-max-contenedor);
@@ -195,7 +194,6 @@ button:focus-visible {
   height: 7.5rem;
   resize: none;
 }
-
 
 .btn-primary {
   border-radius: 8px;

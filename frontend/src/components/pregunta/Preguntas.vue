@@ -1,32 +1,32 @@
 <script>
-import { mapActions, mapState } from 'pinia';
-import { loginStore } from '@/stores/loginStore';
-import { preguntasStore } from '@/stores/preguntasStore';
-import Pregunta from '@/components/pregunta/Pregunta.vue';
+import { mapActions, mapState } from "pinia"
+import { loginStore } from "@/stores/loginStore"
+import { preguntasStore } from "@/stores/preguntasStore"
+import Pregunta from "@/components/pregunta/Pregunta.vue"
 
 export default {
   components: {
     Pregunta,
   },
   computed: {
-    ...mapState(loginStore, ['isAdmin']),
-    ...mapState(preguntasStore, ['preguntas']),
+    ...mapState(loginStore, ["isAdmin"]),
+    ...mapState(preguntasStore, ["preguntas"]),
     pregunta() {
-      return this.preguntas.find(p => p.id == this.$route.params.id);
+      return this.preguntas.find((p) => p.id == this.$route.params.id)
     },
   },
   methods: {
-    ...mapActions(preguntasStore, ['getPreguntaPorId']),
-    ...mapActions(preguntasStore, ['getPreguntas']),
+    ...mapActions(preguntasStore, ["getPreguntaPorId"]),
+    ...mapActions(preguntasStore, ["getPreguntas"]),
     ordenarPreguntas() {
-      this.preguntas.sort((a, b) => a.id - b.id);
-    }
+      this.preguntas.sort((a, b) => a.id - b.id)
+    },
   },
   created() {
-    this.getPreguntas();
-    this.ordenarPreguntas();
-  }
-};
+    this.getPreguntas()
+    this.ordenarPreguntas()
+  },
+}
 </script>
 
 <template>

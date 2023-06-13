@@ -1,6 +1,6 @@
 <script>
-import { mapActions } from 'pinia';
-import { preguntasStore } from '@/stores/preguntasStore';
+import { mapActions } from "pinia"
+import { preguntasStore } from "@/stores/preguntasStore"
 
 export default {
   props: {
@@ -14,7 +14,7 @@ export default {
     },
     respuestaSeleccionada: {
       type: String,
-      default: '',
+      default: "",
     },
     numero: {
       type: Number,
@@ -23,40 +23,40 @@ export default {
     desorden: {
       type: Boolean,
       default: true,
-    }
+    },
   },
   computed: {
     // Hacer un array con las alternativas.
     alternativas() {
       if (this.pregunta) {
-        const correcta = this.pregunta.correcta;
-        const incorrectas = this.pregunta.incorrectas;
-        return [correcta, ...incorrectas];
+        const correcta = this.pregunta.correcta
+        const incorrectas = this.pregunta.incorrectas
+        return [correcta, ...incorrectas]
       }
-      return [];
+      return []
     },
     // Crear un array desordenado si queremos desorden.
     alternativasAleatorias() {
-      return this.desordenarArray(this.alternativas);
+      return this.desordenarArray(this.alternativas)
     },
 
     alternativaSeleccionada() {
-      return this.pregunta.respuesta;
+      return this.pregunta.respuesta
     },
 
     mostrarRespuestas() {
-      return this.respuestaCorrecta !== '' && this.respuestaSeleccionada !== '';
+      return this.respuestaCorrecta !== "" && this.respuestaSeleccionada !== ""
     },
 
     esRespuestaCorrecta() {
-      return this.respuestaCorrecta === this.respuestaSeleccionada;
-    }
+      return this.respuestaCorrecta === this.respuestaSeleccionada
+    },
   },
 
   methods: {
-    ...mapActions(preguntasStore, ['desordenarArray']),
+    ...mapActions(preguntasStore, ["desordenarArray"]),
   },
-};
+}
 </script>
 
 <template>
@@ -65,28 +65,38 @@ export default {
       <h3 class="card_title">{{ numero }} - {{ pregunta.enunciado }}</h3>
       <div>
         <!-- Mostrar la imagen de la pregunta si está disponible -->
-        <img v-if="pregunta.imagen" class="preguntaImg img-fluid w-100" :src="'./imagenesPreguntas/' + pregunta.imagen"
-          alt="Imagen de la pregunta" />
+        <img
+          v-if="pregunta.imagen"
+          class="preguntaImg img-fluid w-100"
+          :src="'./imagenesPreguntas/' + pregunta.imagen"
+          alt="Imagen de la pregunta"
+        />
       </div>
     </div>
     <ul class="alternativas-list">
-      <li v-for="alternativa in alternativasAleatorias" :key="alternativa" class="alternativa-item" :class="{
-        'alternativa-seleccionada': alternativa === alternativaSeleccionada,
-        'respuesta-correcta': mostrarRespuestas && (alternativa === respuestaCorrecta || (!respuestaSeleccionada && alternativa === respuestaCorrecta)),
-        'respuesta-incorrecta': mostrarRespuestas && alternativa === respuestaSeleccionada && !esRespuestaCorrecta,
-        'respuesta-correcta-ignorada': !respuestaSeleccionada && alternativa === respuestaCorrecta && !esRespuestaCorrecta
-      }" @click="$emit('opcionSeleccionada', alternativa)">
+      <li
+        v-for="alternativa in alternativasAleatorias"
+        :key="alternativa"
+        class="alternativa-item"
+        :class="{
+          'alternativa-seleccionada': alternativa === alternativaSeleccionada,
+          'respuesta-correcta':
+            mostrarRespuestas &&
+            (alternativa === respuestaCorrecta ||
+              (!respuestaSeleccionada && alternativa === respuestaCorrecta)),
+          'respuesta-incorrecta':
+            mostrarRespuestas && alternativa === respuestaSeleccionada && !esRespuestaCorrecta,
+          'respuesta-correcta-ignorada':
+            !respuestaSeleccionada && alternativa === respuestaCorrecta && !esRespuestaCorrecta,
+        }"
+        @click="$emit('opcionSeleccionada', alternativa)"
+      >
         {{ alternativa }}
       </li>
-
-
     </ul>
   </div>
 </template>
 
-
-
-  
 <style scoped>
 .card {
   background-color: var(--color-fondo);

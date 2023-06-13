@@ -1,5 +1,5 @@
 <script>
-import { preguntasStore } from '@/stores/preguntasStore';
+import { preguntasStore } from "@/stores/preguntasStore"
 
 export default {
   data() {
@@ -7,25 +7,25 @@ export default {
       pregunta: {
         id: null,
         dificultad: 0,
-        tema: '',
-        enunciado: '',
-        correcta: '',
+        tema: "",
+        enunciado: "",
+        correcta: "",
         incorrectas: [],
         imagen: null,
-        incorrectasText: '',
+        incorrectasText: "",
       },
-    };
+    }
   },
   methods: {
     submitForm() {
-      const nuevaPregunta = { ...this.pregunta };
-      nuevaPregunta.id = this.generarID();
+      const nuevaPregunta = { ...this.pregunta }
+      nuevaPregunta.id = this.generarID()
 
       if (!nuevaPregunta.imagen) {
-        nuevaPregunta.imagen = null;
+        nuevaPregunta.imagen = null
       }
 
-      const preguntasStore = this.$store.preguntasStore;
+      const preguntasStore = this.$store.preguntasStore
 
       // Llamar a la acción para crear una nueva pregunta en el store
       //preguntasStore.crearPreguntaAPI(nuevaPregunta)
@@ -42,22 +42,22 @@ export default {
 
     generarID() {
       // Generar un ID único para la nueva pregunta (implementación personalizada)
-      const timestamp = Date.now();
-      const randomSuffix = Math.floor(Math.random() * 10000);
-      return `${timestamp}_${randomSuffix}`;
+      const timestamp = Date.now()
+      const randomSuffix = Math.floor(Math.random() * 10000)
+      return `${timestamp}_${randomSuffix}`
     },
 
     subirImagen(event) {
       // Realizar las acciones necesarias para subir la imagen en el futuro
-      const file = event.target.files[0];
+      const file = event.target.files[0]
       // Guardar la imagen en una ubicación específica y guardar la ruta en this.pregunta.imagen
-      console.log(file);
+      console.log(file)
     },
     mostrarMensajeExito() {
-      this.$router.push('/exitoFormulario'); // Redirige al componente de éxito
-    }
+      this.$router.push("/exitoFormulario") // Redirige al componente de éxito
+    },
   },
-};
+}
 </script>
 
 <template>
@@ -81,40 +81,77 @@ export default {
           </div>
           <div class="form-group">
             <label for="tema" class="form-label">Tema:</label>
-            <input type="text" id="tema" class="form-control" v-model="pregunta.tema"
-              placeholder="Ingresa el tema de la pregunta." />
+            <input
+              type="text"
+              id="tema"
+              class="form-control"
+              v-model="pregunta.tema"
+              placeholder="Ingresa el tema de la pregunta."
+            />
           </div>
           <div class="form-group">
             <label for="enunciado" class="form-label">Enunciado:</label>
-            <textarea id="enunciado" class="form-control enunciado-textarea" v-model="pregunta.enunciado"
-              placeholder="Introduce el enunciado de la pregunta"></textarea>
+            <textarea
+              id="enunciado"
+              class="form-control enunciado-textarea"
+              v-model="pregunta.enunciado"
+              placeholder="Introduce el enunciado de la pregunta"
+            ></textarea>
           </div>
 
           <div class="form-group">
             <label for="correcta" class="form-label">Respuesta correcta:</label>
-            <input type="text" id="correcta" class="form-control" v-model="pregunta.correcta"
-              placeholder="Ingresa la respuesta correcta." />
+            <input
+              type="text"
+              id="correcta"
+              class="form-control"
+              v-model="pregunta.correcta"
+              placeholder="Ingresa la respuesta correcta."
+            />
           </div>
           <div class="form-group">
             <label for="incorrecta1" class="form-label">Respuesta incorrecta 1:</label>
-            <input type="text" id="incorrecta1" class="form-control" v-model="pregunta.incorrectas[0]"
-              placeholder="Ingresa una respuesta incorrecta." />
+            <input
+              type="text"
+              id="incorrecta1"
+              class="form-control"
+              v-model="pregunta.incorrectas[0]"
+              placeholder="Ingresa una respuesta incorrecta."
+            />
           </div>
           <div class="form-group">
             <label for="incorrecta2" class="form-label">Respuesta incorrecta 2:</label>
-            <input type="text" id="incorrecta2" class="form-control" v-model="pregunta.incorrectas[1]"
-              placeholder="Ingresa una respuesta incorrecta." />
+            <input
+              type="text"
+              id="incorrecta2"
+              class="form-control"
+              v-model="pregunta.incorrectas[1]"
+              placeholder="Ingresa una respuesta incorrecta."
+            />
           </div>
           <div class="form-group">
             <label for="incorrecta3" class="form-label">Respuesta incorrecta 3:</label>
-            <input type="text" id="incorrecta3" class="form-control" v-model="pregunta.incorrectas[2]"
-              placeholder="Ingresa una respuesta incorrecta." />
+            <input
+              type="text"
+              id="incorrecta3"
+              class="form-control"
+              v-model="pregunta.incorrectas[2]"
+              placeholder="Ingresa una respuesta incorrecta."
+            />
           </div>
           <div class="form-group">
             <label for="imagen" class="form-label">Imagen:</label>
-            <input type="file" id="imagen" class="form-control-file" @change="subirImagen" accept="image/*" />
+            <input
+              type="file"
+              id="imagen"
+              class="form-control-file"
+              @change="subirImagen"
+              accept="image/*"
+            />
           </div>
-          <button type="submit" class="btn btn-primary" @click="mostrarMensajeExito">Guardar pregunta</button>
+          <button type="submit" class="btn btn-primary" @click="mostrarMensajeExito">
+            Guardar pregunta
+          </button>
         </form>
       </div>
     </div>

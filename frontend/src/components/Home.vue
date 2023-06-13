@@ -1,19 +1,19 @@
 <script>
-import { mapActions, mapState } from 'pinia';
-import { loginStore } from '@/stores/loginStore';
-import { preguntasStore } from '@/stores/preguntasStore';
-import { usuariosStore } from '@/stores/usuariosStore';
+import { mapActions, mapState } from "pinia"
+import { loginStore } from "@/stores/loginStore"
+import { preguntasStore } from "@/stores/preguntasStore"
+import { usuariosStore } from "@/stores/usuariosStore"
 
 export default {
-  name: 'Home',
+  name: "Home",
   computed: {
-    ...mapState(loginStore, ['isAdmin'])
+    ...mapState(loginStore, ["isAdmin"]),
   },
   methods: {
-    ...mapActions(preguntasStore, ['getNumPreguntas']),
-    ...mapActions(usuariosStore, ['getNumUsuarios'])
-  }
-};
+    ...mapActions(preguntasStore, ["getNumPreguntas"]),
+    ...mapActions(usuariosStore, ["getNumUsuarios"]),
+  },
+}
 </script>
 
 <template>
@@ -21,8 +21,9 @@ export default {
     <div class="exam-section pregunta-card">
       <div class="exam-content card_header">
         <h1 class="card_title">Prepárate para tu examen de conducir</h1>
-        <p class="card_description">Practica con nuestros exámenes aleatorios simulados basados en preguntas reales de la
-          DGT.</p>
+        <p class="card_description">
+          Practica con nuestros exámenes aleatorios simulados basados en preguntas reales de la DGT.
+        </p>
         <p></p>
         <router-link to="/examen" class="btn-start btn-examen">Comenzar el examen</router-link>
       </div>
@@ -30,8 +31,10 @@ export default {
     <div class="create-questions-section pregunta-card">
       <div class="create-questions-content card_header">
         <h1 class="card_title">Crea tus propias preguntas</h1>
-        <p class="card_description">Contribuye a nuestra comunidad de aprendizaje añadiendo tus preguntas y
-          compartiéndolas con otros estudiantes.</p>
+        <p class="card_description">
+          Contribuye a nuestra comunidad de aprendizaje añadiendo tus preguntas y compartiéndolas
+          con otros estudiantes.
+        </p>
         <p></p>
         <router-link to="/nuevaPregunta" class="btn-start btn-crear">Crear preguntas</router-link>
       </div>
@@ -43,12 +46,8 @@ export default {
       <div class="exam-content card_header">
         <h1 class="card_title">Resumen de administración</h1>
         <ul>
-          <li>
-            Hay un total de {{ getNumPreguntas() }} preguntas
-          </li>
-          <li>
-            Hay un total de {{ getNumUsuarios() }} usuarios
-          </li>
+          <li>Hay un total de {{ getNumPreguntas() }} preguntas</li>
+          <li>Hay un total de {{ getNumUsuarios() }} usuarios</li>
         </ul>
       </div>
     </div>
@@ -56,7 +55,9 @@ export default {
     <div class="create-questions-section pregunta-card">
       <div class="create-questions-content card_header">
         <h1 class="card_title">Acciones</h1>
-        <p class="card_description">Accesos directos a las distintas funcionalidades administrativas.</p>
+        <p class="card_description">
+          Accesos directos a las distintas funcionalidades administrativas.
+        </p>
         <div class="welcome-section">
           <router-link to="/nuevaPregunta" class="btn-start btn-crear">Crear preguntas</router-link>
           <router-link to="/preguntas" class="btn-start btn-examen">Ver preguntas</router-link>

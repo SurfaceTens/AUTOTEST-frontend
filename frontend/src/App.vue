@@ -1,13 +1,12 @@
 <script>
-import Navbar from "@/components/Navbar.vue";
+import Navbar from "@/components/Navbar.vue"
 
 export default {
   name: "App",
   components: {
     Navbar,
   },
-};
-
+}
 </script>
 
 <template>
@@ -24,19 +23,18 @@ export default {
 </template>
 
 <style scoped>
-  .contenido-aplicacion {
-    width: 100%;
-    height: 100%;
-  }
+.contenido-aplicacion {
+  width: 100%;
+  height: 100%;
+}
 
-  .contenedor-principal {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
+.contenedor-principal {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 
-  .contenedor-vistas {
-    flex: 1;
-  }
+.contenedor-vistas {
+  flex: 1;
+}
 </style>
-
