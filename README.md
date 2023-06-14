@@ -11,20 +11,20 @@ Finalmente, se podrán obtener una serie de estadísticas, como qué pregunta es
 
 **Diagrama de Clases**
 
-![Diagrama de Clases](https://git.institutomilitar.com/samotcarrasco/autoescuela-online/-/wikis/img/Diagrama_de_Clases.png)
+![Diagrama de Clases](https://git.institutomilitar.com/samotcarrasco/autoescuela-online/-/wikis/img/AutotestClases.png)
 
 **Cumplimiento de requisitos**
 
 
-**1. Herencia:** El supertipo `PreguntaTest` tendrá los subtipos `PreguntaConImagen` y `PreguntaConAudio`.
+**1. Herencia:** El supertipo `PreguntaTest` tendrá los subtipos `PreguntaConImagen` y `PreguntaConVideo`.
 
-**2. Relación One-To-Many:** Relación entre `ExamenTest` y `Alumno`.
+**2. Relación One-To-Many:** Relación muchos muchos entre `Examen` y `Pregunta`.
 
-**3. Método personalizado:**` generarExamen()`. Este método generará un exámen con preguntas obtenidas de forma aleatoria en función del nivel de dificultad seleccionado. El exámen se podrá realizar y se mostrará la nota al finalizar.
+**3. Método personalizado:**` generarExamen()`. Este método generará un exámen con preguntas obtenidas de forma aleatoria en función del nivel de dificultad seleccionado, devolviendo una instancia de la entidad examen alimentada con una lista de 30 preguntas.
 
-**4. Listado:** Se mostrarán todas las preguntas existentes; entre otros datos, se mostrará la dificultad teórica. También es deseable que se muestre la dificultad "real" es decir, tasa de acierto que ha tenido la pregunta.
+**4. Listado:** Se mostrará una lista de exámenes conocidos, pudiendo acceder a la lista de preguntas asociada a cada uno. Para cada examen interesa mostrar que alumno lo realizó y que respuestas dió, asi como la nota.
 
-**5. CRUD:** Se podrá hacer CRUD de las entidades `PreguntaTest` y `Alumno`
+**5. CRUD:** Se podrá hacer CRUD de las entidades `Examen`, `Alumno` y `Pregunta`
 
 **6. URLs del proyecto:**
 
