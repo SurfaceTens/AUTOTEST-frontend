@@ -24,7 +24,7 @@ Finalmente, se podrán obtener una serie de estadísticas, como qué pregunta es
 
 **4. Listado:** Se mostrará una lista de exámenes conocidos, pudiendo acceder a la lista de preguntas asociada a cada uno. Para cada examen interesa mostrar que alumno lo realizó y que respuestas dió, asi como la nota.
 
-**5. CRUD:** Se podrá hacer CRUD de las entidades `Examen`, `Alumno` y `Pregunta`
+**5. CRUD:** Se podrá hacer CRUD de las entidades `Pregunta` en el front. Además también `Examen` y `Alumno` en el backend.
 
 **6. URLs del proyecto:**
 
