@@ -31,12 +31,6 @@ export const examenStore = defineStore("preguntasExamen", {
         array[numAleatorio] = valorTemporal
       }
       return array
-    },
-
-    // Conectar a la API para obtener las preguntas.
-    async getPreguntasExamen() {
-      this.preguntasExamen = (await getEntidades('preguntaExamen/generarExamen/30/1')).data._embedded.preguntaExamenModels
-    }
-    
+    },    
   },
 })

@@ -3,6 +3,7 @@ import { mapActions, mapState } from "pinia"
 import { examenStore } from "@/stores/examenStore"
 import Pregunta from "@/components/pregunta/Pregunta.vue"
 import FinExamen from "@/components/examen/FinExamen.vue"
+import { crearExamen } from '@/stores/api-service'
 
 export default {
   components: {
@@ -30,7 +31,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(examenStore, ["getPreguntas", "desordenarArray"]),
+    ...mapActions(examenStore, ["desordenarArray"]),
 
     randomizarYLimitarPreguntas(preguntas, cantidad) {
       const totalPreguntas = preguntas.length
@@ -122,8 +123,7 @@ export default {
     },
   },
   async created() {
-    await this.getPreguntas()
-    this.ordenarPreguntas()
+    await this.crearExamen()
   },
 }
 </script>

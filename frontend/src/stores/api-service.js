@@ -64,3 +64,7 @@ export function borrarEntidad(entidad) {
 export function getEntidades(nombre) {
   return llamadaApi(`${host}/${nombre}`)
 }
+
+export function crearExamen(numPreguntas,usuarioID) {
+  return llamadaApi(`${host}/preguntaExamen/generarExamen/${numPreguntas}/${usuarioID}`)
+}
