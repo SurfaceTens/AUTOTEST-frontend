@@ -15,7 +15,6 @@ export default {
   },
   async created() {
     await this.getNumPreguntas()
-    this.ordenarPreguntas()
   },
 }
 </script>

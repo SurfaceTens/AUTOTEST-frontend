@@ -1,6 +1,6 @@
 <script>
 import { mapActions, mapState } from "pinia"
-import { preguntasStore } from "@/stores/preguntasStore"
+import { examenStore } from "@/stores/examenStore"
 import Pregunta from "@/components/pregunta/Pregunta.vue"
 import FinExamen from "@/components/examen/FinExamen.vue"
 
@@ -21,7 +21,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(preguntasStore, ["preguntas"]),
+    ...mapState(examenStore, ["preguntas"]),
     preguntasTratadas() {
       return this.randomizarYLimitarPreguntas(this.preguntas, this.numPreguntas)
     },
@@ -30,7 +30,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(preguntasStore, ["getPreguntas", "desordenarArray"]),
+    ...mapActions(examenStore, ["getPreguntas", "desordenarArray"]),
 
     randomizarYLimitarPreguntas(preguntas, cantidad) {
       const totalPreguntas = preguntas.length
@@ -121,8 +121,9 @@ export default {
       window.scrollTo({ top: 0, behavior: "smooth" })
     },
   },
-  created() {
-    this.getPreguntas()
+  async created() {
+    await this.getPreguntas()
+    this.ordenarPreguntas()
   },
 }
 </script>
