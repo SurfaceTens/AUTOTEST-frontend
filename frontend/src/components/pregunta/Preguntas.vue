@@ -22,8 +22,8 @@ export default {
       this.preguntas.sort((a, b) => a.id - b.id)
     },
   },
-  created() {
-    this.getPreguntas()
+  async created() {
+    await this.getPreguntas()
     this.ordenarPreguntas()
   },
 }

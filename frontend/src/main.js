@@ -19,6 +19,9 @@ import "primevue/resources/themes/saga-blue/theme.css"
 import "primeicons/primeicons.css"
 import "@fortawesome/fontawesome-free/css/all.min.css"
 
+// Crear la instancia de Pinia
+const pinia = createPinia()
+
 // Definir las rutas
 const routes = [
   { path: "/",                      name: "Home",                 component: Home },
@@ -35,9 +38,6 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
-
-// Crear la instancia de Pinia
-const pinia = createPinia()
 
 // Montar la aplicación
 const app = createApp(App)

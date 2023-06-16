@@ -13,6 +13,10 @@ export default {
     ...mapActions(preguntasStore, ["getNumPreguntas"]),
     ...mapActions(usuariosStore, ["getNumUsuarios"]),
   },
+  async created() {
+    await this.getNumPreguntas()
+    this.ordenarPreguntas()
+  },
 }
 </script>
 

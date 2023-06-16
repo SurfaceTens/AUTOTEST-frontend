@@ -3,11 +3,6 @@ package com.dim.autotestAPI.REST.models;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-import com.dim.autotestAPI.entidades.ExamenConID;
-import com.dim.autotestAPI.entidades.PreguntaConID;
-
-import es.mde.acing.utils.Pregunta;
-
 @Relation(itemRelation = "preguntaexamen")
 public class PreguntaExamenModel extends RepresentationModel<PreguntaExamenModel> {
 
@@ -17,7 +12,6 @@ public class PreguntaExamenModel extends RepresentationModel<PreguntaExamenModel
 	private String[] incorrectas;
 	private boolean acertada;
 
-	// Relaciones
 	private String enunciado;
 
 	public Long getId() {
