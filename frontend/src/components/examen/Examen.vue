@@ -121,8 +121,8 @@ export default {
       window.scrollTo({ top: 0, behavior: "smooth" })
     },
   },
-  created() {
-    this.getPreguntas()
+  async created() {
+    await this.getPreguntas()
   },
 }
 </script>
