@@ -1,24 +1,13 @@
 import { defineStore } from "pinia"
-//Axios para la API.
-import axios from "axios"
-// Quitar este import cuando se implemente la API.
-import preguntasJson from "@/assets/preguntas.json"
+import { crearExamen, llamadaApi } from './api-service'
 
-const preguntas = preguntasJson._embedded.preguntas
-preguntas.forEach((p) => {
-  p.respuesta = 0
-})
-
-export const examenStore = defineStore("examenStore", {
+export const examenStore = defineStore("preguntasExamen", {
   state: () => ({
-    preguntas: preguntas,
+    preguntas: crearExamen(30,1),
   }),
   actions: {
     getPreguntaPorId(id) {
       return this.preguntas.find((p) => p.id == id)
-    },
-    getPreguntas() {
-      return this.preguntas
     },
     getNumPreguntas() {
       return this.preguntas.length
@@ -42,6 +31,6 @@ export const examenStore = defineStore("examenStore", {
         array[numAleatorio] = valorTemporal
       }
       return array
-    },
+    },    
   },
 })

@@ -30,7 +30,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(examenStore, ["getPreguntas", "desordenarArray"]),
+    ...mapActions(examenStore, ["desordenarArray"]),
 
     randomizarYLimitarPreguntas(preguntas, cantidad) {
       const totalPreguntas = preguntas.length
@@ -121,8 +121,7 @@ export default {
       window.scrollTo({ top: 0, behavior: "smooth" })
     },
   },
-  created() {
-    this.getPreguntas()
+  async created() {
   },
 }
 </script>

@@ -1,6 +1,6 @@
 <script>
 import { mapActions } from "pinia"
-import { preguntasStore } from "@/stores/preguntasStore"
+import { examenStore } from "@/stores/examenStore"
 
 export default {
   props: {
@@ -54,7 +54,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(preguntasStore, ["desordenarArray"]),
+    ...mapActions(examenStore, ["desordenarArray"]),
   },
 }
 </script>
