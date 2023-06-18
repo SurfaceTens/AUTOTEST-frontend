@@ -6,16 +6,9 @@ export const examenStore = defineStore("examenStore", {
     preguntas: [],
   }),
   actions: {
-    getPreguntaPorId(id) {
-      return this.preguntas.find((p) => p.id == id)
+    async generadorExamen(numeroPreguntas, usuario) {
+      this.preguntas = (await crearExamen(numeroPreguntas, usuario)).data._embedded.preguntaExamenModels
     },
-    async getPreguntas() {
-      this.preguntas = (await crearExamen(5, 1)).data._embedded.preguntaExamenModels
-    },
-    getNumPreguntas() {
-      return this.preguntas.length
-    },
-
     desordenarArray(array) {
       // Algoritmo de Fisher-Yates para desordenar el array
       // Obtener la longitud del array y crear un valor temporal.
@@ -34,6 +27,9 @@ export const examenStore = defineStore("examenStore", {
         array[numAleatorio] = valorTemporal
       }
       return array
+    },
+    actualizarPreguntas(nuevasPreguntas) {
+      this.preguntas = nuevasPreguntas;
     },
   },
 })

@@ -15,7 +15,10 @@ import com.dim.autotestAPI.REST.models.PreguntaExamenPostModel;
 import com.dim.autotestAPI.entidades.ExamenConID;
 import com.dim.autotestAPI.entidades.PreguntaExamenConID;
 
+import es.mde.acing.utils.ConImagen;
+import es.mde.acing.utils.ConVideo;
 import es.mde.acing.utils.PreguntaExamen;
+import es.mde.acing.utils.PreguntaImpl.Adjunto;
 
 import com.dim.autotestAPI.REST.controllers.ExamenController;
 
@@ -30,10 +33,20 @@ public class PreguntaExamenAssembler<T extends PreguntaExamen>
 		model.setAcertada(entity.isAcertada());
 		model.setRespuesta(entity.getRespuesta());
 		model.setCorrecta(entity.getPregunta().getOpcionCorrecta());
+		model.setTematica(entity.getPregunta().getTematica());
+		model.setDificultad(entity.getPregunta().getDificultad());
 		model.setEnunciado(entity.getPregunta().getEnunciado());
 		String[] incorrectas = { entity.getPregunta().getOpcionInCorrecta1(),
 				entity.getPregunta().getOpcionInCorrecta2(), entity.getPregunta().getOpcionInCorrecta3() };
 		model.setIncorrectas(incorrectas);
+		
+		if (entity.getPregunta().getAdjunto() == Adjunto.video) {
+			model.setAdjuntoURL(((ConVideo) entity).getVideoURL());
+			model.setAdjunto(Adjunto.video);
+		} else if (entity.getPregunta().getAdjunto() == Adjunto.imagen) {
+			model.setAdjuntoURL(((ConImagen) entity).getImagenURL());
+			model.setAdjunto(Adjunto.imagen);
+		}
 
 		model.add(
 				linkTo(methodOn(ExamenController.class).one(((ExamenConID) entity.getExamen()).getId())).withRel("examen")

@@ -14,6 +14,7 @@ export default {
       numPreguntas: 30, // Numero de preguntas que debe tener el examen.
       umbralApto: 90, // Porcentaje con el que se aprueba el examen.
       examenTerminado: false, // Variable para controlar el estado del examen.
+      preguntasExamen: [], // Array para almacenar las preguntas del examen mientras estan en uso.
       respuestasExamen: [], // Array para almacenar las respuestas del examen.
       tituloExamen: `Lee detenidamente las preguntas y escoge la opción más adecuada.`, // Título del examen.
       notaExamen: "", // Nota del examen.
@@ -23,18 +24,18 @@ export default {
   computed: {
     ...mapState(examenStore, ["preguntas"]),
     preguntasTratadas() {
-      return this.randomizarYLimitarPreguntas(this.preguntas, this.numPreguntas)
+      return this.randomizarYLimitarPreguntas(this.preguntas)
     },
     pregunta() {
       return this.preguntas.find((p) => p.id === this.$route.params.id)
     },
   },
   methods: {
-    ...mapActions(examenStore, ["getPreguntas", "desordenarArray"]),
+    ...mapActions(examenStore, ["generadorExamen", "desordenarArray"]),
 
-    randomizarYLimitarPreguntas(preguntas, cantidad) {
+    randomizarYLimitarPreguntas(preguntas) {
       const totalPreguntas = preguntas.length
-      const cantidadFactible = Math.min(totalPreguntas, cantidad)
+      const cantidadFactible = Math.min(totalPreguntas, this.numPreguntas)
       const preguntasDesorden = this.desordenarArray(preguntas)
 
       // Reiniciar respuestas de preguntas anteriores
@@ -113,7 +114,7 @@ export default {
     },
 
     generarNuevoExamen() {
-      this.preguntasTratadas = this.randomizarYLimitarPreguntas(this.preguntas, this.numPreguntas)
+      this.preguntasTratadas = this.randomizarYLimitarPreguntas(this.generadorExamen(5,1))
       this.respuestasExamen = []
       this.tituloExamen = `Lee detenidamente las preguntas y escoge la opción más adecuada.`
       this.examenTerminado = false
@@ -122,7 +123,7 @@ export default {
     },
   },
   async created() {
-    await this.getPreguntas()
+    await this.generadorExamen(5,1)
   },
 }
 </script>
