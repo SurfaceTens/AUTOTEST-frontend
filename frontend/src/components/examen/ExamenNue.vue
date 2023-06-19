@@ -11,21 +11,20 @@ export default {
   },
   data() {
     return {
-      numPreguntas: 30, // Numero de preguntas que debe tener el examen.
+      numPreguntas: 7, // Numero de preguntas que debe tener el examen.
       umbralApto: 90, // Porcentaje con el que se aprueba el examen.
       examenTerminado: false, // Variable para controlar el estado del examen.
       preguntasExamen: [], // Array para almacenar las preguntas del examen mientras estan en uso.
-      respuestasExamen: [], // Array para almacenar las respuestas del examen.
-      tituloExamen: `Lee detenidamente las preguntas y escoge la opción más adecuada.`, // Título del examen.
+      tituloExamen: "", // Título del examen.
       notaExamen: "", // Nota del examen.
       mostrarModal: false, // Controlar la visibilidad de FinExamen.
+
+      // Estas son las que vamos a quitar:
+      respuestasExamen: [], // Array para almacenar las respuestas del examen.
     }
   },
   computed: {
     ...mapState(examenStore, ["preguntas"]),
-    preguntasTratadas() {
-      return this.randomizarYLimitarPreguntas(this.preguntas)
-    },
     pregunta() {
       return this.preguntas.find((p) => p.id === this.$route.params.id)
     },
@@ -36,27 +35,15 @@ export default {
     randomizarYLimitarPreguntas(preguntas) {
       const totalPreguntas = preguntas.length
       const cantidadFactible = Math.min(totalPreguntas, this.numPreguntas)
+
       const preguntasDesorden = this.desordenarArray(preguntas)
+      const preguntasReiniciadas = this.reiniciarRespuestas(preguntasDesorden)
 
-      // Reiniciar respuestas de preguntas anteriores
-      preguntasDesorden.forEach((pregunta) => {
-        pregunta.respuesta = null
-      })
-
-      return preguntasDesorden.slice(0, cantidadFactible)
+      return preguntasReiniciadas.slice(0, cantidadFactible)
     },
 
     seleccionarOpcion(pregunta, opcion) {
       pregunta.respuesta = opcion
-    },
-
-    guardarRespuestas() {
-      this.respuestasExamen = this.preguntasTratadas.map((pregunta) => {
-        return {
-          id: pregunta.id,
-          respuesta: pregunta.respuesta,
-        }
-      })
     },
 
     terminarExamen() {
@@ -76,22 +63,57 @@ export default {
     },
 
     mostrarRespuestas() {
-      this.preguntasTratadas.forEach((pregunta) => {
+      this.preguntas.forEach((pregunta) => {
         pregunta.respuestaCorrecta = pregunta.respuesta === pregunta.correcta
         pregunta.respuestaIncorrecta =
           pregunta.respuesta && pregunta.respuesta !== pregunta.correcta
       })
     },
 
+    async generarExamen(numeroPreguntas, idAlumno) {
+      await this.generadorExamen(numeroPreguntas, idAlumno)
+    },
+
+    async generarNuevoExamen() {
+      await this.generarExamen(this.numPreguntas, 1)
+      this.preguntas = this.randomizarYLimitarPreguntas(this.preguntas)
+      console.log("Preguntas:", this.preguntas)
+      this.respuestasExamen = []
+      this.tituloExamen = `Lee detenidamente las preguntas y escoge la opción más adecuada.`
+      this.examenTerminado = false
+      this.notaExamen = []
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    },
+
+    // Estas son las que vamos a quitar:
     getRespuestaSeleccionada(preguntaId) {
       const respuesta = this.respuestasExamen.find((respuesta) => respuesta.id === preguntaId)
       return respuesta ? respuesta.respuesta : ""
     },
 
+    guardarRespuestas() {
+      this.respuestasExamen = this.preguntas.map((pregunta) => {
+        return {
+          id: pregunta.id,
+          respuesta: pregunta.respuesta,
+        }
+      })
+    },
+
+    // Esta debe ser ajustada antes de pasarla arriba
+    reiniciarRespuestas(preguntas) {
+      const preguntasReiniciadas = preguntas
+      preguntasReiniciadas.forEach((pregunta) => {
+        pregunta.respuesta = null
+      })
+      return preguntasReiniciadas
+    },
+
+    // Este se convertira en CorregirExamen()
     calcularPuntuacion() {
       let acertadas = 0
       this.respuestasExamen.forEach((respuesta) => {
-        const pregunta = this.preguntasTratadas.find((pregunta) => pregunta.id === respuesta.id)
+        const pregunta = this.preguntas.find((pregunta) => pregunta.id === respuesta.id)
         if (pregunta) {
           if (respuesta.respuesta === pregunta.correcta) {
             acertadas++
@@ -99,7 +121,7 @@ export default {
         }
       })
 
-      const totalPreguntas = this.preguntasTratadas.length
+      const totalPreguntas = this.preguntas.length
       const porcentajeAciertos = (acertadas / totalPreguntas) * 100
       let resultado
 
@@ -112,18 +134,9 @@ export default {
       this.tituloExamen = `Revisión del examen.`
       this.notaExamen = [acertadas, resultado]
     },
-
-    generarNuevoExamen() {
-      this.preguntasTratadas = this.randomizarYLimitarPreguntas(this.generadorExamen(5,1))
-      this.respuestasExamen = []
-      this.tituloExamen = `Lee detenidamente las preguntas y escoge la opción más adecuada.`
-      this.examenTerminado = false
-      this.notaExamen = []
-      window.scrollTo({ top: 0, behavior: "smooth" })
-    },
   },
   async created() {
-    await this.generadorExamen(5,1)
+    await this.generarNuevoExamen()
   },
 }
 </script>
@@ -134,7 +147,7 @@ export default {
     <div v-if="!examenTerminado">
       <h1>{{ tituloExamen }}</h1>
       <ul>
-        <li v-for="(pregunta, index) in preguntasTratadas" :key="pregunta.id">
+        <li v-for="(pregunta, index) in this.preguntas" :key="pregunta.id">
           <Pregunta
             :pregunta="pregunta"
             :numero="index + 1"
@@ -175,7 +188,7 @@ export default {
     <div v-else>
       <h1>{{ tituloExamen }}</h1>
       <ul>
-        <li v-for="(pregunta, index) in preguntasTratadas" :key="pregunta.id">
+        <li v-for="(pregunta, index) in this.preguntas" :key="pregunta.id">
           <Pregunta
             :pregunta="pregunta"
             :numero="index + 1"
