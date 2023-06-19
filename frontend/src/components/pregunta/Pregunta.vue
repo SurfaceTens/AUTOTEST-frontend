@@ -26,7 +26,6 @@ export default {
     },
   },
   computed: {
-    // Hacer un array con las alternativas.
     alternativas() {
       if (this.pregunta) {
         const correcta = this.pregunta.correcta
@@ -35,13 +34,9 @@ export default {
       }
       return []
     },
-    // Crear un array desordenado si queremos desorden.
+
     alternativasAleatorias() {
-      if (this.desorden) {
-        return this.desordenarArray(this.alternativas)
-      }
-      return this.desordenarArray(this.alternativas) // Quitar cuando se pueda recordar que desorden se hizo
-      //return this.alternativas
+      return this.desordenarArray(this.alternativas)
     },
 
     alternativaSeleccionada() {

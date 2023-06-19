@@ -26,7 +26,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(examenStore, ["generadorExamen", "desordenarArray"]),
+    ...mapActions(examenStore, ["generadorExamen", "desordenarArray", "corregirPregunta"]),
 
     randomizarYLimitarPreguntas(preguntas) {
       const totalPreguntas = preguntas.length
@@ -92,6 +92,7 @@ export default {
         if (pregunta.respuesta === pregunta.correcta) {
           acertadas++
         }
+        this.corregirPregunta(pregunta)
       })
 
       const totalPreguntas = this.preguntas.length

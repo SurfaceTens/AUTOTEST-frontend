@@ -68,5 +68,9 @@ export function getEntidades(nombre) {
 }
 
 export function crearExamen(numPreguntas, usuarioID) {
-  return llamadaApi(`${host}/preguntaExamen/generarExamen/${numPreguntas}/${usuarioID}`)
+  return llamadaApi(`${host}/preguntasExamen/generarExamen/${numPreguntas}/${usuarioID}`)
+}
+
+export function corregirPreguntaExamen(preguntaID,pregunta) {
+  return llamadaApi(`${host}/preguntasExamen/${preguntaID}`,`put`,pregunta)
 }
