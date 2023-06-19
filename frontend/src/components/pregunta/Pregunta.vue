@@ -8,10 +8,6 @@ export default {
       type: Object,
       required: true,
     },
-    respuestaCorrecta: {
-      type: String,
-      required: true,
-    },
     respuestaSeleccionada: {
       type: String,
       default: "",
@@ -45,11 +41,12 @@ export default {
     },
 
     mostrarRespuestas() {
-      return this.respuestaCorrecta !== "" && this.respuestaSeleccionada !== ""
+      return this.pregunta.correcta !== "" && this.respuestaSeleccionada !== ""
     },
 
     esRespuestaCorrecta() {
-      return this.respuestaCorrecta === this.respuestaSeleccionada
+      this.pregunta.acertada = this.pregunta.correcta === this.respuestaSeleccionada
+      return this.pregunta.acertada
     },
   },
 
@@ -81,12 +78,12 @@ export default {
           'alternativa-seleccionada': alternativa === alternativaSeleccionada,
           'respuesta-correcta':
             mostrarRespuestas &&
-            (alternativa === respuestaCorrecta ||
-              (!respuestaSeleccionada && alternativa === respuestaCorrecta)),
+            (alternativa === pregunta.correcta ||
+              (!respuestaSeleccionada && alternativa === pregunta.correcta)),
           'respuesta-incorrecta':
             mostrarRespuestas && alternativa === respuestaSeleccionada && !esRespuestaCorrecta,
           'respuesta-correcta-ignorada':
-            !respuestaSeleccionada && alternativa === respuestaCorrecta && !esRespuestaCorrecta,
+            !respuestaSeleccionada && alternativa === pregunta.correcta && !esRespuestaCorrecta,
         }"
         @click="$emit('opcionSeleccionada', alternativa)"
       >

@@ -14,13 +14,12 @@ export default {
       numPreguntas: 7, // Numero de preguntas que debe tener el examen.
       umbralApto: 90, // Porcentaje con el que se aprueba el examen.
       examenTerminado: false, // Variable para controlar el estado del examen.
-      preguntasExamen: [], // Array para almacenar las preguntas del examen mientras estan en uso.
       tituloExamen: "", // Título del examen.
-      notaExamen: "", // Nota del examen.
+      notaExamen: [], // Nota del examen.
       mostrarModal: false, // Controlar la visibilidad de FinExamen.
 
       // Estas son las que vamos a quitar:
-      respuestasExamen: [], // Array para almacenar las respuestas del examen.
+      preguntasExamen: [], // Array para almacenar las preguntas del examen mientras estan en uso.
     }
   },
   computed: {
@@ -51,9 +50,8 @@ export default {
     },
 
     aceptarExamen() {
-      this.guardarRespuestas()
       this.mostrarRespuestas()
-      this.calcularPuntuacion()
+      this.corregirExamen()
       this.examenTerminado = true
       window.scrollTo({ top: 0, behavior: "smooth" })
     },
@@ -64,9 +62,8 @@ export default {
 
     mostrarRespuestas() {
       this.preguntas.forEach((pregunta) => {
-        pregunta.respuestaCorrecta = pregunta.respuesta === pregunta.correcta
-        pregunta.respuestaIncorrecta =
-          pregunta.respuesta && pregunta.respuesta !== pregunta.correcta
+        pregunta.acertada = pregunta.respuesta === pregunta.correcta
+        pregunta.acertada = pregunta.respuesta !== pregunta.correcta
       })
     },
 
@@ -77,7 +74,6 @@ export default {
     async generarNuevoExamen() {
       await this.generarExamen(this.numPreguntas, 1)
       this.preguntas = this.randomizarYLimitarPreguntas(this.preguntas)
-      console.log("Preguntas:", this.preguntas)
       this.respuestasExamen = []
       this.tituloExamen = `Lee detenidamente las preguntas y escoge la opción más adecuada.`
       this.examenTerminado = false
@@ -86,19 +82,6 @@ export default {
     },
 
     // Estas son las que vamos a quitar:
-    getRespuestaSeleccionada(preguntaId) {
-      const respuesta = this.respuestasExamen.find((respuesta) => respuesta.id === preguntaId)
-      return respuesta ? respuesta.respuesta : ""
-    },
-
-    guardarRespuestas() {
-      this.respuestasExamen = this.preguntas.map((pregunta) => {
-        return {
-          id: pregunta.id,
-          respuesta: pregunta.respuesta,
-        }
-      })
-    },
 
     // Esta debe ser ajustada antes de pasarla arriba
     reiniciarRespuestas(preguntas) {
@@ -107,6 +90,28 @@ export default {
         pregunta.respuesta = null
       })
       return preguntasReiniciadas
+    },
+
+    corregirExamen() {
+      let acertadas = 0
+      this.preguntas.forEach((pregunta) => {
+        if (pregunta.respuesta === pregunta.correcta) {
+          acertadas++
+        }
+      })
+
+      const totalPreguntas = this.preguntas.length
+      const porcentajeAciertos = (acertadas / totalPreguntas) * 100
+      let resultado
+
+      if (porcentajeAciertos >= this.umbralApto) {
+        resultado = "APTO"
+      } else {
+        resultado = "NO APTO"
+      }
+
+      this.tituloExamen = `Revisión del examen.`
+      this.notaExamen = [acertadas, resultado]
     },
 
     // Este se convertira en CorregirExamen()
@@ -152,8 +157,6 @@ export default {
             :pregunta="pregunta"
             :numero="index + 1"
             @opcionSeleccionada="seleccionarOpcion(pregunta, $event)"
-            :respuestaCorrecta="pregunta.respuestaCorrecta"
-            :respuestaIncorrecta="pregunta.respuestaIncorrecta"
           />
           <b-button-group size="sm" vertical>
             <b-button
@@ -193,8 +196,7 @@ export default {
             :pregunta="pregunta"
             :numero="index + 1"
             :desorden="false"
-            :respuestaCorrecta="pregunta.correcta"
-            :respuestaSeleccionada="getRespuestaSeleccionada(pregunta.id)"
+            :respuestaSeleccionada="pregunta.respuesta"
           />
         </li>
       </ul>
