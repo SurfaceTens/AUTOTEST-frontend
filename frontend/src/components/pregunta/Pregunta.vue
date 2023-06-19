@@ -20,6 +20,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    terminado: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     // Hacer un array con las alternativas.
@@ -33,7 +37,11 @@ export default {
     },
     // Crear un array desordenado si queremos desorden.
     alternativasAleatorias() {
-      return this.desordenarArray(this.alternativas)
+      if (this.desorden) {
+        return this.desordenarArray(this.alternativas)
+      }
+      return this.desordenarArray(this.alternativas) // Quitar cuando se pueda recordar que desorden se hizo
+      //return this.alternativas
     },
 
     alternativaSeleccionada() {
@@ -41,7 +49,7 @@ export default {
     },
 
     mostrarRespuestas() {
-      return this.pregunta.correcta !== "" && this.respuestaSeleccionada !== ""
+      return this.terminado && (this.respuestaSeleccionada !== "")
     },
 
     esRespuestaCorrecta() {
@@ -81,9 +89,9 @@ export default {
             (alternativa === pregunta.correcta ||
               (!respuestaSeleccionada && alternativa === pregunta.correcta)),
           'respuesta-incorrecta':
-            mostrarRespuestas && alternativa === respuestaSeleccionada && !esRespuestaCorrecta,
+            mostrarRespuestas && (alternativa === respuestaSeleccionada && !esRespuestaCorrecta),
           'respuesta-correcta-ignorada':
-            !respuestaSeleccionada && alternativa === pregunta.correcta && !esRespuestaCorrecta,
+          mostrarRespuestas && (!respuestaSeleccionada && (alternativa === pregunta.correcta && !esRespuestaCorrecta)),
         }"
         @click="$emit('opcionSeleccionada', alternativa)"
       >

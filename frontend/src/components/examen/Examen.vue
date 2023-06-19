@@ -11,15 +11,12 @@ export default {
   },
   data() {
     return {
-      numPreguntas: 7, // Numero de preguntas que debe tener el examen.
+      numPreguntas: 3, // Numero de preguntas que debe tener el examen.
       umbralApto: 90, // Porcentaje con el que se aprueba el examen.
       examenTerminado: false, // Variable para controlar el estado del examen.
       tituloExamen: "", // Título del examen.
       notaExamen: [], // Nota del examen.
       mostrarModal: false, // Controlar la visibilidad de FinExamen.
-
-      // Estas son las que vamos a quitar:
-      preguntasExamen: [], // Array para almacenar las preguntas del examen mientras estan en uso.
     }
   },
   computed: {
@@ -81,9 +78,6 @@ export default {
       window.scrollTo({ top: 0, behavior: "smooth" })
     },
 
-    // Estas son las que vamos a quitar:
-
-    // Esta debe ser ajustada antes de pasarla arriba
     reiniciarRespuestas(preguntas) {
       const preguntasReiniciadas = preguntas
       preguntasReiniciadas.forEach((pregunta) => {
@@ -97,32 +91,6 @@ export default {
       this.preguntas.forEach((pregunta) => {
         if (pregunta.respuesta === pregunta.correcta) {
           acertadas++
-        }
-      })
-
-      const totalPreguntas = this.preguntas.length
-      const porcentajeAciertos = (acertadas / totalPreguntas) * 100
-      let resultado
-
-      if (porcentajeAciertos >= this.umbralApto) {
-        resultado = "APTO"
-      } else {
-        resultado = "NO APTO"
-      }
-
-      this.tituloExamen = `Revisión del examen.`
-      this.notaExamen = [acertadas, resultado]
-    },
-
-    // Este se convertira en CorregirExamen()
-    calcularPuntuacion() {
-      let acertadas = 0
-      this.respuestasExamen.forEach((respuesta) => {
-        const pregunta = this.preguntas.find((pregunta) => pregunta.id === respuesta.id)
-        if (pregunta) {
-          if (respuesta.respuesta === pregunta.correcta) {
-            acertadas++
-          }
         }
       })
 
@@ -196,6 +164,7 @@ export default {
             :pregunta="pregunta"
             :numero="index + 1"
             :desorden="false"
+            :terminado="examenTerminado"
             :respuestaSeleccionada="pregunta.respuesta"
           />
         </li>
