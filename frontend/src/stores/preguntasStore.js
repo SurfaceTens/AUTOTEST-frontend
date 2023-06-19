@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-import { getEntidades, llamadaApi } from './api-service'
+import { getEntidades } from "./api-service"
 
 export const preguntasStore = defineStore("preguntas", {
   state: () => ({
@@ -13,10 +13,8 @@ export const preguntasStore = defineStore("preguntas", {
       return this.preguntas.length
     },
 
-    // Conectar a la API para obtener las preguntas.
     async getPreguntas() {
-      this.preguntas = (await getEntidades('preguntas')).data._embedded.preguntaModels
-    }
-    
+      this.preguntas = (await getEntidades("preguntas")).data._embedded.preguntaModels
+    },
   },
 })

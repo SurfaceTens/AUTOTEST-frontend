@@ -1,50 +1,47 @@
 <script>
+import { mapActions, mapState } from "pinia"
 import { preguntasStore } from "@/stores/preguntasStore"
 
 export default {
+  props: {
+    preguntaForm: {
+      type: Object,
+      required: false,
+      default() {
+        return {
+          id: null,
+          tematica: "",
+          dificultad: 0,
+          enunciado: "",
+          opcionCorrecta: "",
+          opcionIncorrecta1: "",
+          opcionIncorrecta2: "",
+          opcionIncorrecta3: "",
+          imagenURL: null,
+          videoURL: null,
+          adjunto: null,
+        }
+      },
+    },
+  },
   data() {
     return {
-      pregunta: {
-        id: null,
-        dificultad: 0,
-        tema: "",
-        enunciado: "",
-        correcta: "",
-        incorrectas: [],
-        imagen: null,
-        incorrectasText: "",
-      },
+      tipoArchivo: "ninguno",
     }
+  },
+  computed: {
+    ...mapState(preguntasStore, ["preguntas"]),
+    pregunta() {
+      return this.preguntas.find((p) => p.id === this.$route.params.id)
+    },
   },
   methods: {
     submitForm() {
       const nuevaPregunta = { ...this.pregunta }
-      nuevaPregunta.id = this.generarID()
 
       if (!nuevaPregunta.imagen) {
         nuevaPregunta.imagen = null
       }
-
-      const preguntasStore = this.$store.preguntasStore
-
-      // Llamar a la acción para crear una nueva pregunta en el store
-      //preguntasStore.crearPreguntaAPI(nuevaPregunta)
-      //.then(() => {
-      // Realizar cualquier acción adicional después de crear la pregunta, como redirigir al usuario.
-      // this.$router.push('/');
-      //this.mostrarMensajeExito(); // Mostrar el mensaje emergente de éxito
-      //})
-      //.catch((error) => {
-      // Manejar el error en caso de que la creación de la pregunta falle.
-      //console.error(error);
-      //});
-    },
-
-    generarID() {
-      // Generar un ID único para la nueva pregunta
-      const timestamp = Date.now()
-      const randomSuffix = Math.floor(Math.random() * 10000)
-      return `${timestamp}_${randomSuffix}`
     },
 
     subirImagen(event) {
@@ -53,6 +50,14 @@ export default {
       // Guardar la imagen en una ubicación específica y guardar la ruta en this.pregunta.imagen
       console.log(file)
     },
+
+    subirVideo(event) {
+      // Realizar las acciones necesarias para subir el video en el futuro
+      const file = event.target.files[0]
+      // Guardar el video en una ubicación específica y guardar la ruta en this.pregunta.video
+      console.log(file)
+    },
+
     mostrarMensajeExito() {
       this.$router.push("/exitoFormulario") // Redirige al componente de éxito
     },
@@ -71,7 +76,7 @@ export default {
           <div class="form-group">
             <label for="dificultad" class="form-label">Dificultad:</label>
             <div class="select-arrow">
-              <select id="dificultad" class="form-control" v-model="pregunta.dificultad">
+              <select id="dificultad" class="form-control" v-model="this.preguntaForm.dificultad">
                 <option value="facil">Fácil</option>
                 <option value="media">Media</option>
                 <option value="dificil">Difícil</option>
@@ -84,7 +89,7 @@ export default {
               type="text"
               id="tema"
               class="form-control"
-              v-model="pregunta.tema"
+              v-model="this.preguntaForm.tema"
               placeholder="Ingresa el tema de la pregunta."
             />
           </div>
@@ -93,7 +98,7 @@ export default {
             <textarea
               id="enunciado"
               class="form-control enunciado-textarea"
-              v-model="pregunta.enunciado"
+              v-model="this.preguntaForm.enunciado"
               placeholder="Introduce el enunciado de la pregunta"
             ></textarea>
           </div>
@@ -104,7 +109,7 @@ export default {
               type="text"
               id="correcta"
               class="form-control"
-              v-model="pregunta.correcta"
+              v-model="this.preguntaForm.correcta"
               placeholder="Ingresa la respuesta correcta."
             />
           </div>
@@ -114,7 +119,7 @@ export default {
               type="text"
               id="incorrecta1"
               class="form-control"
-              v-model="pregunta.incorrectas[0]"
+              v-model="this.preguntaForm.opcionIncorrecta1"
               placeholder="Ingresa una respuesta incorrecta."
             />
           </div>
@@ -124,7 +129,7 @@ export default {
               type="text"
               id="incorrecta2"
               class="form-control"
-              v-model="pregunta.incorrectas[1]"
+              v-model="this.preguntaForm.opcionIncorrecta2"
               placeholder="Ingresa una respuesta incorrecta."
             />
           </div>
@@ -134,18 +139,63 @@ export default {
               type="text"
               id="incorrecta3"
               class="form-control"
-              v-model="pregunta.incorrectas[2]"
+              v-model="this.preguntaForm.opcionIncorrecta3"
               placeholder="Ingresa una respuesta incorrecta."
             />
           </div>
           <div class="form-group">
-            <label for="imagen" class="form-label">Imagen:</label>
+            <label class="form-label">Tipo de adjunto</label>
+            <div class="file-type-selector">
+              <div class="file-type-option">
+                <input
+                  type="radio"
+                  id="ningunoOption"
+                  value="ninguno"
+                  v-model="tipoArchivo"
+                  class="file-type-input"
+                />
+                <label for="ningunoOption" class="file-type-label">Ninguno</label>
+              </div>
+              <div class="file-type-option">
+                <input
+                  type="radio"
+                  id="imagenOption"
+                  value="imagen"
+                  v-model="tipoArchivo"
+                  class="file-type-input"
+                />
+                <label for="imagenOption" class="file-type-label">Imagen</label>
+              </div>
+              <div class="file-type-option">
+                <input
+                  type="radio"
+                  id="videoOption"
+                  value="video"
+                  v-model="tipoArchivo"
+                  class="file-type-input"
+                />
+                <label for="videoOption" class="file-type-label">Video</label>
+              </div>
+            </div>
+          </div>
+          <div v-if="tipoArchivo === 'imagen'" class="form-group">
+            <label for="imagen" class="form-label">Subir Imagen:</label>
             <input
               type="file"
               id="imagen"
               class="form-control-file"
               @change="subirImagen"
               accept="image/*"
+            />
+          </div>
+          <div v-if="tipoArchivo === 'video'" class="form-group">
+            <label for="video" class="form-label">Subir Video:</label>
+            <input
+              type="file"
+              id="video"
+              class="form-control-file"
+              @change="subirVideo"
+              accept="video/*"
             />
           </div>
           <button type="submit" class="btn btn-primary" @click="mostrarMensajeExito">
