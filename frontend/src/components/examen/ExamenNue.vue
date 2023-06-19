@@ -15,12 +15,10 @@ export default {
       umbralApto: 90, // Porcentaje con el que se aprueba el examen.
       examenTerminado: false, // Variable para controlar el estado del examen.
       preguntasExamen: [], // Array para almacenar las preguntas del examen mientras estan en uso.
+      respuestasExamen: [], // Array para almacenar las respuestas del examen.
       tituloExamen: `Lee detenidamente las preguntas y escoge la opción más adecuada.`, // Título del examen.
       notaExamen: "", // Nota del examen.
       mostrarModal: false, // Controlar la visibilidad de FinExamen.
-
-      // Estas son las que vamos a quitar:
-      respuestasExamen: [], // Array para almacenar las respuestas del examen.
     }
   },
   computed: {
@@ -38,23 +36,27 @@ export default {
     randomizarYLimitarPreguntas(preguntas) {
       const totalPreguntas = preguntas.length
       const cantidadFactible = Math.min(totalPreguntas, this.numPreguntas)
-
       const preguntasDesorden = this.desordenarArray(preguntas)
-      const preguntasReiniciadas = this.reiniciarRespuestas(preguntasDesorden)
 
-      return preguntasReiniciadas.slice(0, cantidadFactible)
-    },
-
-    reiniciarRespuestas(preguntas) {
-      const preguntasReiniciadas = preguntas
-      preguntasReiniciadas.forEach((pregunta) => {
+      // Reiniciar respuestas de preguntas anteriores
+      preguntasDesorden.forEach((pregunta) => {
         pregunta.respuesta = null
       })
-      return preguntasReiniciadas
+
+      return preguntasDesorden.slice(0, cantidadFactible)
     },
 
     seleccionarOpcion(pregunta, opcion) {
       pregunta.respuesta = opcion
+    },
+
+    guardarRespuestas() {
+      this.respuestasExamen = this.preguntasTratadas.map((pregunta) => {
+        return {
+          id: pregunta.id,
+          respuesta: pregunta.respuesta,
+        }
+      })
     },
 
     terminarExamen() {
@@ -81,31 +83,11 @@ export default {
       })
     },
 
-    generarNuevoExamen() {
-      this.preguntasTratadas = this.randomizarYLimitarPreguntas(this.generadorExamen(5, 1))
-      this.respuestasExamen = []
-      this.tituloExamen = `Lee detenidamente las preguntas y escoge la opción más adecuada.`
-      this.examenTerminado = false
-      this.notaExamen = []
-      window.scrollTo({ top: 0, behavior: "smooth" })
-    },
-
-  // Estas son las que vamos a quitar:
     getRespuestaSeleccionada(preguntaId) {
       const respuesta = this.respuestasExamen.find((respuesta) => respuesta.id === preguntaId)
       return respuesta ? respuesta.respuesta : ""
     },
 
-    guardarRespuestas() {
-      this.respuestasExamen = this.preguntasTratadas.map((pregunta) => {
-        return {
-          id: pregunta.id,
-          respuesta: pregunta.respuesta,
-        }
-      })
-    },
-
-    // Este se convertira en CorregirExamen()
     calcularPuntuacion() {
       let acertadas = 0
       this.respuestasExamen.forEach((respuesta) => {
@@ -131,9 +113,17 @@ export default {
       this.notaExamen = [acertadas, resultado]
     },
 
+    generarNuevoExamen() {
+      this.preguntasTratadas = this.randomizarYLimitarPreguntas(this.generadorExamen(5,1))
+      this.respuestasExamen = []
+      this.tituloExamen = `Lee detenidamente las preguntas y escoge la opción más adecuada.`
+      this.examenTerminado = false
+      this.notaExamen = []
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    },
   },
   async created() {
-    await this.generadorExamen(5, 1)
+    await this.generadorExamen(5,1)
   },
 }
 </script>
