@@ -60,7 +60,6 @@ export default {
     mostrarRespuestas() {
       this.preguntas.forEach((pregunta) => {
         pregunta.acertada = pregunta.respuesta === pregunta.correcta
-        pregunta.acertada = pregunta.respuesta !== pregunta.correcta
       })
     },
 
