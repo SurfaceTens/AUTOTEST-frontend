@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      numPreguntas: 3, // Numero de preguntas que debe tener el examen.
+      numPreguntas: 5, // Numero de preguntas que debe tener el examen.
       umbralApto: 90, // Porcentaje con el que se aprueba el examen.
       examenTerminado: false, // Variable para controlar el estado del examen.
       tituloExamen: "", // Título del examen.
@@ -71,7 +71,7 @@ export default {
       await this.generarExamen(this.numPreguntas, 1)
       this.preguntas = this.randomizarYLimitarPreguntas(this.preguntas)
       this.respuestasExamen = []
-      this.tituloExamen = `Lee detenidamente las preguntas y escoge la opción más adecuada.`
+      this.tituloExamen = `Lee detenidamente las preguntas y escoge la opción más adecuada`
       this.examenTerminado = false
       this.notaExamen = []
       window.scrollTo({ top: 0, behavior: "smooth" })
@@ -104,7 +104,7 @@ export default {
         resultado = "NO APTO"
       }
 
-      this.tituloExamen = `Revisión del examen.`
+      this.tituloExamen = `Revisión del examen`
       this.notaExamen = [acertadas, resultado]
     },
   },
