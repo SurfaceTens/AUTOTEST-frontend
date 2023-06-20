@@ -12,7 +12,6 @@ export const examenStore = defineStore("examenStore", {
       ).data._embedded.preguntaExamenModels
     },
     async corregirPregunta(pregunta) {
-      console.log("Correccion: ", pregunta.id, " ", pregunta.acertada)
       await corregirPreguntaExamen(pregunta.id,pregunta)
     },
     desordenarArray(array) {

@@ -74,3 +74,7 @@ export function crearExamen(numPreguntas, usuarioID) {
 export function corregirPreguntaExamen(preguntaID,pregunta) {
   return llamadaApi(`${host}/preguntasExamen/${preguntaID}`,`put`,pregunta)
 }
+
+export function putPregunta(preguntaID,pregunta) {
+  return llamadaApi(`${host}/preguntas/${preguntaID}`,`put`,pregunta)
+}

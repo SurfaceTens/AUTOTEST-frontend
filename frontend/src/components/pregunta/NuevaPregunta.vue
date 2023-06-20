@@ -1,5 +1,5 @@
 <script>
-import { mapActions, mapState } from "pinia"
+import { mapState } from "pinia"
 import { preguntasStore } from "@/stores/preguntasStore"
 
 export default {

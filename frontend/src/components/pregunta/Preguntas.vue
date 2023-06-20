@@ -2,11 +2,11 @@
 import { mapActions, mapState } from "pinia"
 import { loginStore } from "@/stores/loginStore"
 import { preguntasStore } from "@/stores/preguntasStore"
-import Pregunta from "@/components/pregunta/Pregunta.vue"
+import nuevaPregunta from "@/components/pregunta/NuevaPregunta.vue"
 
 export default {
   components: {
-    Pregunta,
+    nuevaPregunta,
   },
   computed: {
     ...mapState(loginStore, ["isAdmin"]),
@@ -16,8 +16,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(preguntasStore, ["getPreguntaPorId"]),
-    ...mapActions(preguntasStore, ["getPreguntas"]),
+    ...mapActions(preguntasStore, ["getPreguntas", "getPreguntaPorId", "editarPregunta"]),
     ordenarPreguntas() {
       this.preguntas.sort((a, b) => a.id - b.id)
     },
@@ -46,6 +45,7 @@ export default {
           <td>
             <!-- Aquí se colocan los botones para cada acción -->
             <button class="btn btn-primary">Editar</button>
+
             <button class="btn btn-danger">Eliminar</button>
           </td>
         </tr>
