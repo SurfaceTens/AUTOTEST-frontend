@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-import { getEntidades, putPregunta } from "./api-service"
+import { getEntidades, actualizarPregunta } from "./api-service"
 
 export const preguntasStore = defineStore("preguntas", {
   state: () => ({
@@ -17,7 +17,7 @@ export const preguntasStore = defineStore("preguntas", {
       this.preguntas = (await getEntidades("preguntas")).data._embedded.preguntaModels
     },
     async editarPregunta(pregunta) {
-      await putPregunta(pregunta.id,pregunta)
+      await actualizarPregunta(pregunta.id,pregunta)
     },
   },
 })

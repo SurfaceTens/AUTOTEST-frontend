@@ -1,8 +1,7 @@
 import axios from "axios"
 
-// Poner la mia back4app
-//const host = 'https://autotestapi-serperdim45.b4a.run/api' // No borrar hasta desplegar, es el modelo de como poner el enlace
-const host = "http://localhost:8800/api"
+//const host = 'https://autotestapi-serperdim45.b4a.run/api'
+const host = "http://localhost:8800/api"    // Borrar este y descomentar el de arriba
 
 export function cambiarHttpPorHttps(enlace) {
   return enlace.replace("http", "https")
@@ -35,28 +34,8 @@ export async function guardarPregunta(pregunta) {
   return llamadaApi(`${host}/preguntas`, "post", pregunta)
 }
 
-export async function actualizarPregunta(pregunta) {
-  const parche = []
-  const camposActualizables = ["timestamp"]
-  for (const campo in pregunta) {
-    if (camposActualizables.includes(campo)) {
-      parche.push({
-        op: "replace",
-        path: `/${campo}`,
-        value: pregunta[campo],
-      })
-    }
-  }
-
-  const config = configuracionPorDefecto(
-    cambiarHttpPorHttps(pregunta._links.self.href),
-    "patch",
-    parche
-  )
-
-  config.headers["Content-Type"] = "application/json-patch+json"
-
-  return llamadaApiConConfiguracion(config).then((r) => initRespuestaPregunta(r))
+export async function eliminarPregunta(preguntaID,pregunta) {
+  return llamadaApi(`${host}/preguntas/${preguntaID}`, "delete", pregunta)
 }
 
 export function borrarEntidad(entidad) {
@@ -75,6 +54,6 @@ export function corregirPreguntaExamen(preguntaID,pregunta) {
   return llamadaApi(`${host}/preguntasExamen/${preguntaID}`,`put`,pregunta)
 }
 
-export function putPregunta(preguntaID,pregunta) {
+export function actualizarPregunta(preguntaID,pregunta) {
   return llamadaApi(`${host}/preguntas/${preguntaID}`,`put`,pregunta)
 }

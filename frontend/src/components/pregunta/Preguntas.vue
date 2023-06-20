@@ -2,11 +2,17 @@
 import { mapActions, mapState } from "pinia"
 import { loginStore } from "@/stores/loginStore"
 import { preguntasStore } from "@/stores/preguntasStore"
-import nuevaPregunta from "@/components/pregunta/NuevaPregunta.vue"
+import { eliminarPregunta } from "@/stores/api-service"
+import FormularioPregunta from "./FormularioPregunta.vue"
 
 export default {
   components: {
-    nuevaPregunta,
+    FormularioPregunta,
+  },
+  data() {
+    return {
+      preguntaSeleccionada: null,
+    }
   },
   computed: {
     ...mapState(loginStore, ["isAdmin"]),
@@ -16,9 +22,18 @@ export default {
     },
   },
   methods: {
-    ...mapActions(preguntasStore, ["getPreguntas", "getPreguntaPorId", "editarPregunta"]),
+    ...mapActions(preguntasStore, ["getPreguntas", "getPreguntaPorId"]),
     ordenarPreguntas() {
       this.preguntas.sort((a, b) => a.id - b.id)
+    },
+    mostrarPregunta(pregunta) {
+      this.preguntaSeleccionada = pregunta
+    },
+    ocultarPregunta(pregunta) {
+      this.preguntaSeleccionada = null
+    },
+    borrarPregunta(pregunta) {
+      eliminarPregunta(pregunta)
     },
   },
   async created() {
@@ -30,7 +45,14 @@ export default {
 
 <template>
   <div v-if="isAdmin">
-    <table class="listado-table">
+    <div v-if="preguntaSeleccionada" class="container">
+    <div class="card">
+      <div class="card_content">
+        <FormularioPregunta :preguntaForm="preguntaSeleccionada" :modoEdicion="true" :titulo="`Editando pregunta ` + preguntaSeleccionada.id" />
+      </div>
+    </div>
+  </div>
+    <table v-else class="listado-table">
       <thead>
         <tr>
           <th>ID</th>
@@ -43,10 +65,9 @@ export default {
           <td>{{ pregunta.id }}</td>
           <td>{{ pregunta.enunciado }}</td>
           <td>
-            <!-- Aquí se colocan los botones para cada acción -->
-            <button class="btn btn-primary">Editar</button>
+            <button class="btn btn-primary" @click="mostrarPregunta(pregunta)">Editar</button>
 
-            <button class="btn btn-danger">Eliminar</button>
+            <button class="btn btn-danger" @click="borrarPregunta(pregunta)">Eliminar</button>
           </td>
         </tr>
       </tbody>

@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      numPreguntas: 5, // Numero de preguntas que debe tener el examen.
+      numPreguntas: 30, // Numero de preguntas que debe tener el examen.
       umbralApto: 90, // Porcentaje con el que se aprueba el examen.
       examenTerminado: false, // Variable para controlar el estado del examen.
       tituloExamen: "", // Título del examen.
