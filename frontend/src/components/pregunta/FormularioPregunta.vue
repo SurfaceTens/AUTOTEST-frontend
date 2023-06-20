@@ -65,6 +65,10 @@ export default {
         guardarPregunta(this.preguntaForm)
       }
     },
+
+    cerrarEdicion() {
+      this.$emit('cerrar');
+    },
   },
 }
 </script>
@@ -200,5 +204,6 @@ export default {
     <button type="submit" class="btn btn-primary" @click="entregarFormulario">
       Guardar pregunta
     </button>
+    <button v-if="modoEdicion" class="btn btn-secondary" @click="cerrarEdicion">Cerrar</button>
   </div>
 </template>

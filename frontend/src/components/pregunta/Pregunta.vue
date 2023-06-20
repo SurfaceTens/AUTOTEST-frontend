@@ -65,10 +65,16 @@ export default {
       <h3 class="card_title">{{ numero }} - {{ pregunta.enunciado }}</h3>
       <div>
         <img
-          v-if="pregunta.imagen"
+        v-if="pregunta.adjunto === 'imagen'"
           class="preguntaImg img-fluid w-100"
-          :src="'./imagenesPreguntas/' + pregunta.imagen"
+          :src="'./imagenesPreguntas/' + pregunta.adjuntoURL"
           alt="Imagen de la pregunta"
+        />
+        <img
+        v-if="pregunta.adjunto === 'video'"
+          class="preguntaImg img-fluid w-100"
+          :src="'./video.svg'"
+          alt="Reproducir Video"
         />
       </div>
     </div>

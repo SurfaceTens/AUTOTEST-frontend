@@ -4,14 +4,18 @@ import { loginStore } from "@/stores/loginStore"
 import { preguntasStore } from "@/stores/preguntasStore"
 import { eliminarPregunta } from "@/stores/api-service"
 import FormularioPregunta from "./FormularioPregunta.vue"
+import Modales from "@/components/Modales.vue"
 
 export default {
   components: {
     FormularioPregunta,
+    Modales,
   },
   data() {
     return {
       preguntaSeleccionada: null,
+      modoEdicion: false,
+      mostrarModal: false,
     }
   },
   computed: {
@@ -28,12 +32,27 @@ export default {
     },
     mostrarPregunta(pregunta) {
       this.preguntaSeleccionada = pregunta
+      this.modoEdicion = true
     },
-    ocultarPregunta(pregunta) {
+    visibilidadModal() {
+      this.mostrarModal = !this.mostrarModal
+    },
+    cerrarFormulario() {
       this.preguntaSeleccionada = null
+      this.modoEdicion = false
     },
     borrarPregunta(pregunta) {
-      eliminarPregunta(pregunta.id)
+      this.preguntaSeleccionada = pregunta
+      this.visibilidadModal()
+    },
+    confirmarBorrarPregunta() {
+      eliminarPregunta(this.preguntaSeleccionada.id)
+      this.preguntaSeleccionada = null
+      this.visibilidadModal()
+    },
+    cerrarModal() {
+      this.preguntaSeleccionada = null
+      this.mostrarModal = false
     },
   },
   async created() {
@@ -45,13 +64,18 @@ export default {
 
 <template>
   <div v-if="isAdmin">
-    <div v-if="preguntaSeleccionada" class="container">
-    <div class="card">
-      <div class="card_content">
-        <FormularioPregunta :preguntaForm="preguntaSeleccionada" :modoEdicion="true" :titulo="`Editando pregunta ` + preguntaSeleccionada.id" />
+    <div v-if="modoEdicion" class="container">
+      <div class="card">
+        <div class="card_content">
+          <FormularioPregunta
+            :preguntaForm="preguntaSeleccionada"
+            :modoEdicion="modoEdicion"
+            :titulo="`Editando pregunta ` + preguntaSeleccionada.id"
+            @cerrar="cerrarFormulario"
+          />
+        </div>
       </div>
     </div>
-  </div>
     <table v-else class="listado-table">
       <thead>
         <tr>
@@ -72,6 +96,14 @@ export default {
         </tr>
       </tbody>
     </table>
+
+    <!-- Modal Confirmacion-->
+    <Modales
+      v-if="mostrarModal"
+      :modalTipo="'borrar'"
+      @borrar="confirmarBorrarPregunta"
+      @cerrarModal="cerrarModal"
+    />
   </div>
 
   <div v-else>
