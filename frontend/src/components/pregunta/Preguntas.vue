@@ -33,7 +33,7 @@ export default {
       this.preguntaSeleccionada = null
     },
     borrarPregunta(pregunta) {
-      eliminarPregunta(pregunta)
+      eliminarPregunta(pregunta.id)
     },
   },
   async created() {

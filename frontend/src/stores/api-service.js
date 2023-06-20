@@ -34,8 +34,8 @@ export async function guardarPregunta(pregunta) {
   return llamadaApi(`${host}/preguntas`, "post", pregunta)
 }
 
-export async function eliminarPregunta(preguntaID,pregunta) {
-  return llamadaApi(`${host}/preguntas/${preguntaID}`, "delete", pregunta)
+export async function eliminarPregunta(preguntaID) {
+  return llamadaApi(`${host}/preguntas/${preguntaID}`, "delete")
 }
 
 export function borrarEntidad(entidad) {
