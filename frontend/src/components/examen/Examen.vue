@@ -1,13 +1,15 @@
 <script>
 import { mapActions, mapState } from "pinia"
 import { examenStore } from "@/stores/examenStore"
-import Pregunta from "@/components/pregunta/Pregunta.vue"
-import FinExamen from "@/components/examen/FinExamen.vue"
+import Pregunta from "@/components/examen/PreguntaExamen.vue"
+import Modales from "@/components/Modales.vue"
+import Cargando from "@/components/Cargando.vue"
 
 export default {
   components: {
     Pregunta,
-    FinExamen,
+    Modales,
+    Cargando,
   },
   data() {
     return {
@@ -16,6 +18,7 @@ export default {
       examenTerminado: false, // Variable para controlar el estado del examen.
       tituloExamen: "", // Título del examen.
       notaExamen: [], // Nota del examen.
+      cargandoExamen: true, // Muestra el estado de carga cuando la api no esta lista.
       mostrarModal: false, // Controlar la visibilidad de FinExamen.
     }
   },
@@ -68,7 +71,9 @@ export default {
     },
 
     async generarNuevoExamen() {
+      this.cargandoExamen = true
       await this.generarExamen(this.numPreguntas, 1)
+      this.cargandoExamen = false
       this.preguntas = this.randomizarYLimitarPreguntas(this.preguntas)
       this.respuestasExamen = []
       this.tituloExamen = `Lee detenidamente las preguntas y escoge la opción más adecuada`
@@ -110,14 +115,20 @@ export default {
   },
   async created() {
     await this.generarNuevoExamen()
+    this.cargandoExamen = false
   },
 }
 </script>
 
 <template>
   <div class="area-examen">
+    <!-- Mostrar aviso de carga -->
+    <div v-if="cargandoExamen">
+      <Cargando/>
+    </div>
+
     <!-- Versión resoluble del examen -->
-    <div v-if="!examenTerminado">
+    <div v-else-if="!examenTerminado">
       <h1>{{ tituloExamen }}</h1>
       <ul>
         <li v-for="(pregunta, index) in this.preguntas" :key="pregunta.id">
@@ -146,17 +157,17 @@ export default {
       </div>
 
       <!-- Modal FinExamen A-->
-      <FinExamen
+      <Modales
         v-if="mostrarModal"
         :nota="notaExamen"
-        :modalB="false"
+        :modalTipo="'finExamen'"
         @aceptarExamen="aceptarExamen"
         @cerrarModal="cerrarModal"
       />
     </div>
 
     <!-- Versión del examen con respuestas resaltadas -->
-    <div v-else>
+    <div v-else-if="examenTerminado">
       <h1>{{ tituloExamen }}</h1>
       <ul>
         <li v-for="(pregunta, index) in this.preguntas" :key="pregunta.id">
@@ -176,10 +187,10 @@ export default {
       </div>
 
       <!-- Modal FinExamen B-->
-      <FinExamen
+      <Modales
         v-if="mostrarModal"
         :nota="notaExamen"
-        :modalB="true"
+        :modalTipo="'revisarExamen'"
         @generarNuevoExamen="generarNuevoExamen"
         @cerrarModal="cerrarModal"
       />

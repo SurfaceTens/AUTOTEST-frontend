@@ -5,17 +5,20 @@ import { preguntasStore } from "@/stores/preguntasStore"
 import { eliminarPregunta } from "@/stores/api-service"
 import FormularioPregunta from "./FormularioPregunta.vue"
 import Modales from "@/components/Modales.vue"
+import Cargando from "@/components/Cargando.vue"
 
 export default {
   components: {
     FormularioPregunta,
     Modales,
+    Cargando,
   },
   data() {
     return {
       preguntaSeleccionada: null,
       modoEdicion: false,
       mostrarModal: false,
+      cargandoPreguntas: true, // Muestra el estado de carga cuando la api no esta lista.
     }
   },
   computed: {
@@ -47,6 +50,10 @@ export default {
     },
     confirmarBorrarPregunta() {
       eliminarPregunta(this.preguntaSeleccionada.id)
+      const index = this.preguntas.findIndex(p => p.id === this.preguntaSeleccionada.id)
+      if (index !== -1) {
+        this.preguntas.splice(index, 1)
+      }
       this.preguntaSeleccionada = null
       this.visibilidadModal()
     },
@@ -58,13 +65,16 @@ export default {
   async created() {
     await this.getPreguntas()
     this.ordenarPreguntas()
+    this.cargandoPreguntas = false
   },
 }
 </script>
 
 <template>
   <div v-if="isAdmin">
-    <div v-if="modoEdicion" class="container">
+    <Cargando v-if="cargandoPreguntas" />
+
+    <div v-else-if="modoEdicion" class="container">
       <div class="card">
         <div class="card_content">
           <FormularioPregunta
