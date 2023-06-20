@@ -67,8 +67,11 @@ export default {
     },
 
     cerrarEdicion() {
-      this.$emit('cerrar');
+      this.$emit("cerrar")
     },
+  },
+  created() {
+    this.tipoArchivo = this.preguntaForm.adjunto || 'ninguno';
   },
 }
 </script>
@@ -156,6 +159,7 @@ export default {
             value="ninguno"
             v-model="tipoArchivo"
             class="file-type-input"
+            :checked="preguntaForm.adjunto === 'ninguno'"
           />
           <label for="ningunoOption" class="file-type-label">Ninguno</label>
         </div>
@@ -166,6 +170,7 @@ export default {
             value="imagen"
             v-model="tipoArchivo"
             class="file-type-input"
+            :checked="preguntaForm.adjunto === 'imagen'"
           />
           <label for="imagenOption" class="file-type-label">Imagen</label>
         </div>
@@ -176,6 +181,7 @@ export default {
             value="video"
             v-model="tipoArchivo"
             class="file-type-input"
+            :checked="preguntaForm.adjunto === 'video'"
           />
           <label for="videoOption" class="file-type-label">Video</label>
         </div>
