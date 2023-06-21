@@ -156,7 +156,7 @@ export default {
         <button @click="terminarExamen" class="btn btn-primary btn-lg">Terminar</button>
       </div>
 
-      <!-- Modal FinExamen A-->
+      <!-- Modal finExamen -->
       <Modales
         v-if="mostrarModal"
         :nota="notaExamen"
@@ -186,7 +186,7 @@ export default {
         </button>
       </div>
 
-      <!-- Modal FinExamen B-->
+      <!-- Modal revisarExamen -->
       <Modales
         v-if="mostrarModal"
         :nota="notaExamen"
