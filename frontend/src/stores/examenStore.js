@@ -6,9 +6,9 @@ export const examenStore = defineStore("examenStore", {
     preguntas: [],
   }),
   actions: {
-    async generadorExamen(numeroPreguntas, usuario) {
+    async generadorExamen(numeroPreguntas, usuario, nivelDificultad) {
       this.preguntas = (
-        await crearExamen(numeroPreguntas, usuario)
+        await crearExamen(numeroPreguntas, usuario, nivelDificultad)
       ).data._embedded.preguntaExamenModels
     },
     async corregirPregunta(pregunta) {

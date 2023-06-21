@@ -20,6 +20,7 @@ export default {
       notaExamen: [], // Nota del examen.
       cargandoExamen: true, // Muestra el estado de carga cuando la api no esta lista.
       mostrarModal: false, // Controlar la visibilidad de FinExamen.
+      nivelDificultad: "aleatorio" // Dificultad con que se genera el examen, aleatorio por defecto.
     }
   },
   computed: {
@@ -66,13 +67,13 @@ export default {
       })
     },
 
-    async generarExamen(numeroPreguntas, idAlumno) {
-      await this.generadorExamen(numeroPreguntas, idAlumno)
+    async generarExamen(numeroPreguntas, idAlumno, nivelDificultad) {
+      await this.generadorExamen(numeroPreguntas, idAlumno, nivelDificultad)
     },
 
-    async generarNuevoExamen() {
+    async generarNuevoExamen(nivelDificultad) {
       this.cargandoExamen = true
-      await this.generarExamen(this.numPreguntas, 1)
+      await this.generarExamen(this.numPreguntas, 1,nivelDificultad)
       this.cargandoExamen = false
       this.preguntas = this.randomizarYLimitarPreguntas(this.preguntas)
       this.respuestasExamen = []
@@ -114,7 +115,7 @@ export default {
     },
   },
   async created() {
-    await this.generarNuevoExamen()
+    await this.generarNuevoExamen(this.nivelDificultad)
     this.cargandoExamen = false
   },
 }
@@ -181,7 +182,7 @@ export default {
         </li>
       </ul>
       <div class="fin-examen">
-        <button @click="generarNuevoExamen(), cerrarModal()" class="btn btn-success btn-lg">
+        <button @click="generarNuevoExamen(this.nivelDificultad), cerrarModal()" class="btn btn-success btn-lg">
           Hacer Otro
         </button>
       </div>
