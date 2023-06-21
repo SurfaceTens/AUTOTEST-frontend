@@ -29,7 +29,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(examenStore, ["generadorExamen", "desordenarArray", "corregirPregunta", "getNivelDificultad"]),
+    ...mapActions(examenStore, ["generadorExamen", "desordenarArray", "corregirPregunta", "getNivelDificultad", "setNivelDificultad"]),
 
     randomizarYLimitarPreguntas(preguntas) {
       const totalPreguntas = preguntas.length
@@ -88,6 +88,10 @@ export default {
         pregunta.respuesta = null
       })
       return preguntasReiniciadas
+    },
+
+    cambiarDificultad() {
+      this.setNivelDificultad = "facil"
     },
 
     corregirExamen() {
@@ -184,6 +188,9 @@ export default {
         <button @click="generarNuevoExamen(this.getNivelDificultad()), cerrarModal()" class="btn btn-success btn-lg">
           Hacer Otro
         </button>
+        <button @click="cambiarDificultad" class="btn btn-success btn-lg">
+          Cambiar dificultad
+        </button>
       </div>
 
       <!-- Modal revisarExamen -->
@@ -191,7 +198,7 @@ export default {
         v-if="mostrarModal"
         :nota="notaExamen"
         :modalTipo="'revisarExamen'"
-        @generarNuevoExamen="generarNuevoExamen"
+        @generarNuevoExamen="generarNuevoExamen(this.getNivelDificultad())"
         @cerrarModal="cerrarModal"
       />
     </div>
