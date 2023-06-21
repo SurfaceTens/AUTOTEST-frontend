@@ -30,12 +30,12 @@ Finalmente, se podrán obtener una serie de estadísticas, como qué pregunta es
 
 Repositorio proyecto: https://git.institutomilitar.com/samotcarrasco/autoescuela-online
 
-Librería: https://github.com/... (pendiente)
+Librería: https://github.com/SurfaceTens/backendAutotest-LIB
 
 
 **7. Despliegue en Internet:**
 
-API: pendiente
+API: https://autotestapi-serperdim45.b4a.run/api
 
 Web: https://autotestdim.netlify.app/#/
 
