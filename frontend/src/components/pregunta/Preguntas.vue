@@ -4,20 +4,23 @@ import { loginStore } from "@/stores/loginStore"
 import { preguntasStore } from "@/stores/preguntasStore"
 import { eliminarPregunta } from "@/stores/api-service"
 import FormularioPregunta from "./FormularioPregunta.vue"
-import Modales from "@/components/Modales.vue"
+import ConfirmarBorrar from "@/components/modales/ConfirmarBorrar.vue"
+import ConfirmarEditar from "@/components/modales/ConfirmarEditar.vue"
 import Cargando from "@/components/Cargando.vue"
 
 export default {
   components: {
     FormularioPregunta,
-    Modales,
+    ConfirmarBorrar,
+    ConfirmarEditar,
     Cargando,
   },
   data() {
     return {
       preguntaSeleccionada: null,
       modoEdicion: false,
-      mostrarModal: false,
+      mostrarModalBorrado: false,
+      mostrarModalEditar: false,
       cargandoPreguntas: true, // Muestra el estado de carga cuando la api no esta lista.
     }
   },
@@ -43,7 +46,7 @@ export default {
     },
     borrarPregunta(pregunta) {
       this.preguntaSeleccionada = pregunta
-      this.mostrarModal = true
+      this.mostrarModalBorrado = true
     },
     getDificultadTexto(dificultad) {
       if (dificultad < 25) {
@@ -59,6 +62,7 @@ export default {
       }
     },
     async confirmarBorrarPregunta() {
+      this.cargandoPreguntas = true
       try {
         await eliminarPregunta(this.preguntaSeleccionada.id)
         const index = this.preguntas.findIndex((p) => p.id === this.preguntaSeleccionada.id)
@@ -68,11 +72,19 @@ export default {
       } catch (error) {
         console.error("Error al borrar la pregunta:", error)
       }
-      cerrarModal()
+      this.cargandoPreguntas = false
+      this.cerrarModalBorrar()
     },
-    cerrarModal() {
+    confirmarEditarPregunta() {
+      this.mostrarModalEditar = true
+    },
+    cerrarModalBorrar() {
       this.preguntaSeleccionada = null
-      this.mostrarModal = false
+      this.mostrarModalBorrado = false
+    },
+    cerrarModalEditar() {
+      this.preguntaSeleccionada = null
+      this.mostrarModalEditar = false
     },
   },
   async created() {
@@ -95,6 +107,7 @@ export default {
             :modoEdicion="modoEdicion"
             :titulo="`Editando pregunta ` + preguntaSeleccionada.id"
             @cerrar="cerrarFormulario"
+            @confirmar="confirmarEditarPregunta"
           />
         </div>
       </div>
@@ -125,12 +138,14 @@ export default {
       </tbody>
     </table>
 
-    <!-- Modal Confirmacion-->
-    <Modales
-      v-if="mostrarModal"
-      :modalTipo="'borrar'"
+    <!-- Modales Confirmacion-->
+    <ConfirmarBorrar
+      v-if="mostrarModalBorrado"
       @borrar="confirmarBorrarPregunta"
-      @cerrarModal="cerrarModal"
+    />
+    <ConfirmarEditar
+      v-if="mostrarModalEditar"
+      @cerrarModal="cerrarModalEditar"
     />
   </div>
 

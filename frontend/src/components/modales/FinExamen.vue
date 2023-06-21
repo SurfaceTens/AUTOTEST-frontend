@@ -28,37 +28,19 @@ export default {
     toggleColapsado() {
       this.colapsado = !this.colapsado
     },
-    borrar() {
-      this.$emit("borrar")
-    },
   },
 }
 </script>
 
 <template>
-  <!-- Confirmacion para borrar entidad -->
-  <div v-if="modalTipo == `borrar` " class="modal-overlay" @click="cerrarModal">
-    <div class="modal-container">
-      <div class="card modales-card">
-        <div class="card_header">
-          <h3 class="card_title">¿Seguro que deseas borrar?</h3>
-        </div>
-        <div class="card_buttons">
-          <button @click="borrar()" class="btn btn-primary">Si</button>
-          <button @click="cerrarModal()" class="btn btn-secondary">No</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
   <!-- Confirmacion para entregar examen -->
   <div v-if="modalTipo == `finExamen` " class="modal-overlay" @click="cerrarModal">
     <div class="modal-container">
-      <div class="card modales-card">
-        <div class="card_header">
-          <h3 class="card_title">¿Deseas finalizar el examen?</h3>
+      <div class="modal-card modales-card">
+        <div class="modal-card_header">
+          <h3 class="modal-card_title">¿Deseas finalizar el examen?</h3>
         </div>
-        <div class="card_buttons">
+        <div class="modal-card_buttons">
           <button @click="aceptarExamen()" class="btn btn-primary">Aceptar</button>
           <button @click="cerrarModal()" class="btn btn-secondary">Cerrar</button>
         </div>
@@ -69,10 +51,10 @@ export default {
   <!-- Asistente para revisar examen -->
   <div v-if="modalTipo == `revisarExamen`" class="top-container">
     <div class="modal-container">
-      <div v-if="!colapsado" class="card modales-card modal-b" @click="toggleColapsado">
-        <div class="card_header">
-          <p class="card_subtitle">Aciertos: {{ nota[0] }}</p>
-          <h3 class="card_title">{{ nota[1] }}</h3>
+      <div v-if="!colapsado" class="modal-card modales-card modal-b" @click="toggleColapsado">
+        <div class="modal-card_header">
+          <p class="modal-card_subtitle">Aciertos: {{ nota[0] }}</p>
+          <h3 class="modal-card_title">{{ nota[1] }}</h3>
         </div>
         <ul class="color-list two-columns">
           <li class="color-item">
@@ -100,7 +82,7 @@ export default {
           </li>
         </ul>
       </div>
-      <div v-else class="card collapsed hover-green" @click="toggleColapsado">
+      <div v-else class="modal-card collapsed hover-green" @click="toggleColapsado">
         <i class="fas fa-eye"></i>
       </div>
     </div>
@@ -108,49 +90,7 @@ export default {
 </template>
 
 <style scoped>
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-.modal-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.card {
-  background-color: var(--color-fondo);
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 20px;
-  margin: 0 auto;
-  max-width: 400px;
-}
-
-.card_header {
-  margin-bottom: 10px;
-}
-
-.card_title {
-  margin: 0;
-}
-
-.card_buttons {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
-}
-
-/* Estilos para la ventana flotante del modal B */
+/* Estilos para la ventana flotante del modal de revision */
 .top-container {
   position: fixed;
   top: 200px;
@@ -176,7 +116,7 @@ export default {
   cursor: pointer;
 }
 
-.modal-b .card_buttons {
+.modal-b .modal-card_buttons {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
@@ -214,12 +154,12 @@ export default {
   cursor: pointer;
 }
 
-.modal-b.collapsed .card_header,
-.modal-b.collapsed .card_buttons {
+.modal-b.collapsed .modal-card_header,
+.modal-b.collapsed .modal-card_buttons {
   display: none;
 }
 
-.card_subtitle {
+.modal-card_subtitle {
   margin: 0;
   font-size: 14px;
   color: var(--color-subtitle);

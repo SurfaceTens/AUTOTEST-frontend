@@ -64,6 +64,7 @@ export default {
       } else {
         guardarPregunta(this.preguntaForm)
       }
+      this.$emit("confirmar")
     },
 
     cerrarEdicion() {
@@ -207,7 +208,7 @@ export default {
         accept="video/*"
       />
     </div>
-    <button type="submit" class="btn btn-primary" @click="entregarFormulario">
+    <button type="submit" class="btn btn-primary" @click="entregarFormulario(); cerrarEdicion()">
       Guardar pregunta
     </button>
     <button v-if="modoEdicion" class="btn btn-secondary" @click="cerrarEdicion">Cerrar</button>

@@ -2,13 +2,13 @@
 import { mapActions, mapState } from "pinia"
 import { examenStore } from "@/stores/examenStore"
 import Pregunta from "@/components/examen/PreguntaExamen.vue"
-import Modales from "@/components/Modales.vue"
+import FinExamen from "@/components/modales/FinExamen.vue"
 import Cargando from "@/components/Cargando.vue"
 
 export default {
   components: {
     Pregunta,
-    Modales,
+    FinExamen,
     Cargando,
   },
   data() {
@@ -161,7 +161,7 @@ export default {
       </div>
 
       <!-- Modal finExamen -->
-      <Modales
+      <FinExamen
         v-if="mostrarModal"
         :nota="notaExamen"
         :modalTipo="'finExamen'"
@@ -194,7 +194,7 @@ export default {
       </div>
 
       <!-- Modal revisarExamen -->
-      <Modales
+      <FinExamen
         v-if="mostrarModal"
         :nota="notaExamen"
         :modalTipo="'revisarExamen'"
