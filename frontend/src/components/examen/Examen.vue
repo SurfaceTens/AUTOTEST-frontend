@@ -20,7 +20,6 @@ export default {
       notaExamen: [], // Nota del examen.
       cargandoExamen: true, // Muestra el estado de carga cuando la api no esta lista.
       mostrarModal: false, // Controlar la visibilidad de FinExamen.
-      nivelDificultad: "aleatorio" // Dificultad con que se genera el examen, aleatorio por defecto.
     }
   },
   computed: {
@@ -30,7 +29,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(examenStore, ["generadorExamen", "desordenarArray", "corregirPregunta"]),
+    ...mapActions(examenStore, ["generadorExamen", "desordenarArray", "corregirPregunta", "getNivelDificultad"]),
 
     randomizarYLimitarPreguntas(preguntas) {
       const totalPreguntas = preguntas.length
@@ -115,7 +114,7 @@ export default {
     },
   },
   async created() {
-    await this.generarNuevoExamen(this.nivelDificultad)
+    await this.generarNuevoExamen(this.getNivelDificultad())
     this.cargandoExamen = false
   },
 }
@@ -182,7 +181,7 @@ export default {
         </li>
       </ul>
       <div class="fin-examen">
-        <button @click="generarNuevoExamen(this.nivelDificultad), cerrarModal()" class="btn btn-success btn-lg">
+        <button @click="generarNuevoExamen(this.getNivelDificultad()), cerrarModal()" class="btn btn-success btn-lg">
           Hacer Otro
         </button>
       </div>

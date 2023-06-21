@@ -4,6 +4,7 @@ import { crearExamen, corregirPreguntaExamen } from "./api-service"
 export const examenStore = defineStore("examenStore", {
   state: () => ({
     preguntas: [],
+    nivelDificultad: "aleatorio",
   }),
   actions: {
     async generadorExamen(numeroPreguntas, usuario, nivelDificultad) {
@@ -12,7 +13,7 @@ export const examenStore = defineStore("examenStore", {
       ).data._embedded.preguntaExamenModels
     },
     async corregirPregunta(pregunta) {
-      await corregirPreguntaExamen(pregunta.id,pregunta)
+      await corregirPreguntaExamen(pregunta.id, pregunta)
     },
     desordenarArray(array) {
       // Algoritmo de Fisher-Yates para desordenar el array
@@ -28,6 +29,12 @@ export const examenStore = defineStore("examenStore", {
         array[numAleatorio] = valorTemporal
       }
       return array
+    },
+    getNivelDificultad() {
+      return this.nivelDificultad
+    },
+    setNivelDificultad(nivelDificultad) {
+      this.nivelDificultad = nivelDificultad
     },
   },
 })

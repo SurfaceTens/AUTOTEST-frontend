@@ -1,6 +1,7 @@
 <script>
 import { mapActions, mapState } from "pinia"
 import { loginStore } from "@/stores/loginStore"
+import { examenStore } from "@/stores/examenStore"
 
 export default {
   computed: {
@@ -8,6 +9,7 @@ export default {
   },
   methods: {
     ...mapActions(loginStore, ["toggleAdmin"]),
+    ...mapActions(examenStore, ["setNivelDificultad"]),
   },
 }
 </script>
@@ -38,9 +40,38 @@ export default {
           <li class="nav-item">
             <router-link class="nav-link" to="/">Home</router-link>
           </li>
-          <li v-if="!isAdmin" class="nav-item">
-            <router-link class="nav-link" to="/examen">Examen</router-link>
+
+          <li v-if="!isAdmin" class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="preguntasDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Examen
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="examenDropdown">
+              <li>
+                <router-link class="dropdown-item" to="/examen" @click="setNivelDificultad('facil')"
+                  >Preguntas Fáciles</router-link
+                >
+              </li>
+              <li>
+                <router-link
+                  class="dropdown-item"
+                  to="/examen"
+                  @click="setNivelDificultad('dificil')"
+                  >Preguntas Difíciles</router-link
+                >
+              </li>
+              <li>
+                <router-link class="dropdown-item" to="/examen">Dificultad Aleatoria</router-link>
+              </li>
+            </ul>
           </li>
+
           <li v-if="isAdmin" class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
