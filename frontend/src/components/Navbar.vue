@@ -37,9 +37,6 @@ export default {
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/">Home</router-link>
-          </li>
 
           <li v-if="!isAdmin" class="nav-item dropdown">
             <a
