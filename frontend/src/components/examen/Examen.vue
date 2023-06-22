@@ -102,11 +102,11 @@ export default {
       })
       return preguntasReiniciadas
     },
-    
+
     mostrarCambiarDificultad() {
       this.cambioDificultad = true
-    },  
-    
+    },
+
     cambiarDificultad(nuevaDificultad) {
       this.setNivelDificultad(nuevaDificultad)
       this.precargarExamenParams(this.numPreguntas, 1, this.getNivelDificultad())
