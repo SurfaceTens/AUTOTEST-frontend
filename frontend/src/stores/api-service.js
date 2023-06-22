@@ -57,3 +57,7 @@ export function corregirPreguntaExamen(preguntaID,pregunta) {
 export function actualizarPregunta(preguntaID,pregunta) {
   return llamadaApi(`${host}/preguntas/${preguntaID}`,`put`,pregunta)
 }
+
+export function actualizarAlumno(alumnoID,alumno) {
+  return llamadaApi(`${host}/preguntas/${alumnoID}`,`put`,alumno)
+}
