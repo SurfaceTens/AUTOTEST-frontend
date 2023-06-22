@@ -3,7 +3,7 @@ import { mapActions, mapState } from "pinia"
 import { loginStore } from "@/stores/loginStore"
 import { preguntasStore } from "@/stores/preguntasStore"
 import { examenStore } from "@/stores/examenStore"
-import { usuariosStore } from "@/stores/usuariosStore"
+import { alumnosStore } from "@/stores/alumnosStore"
 
 export default {
   data() {
@@ -18,12 +18,13 @@ export default {
   methods: {
     ...mapActions(preguntasStore, ["precargarPreguntas", "getNumPreguntas"]),
     ...mapActions(examenStore, ["precargarExamen"]),
-    ...mapActions(usuariosStore, ["getNumUsuarios"]),
+    ...mapActions(alumnosStore, ["precargarAlumnos", "getNumAlumnos"]),
     async precargar() {
       this.cargando = true
       if (!this.primeraPrecarga) {
         this.precargarExamen()
         this.precargarPreguntas()
+        this.precargarAlumnos()
         this.primeraPrecarga = true
       }
       this.cargando = false
@@ -66,7 +67,7 @@ export default {
         <h1 class="card_title">Resumen de administración</h1>
         <ul>
           <li>Hay un total de {{ getNumPreguntas() }} preguntas</li>
-          <li>Hay un total de {{ getNumUsuarios() }} usuarios</li>
+          <li>Hay un total de {{ getNumAlumnos() }} alumnos</li>
         </ul>
       </div>
     </div>

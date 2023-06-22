@@ -1,18 +1,18 @@
 <script>
 import { mapActions, mapState } from "pinia"
 import { loginStore } from "@/stores/loginStore"
-import { usuariosStore } from "@/stores/usuariosStore"
+import { alumnosStore } from "@/stores/alumnosStore"
 
 export default {
   computed: {
     ...mapState(loginStore, ["isAdmin"]),
-    ...mapState(usuariosStore, ["usuarios"]),
+    ...mapState(alumnosStore, ["alumnos"]),
   },
   methods: {
-    ...mapActions(usuariosStore, ["getUsuarios"]),
+    ...mapActions(alumnosStore, ["getAlumnos"]),
   },
   created() {
-    this.getUsuarios()
+    this.getAlumnos()
   },
 }
 </script>
@@ -28,9 +28,9 @@ export default {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="usuario in usuarios" :key="usuario.nombreUsuario">
-          <td>{{ usuario.nombre }}</td>
-          <td>{{ usuario.apellidos }}</td>
+        <tr v-for="alumno in alumnos" :key="alumno.nombreAlumno">
+          <td>{{ alumno.nombre }}</td>
+          <td>{{ alumno.apellidos }}</td>
           <td>
             <!-- Aquí se colocan los botones para cada acción 
             <button class="btn btn-primary">Editar</button>
@@ -42,6 +42,6 @@ export default {
   </div>
 
   <div v-else>
-    <h1>No se dispone de los permisos para visualizar el listado de usuarios</h1>
+    <h1>No se dispone de los permisos para visualizar el listado de alumnos</h1>
   </div>
 </template>

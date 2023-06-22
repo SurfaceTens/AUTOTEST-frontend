@@ -24,30 +24,6 @@ export default {
     }
   },
   methods: {
-    submitForm() {
-      const nuevoAlumno = { ...this.alumno }
-      nuevoAlumno.id = this.generarID()
-
-      // Llamar a la acción para crear un nuevo alumno en el store
-      // this.$store.alumnosStore.crearAlumnoAPI(nuevoAlumno)
-      //   .then(() => {
-      //     // Realizar cualquier acción adicional después de crear el alumno, como redirigir al usuario.
-      //     // this.$router.push('/');
-      //     // this.mostrarMensajeExito(); // Mostrar el mensaje emergente de éxito
-      //   })
-      //   .catch((error) => {
-      //     // Manejar el error en caso de que la creación del alumno falle.
-      //     console.error(error);
-      //   });
-    },
-
-    generarID() {
-      // Generar un ID único para el nuevo alumno
-      const timestamp = Date.now()
-      const randomSuffix = Math.floor(Math.random() * 10000)
-      return `${timestamp}_${randomSuffix}`
-    },
-
     mostrarMensajeExito() {
       this.$router.push("/exitoFormulario") // Redirige al componente de éxito
     },
