@@ -217,7 +217,7 @@ export default {
         </button>
       </div>
 
-      <!-- Modal cambio de dificultad -->
+      <!-- Cambio de dificultad -->
       <CambiarDificultad
         v-if="cambioDificultad"
         @cambiarDificultad="cambiarDificultad"
