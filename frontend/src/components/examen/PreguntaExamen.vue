@@ -55,6 +55,9 @@ export default {
 
   methods: {
     ...mapActions(examenStore, ["desordenarArray"]),
+    esEnlaceExterno(url) {
+      return url.startsWith("http://") || url.startsWith("https://")
+    },
   },
 }
 </script>
@@ -64,12 +67,20 @@ export default {
     <div class="card_header">
       <h3 class="card_title">{{ numero }} - {{ pregunta.enunciado }}</h3>
       <div>
-        <img
-          v-if="pregunta.adjunto === 'imagen'"
-          class="preguntaImg img-fluid w-100"
-          :src="'./imagenesPreguntas/' + pregunta.adjuntoURL"
-          alt="Imagen de la pregunta"
-        />
+        <div>
+          <img
+            v-if="pregunta.adjunto === 'imagen' && !esEnlaceExterno(pregunta.adjuntoURL)"
+            class="preguntaImg img-fluid w-100"
+            :src="'./imagenesPreguntas/' + pregunta.adjuntoURL"
+            alt="Imagen de la pregunta"
+          />
+          <img
+            v-else-if="pregunta.adjunto === 'imagen'"
+            class="preguntaImg img-fluid w-100"
+            :src="pregunta.adjuntoURL"
+            alt="Imagen de la pregunta"
+          />
+        </div>
         <iframe
           v-if="pregunta.adjunto === 'video'"
           class="preguntaVideo preguntaImg"
@@ -79,7 +90,6 @@ export default {
           allowfullscreen
           autoplay="0"
         ></iframe>
-
       </div>
     </div>
     <ul class="alternativas-list">

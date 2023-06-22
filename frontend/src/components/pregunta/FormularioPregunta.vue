@@ -18,7 +18,7 @@ export default {
           opcionIncorrecta3: "",
           imagenURL: null,
           videoURL: null,
-          adjunto: null,
+          adjunto: "ninguno",
         }
       },
     },
@@ -42,27 +42,48 @@ export default {
     }
   },
   methods: {
-    subirImagen(event) {
-      // Realizar las acciones necesarias para subir la imagen en el futuro
-      const file = event.target.files[0]
-      // Guardar la imagen en una ubicación específica y guardar la ruta en this.pregunta.imagen
-      console.log(file)
+    validarImagen(url) {
+      if (url) {
+        const extensionesPermitidas = [".jpg", ".jpeg", ".png", ".gif", ".bmp"]
+        const extension = url.substring(url.lastIndexOf(".")).toLowerCase()
+        if (extensionesPermitidas.includes(extension)) {
+          return url
+        }
+      }
+      return "sinImagen.jpg"
     },
 
-    subirVideo(event) {
-      // Realizar las acciones necesarias para subir el video en el futuro
-      const file = event.target.files[0]
-      // Guardar el video en una ubicación específica y guardar la ruta en this.pregunta.video
-      console.log(file)
+    extraerIdVideoYoutube(url) {
+      if (url) {
+        if (url.includes("watch?v=")) {
+          const videoId = url.split("?v=")[1]
+          const ampersandPosition = videoId.indexOf("&")
+          if (ampersandPosition !== -1) {
+            return videoId.substring(0, ampersandPosition)
+          }
+          return videoId
+        } else if (url.includes("youtu.be/")) {
+          const videoId = url.split("youtu.be/")[1]
+          const ampersandPosition = videoId.indexOf("&")
+          if (ampersandPosition !== -1) {
+            return videoId.substring(0, ampersandPosition)
+          }
+          return videoId
+        }
+      }
+      return null
     },
 
     entregarFormulario() {
       this.preguntaForm.adjunto = this.tipoArchivo
       this.preguntaForm.dificultad = this.dificultadMap[this.preguntaForm.dificultad] || 0
+      this.preguntaForm.imagenURL = this.validarImagen(this.preguntaForm.imagenURL)
+      this.preguntaForm.videoURL = this.extraerIdVideoYoutube(this.preguntaForm.videoURL)
       if (this.modoEdicion) {
         actualizarPregunta(this.preguntaForm.id, this.preguntaForm)
       } else {
         guardarPregunta(this.preguntaForm)
+        this.$router.push("ExitoFormulario")
       }
       this.$emit("confirmar")
     },
@@ -72,7 +93,7 @@ export default {
     },
   },
   created() {
-    this.tipoArchivo = this.preguntaForm.adjunto || 'ninguno';
+    this.tipoArchivo = this.preguntaForm.adjunto || "ninguno"
   },
 }
 </script>
@@ -189,28 +210,29 @@ export default {
       </div>
     </div>
     <div v-if="tipoArchivo === 'imagen'" class="form-group">
-      <label for="imagen" class="form-label">Subir Imagen:</label>
+      <label for="imagen" class="form-label">Enlace de la imagen:</label>
       <input
-        type="file"
+        type="text"
         id="imagen"
-        class="form-control-file"
-        @change="subirImagen"
-        accept="image/*"
+        class="form-control"
+        v-model="preguntaForm.imagenURL"
+        placeholder="Enlace de la imagen."
       />
     </div>
     <div v-if="tipoArchivo === 'video'" class="form-group">
-      <label for="video" class="form-label">Subir Video:</label>
+      <label for="video" class="form-label">Enlace de YouTube:</label>
       <input
-        type="file"
+        type="text"
         id="video"
-        class="form-control-file"
-        @change="subirVideo"
-        accept="video/*"
+        class="form-control"
+        v-model="preguntaForm.videoURL"
+        placeholder="Enlace de YouTube del video."
       />
     </div>
-    <button type="submit" class="btn btn-primary" @click="entregarFormulario(); cerrarEdicion()">
+    <button type="submit" class="btn btn-primary" @click="entregarFormulario">
       Guardar pregunta
     </button>
+
     <button v-if="modoEdicion" class="btn btn-secondary" @click="cerrarEdicion">Cerrar</button>
   </div>
 </template>
