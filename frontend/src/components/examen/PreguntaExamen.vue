@@ -83,7 +83,7 @@ export default {
         </div>
         <iframe
           v-if="pregunta.adjunto === 'video'"
-          class="preguntaVideo preguntaImg"
+          class="preguntaVideo"
           :src="'https://www.youtube.com/embed/' + pregunta.adjuntoURL"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -190,7 +190,7 @@ export default {
 }
 
 @media (min-width: 768px) {
-  .preguntaImg {
+  .preguntaImg, .preguntaVideo {
     flex-basis: 50%;
   }
 }
