@@ -142,6 +142,7 @@ export default {
     <ConfirmarBorrar
       v-if="mostrarModalBorrado"
       @borrar="confirmarBorrarPregunta"
+      @cerrarModal="cerrarModalBorrar"
     />
     <ConfirmarEditar
       v-if="mostrarModalEditar"
