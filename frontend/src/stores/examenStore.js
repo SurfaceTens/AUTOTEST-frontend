@@ -56,7 +56,7 @@ export const examenStore = defineStore("examenStore", {
         await crearExamen(this.numPreguntasDefecto, this.usuarioDefecto, this.nivelDificultad)
       ).data._embedded.preguntaExamenModels
     },
-    async precargarExamen(numeroPreguntas, usuario, nivelDificultad) {
+    async precargarExamenParams(numeroPreguntas, usuario, nivelDificultad) {
       this.precarga = (
         await crearExamen(numeroPreguntas, usuario, nivelDificultad)
       ).data._embedded.preguntaExamenModels
