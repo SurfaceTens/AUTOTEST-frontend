@@ -65,6 +65,7 @@ export default {
           <li v-if="!isAdmin" class="nav-item">
             <router-link class="nav-link" to="/nuevaPregunta">Crear pregunta</router-link>
           </li>
+          <!--
           <li v-if="isAdmin" class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -82,6 +83,10 @@ export default {
               </li>
               <li><router-link class="dropdown-item" to="/usuarios">Ver Usuarios</router-link></li>
             </ul>
+          </li>
+          -->
+          <li v-if="isAdmin" class="nav-item">
+            <router-link class="nav-link" to="/usuarios">Ver Usuarios</router-link>
           </li>
         </ul>
         <div class="toggle-login">
