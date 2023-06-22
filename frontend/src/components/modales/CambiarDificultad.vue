@@ -19,9 +19,9 @@ export default {
           <h3 class="modal-card_title">Selecciona una opción:</h3>
         </div>
         <div class="modal-card_body">
-          <button class="modal-option" @click="seleccionarOpcion('facil')">Facil</button>
-          <button class="modal-option" @click="seleccionarOpcion('dificil')">Dificil</button>
-          <button class="modal-option" @click="seleccionarOpcion('aleatorio')">Aleatorio</button>
+          <button class="btn btn-primary modal-option" @click="seleccionarOpcion('facil')">Facil</button>
+          <button class="btn btn-warning modal-option" @click="seleccionarOpcion('dificil')">Dificil</button>
+          <button class="btn btn-secondary modal-option" @click="seleccionarOpcion('aleatorio')">Aleatorio</button>
         </div>
       </div>
     </div>
