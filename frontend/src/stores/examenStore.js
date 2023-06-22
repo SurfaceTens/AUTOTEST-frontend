@@ -4,13 +4,21 @@ import { crearExamen, corregirPreguntaExamen } from "./api-service"
 export const examenStore = defineStore("examenStore", {
   state: () => ({
     preguntas: [],
+    precarga: [],
+    numPreguntasDefecto: 30,
+    usuarioDefecto: 1,
     nivelDificultad: "aleatorio",
   }),
   actions: {
     async generadorExamen(numeroPreguntas, usuario, nivelDificultad) {
-      this.preguntas = (
-        await crearExamen(numeroPreguntas, usuario, nivelDificultad)
-      ).data._embedded.preguntaExamenModels
+      if (this.isPrecargaReady()) {
+        this.preguntas = this.precarga
+        this.precarga = []
+      } else {
+        this.preguntas = (
+          await crearExamen(numeroPreguntas, usuario, nivelDificultad)
+        ).data._embedded.preguntaExamenModels
+      }
     },
     async corregirPregunta(pregunta) {
       await corregirPreguntaExamen(pregunta.id, pregunta)
@@ -35,6 +43,23 @@ export const examenStore = defineStore("examenStore", {
     },
     setNivelDificultad(nivelDificultad) {
       this.nivelDificultad = nivelDificultad
+    },
+    isPrecargaReady() {
+      if (this.precarga.length !== 0) {
+        return true
+      } else {
+        return false
+      }
+    },
+    async precargarExamen() {
+      this.precarga = (
+        await crearExamen(this.numPreguntasDefecto, this.usuarioDefecto, this.nivelDificultad)
+      ).data._embedded.preguntaExamenModels
+    },
+    async precargarExamen(numeroPreguntas, usuario, nivelDificultad) {
+      this.precarga = (
+        await crearExamen(numeroPreguntas, usuario, nivelDificultad)
+      ).data._embedded.preguntaExamenModels
     },
   },
 })

@@ -32,9 +32,9 @@ export default {
           <td>{{ usuario.nombre }}</td>
           <td>{{ usuario.apellidos }}</td>
           <td>
-            <!-- Aquí se colocan los botones para cada acción -->
+            <!-- Aquí se colocan los botones para cada acción 
             <button class="btn btn-primary">Editar</button>
-            <button class="btn btn-danger">Eliminar</button>
+            <button class="btn btn-danger">Eliminar</button> -->  
           </td>
         </tr>
       </tbody>

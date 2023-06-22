@@ -2,19 +2,41 @@
 import { mapActions, mapState } from "pinia"
 import { loginStore } from "@/stores/loginStore"
 import { preguntasStore } from "@/stores/preguntasStore"
+import { examenStore } from "@/stores/examenStore"
 import { usuariosStore } from "@/stores/usuariosStore"
+import Cargando from "@/components/Cargando.vue"
 
 export default {
+  components: {
+    Cargando,
+  },
+  data() {
+    return {
+      cargando: false, // Muestra el estado de carga cuando la api no esta lista.
+      primeraPrecarga: false,
+    }
+  },
   name: "Home",
   computed: {
     ...mapState(loginStore, ["isAdmin"]),
+    ...mapState(loginStore, ["isAdmin"]),
   },
   methods: {
-    ...mapActions(preguntasStore, ["getNumPreguntas"]),
+    ...mapActions(preguntasStore, ["precargarPreguntas", "getNumPreguntas"]),
+    ...mapActions(examenStore, ["precargarExamen"]),
     ...mapActions(usuariosStore, ["getNumUsuarios"]),
+    async precargar() {
+      this.cargando = true
+      if (!this.primeraPrecarga) {
+        this.precargarExamen()
+        this.precargarPreguntas()
+        this.primeraPrecarga = true
+      }
+      this.cargando = false
+    },
   },
   async created() {
-    await this.getNumPreguntas()
+    this.precargar()
   },
 }
 </script>
@@ -70,6 +92,11 @@ export default {
       </div>
     </div>
   </div>
+
+  <!-- Mostrar aviso de carga -->
+  <div v-if="cargando">
+      <Cargando/>
+    </div>
 </template>
 
 <style scoped>

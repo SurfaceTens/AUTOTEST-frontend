@@ -29,7 +29,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(examenStore, ["generadorExamen", "desordenarArray", "corregirPregunta", "getNivelDificultad", "setNivelDificultad"]),
+    ...mapActions(examenStore, ["generadorExamen", "desordenarArray", "corregirPregunta", "getNivelDificultad", "setNivelDificultad","precargarExamen"]),
 
     randomizarYLimitarPreguntas(preguntas) {
       const totalPreguntas = preguntas.length
@@ -80,6 +80,7 @@ export default {
       this.examenTerminado = false
       this.notaExamen = []
       window.scrollTo({ top: 0, behavior: "smooth" })
+      this.precargarExamen(this.numPreguntas, 1,nivelDificultad)
     },
 
     reiniciarRespuestas(preguntas) {
