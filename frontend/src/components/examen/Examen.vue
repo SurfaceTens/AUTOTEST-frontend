@@ -23,7 +23,6 @@ export default {
       cargandoExamen: true, // Muestra el estado de carga cuando la api no esta lista.
       mostrarModal: false, // Controlar la visibilidad de FinExamen.
       cambioDificultad: false, // Controlar la visibilidad de Cambiar dificultad.
-      nivelDificultadSeleccionado: "", // Nivel de dificultad elegido con el boton.
     }
   },
   computed: {
@@ -213,7 +212,7 @@ export default {
           Hacer Otro {{ this.getNivelDificultad() }}
         </button>
         <button @click="mostrarCambiarDificultad" class="btn btn-secondary btn-lg">
-          Cambiar dificultad
+          Escoger dificultad
         </button>
       </div>
 
