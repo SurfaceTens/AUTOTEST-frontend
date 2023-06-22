@@ -8,9 +8,9 @@ import { createPinia } from "pinia"
 import Home from "@/components/Home.vue"
 import Examen from "@/components/examen/Examen.vue"
 import Preguntas from "@/components/pregunta/Preguntas.vue"
-import Usuarios from "@/components/usuario/Usuarios.vue"
+import Alumnos from "@/components/alumno/Alumnos.vue"
 import NuevaPregunta from "@/components/pregunta/NuevaPregunta.vue"
-import NuevoUsuario from "@/components/usuario/NuevoUsuario.vue"
+import NuevoAlumno from "@/components/alumno/NuevoAlumno.vue"
 import ExitoFormulario from "@/components/ExitoFormulario.vue"
 
 // Importar Prime Vue y Font Awesome
@@ -27,9 +27,9 @@ const routes = [
   { path: "/",                      name: "Home",                 component: Home },
   { path: "/examen",                name: "Examen",               component: Examen },
   { path: "/preguntas",             name: "Preguntas",            component: Preguntas },
-  { path: "/usuarios",              name: "Usuarios",             component: Usuarios },
+  { path: "/alumnos",              name: "Alumnos",             component: Alumnos },
   { path: "/nuevaPregunta",         name: "NuevaPregunta",        component: NuevaPregunta },
-  { path: "/nuevoUsuario",          name: "NuevoUsuario",         component: NuevoUsuario },
+  { path: "/nuevoAlumno",          name: "NuevoAlumno",         component: NuevoAlumno },
   { path: "/exitoFormulario",       name: "ExitoFormulario",      component: ExitoFormulario }
 ]
 
