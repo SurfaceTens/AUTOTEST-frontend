@@ -197,6 +197,7 @@ button:focus-visible {
 
 .btn {
   margin: 2px;
+  cursor: pointer;
 }
 
 .btn-primary {
@@ -204,7 +205,6 @@ button:focus-visible {
   font-family: inherit;
   background-color: var(--color-primario);
   color: var(--color-secundario);
-  cursor: pointer;
   transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
 }
 
