@@ -44,7 +44,7 @@ export default {
     },
 
     mostrarRespuestas() {
-      return this.terminado && (this.respuestaSeleccionada !== "")
+      return this.terminado && this.respuestaSeleccionada !== ""
     },
 
     esRespuestaCorrecta() {
@@ -65,17 +65,21 @@ export default {
       <h3 class="card_title">{{ numero }} - {{ pregunta.enunciado }}</h3>
       <div>
         <img
-        v-if="pregunta.adjunto === 'imagen'"
+          v-if="pregunta.adjunto === 'imagen'"
           class="preguntaImg img-fluid w-100"
           :src="'./imagenesPreguntas/' + pregunta.adjuntoURL"
           alt="Imagen de la pregunta"
         />
-        <img
-        v-if="pregunta.adjunto === 'video'"
-          class="preguntaImg img-fluid w-100"
-          :src="'./video.svg'"
-          alt="Reproducir Video"
-        />
+        <iframe
+          v-if="pregunta.adjunto === 'video'"
+          class="preguntaVideo preguntaImg"
+          :src="'https://www.youtube.com/embed/' + pregunta.adjuntoURL"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          autoplay="0"
+        ></iframe>
+
       </div>
     </div>
     <ul class="alternativas-list">
@@ -90,9 +94,12 @@ export default {
             (alternativa === pregunta.correcta ||
               (!respuestaSeleccionada && alternativa === pregunta.correcta)),
           'respuesta-incorrecta':
-            mostrarRespuestas && (alternativa === respuestaSeleccionada && !esRespuestaCorrecta),
+            mostrarRespuestas && alternativa === respuestaSeleccionada && !esRespuestaCorrecta,
           'respuesta-correcta-ignorada':
-          mostrarRespuestas && (!respuestaSeleccionada && (alternativa === pregunta.correcta && !esRespuestaCorrecta)),
+            mostrarRespuestas &&
+            !respuestaSeleccionada &&
+            alternativa === pregunta.correcta &&
+            !esRespuestaCorrecta,
         }"
         @click="$emit('opcionSeleccionada', alternativa)"
       >

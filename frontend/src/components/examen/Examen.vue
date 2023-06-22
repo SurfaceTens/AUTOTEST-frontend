@@ -3,12 +3,14 @@ import { mapActions, mapState } from "pinia"
 import { examenStore } from "@/stores/examenStore"
 import Pregunta from "@/components/examen/PreguntaExamen.vue"
 import FinExamen from "@/components/modales/FinExamen.vue"
+import CambiarDificultad from "@/components/modales/CambiarDificultad.vue"
 import Cargando from "@/components/Cargando.vue"
 
 export default {
   components: {
     Pregunta,
     FinExamen,
+    CambiarDificultad,
     Cargando,
   },
   data() {
@@ -20,6 +22,8 @@ export default {
       notaExamen: [], // Nota del examen.
       cargandoExamen: true, // Muestra el estado de carga cuando la api no esta lista.
       mostrarModal: false, // Controlar la visibilidad de FinExamen.
+      cambioDificultad: false, // Controlar la visibilidad de Cambiar dificultad.
+      nivelDificultadSeleccionado: "", // Nivel de dificultad elegido con el boton.
     }
   },
   computed: {
@@ -29,7 +33,14 @@ export default {
     },
   },
   methods: {
-    ...mapActions(examenStore, ["generadorExamen", "desordenarArray", "corregirPregunta", "getNivelDificultad", "setNivelDificultad","precargarExamenParams"]),
+    ...mapActions(examenStore, [
+      "generadorExamen",
+      "desordenarArray",
+      "corregirPregunta",
+      "getNivelDificultad",
+      "setNivelDificultad",
+      "precargarExamenParams",
+    ]),
 
     randomizarYLimitarPreguntas(preguntas) {
       const totalPreguntas = preguntas.length
@@ -58,6 +69,7 @@ export default {
 
     cerrarModal() {
       this.mostrarModal = false
+      this.cambioDificultad = false
     },
 
     mostrarRespuestas() {
@@ -72,7 +84,7 @@ export default {
 
     async generarNuevoExamen(nivelDificultad) {
       this.cargandoExamen = true
-      await this.generarExamen(this.numPreguntas, 1,nivelDificultad)
+      await this.generarExamen(this.numPreguntas, 1, nivelDificultad)
       this.cargandoExamen = false
       this.preguntas = this.randomizarYLimitarPreguntas(this.preguntas)
       this.respuestasExamen = []
@@ -80,7 +92,7 @@ export default {
       this.examenTerminado = false
       this.notaExamen = []
       window.scrollTo({ top: 0, behavior: "smooth" })
-      this.precargarExamenParams(this.numPreguntas, 1,nivelDificultad)
+      this.precargarExamenParams(this.numPreguntas, 1, this.getNivelDificultad())
     },
 
     reiniciarRespuestas(preguntas) {
@@ -90,9 +102,16 @@ export default {
       })
       return preguntasReiniciadas
     },
-
-    cambiarDificultad() {
-      this.setNivelDificultad = "facil"
+    
+    mostrarCambiarDificultad() {
+      this.cambioDificultad = true
+    },  
+    
+    cambiarDificultad(nuevaDificultad) {
+      this.setNivelDificultad(nuevaDificultad)
+      this.generarNuevoExamen(nuevaDificultad)
+      this.cerrarModal()
+      window.scrollTo({ top: 0, behavior: "smooth" })
     },
 
     corregirExamen() {
@@ -129,7 +148,7 @@ export default {
   <div class="area-examen">
     <!-- Mostrar aviso de carga -->
     <div v-if="cargandoExamen">
-      <Cargando/>
+      <Cargando />
     </div>
 
     <!-- Versión resoluble del examen -->
@@ -186,13 +205,23 @@ export default {
         </li>
       </ul>
       <div class="fin-examen">
-        <button @click="generarNuevoExamen(this.getNivelDificultad()), cerrarModal()" class="btn btn-success btn-lg">
-          Hacer Otro
+        <button
+          @click="generarNuevoExamen(this.getNivelDificultad()), cerrarModal()"
+          class="btn btn-success btn-lg"
+        >
+          Hacer Otro {{ this.getNivelDificultad() }}
         </button>
-        <button @click="cambiarDificultad" class="btn btn-success btn-lg">
+        <button @click="mostrarCambiarDificultad" class="btn btn-secondary btn-lg">
           Cambiar dificultad
         </button>
       </div>
+
+      <!-- Modal cambio de dificultad -->
+      <CambiarDificultad
+        v-if="cambioDificultad"
+        @cambiarDificultad="cambiarDificultad"
+        @cerrar="cerrarModal"
+      />
 
       <!-- Modal revisarExamen -->
       <FinExamen

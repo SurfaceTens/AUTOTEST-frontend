@@ -34,7 +34,7 @@ export default {
 
 <template>
   <!-- Confirmacion para entregar examen -->
-  <div v-if="modalTipo == `finExamen` " class="modal-overlay" @click="cerrarModal">
+  <div v-if="modalTipo == `finExamen`" class="modal-overlay" @click="cerrarModal">
     <div class="modal-container">
       <div class="modal-card modales-card">
         <div class="modal-card_header">
@@ -203,7 +203,7 @@ export default {
 }
 
 .hover-yellow:hover {
-  color: rgb(255, 207, 0);
+  color: rgb(255, 207, 0) !important;
 }
 
 .sombra {

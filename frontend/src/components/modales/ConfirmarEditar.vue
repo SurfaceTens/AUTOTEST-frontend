@@ -1,10 +1,5 @@
 <script>
 export default {
-  data() {
-    return {
-      colapsado: false,
-    }
-  },
   methods: {
     cerrarModal() {
       this.$emit("cerrarModal")
