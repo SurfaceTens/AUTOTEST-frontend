@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	version="1.0">
+
+	<mapped-superclass class="es.mde.acing.utils.ExamenImpl" access="FIELD">
+		<attributes>
+			
+			<many-to-one name="alumno" fetch="LAZY" optional="false"
+				target-entity="com.dim.autotestAPI.entidades.AlumnoConID">
+				<join-column name="alumno_id" referenced-column-name="ID" />
+			</many-to-one>
+			
+			<one-to-many name="preguntas" mapped-by="examen" target-entity="com.dim.autotestAPI.entidades.PreguntaExamenConID"/>
+			
+		</attributes>
+
+	</mapped-superclass>
+
+</entity-mappings>
