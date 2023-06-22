@@ -38,35 +38,8 @@ export default {
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
 
-          <li v-if="!isAdmin" class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="preguntasDropdown"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Examen
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="examenDropdown">
-              <li>
-                <router-link class="dropdown-item" to="/examen" @click="setNivelDificultad('facil')"
-                  >Preguntas Fáciles</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  class="dropdown-item"
-                  to="/examen"
-                  @click="setNivelDificultad('dificil')"
-                  >Preguntas Difíciles</router-link
-                >
-              </li>
-              <li>
-                <router-link class="dropdown-item" to="/examen">Dificultad Aleatoria</router-link>
-              </li>
-            </ul>
+          <li v-if="!isAdmin" class="nav-item">
+            <router-link class="nav-link" to="/Examen">Examen</router-link>
           </li>
 
           <li v-if="isAdmin" class="nav-item dropdown">
