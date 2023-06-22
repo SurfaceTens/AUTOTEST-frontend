@@ -109,6 +109,7 @@ export default {
     
     cambiarDificultad(nuevaDificultad) {
       this.setNivelDificultad(nuevaDificultad)
+      this.precargarExamenParams(this.numPreguntas, 1, this.getNivelDificultad())
       this.generarNuevoExamen(nuevaDificultad)
       this.cerrarModal()
       window.scrollTo({ top: 0, behavior: "smooth" })
