@@ -81,8 +81,7 @@ export default {
         <div class="welcome-section">
           <router-link to="/nuevaPregunta" class="btn-start btn-crear">Crear preguntas</router-link>
           <router-link to="/preguntas" class="btn-start btn-examen">Ver preguntas</router-link>
-          <!-- Versión resoluble del examen -->
-          <!-- <router-link to="/nuevoAlumno" class="btn-start btn-crear">Crear alumno</router-link> -->
+          <router-link to="/nuevoAlumno" class="btn-start btn-crear">Crear alumno</router-link>
           <router-link to="/alumnos" class="btn-start btn-alumnos">Ver alumnos</router-link>
         </div>
       </div>
