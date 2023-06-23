@@ -84,7 +84,7 @@ export default {
             </ul>
           </li>
           <li v-if="isAdmin" class="nav-item">
-            <router-link class="nav-link" to="/usuarios">Ver Usuarios</router-link>
+            <router-link class="nav-link" to="/Examenes">Ver Examenes</router-link>
           </li>
         </ul>
         <div class="toggle-login">
