@@ -1,6 +1,7 @@
 <script>
 import { mapActions, mapState } from "pinia"
 import { examenStore } from "@/stores/examenStore"
+import { actualizarExamen } from "@/stores/api-service"
 import Pregunta from "@/components/examen/PreguntaExamen.vue"
 import FinExamen from "@/components/modales/FinExamen.vue"
 import CambiarDificultad from "@/components/modales/CambiarDificultad.vue"
@@ -114,12 +115,25 @@ export default {
       window.scrollTo({ top: 0, behavior: "smooth" })
     },
 
+    getExamenID(pregunta) {
+    const examenURL = pregunta._links.examen.href;
+    const examenIDRegex = /\/(\d+)$/;
+    const match = examenURL.match(examenIDRegex);
+    
+    if (match && match.length > 1) {
+      return parseInt(match[1]);
+    }
+    return 0;
+  },
+
     corregirExamen() {
       let acertadas = 0
+      let examenID = 0
       this.preguntas.forEach((pregunta) => {
         if (pregunta.respuesta === pregunta.correcta) {
           acertadas++
         }
+      examenID = this.getExamenID(pregunta)
         this.corregirPregunta(pregunta)
       })
 
