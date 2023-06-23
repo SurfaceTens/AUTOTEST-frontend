@@ -34,10 +34,9 @@ export default {
         <tr v-for="alumno in alumnos" :key="alumno.nombreAlumno">
           <td>{{ alumno.id }}</td>
           <td>{{ alumno.numExamenes }}</td>
-          <td>{{ alumno }}</td>
+          <td>{{ alumno.nota }}</td>
           <td>
-            <button class="btn btn-primary">Editar</button>
-            <button class="btn btn-danger">Eliminar</button>  
+            <button class="btn btn-primary">Ver Preguntas</button>
           </td>
         </tr>
       </tbody>
