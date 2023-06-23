@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
-import { crearExamen } from "./api-service"
+import { getEntidades } from "./api-service"
 
-export const examenStore = defineStore("examenStore", {
+export const examenPasadoStore = defineStore("examenPasadoStore", {
   state: () => ({
     examenes: [],
     precarga: [],

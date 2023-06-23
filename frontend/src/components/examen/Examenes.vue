@@ -1,18 +1,18 @@
 <script>
 import { mapActions, mapState } from "pinia"
 import { loginStore } from "@/stores/loginStore"
-import { alumnosStore } from "@/stores/alumnosStore"
+import { examenPasadoStore } from "@/stores/examenPasadoStore"
 
 export default {
   computed: {
     ...mapState(loginStore, ["isAdmin"]),
-    ...mapState(alumnosStore, ["alumnos"]),
+    ...mapState(examenPasadoStore, ["examenes"]),
   },
   methods: {
-    ...mapActions(alumnosStore, ["getAlumnos"]),
+    ...mapActions(examenPasadoStore, ["getExamenes"]),
   },
   created() {
-    this.getAlumnos()
+    this.getExamenes()
   },
 }
 </script>
@@ -31,10 +31,10 @@ export default {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="alumno in alumnos" :key="alumno.nombreAlumno">
-          <td>{{ alumno.id }}</td>
-          <td>{{ alumno.numExamenes }}</td>
-          <td>{{ alumno.nota }}</td>
+        <tr v-for="examen in examenes" :key="examen.nombreExamen">
+          <td>{{ examen.id }}</td>
+          <td>{{ examen.numExamenes }}</td>
+          <td>{{ examen.nota }}</td>
           <td>
             <button class="btn btn-primary">Ver Preguntas</button>
           </td>
@@ -45,6 +45,6 @@ export default {
 
   <!-- <div v-else> -->
   <div v-if="false">
-    <h1>No se dispone de los permisos para visualizar el listado de alumnos</h1>
+    <h1>No se dispone de los permisos para visualizar el listado de examenes</h1>
   </div>
 </template>
