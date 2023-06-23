@@ -120,7 +120,7 @@ export default {
           <th>Dificultad</th>
           <th>Enunciado</th>
           <th>Adjunto</th>
-          <th>Acciones</th>
+          <th>Acciones <button class="btn btn-sm btn-link"><i class="fas fa-plus-square"></i></button> </th>
         </tr>
       </thead>
       <tbody>

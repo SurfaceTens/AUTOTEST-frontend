@@ -33,7 +33,7 @@ export default {
       <tbody>
         <tr v-for="examen in examenes" :key="examen.nombreExamen">
           <td>{{ examen.id }}</td>
-          <td>{{ examen.numExamenes }}</td>
+          <td>{{ examen.numPreguntas }}</td>
           <td>{{ examen.nota }}</td>
           <td>
             <button class="btn btn-primary">Ver Preguntas</button>
