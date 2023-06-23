@@ -116,15 +116,15 @@ export default {
     },
 
     getExamenID(pregunta) {
-    const examenURL = pregunta._links.examen.href;
-    const examenIDRegex = /\/(\d+)$/;
-    const match = examenURL.match(examenIDRegex);
-    
-    if (match && match.length > 1) {
-      return parseInt(match[1]);
-    }
-    return 0;
-  },
+      const examenURL = pregunta._links.examen.href
+      const examenIDRegex = /\/(\d+)$/
+      const match = examenURL.match(examenIDRegex)
+
+      if (match && match.length > 1) {
+        return parseInt(match[1])
+      }
+      return 0
+    },
 
     corregirExamen() {
       let acertadas = 0
@@ -133,9 +133,15 @@ export default {
         if (pregunta.respuesta === pregunta.correcta) {
           acertadas++
         }
-      examenID = this.getExamenID(pregunta)
+        examenID = this.getExamenID(pregunta)
         this.corregirPregunta(pregunta)
       })
+
+      const notaObjeto = {
+        nota: acertadas,
+      }
+
+      actualizarExamen(examenID, notaObjeto)
 
       const totalPreguntas = this.preguntas.length
       const porcentajeAciertos = (acertadas / totalPreguntas) * 100
