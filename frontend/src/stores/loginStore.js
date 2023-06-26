@@ -7,7 +7,6 @@ export const loginStore = defineStore("login", {
   actions: {
     toggleAdmin() {
       this.isAdmin = !this.isAdmin
-      console.log("cambiando rol, rol actual:", this.isAdmin)
     },
   },
 })

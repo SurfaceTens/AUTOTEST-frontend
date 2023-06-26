@@ -65,3 +65,7 @@ export function actualizarAlumno(alumnoID,alumno) {
 export function actualizarExamen(examenID,examen) {
   return llamadaApi(`${host}/examenes/${examenID}`,`put`,examen)
 }
+
+export function getPreguntasExamen(examenID) {
+  return llamadaApi(`${host}/examenes/${examenID}/preguntas`)
+}

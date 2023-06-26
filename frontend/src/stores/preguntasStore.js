@@ -26,6 +26,9 @@ export const preguntasStore = defineStore("preguntas", {
         this.preguntas = (await getEntidades("preguntas")).data._embedded.preguntaModels
       }
     },
+    setPreguntas(preguntas) {
+      this.preguntas = preguntas
+    },
     async editarPregunta(pregunta) {
       await actualizarPregunta(pregunta.id, pregunta)
     },

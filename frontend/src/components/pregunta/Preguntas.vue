@@ -2,8 +2,8 @@
 import { mapActions, mapState } from "pinia"
 import { loginStore } from "@/stores/loginStore"
 import { preguntasStore } from "@/stores/preguntasStore"
-import { eliminarPregunta } from "@/stores/api-service"
-import FormularioPregunta from "./FormularioPregunta.vue"
+import { eliminarPregunta, getPreguntasExamen } from "@/stores/api-service"
+import FormularioPregunta from "@/components/pregunta/FormularioPregunta.vue"
 import ConfirmarBorrar from "@/components/modales/ConfirmarBorrar.vue"
 import ConfirmarEditar from "@/components/modales/ConfirmarEditar.vue"
 import Cargando from "@/components/Cargando.vue"
@@ -14,6 +14,13 @@ export default {
     ConfirmarBorrar,
     ConfirmarEditar,
     Cargando,
+  },
+  props: {
+    sonDeExamen: {
+      type: Boolean,
+      default: false,
+    },
+    examenID: null,
   },
   data() {
     return {
@@ -32,7 +39,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(preguntasStore, ["getPreguntas", "getPreguntaPorId"]),
+    ...mapActions(preguntasStore, ["getPreguntas", "setPreguntas", "getPreguntaPorId"]),
     ordenarPreguntas() {
       this.preguntas.sort((a, b) => a.id - b.id)
     },
@@ -43,6 +50,9 @@ export default {
     cerrarFormulario() {
       this.preguntaSeleccionada = null
       this.modoEdicion = false
+    },
+    cerrarPreguntasExamen() {
+      this.$emit("cerrar")
     },
     borrarPregunta(pregunta) {
       this.preguntaSeleccionada = pregunta
@@ -60,6 +70,11 @@ export default {
       } else {
         return "Muy difícil"
       }
+    },
+    mostrarAcierto(acierto) {
+      if (!acierto) {
+        return "\u25CB"
+      } else return ""
     },
     async confirmarBorrarPregunta() {
       this.cargandoPreguntas = true
@@ -88,7 +103,13 @@ export default {
     },
   },
   async created() {
-    await this.getPreguntas()
+    if (this.sonDeExamen) {
+      const respuesta = await getPreguntasExamen(this.examenID)
+      this.preguntas = this.setPreguntas(respuesta.data._embedded.preguntaExamenModels)
+      console.log(this.preguntas)
+    } else {
+      await this.getPreguntas()
+    }
     this.ordenarPreguntas()
     this.cargandoPreguntas = false
   },
@@ -116,25 +137,37 @@ export default {
     <table v-else class="listado-table">
       <thead>
         <tr>
-          <th>Tematica</th>
+          <th>Numero</th>
+          <th>Acetada</th>
           <th>Dificultad</th>
           <th>Enunciado</th>
           <th>Adjunto</th>
-          <th>Acciones <button class="btn btn-sm btn-link"><i class="fas fa-plus-square"></i></button> </th>
+          <th>
+            Acciones
+            <button v-if="!sonDeExamen" class="btn btn-sm btn-link">
+              <i class="fas fa-plus-square"></i>
+            </button>
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="pregunta in preguntas" :key="pregunta.id">
-          <td>{{ pregunta.tematica }}</td>
+        <tr v-for="(pregunta, numero) in this.preguntas" :key="pregunta.id">
+          <td>{{ numero + 1 }}</td>
+          <td>{{ mostrarAcierto(pregunta.acertada) }}</td>
           <td>{{ getDificultadTexto(pregunta.dificultad) }}</td>
           <td>{{ pregunta.enunciado }}</td>
           <td>{{ pregunta.adjunto }}</td>
           <td>
             <button class="btn btn-primary" @click="mostrarPregunta(pregunta)">Editar</button>
 
-            <button class="btn btn-danger" @click="borrarPregunta(pregunta)">Eliminar</button>
+            <button v-if="!sonDeExamen" class="btn btn-danger" @click="borrarPregunta(pregunta)">
+              Eliminar
+            </button>
           </td>
         </tr>
+        <button v-if="sonDeExamen" class="btn btn-secondary" @click="cerrarPreguntasExamen">
+          Cerrar
+        </button>
       </tbody>
     </table>
 
@@ -144,10 +177,7 @@ export default {
       @borrar="confirmarBorrarPregunta"
       @cerrarModal="cerrarModalBorrar"
     />
-    <ConfirmarEditar
-      v-if="mostrarModalEditar"
-      @cerrarModal="cerrarModalEditar"
-    />
+    <ConfirmarEditar v-if="mostrarModalEditar" @cerrarModal="cerrarModalEditar" />
   </div>
 
   <div v-else>
