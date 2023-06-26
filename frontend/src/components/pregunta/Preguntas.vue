@@ -141,10 +141,11 @@ export default {
       <thead>
         <tr>
           <th>Nº</th>
-          <th>Acetada</th>
-          <th>Dificultad</th>
+          <th v-if="sonDeExamen">Acetada</th>
+          <th v-if="!sonDeExamen">Dificultad</th>
           <th>Enunciado</th>
-          <th>Correcta</th>
+          <th v-if="sonDeExamen">Correcta</th>
+          <th v-if="sonDeExamen">Marcada</th>
           <th>
             Acciones
             <router-link to="/NuevaPregunta">
@@ -152,16 +153,25 @@ export default {
                 <i class="fas fa-plus-square"></i>
               </button>
             </router-link>
+            <button v-if="sonDeExamen" class="btn btn-sm btn-link" @click="cerrarPreguntasExamen">
+              <i class="fas fa-right-from-bracket"></i>
+            </button>
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(pregunta, numero) in this.preguntas" :key="pregunta.id">
+        <tr
+          v-for="(pregunta, numero) in preguntas"
+          :key="pregunta.id"
+          :class="{ 'fila-incorrecta': !pregunta.acertada && sonDeExamen, 'no-clickable': !pregunta.acertada && sonDeExamen }"
+
+        >
           <td>{{ numero + 1 }}</td>
-          <td>{{ mostrarAcierto(pregunta.acertada) }}</td>
-          <td>{{ getDificultadTexto(pregunta.dificultad) }}</td>
+          <td v-if="sonDeExamen">{{ mostrarAcierto(pregunta.acertada) }}</td>
+          <td v-if="!sonDeExamen">{{ getDificultadTexto(pregunta.dificultad) }}</td>
           <td>{{ pregunta.enunciado }}</td>
-          <td>{{ pregunta.correcta }}</td>
+          <td v-if="sonDeExamen">{{ pregunta.correcta }}</td>
+          <td v-if="sonDeExamen">{{ pregunta.respuesta }}</td>
           <td>
             <button class="btn btn-primary" @click="mostrarPregunta(pregunta)">Editar</button>
 
@@ -189,3 +199,12 @@ export default {
     <h1>No se dispone de los permisos para visualizar el listado de preguntas</h1>
   </div>
 </template>
+
+<style>
+.fila-incorrecta {
+  background-color: rgba(255, 0, 0, 0.15);
+}
+.no-clickable {
+  pointer-events: none;
+}
+</style>
