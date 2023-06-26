@@ -63,14 +63,16 @@ export default {
         </thead>
         <tbody>
           <tr v-for="examen in examenes" :key="examen.nombreExamen">
-            <td v-if="examen.entregado ">{{ examen.alumnoDatos }}</td>
-            <td v-if="examen.entregado ">{{ examen.aciertos }}</td>
-            <td v-if="examen.entregado ">{{ examen.fallos }}</td>
-            <td v-if="examen.entregado ">{{ examen.numPreguntas - (examen.aciertos + examen.fallos) }}</td>
-            <td v-if="examen.entregado ">{{ examen.nota }}</td>
-            <td v-if="examen.entregado ">
+            <td v-if="examen.entregado">{{ examen.alumnoDatos }}</td>
+            <td v-if="examen.entregado">{{ examen.aciertos }}</td>
+            <td v-if="examen.entregado">{{ examen.fallos }}</td>
+            <td v-if="examen.entregado">
+              {{ examen.numPreguntas - (examen.aciertos + examen.fallos) }}
+            </td>
+            <td v-if="examen.entregado">{{ examen.nota }}</td>
+            <td v-if="examen.entregado">
               <button class="btn btn-primary" @click="mostrarPreguntas(examen.id)">
-                {{examen.numPreguntas}} Preguntas
+                {{ examen.numPreguntas }} Preguntas
               </button>
             </td>
           </tr>

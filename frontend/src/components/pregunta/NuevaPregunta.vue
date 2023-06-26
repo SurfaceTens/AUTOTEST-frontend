@@ -1,6 +1,6 @@
 <script>
-import FormularioPregunta from './FormularioPregunta.vue';
-import { guardarPregunta } from "@/stores/api-service";
+import FormularioPregunta from "./FormularioPregunta.vue"
+import { guardarPregunta } from "@/stores/api-service"
 
 export default {
   components: {
@@ -8,13 +8,12 @@ export default {
   },
   methods: {
     mostrarMensajeExito() {
-      this.$router.push("ExitoFormulario");
+      this.$router.push("ExitoFormulario")
     },
     entregarFormulario() {
-      guardarPregunta(this.pregunta)
-        .then(() => {
-          this.mostrarMensajeExito();
-        });
+      guardarPregunta(this.pregunta).then(() => {
+        this.mostrarMensajeExito()
+      })
     },
   },
 }
@@ -29,4 +28,3 @@ export default {
     </div>
   </div>
 </template>
-

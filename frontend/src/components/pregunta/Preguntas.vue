@@ -102,16 +102,16 @@ export default {
       this.mostrarModalEditar = false
     },
     async iniciarPreguntas() {
-    if (this.sonDeExamen) {
-      const respuesta = await getPreguntasExamen(this.examenID)
-      this.preguntas = this.setPreguntas(respuesta.data._embedded.preguntaExamenModels)
-      console.log(this.preguntas)
-    } else {
-      await this.getPreguntas()
-    }
-    this.ordenarPreguntas()
-    this.cargandoPreguntas = false
-  },
+      if (this.sonDeExamen) {
+        const respuesta = await getPreguntasExamen(this.examenID)
+        this.preguntas = this.setPreguntas(respuesta.data._embedded.preguntaExamenModels)
+        console.log(this.preguntas)
+      } else {
+        await this.getPreguntas()
+      }
+      this.ordenarPreguntas()
+      this.cargandoPreguntas = false
+    },
   },
   async created() {
     this.iniciarPreguntas()

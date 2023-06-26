@@ -40,7 +40,7 @@ export default {
           <td>{{ alumno.apellidos }}</td>
           <td>
             <button class="btn btn-primary">Editar</button>
-            <button class="btn btn-danger">Eliminar</button>  
+            <button class="btn btn-danger">Eliminar</button>
           </td>
         </tr>
       </tbody>

@@ -13,10 +13,10 @@ export const preguntasStore = defineStore("preguntas", {
     },
     async getNumPreguntas() {
       try {
-        const response = await getTotalEntidades("preguntas");
-        this.numPreguntas = response.data;
+        const response = await getTotalEntidades("preguntas")
+        this.numPreguntas = response.data
       } catch (error) {
-        console.error("Error al obtener el número de preguntas:", error);
+        console.error("Error al obtener el número de preguntas:", error)
       }
     },
     async getPreguntas() {
@@ -41,7 +41,9 @@ export const preguntasStore = defineStore("preguntas", {
       }
     },
     async precargarPreguntas() {
-      this.precarga = this.preguntas = (await getEntidades("preguntas")).data._embedded.preguntaModels
+      this.precarga = this.preguntas = (
+        await getEntidades("preguntas")
+      ).data._embedded.preguntaModels
     },
   },
 })

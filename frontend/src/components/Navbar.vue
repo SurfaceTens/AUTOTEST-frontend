@@ -37,7 +37,6 @@ export default {
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-
           <li v-if="!isAdmin" class="nav-item">
             <router-link class="nav-link" to="/Examen">Examen</router-link>
           </li>

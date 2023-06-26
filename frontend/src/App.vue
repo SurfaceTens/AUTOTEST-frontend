@@ -12,10 +12,10 @@ export default {
     Navbar,
   },
   methods: {
-    ...mapActions(preguntasStore, ["precargarPreguntas","getNumPreguntas"]),
+    ...mapActions(preguntasStore, ["precargarPreguntas", "getNumPreguntas"]),
     ...mapActions(examenStore, ["precargarExamen"]),
     ...mapActions(examenesStore, ["precargarExamenes"]),
-    ...mapActions(alumnosStore, ["precargarAlumnos","getNumAlumnos"]),
+    ...mapActions(alumnosStore, ["precargarAlumnos", "getNumAlumnos"]),
     async precargar() {
       this.getNumPreguntas()
       this.getNumAlumnos()

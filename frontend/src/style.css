@@ -221,7 +221,7 @@ button:focus-visible {
 }
 
 .btn-link {
-  color:darkblue;
+  color: darkblue;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
@@ -280,15 +280,15 @@ button:focus-visible {
   body {
     font-size: 1.2rem;
   }
-  
+
   .card {
     max-width: 100%;
   }
-  
+
   .card_title {
     font-size: 1.2rem;
   }
-  
+
   .card_content {
     font-size: 0.9rem;
   }

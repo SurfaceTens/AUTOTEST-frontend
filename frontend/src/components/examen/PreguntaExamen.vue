@@ -190,7 +190,8 @@ export default {
 }
 
 @media (min-width: 768px) {
-  .preguntaImg, .preguntaVideo {
+  .preguntaImg,
+  .preguntaVideo {
     flex-basis: 50%;
   }
 }

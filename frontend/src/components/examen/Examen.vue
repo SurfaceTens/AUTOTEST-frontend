@@ -154,6 +154,30 @@ export default {
         entregado: true,
         nota: resultado,
         aciertos: acertadas,
+        cargarImagen(foto) {
+          let file = foto.files[0]
+          let reader = new FileReader()
+          reader.onload = () => {
+            this.material.imagen = reader.result
+            const canvas = document.createElement("canvas")
+            const context = canvas.getContext("2d")
+
+            const newWidth = 80
+            const newHeight = 80
+
+            canvas.width = newWidth
+            canvas.height = newHeight
+
+            const img = new Image()
+            img.onload = () => {
+              context.drawImage(img, 0, 0, newWidth, newHeight)
+              const reducedImage = canvas.toDataURL("image/jpeg", 0.8)
+              this.material.imgReducida = reducedImage
+            }
+            img.src = this.material.imagen
+          }
+          reader.readAsDataURL(file)
+        },
         fallos: falladas,
       }
       actualizarExamen(examenID, notaObjeto)

@@ -28,10 +28,10 @@ const routes = [
   { path: "/",                      name: "Home",                 component: Home },
   { path: "/examen",                name: "Examen",               component: Examen },
   { path: "/preguntas",             name: "Preguntas",            component: Preguntas },
-  { path: "/alumnos",              name: "Alumnos",             component: Alumnos },
+  { path: "/alumnos",               name: "Alumnos",              component: Alumnos },
   { path: "/examenes",              name: "Examenes",             component: Examenes },
   { path: "/nuevaPregunta",         name: "NuevaPregunta",        component: NuevaPregunta },
-  { path: "/nuevoAlumno",          name: "NuevoAlumno",         component: NuevoAlumno },
+  { path: "/nuevoAlumno",           name: "NuevoAlumno",          component: NuevoAlumno },
   { path: "/exitoFormulario",       name: "ExitoFormulario",      component: ExitoFormulario }
 ]
 

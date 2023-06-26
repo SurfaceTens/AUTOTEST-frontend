@@ -13,10 +13,10 @@ export const alumnosStore = defineStore("alumnos", {
     },
     async getNumAlumnos() {
       try {
-        const response = await getTotalEntidades("alumnos");
-        this.numAlumnos = response.data;
+        const response = await getTotalEntidades("alumnos")
+        this.numAlumnos = response.data
       } catch (error) {
-        console.error("Error al obtener el número de preguntas:", error);
+        console.error("Error al obtener el número de preguntas:", error)
       }
     },
 
