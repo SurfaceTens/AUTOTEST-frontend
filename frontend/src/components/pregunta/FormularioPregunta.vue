@@ -52,6 +52,17 @@ export default {
       }
       return "sinImagen.jpg"
     },
+    seleccionarImagen(event) {
+      const imagenSeleccionada = event.target.files[0]
+      this.cargarImagen(imagenSeleccionada)
+    },
+    cargarImagen(img) {
+      let reader = new FileReader()
+      reader.onload = () => {
+        this.preguntaForm.imagenURL = reader.result
+      }
+      reader.readAsDataURL(img)
+    },
 
     extraerIdVideoYoutube(url) {
       if (url) {
@@ -77,7 +88,6 @@ export default {
     entregarFormulario() {
       this.preguntaForm.adjunto = this.tipoArchivo
       this.preguntaForm.dificultad = this.dificultadMap[this.preguntaForm.dificultad] || 0
-      this.preguntaForm.imagenURL = this.validarImagen(this.preguntaForm.imagenURL)
       this.preguntaForm.videoURL = this.extraerIdVideoYoutube(this.preguntaForm.videoURL)
       if (this.modoEdicion) {
         actualizarPregunta(this.preguntaForm.id, this.preguntaForm)
@@ -211,13 +221,7 @@ export default {
     </div>
     <div v-if="tipoArchivo === 'imagen'" class="form-group">
       <label for="imagen" class="form-label">Enlace de la imagen:</label>
-      <input
-        type="text"
-        id="imagen"
-        class="form-control"
-        v-model="preguntaForm.imagenURL"
-        placeholder="Enlace de la imagen."
-      />
+      <input type="file" id="imagen" class="form-control" @change="seleccionarImagen" />
     </div>
     <div v-if="tipoArchivo === 'video'" class="form-group">
       <label for="video" class="form-label">Enlace de YouTube:</label>

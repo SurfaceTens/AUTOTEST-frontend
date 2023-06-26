@@ -34,6 +34,9 @@ export default {
       }
       return []
     },
+    mostrarImagenBase64() {
+      return this.pregunta.adjuntoURL.startsWith("data:image")
+    },
 
     alternativasAleatorias() {
       return this.desordenarArray(this.alternativas)
@@ -58,6 +61,18 @@ export default {
     esEnlaceExterno(url) {
       return url.startsWith("http://") || url.startsWith("https://")
     },
+    base64ToURL(base64String) {
+      if (base64String.startsWith("data:image")) {
+        return base64String
+      }
+      const binaryString = atob(base64String)
+      const bytes = new Uint8Array(binaryString.length)
+      for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i)
+      }
+      const blob = new Blob([bytes], { type: "image/jpeg" })
+      return URL.createObjectURL(blob)
+    },
   },
 }
 </script>
@@ -72,6 +87,20 @@ export default {
             v-if="pregunta.adjunto === 'imagen' && !esEnlaceExterno(pregunta.adjuntoURL)"
             class="preguntaImg img-fluid w-100"
             :src="'./imagenesPreguntas/' + pregunta.adjuntoURL"
+            alt="Imagen de la pregunta"
+          />
+          <img
+            v-else-if="pregunta.adjunto === 'imagen'"
+            class="preguntaImg img-fluid w-100"
+            :src="pregunta.adjuntoURL"
+            alt="Imagen de la pregunta"
+          />
+        </div>
+        <div>
+          <img
+            v-if="pregunta.adjunto === 'imagen' && !esEnlaceExterno(pregunta.adjuntoURL)"
+            class="preguntaImg img-fluid w-100"
+            :src="mostrarImagenBase64 ? pregunta.adjuntoURL : base64ToURL(pregunta.adjuntoURL)"
             alt="Imagen de la pregunta"
           />
           <img
