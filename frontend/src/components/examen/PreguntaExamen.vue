@@ -82,6 +82,7 @@ export default {
     <div class="card_header">
       <h3 class="card_title">{{ numero }} - {{ pregunta.enunciado }}</h3>
       <div>
+        <!--
         <div>
           <img
             v-if="pregunta.adjunto === 'imagen' && !esEnlaceExterno(pregunta.adjuntoURL)"
@@ -96,20 +97,13 @@ export default {
             alt="Imagen de la pregunta"
           />
         </div>
-        <div>
-          <img
-            v-if="pregunta.adjunto === 'imagen' && !esEnlaceExterno(pregunta.adjuntoURL)"
-            class="preguntaImg img-fluid w-100"
-            :src="mostrarImagenBase64 ? pregunta.adjuntoURL : base64ToURL(pregunta.adjuntoURL)"
-            alt="Imagen de la pregunta"
-          />
-          <img
-            v-else-if="pregunta.adjunto === 'imagen'"
-            class="preguntaImg img-fluid w-100"
-            :src="pregunta.adjuntoURL"
-            alt="Imagen de la pregunta"
-          />
-        </div>
+      -->
+        <img
+          v-if="pregunta.adjunto === 'imagen'"
+          class="preguntaImg img-fluid w-100"
+          :src="pregunta.adjuntoURL"
+          alt="Imagen de la pregunta"
+        />
         <iframe
           v-if="pregunta.adjunto === 'video'"
           class="preguntaVideo"
