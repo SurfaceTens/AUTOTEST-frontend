@@ -1,10 +1,31 @@
 <script>
+import { mapActions } from "pinia"
+import { preguntasStore } from "@/stores/preguntasStore"
+import { examenStore } from "@/stores/examenStore"
+import { alumnosStore } from "@/stores/alumnosStore"
 import Navbar from "@/components/Navbar.vue"
 
 export default {
   name: "App",
   components: {
     Navbar,
+  },
+  methods: {
+    ...mapActions(preguntasStore, ["precargarPreguntas"]),
+    ...mapActions(examenStore, ["precargarExamen"]),
+    ...mapActions(alumnosStore, ["precargarAlumnos"]),
+    async precargar() {
+      if (!this.primeraPrecarga) {
+        this.precargarExamen()
+        this.precargarPreguntas()
+        this.precargarAlumnos()
+        this.primeraPrecarga = true
+      }
+      console.log("Precarga completa")
+    },
+  },
+  async created() {
+    this.precargar()
   },
 }
 </script>
