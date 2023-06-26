@@ -128,20 +128,17 @@ export default {
 
     corregirExamen() {
       let acertadas = 0
+      let falladas = 0
       let examenID = 0
       this.preguntas.forEach((pregunta) => {
         if (pregunta.respuesta === pregunta.correcta) {
           acertadas++
+        } else if (pregunta.respuesta) {
+          falladas++
         }
         examenID = this.getExamenID(pregunta)
         this.corregirPregunta(pregunta)
       })
-
-      const notaObjeto = {
-        nota: acertadas,
-      }
-
-      actualizarExamen(examenID, notaObjeto)
 
       const totalPreguntas = this.preguntas.length
       const porcentajeAciertos = (acertadas / totalPreguntas) * 100
@@ -152,6 +149,14 @@ export default {
       } else {
         resultado = "NO APTO"
       }
+
+      const notaObjeto = {
+        entregado: true,
+        nota: resultado,
+        aciertos: acertadas,
+        fallos: falladas,
+      }
+      actualizarExamen(examenID, notaObjeto)
 
       this.tituloExamen = `Revisión del examen`
       this.notaExamen = [acertadas, resultado]

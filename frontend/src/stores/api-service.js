@@ -46,6 +46,10 @@ export function getEntidades(nombre) {
   return llamadaApi(`${host}/${nombre}`)
 }
 
+export function getTotalEntidades(nombre) {
+  return llamadaApi(`${host}/${nombre}/total`)
+}
+
 export function crearExamen(numPreguntas, usuarioID, nivelDificultad) {
   return llamadaApi(`${host}/preguntasExamen/generarExamen/${numPreguntas}/${usuarioID}/${nivelDificultad}`)
 }

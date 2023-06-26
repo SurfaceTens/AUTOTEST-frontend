@@ -5,18 +5,11 @@ import { preguntasStore } from "@/stores/preguntasStore"
 import { alumnosStore } from "@/stores/alumnosStore"
 
 export default {
-  data() {
-    return {
-      primeraPrecarga: false,
-    }
-  },
   name: "Home",
   computed: {
     ...mapState(loginStore, ["isAdmin"]),
-  },
-  methods: {
-    ...mapActions(preguntasStore, ["getNumPreguntas"]),
-    ...mapActions(alumnosStore, ["getNumAlumnos"]),
+    ...mapState(preguntasStore, ["numPreguntas"]),
+    ...mapState(alumnosStore, ["numAlumnos"]),
   },
 }
 </script>
@@ -51,8 +44,8 @@ export default {
       <div class="exam-content card_header">
         <h1 class="card_title">Resumen de administración</h1>
         <ul>
-          <li>Hay un total de {{ getNumPreguntas() }} preguntas</li>
-          <li>Hay un total de {{ getNumAlumnos() }} alumnos</li>
+          <li>Hay un total de {{ this.numPreguntas }} preguntas</li>
+          <li>Hay un total de {{ this.numAlumnos }} alumnos</li>
         </ul>
       </div>
     </div>

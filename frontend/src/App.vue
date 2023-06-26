@@ -2,6 +2,7 @@
 import { mapActions } from "pinia"
 import { preguntasStore } from "@/stores/preguntasStore"
 import { examenStore } from "@/stores/examenStore"
+import { examenesStore } from "@/stores/examenesStore"
 import { alumnosStore } from "@/stores/alumnosStore"
 import Navbar from "@/components/Navbar.vue"
 
@@ -11,16 +12,16 @@ export default {
     Navbar,
   },
   methods: {
-    ...mapActions(preguntasStore, ["precargarPreguntas"]),
+    ...mapActions(preguntasStore, ["precargarPreguntas","getNumPreguntas"]),
     ...mapActions(examenStore, ["precargarExamen"]),
-    ...mapActions(alumnosStore, ["precargarAlumnos"]),
+    ...mapActions(examenesStore, ["precargarExamenes"]),
+    ...mapActions(alumnosStore, ["precargarAlumnos","getNumAlumnos"]),
     async precargar() {
-      if (!this.primeraPrecarga) {
-        this.precargarExamen()
-        this.precargarPreguntas()
-        this.precargarAlumnos()
-        this.primeraPrecarga = true
-      }
+      this.getNumPreguntas()
+      this.getNumAlumnos()
+      await this.precargarExamen()
+      this.precargarExamenes()
+      this.precargarAlumnos()
       console.log("Precarga completa")
     },
   },

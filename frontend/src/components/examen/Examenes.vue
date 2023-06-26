@@ -1,7 +1,7 @@
 <script>
 import { mapActions, mapState } from "pinia"
 import { loginStore } from "@/stores/loginStore"
-import { examenPasadoStore } from "@/stores/examenPasadoStore"
+import { examenesStore } from "@/stores/examenesStore"
 import Preguntas from "@/components/pregunta/Preguntas.vue"
 
 export default {
@@ -16,10 +16,10 @@ export default {
   },
   computed: {
     ...mapState(loginStore, ["isAdmin"]),
-    ...mapState(examenPasadoStore, ["examenes"]),
+    ...mapState(examenesStore, ["examenes"]),
   },
   methods: {
-    ...mapActions(examenPasadoStore, ["getExamenes"]),
+    ...mapActions(examenesStore, ["getExamenes"]),
     mostrarPreguntas(examenID) {
       this.examenIDSeleccionado = examenID
       this.verPreguntas = true
@@ -52,8 +52,10 @@ export default {
       <table class="listado-table">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Preguntas</th>
+            <th>Alumno</th>
+            <th>Aciertos</th>
+            <th>Fallos</th>
+            <th>No contestado</th>
             <th>Nota</th>
             <th>Acciones</th>
             <th></th>
@@ -61,12 +63,14 @@ export default {
         </thead>
         <tbody>
           <tr v-for="examen in examenes" :key="examen.nombreExamen">
-            <td>{{ examen.id }}</td>
-            <td>{{ examen.numPreguntas }}</td>
-            <td>{{ examen.nota }}</td>
-            <td>
+            <td v-if="examen.entregado ">{{ examen.alumnoDatos }}</td>
+            <td v-if="examen.entregado ">{{ examen.aciertos }}</td>
+            <td v-if="examen.entregado ">{{ examen.fallos }}</td>
+            <td v-if="examen.entregado ">{{ examen.numPreguntas - (examen.aciertos + examen.fallos) }}</td>
+            <td v-if="examen.entregado ">{{ examen.nota }}</td>
+            <td v-if="examen.entregado ">
               <button class="btn btn-primary" @click="mostrarPreguntas(examen.id)">
-                Ver Preguntas
+                {{examen.numPreguntas}} Preguntas
               </button>
             </td>
           </tr>

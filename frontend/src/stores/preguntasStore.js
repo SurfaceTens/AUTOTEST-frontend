@@ -1,8 +1,9 @@
 import { defineStore } from "pinia"
-import { getEntidades, actualizarPregunta } from "./api-service"
+import { getEntidades, actualizarPregunta, getTotalEntidades } from "./api-service"
 
 export const preguntasStore = defineStore("preguntas", {
   state: () => ({
+    numPreguntas: 0,
     preguntas: [],
     precarga: [],
   }),
@@ -10,14 +11,14 @@ export const preguntasStore = defineStore("preguntas", {
     getPreguntaPorId(id) {
       return this.preguntas.find((p) => p.id == id)
     },
-    getNumPreguntas() {
-      if (this.precarga.length == 0) {
-        if (this.preguntas.length != 0) {
-          return this.preguntas.length
-        }
-      } else return this.precarga.length
+    async getNumPreguntas() {
+      try {
+        const response = await getTotalEntidades("preguntas");
+        this.numPreguntas = response.data;
+      } catch (error) {
+        console.error("Error al obtener el número de preguntas:", error);
+      }
     },
-
     async getPreguntas() {
       if (this.isPrecargaReady()) {
         this.preguntas = this.precarga
