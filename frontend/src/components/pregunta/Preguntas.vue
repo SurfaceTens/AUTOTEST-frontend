@@ -72,7 +72,7 @@ export default {
       }
     },
     mostrarAcierto(acierto) {
-      if (!acierto) {
+      if (acierto) {
         return "\u25CB"
       } else return ""
     },
@@ -137,16 +137,18 @@ export default {
     <table v-else class="listado-table">
       <thead>
         <tr>
-          <th>Numero</th>
+          <th>Nº</th>
           <th>Acetada</th>
           <th>Dificultad</th>
           <th>Enunciado</th>
-          <th>Adjunto</th>
+          <th>Correcta</th>
           <th>
             Acciones
-            <button v-if="!sonDeExamen" class="btn btn-sm btn-link">
-              <i class="fas fa-plus-square"></i>
-            </button>
+            <router-link to="/NuevaPregunta">
+              <button v-if="!sonDeExamen" class="btn btn-sm btn-link">
+                <i class="fas fa-plus-square"></i>
+              </button>
+            </router-link>
           </th>
         </tr>
       </thead>
@@ -156,7 +158,7 @@ export default {
           <td>{{ mostrarAcierto(pregunta.acertada) }}</td>
           <td>{{ getDificultadTexto(pregunta.dificultad) }}</td>
           <td>{{ pregunta.enunciado }}</td>
-          <td>{{ pregunta.adjunto }}</td>
+          <td>{{ pregunta.correcta }}</td>
           <td>
             <button class="btn btn-primary" @click="mostrarPregunta(pregunta)">Editar</button>
 

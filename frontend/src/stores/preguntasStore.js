@@ -11,11 +11,11 @@ export const preguntasStore = defineStore("preguntas", {
       return this.preguntas.find((p) => p.id == id)
     },
     getNumPreguntas() {
-      if (this.preguntas.length == 0) {
-        if (this.precarga.length != 0) {
-          return this.precarga.length
+      if (this.precarga.length == 0) {
+        if (this.preguntas.length != 0) {
+          return this.preguntas.length
         }
-      } else return this.preguntas.length
+      } else return this.precarga.length
     },
 
     async getPreguntas() {

@@ -69,18 +69,18 @@ export default {
             <a
               class="nav-link dropdown-toggle"
               href="#"
-              id="usuariosDropdown"
+              id="alumnosDropdown"
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              Gestión de Usuarios
+              Gestión de Alumnos
             </a>
-            <ul class="dropdown-menu" aria-labelledby="usuariosDropdown">
+            <ul class="dropdown-menu" aria-labelledby="alumnosDropdown">
               <li>
-                <router-link class="dropdown-item" to="/nuevoUsuario">Crear Usuario</router-link>
+                <router-link class="dropdown-item" to="/nuevoAlumno">Crear Alumno</router-link>
               </li>
-              <li><router-link class="dropdown-item" to="/usuarios">Ver Usuarios</router-link></li>
+              <li><router-link class="dropdown-item" to="/alumnos">Ver Alumnos</router-link></li>
             </ul>
           </li>
           <li v-if="isAdmin" class="nav-item">
