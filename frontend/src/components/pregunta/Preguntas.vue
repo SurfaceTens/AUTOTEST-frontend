@@ -101,8 +101,7 @@ export default {
       this.preguntaSeleccionada = null
       this.mostrarModalEditar = false
     },
-  },
-  async created() {
+    async iniciarPreguntas() {
     if (this.sonDeExamen) {
       const respuesta = await getPreguntasExamen(this.examenID)
       this.preguntas = this.setPreguntas(respuesta.data._embedded.preguntaExamenModels)
@@ -112,6 +111,10 @@ export default {
     }
     this.ordenarPreguntas()
     this.cargandoPreguntas = false
+  },
+  },
+  async created() {
+    this.iniciarPreguntas()
   },
 }
 </script>

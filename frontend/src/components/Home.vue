@@ -56,7 +56,7 @@ export default {
           con otros estudiantes.
         </p>
         <p></p>
-        <router-link to="/nuevaPregunta" class="btn-start btn-crear">Crear preguntas</router-link>
+        <router-link to="/nuevaPregunta" class="btn-start btn-alumnos">Crear preguntas</router-link>
       </div>
     </div>
   </div>
@@ -79,10 +79,9 @@ export default {
           Accesos directos a las distintas funcionalidades administrativas.
         </p>
         <div class="welcome-section">
-          <router-link to="/nuevaPregunta" class="btn-start btn-crear">Crear preguntas</router-link>
           <router-link to="/preguntas" class="btn-start btn-examen">Ver preguntas</router-link>
-          <router-link to="/nuevoAlumno" class="btn-start btn-crear">Crear alumno</router-link>
           <router-link to="/alumnos" class="btn-start btn-alumnos">Ver alumnos</router-link>
+          <router-link to="/examenes" class="btn-start btn-examenes">Ver Examenes</router-link>
         </div>
       </div>
     </div>
@@ -143,11 +142,11 @@ export default {
   background-color: #67c23a;
 }
 
-.btn-crear {
+.btn-alumnos {
   background-color: #409eff;
 }
 
-.btn-alumnos {
+.btn-examenes {
   background-color: #ff4040;
 }
 
