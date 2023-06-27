@@ -16,7 +16,7 @@ export default {
           opcionIncorrecta1: "",
           opcionIncorrecta2: "",
           opcionIncorrecta3: "",
-          imagenURL: null,
+          imagenBase64: "",
           videoURL: null,
           adjunto: "ninguno",
         }
@@ -52,6 +52,17 @@ export default {
       }
       return "sinImagen.jpg"
     },
+    quitarCabeceraBase64(base64String) {
+      const cabeceraFin = ";base64,"
+      const finIndex = base64String.indexOf(cabeceraFin)
+      if (finIndex !== -1) {
+        const contenidoBase64 = base64String.slice(finIndex + cabeceraFin.length)
+        return contenidoBase64
+      } else {
+        console.log("No se encontró el terminador de cabecera válido.")
+        return ""
+      }
+    },
     seleccionarImagen(event) {
       const imagenSeleccionada = event.target.files[0]
       this.cargarImagen(imagenSeleccionada)
@@ -59,7 +70,7 @@ export default {
     cargarImagen(img) {
       let reader = new FileReader()
       reader.onload = () => {
-        this.preguntaForm.imagenURL = reader.result
+        this.preguntaForm.imagenBase64 = reader.result
       }
       reader.readAsDataURL(img)
     },
@@ -89,6 +100,7 @@ export default {
       this.preguntaForm.adjunto = this.tipoArchivo
       this.preguntaForm.dificultad = this.dificultadMap[this.preguntaForm.dificultad] || 0
       this.preguntaForm.videoURL = this.extraerIdVideoYoutube(this.preguntaForm.videoURL)
+      this.preguntaForm.imagenBase64 = this.quitarCabeceraBase64(this.preguntaForm.imagenBase64)
       if (this.modoEdicion) {
         actualizarPregunta(this.preguntaForm.id, this.preguntaForm)
       } else {

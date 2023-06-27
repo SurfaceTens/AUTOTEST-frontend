@@ -34,9 +34,6 @@ export default {
       }
       return []
     },
-    mostrarImagenBase64() {
-      return this.pregunta.adjuntoURL.startsWith("data:image")
-    },
 
     alternativasAleatorias() {
       return this.desordenarArray(this.alternativas)
@@ -61,17 +58,26 @@ export default {
     esEnlaceExterno(url) {
       return url.startsWith("http://") || url.startsWith("https://")
     },
-    base64ToURL(base64String) {
-      if (base64String.startsWith("data:image")) {
-        return base64String
+    calcularCabeceraBase64(base64String) {
+      console.log("base64String:", base64String)
+      const tiposMIME = {
+        "/9j/": "image/jpeg",
+        "iVBORw0KG": "image/png",
+        "R0lGODlh": "image/gif",
+        "UklGR": "image/webp",
+        "Qk0x": "image/bmp",
+        "SUkq": "image/tiff",
+        "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj4KICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgc3R5bGU9ImZpbGw6cmVkOyIgLz4KPC9zdmc+":
+          "image/svg+xml",
       }
-      const binaryString = atob(base64String)
-      const bytes = new Uint8Array(binaryString.length)
-      for (let i = 0; i < binaryString.length; i++) {
-        bytes[i] = binaryString.charCodeAt(i)
+      const tipoMIME = Object.entries(tiposMIME).find(([inicio]) => base64String.startsWith(inicio))
+      if (tipoMIME) {
+        const [, tipo] = tipoMIME
+        return `data:${tipo};base64,`
       }
-      const blob = new Blob([bytes], { type: "image/jpeg" })
-      return URL.createObjectURL(blob)
+
+      console.log("No se encontró un tipo MIME válido.")
+      return ""
     },
   },
 }
@@ -82,26 +88,10 @@ export default {
     <div class="card_header">
       <h3 class="card_title">{{ numero }} - {{ pregunta.enunciado }}</h3>
       <div>
-        <!--
-        <div>
-          <img
-            v-if="pregunta.adjunto === 'imagen' && !esEnlaceExterno(pregunta.adjuntoURL)"
-            class="preguntaImg img-fluid w-100"
-            :src="'./imagenesPreguntas/' + pregunta.adjuntoURL"
-            alt="Imagen de la pregunta"
-          />
-          <img
-            v-else-if="pregunta.adjunto === 'imagen'"
-            class="preguntaImg img-fluid w-100"
-            :src="pregunta.adjuntoURL"
-            alt="Imagen de la pregunta"
-          />
-        </div>
-      -->
         <img
           v-if="pregunta.adjunto === 'imagen'"
           class="preguntaImg img-fluid w-100"
-          :src="pregunta.adjuntoURL"
+          :src="calcularCabeceraBase64(pregunta.adjuntoURL) + pregunta.adjuntoURL"
           alt="Imagen de la pregunta"
         />
         <iframe
