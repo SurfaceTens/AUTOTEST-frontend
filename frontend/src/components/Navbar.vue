@@ -64,23 +64,8 @@ export default {
           <li v-if="!isAdmin" class="nav-item">
             <router-link class="nav-link" to="/nuevaPregunta">Crear pregunta</router-link>
           </li>
-          <li v-if="isAdmin" class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="alumnosDropdown"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Gestión de Alumnos
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="alumnosDropdown">
-              <li>
-                <router-link class="dropdown-item" to="/nuevoAlumno">Crear Alumno</router-link>
-              </li>
-              <li><router-link class="dropdown-item" to="/alumnos">Ver Alumnos</router-link></li>
-            </ul>
+          <li v-if="isAdmin" class="nav-item">
+            <router-link class="nav-link" to="/alumnos">Ver Alumnos</router-link>
           </li>
           <li v-if="isAdmin" class="nav-item">
             <router-link class="nav-link" to="/Examenes">Ver Examenes</router-link>

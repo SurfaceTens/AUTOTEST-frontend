@@ -26,11 +26,6 @@ export default {
           <th>Apellidos</th>
           <th>
             Acciones
-            <router-link to="/NuevoAlumno">
-              <button class="btn btn-sm btn-link">
-                <i class="fas fa-plus-square"></i>
-              </button>
-            </router-link>
           </th>
         </tr>
       </thead>
@@ -39,8 +34,6 @@ export default {
           <td>{{ alumno.nombre }}</td>
           <td>{{ alumno.apellidos }}</td>
           <td>
-            <button class="btn btn-primary">Editar</button>
-            <button class="btn btn-danger">Eliminar</button>
           </td>
         </tr>
       </tbody>
