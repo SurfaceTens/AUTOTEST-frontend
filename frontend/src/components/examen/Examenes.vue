@@ -1,5 +1,5 @@
 <script>
-import { mapActions, mapState } from "pinia"
+import { mapState } from "pinia"
 import { examenesStore } from "@/stores/examenesStore"
 import Preguntas from "@/components/pregunta/Preguntas.vue"
 
@@ -17,7 +17,6 @@ export default {
     ...mapState(examenesStore, ["examenes"]),
   },
   methods: {
-    ...mapActions(examenesStore, ["getExamenes"]),
     mostrarPreguntas(examenID) {
       this.examenIDSeleccionado = examenID
       this.verPreguntas = true
@@ -25,9 +24,6 @@ export default {
     ocultarPreguntas() {
       this.verPreguntas = false
     },
-  },
-  created() {
-    this.getExamenes()
   },
 }
 </script>

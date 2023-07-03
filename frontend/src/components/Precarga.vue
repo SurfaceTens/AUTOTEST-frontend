@@ -59,9 +59,9 @@ export default {
           break
         case "todos":
           await this.precargaDeExamen()
-          this.precargaDeAlumnos()
-          this.precargaDeExamenes()
-          this.precargaDePreguntas()
+          await this.precargaDeAlumnos()
+          await this.precargaDeExamenes()
+          await this.precargaDePreguntas()
           break
         default:
           break
