@@ -35,6 +35,9 @@ const routes = [
   { path: "/exitoFormulario",       name: "ExitoFormulario",      component: ExitoFormulario }
 ]
 
+// Declarar una variable para almacenar el tipo de precarga
+let tipoPrecarga = "todos"
+
 // Crear el enrutador
 const router = createRouter({
   history: createWebHashHistory(),
@@ -45,4 +48,5 @@ const router = createRouter({
 const app = createApp(App)
 app.use(router)
 app.use(pinia)
+app.provide('tipoPrecarga', tipoPrecarga)
 app.mount("#app")

@@ -1,4 +1,5 @@
 <script>
+import { inject } from 'vue'
 import Navbar from "@/components/Navbar.vue"
 import Precarga from "@/components/Precarga.vue"
 
@@ -7,6 +8,13 @@ export default {
   components: {
     Navbar,
     Precarga,
+  },
+  setup() {
+    const tipoPrecarga = inject('tipoPrecarga')
+
+    return {
+      tipoPrecarga
+    }
   },
 }
 </script>
@@ -21,7 +29,7 @@ export default {
         <router-view />
       </div>
     </div>
-    <Precarga tipoPrecarga="todos" />
+    <Precarga :tipoPrecarga="tipoPrecarga" />
   </div>
 </template>
 

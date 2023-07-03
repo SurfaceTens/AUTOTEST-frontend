@@ -25,7 +25,7 @@ export default {
 
     precargaDePreguntas() {
       this.getNumPreguntas()
-      this.precargarPreguntas()
+      //this.precargarPreguntas()
     },
     precargaDeAlumnos() {
       this.getNumAlumnos()
