@@ -1,6 +1,5 @@
 <script>
 import { mapActions, mapState } from "pinia"
-import { loginStore } from "@/stores/loginStore"
 import { examenesStore } from "@/stores/examenesStore"
 import Preguntas from "@/components/pregunta/Preguntas.vue"
 
@@ -15,7 +14,6 @@ export default {
     }
   },
   computed: {
-    ...mapState(loginStore, ["isAdmin"]),
     ...mapState(examenesStore, ["examenes"]),
   },
   methods: {
@@ -35,7 +33,7 @@ export default {
 </script>
 
 <template>
-  <div v-if="isAdmin">
+  <div>
     <div v-if="verPreguntas" class="container">
       <div class="card">
         <div class="card_content">
@@ -79,9 +77,5 @@ export default {
         </tbody>
       </table>
     </div>
-  </div>
-
-  <div v-else>
-    <h1>No se dispone de los permisos para visualizar el listado de examenes</h1>
   </div>
 </template>

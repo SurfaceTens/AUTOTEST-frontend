@@ -53,7 +53,7 @@ router.beforeEach((to, from, next) => {
   const login = loginStore()
   const rutaRequiereAdmin = to.meta.requiereAdmin
   if (rutaRequiereAdmin && !login.isAdmin) {
-    next({ name: "Login" })
+    next({ name: "Home" })
   } else {
     next()
   }
