@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from "vue-router"
 import "./style.css"
 import App from "@/App.vue"
 import { createPinia } from "pinia"
+import { loginStore } from "@/stores/loginStore.js"
 
 // Importar las vistas
 import Home from "@/components/Home.vue"
@@ -25,14 +26,14 @@ const pinia = createPinia()
 
 // Definir las rutas
 const routes = [
-  { path: "/",                      name: "Home",                 component: Home },
-  { path: "/examen",                name: "Examen",               component: Examen },
-  { path: "/preguntas",             name: "Preguntas",            component: Preguntas },
-  { path: "/alumnos",               name: "Alumnos",              component: Alumnos },
-  { path: "/examenes",              name: "Examenes",             component: Examenes },
-  { path: "/nuevaPregunta",         name: "NuevaPregunta",        component: NuevaPregunta },
-  { path: "/nuevoAlumno",           name: "NuevoAlumno",          component: NuevoAlumno },
-  { path: "/exitoFormulario",       name: "ExitoFormulario",      component: ExitoFormulario }
+  { path: "/",                      name: "Home",                 component: Home                                               },
+  { path: "/examen",                name: "Examen",               component: Examen                                             },
+  { path: "/preguntas",             name: "Preguntas",            component: Preguntas,         meta: { requiereAdmin: true }   },
+  { path: "/alumnos",               name: "Alumnos",              component: Alumnos,           meta: { requiereAdmin: true }   },
+  { path: "/examenes",              name: "Examenes",             component: Examenes,          meta: { requiereAdmin: true }   },
+  { path: "/nuevaPregunta",         name: "NuevaPregunta",        component: NuevaPregunta                                      },
+  { path: "/nuevoAlumno",           name: "NuevoAlumno",          component: NuevoAlumno,       meta: { requiereAdmin: true }   },
+  { path: "/exitoFormulario",       name: "ExitoFormulario",      component: ExitoFormulario                                    }
 ]
 
 // Declarar una variable para almacenar el tipo de precarga
@@ -42,6 +43,20 @@ let tipoPrecarga = "todos"
 const router = createRouter({
   history: createWebHashHistory(),
   routes
+})
+
+// Guardia de navegación
+router.beforeEach((to, from, next) => {
+  const rutaEnMinusculas = to.name.toLowerCase()
+  tipoPrecarga = rutaEnMinusculas
+
+  const login = loginStore()
+  const rutaRequiereAdmin = to.meta.requiereAdmin
+  if (rutaRequiereAdmin && !login.isAdmin) {
+    next({ name: "Login" })
+  } else {
+    next()
+  }
 })
 
 // Montar la aplicación

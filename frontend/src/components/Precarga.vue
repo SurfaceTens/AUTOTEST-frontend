@@ -17,27 +17,33 @@ export default {
       default: "",
     },
   },
+  data() {
+    return {
+      mostrarSpinner: false,
+    }
+  },
   methods: {
     ...mapActions(preguntasStore, ["precargarPreguntas", "getNumPreguntas"]),
     ...mapActions(examenStore, ["precargarExamen"]),
     ...mapActions(examenesStore, ["precargarExamenes"]),
     ...mapActions(alumnosStore, ["precargarAlumnos", "getNumAlumnos"]),
 
-    precargaDePreguntas() {
-      this.getNumPreguntas()
-      //this.precargarPreguntas()
+    async precargaDePreguntas() {
+      await this.getNumPreguntas()
+      //await this.precargarPreguntas()
     },
-    precargaDeAlumnos() {
-      this.getNumAlumnos()
-      this.precargarAlumnos()
+    async precargaDeAlumnos() {
+      await this.getNumAlumnos()
+      await this.precargarAlumnos()
     },
     async precargaDeExamen() {
       await this.precargarExamen()
     },
-    precargaDeExamenes() {
-      this.precargarExamenes()
+    async precargaDeExamenes() {
+      await this.precargarExamenes()
     },
     async precarga(tipoPrecarga) {
+      this.mostrarSpinner = true
       switch (tipoPrecarga) {
         case "preguntas":
           this.precargaDePreguntas()
@@ -60,6 +66,7 @@ export default {
         default:
           break
       }
+      this.mostrarSpinner = false;
     },
   },
   async created() {
@@ -70,6 +77,6 @@ export default {
 
 <template>
   <div>
-    <Cargando />
+    <Cargando v-if="mostrarSpinner" />
   </div>
 </template>
