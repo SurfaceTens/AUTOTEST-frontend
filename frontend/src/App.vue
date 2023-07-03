@@ -1,31 +1,12 @@
 <script>
-import { mapActions } from "pinia"
-import { preguntasStore } from "@/stores/preguntasStore"
-import { examenStore } from "@/stores/examenStore"
-import { examenesStore } from "@/stores/examenesStore"
-import { alumnosStore } from "@/stores/alumnosStore"
 import Navbar from "@/components/Navbar.vue"
+import Precarga from "@/components/Precarga.vue"
 
 export default {
   name: "App",
   components: {
     Navbar,
-  },
-  methods: {
-    ...mapActions(preguntasStore, ["precargarPreguntas", "getNumPreguntas"]),
-    ...mapActions(examenStore, ["precargarExamen"]),
-    ...mapActions(examenesStore, ["precargarExamenes"]),
-    ...mapActions(alumnosStore, ["precargarAlumnos", "getNumAlumnos"]),
-    async precargar() {
-      this.getNumPreguntas()
-      this.getNumAlumnos()
-      await this.precargarExamen()
-      this.precargarExamenes()
-      this.precargarAlumnos()
-    },
-  },
-  async created() {
-    this.precargar()
+    Precarga,
   },
 }
 </script>
@@ -40,6 +21,7 @@ export default {
         <router-view />
       </div>
     </div>
+    <Precarga tipoPrecarga="todos" />
   </div>
 </template>
 
