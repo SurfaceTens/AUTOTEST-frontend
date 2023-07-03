@@ -30,7 +30,7 @@ export default {
 
     async precargaDePreguntas() {
       await this.getNumPreguntas()
-      //await this.precargarPreguntas()
+      //await this.precargarPreguntas() // Revisar para que funcione
     },
     async precargaDeAlumnos() {
       await this.getNumAlumnos()

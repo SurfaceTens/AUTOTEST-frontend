@@ -45,7 +45,7 @@ const router = createRouter({
   routes
 })
 
-// Guardia de navegación
+// Guarda de navegación
 router.beforeEach((to, from, next) => {
   const rutaEnMinusculas = to.name.toLowerCase()
   tipoPrecarga = rutaEnMinusculas

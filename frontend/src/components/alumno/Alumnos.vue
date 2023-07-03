@@ -1,24 +1,16 @@
 <script>
-import { mapActions, mapState } from "pinia"
-import { loginStore } from "@/stores/loginStore"
+import { mapState } from "pinia"
 import { alumnosStore } from "@/stores/alumnosStore"
 
 export default {
   computed: {
-    ...mapState(loginStore, ["isAdmin"]),
     ...mapState(alumnosStore, ["alumnos"]),
-  },
-  methods: {
-    ...mapActions(alumnosStore, ["getAlumnos"]),
-  },
-  created() {
-    this.getAlumnos()
   },
 }
 </script>
 
 <template>
-  <div v-if="isAdmin">
+  <div>
     <table class="listado-table">
       <thead>
         <tr>
@@ -38,9 +30,5 @@ export default {
         </tr>
       </tbody>
     </table>
-  </div>
-
-  <div v-else>
-    <h1>No se dispone de los permisos para visualizar el listado de alumnos</h1>
   </div>
 </template>
