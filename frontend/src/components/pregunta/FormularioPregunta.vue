@@ -114,17 +114,6 @@ export default {
       this.$emit("cerrar")
     },
   },
-  watch: {
-    preguntaForm: {
-      handler(nuevaPregunta) {
-        this.preguntaForm = nuevaPregunta
-      },
-      deep: true,
-    },
-  },
-  created() {
-    this.tipoArchivo = this.preguntaForm.adjunto || "ninguno"
-  },
 }
 </script>
 
