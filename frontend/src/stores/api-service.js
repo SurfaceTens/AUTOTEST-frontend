@@ -1,6 +1,8 @@
 import axios from "axios"
 
-const host = 'https://autotestapi-serperdim45.b4a.run/api'
+//const host = 'https://autotestapi-serperdim45.b4a.run/api'
+const host = "http://localhost:8800/api"    // API local
+
 
 export function cambiarHttpPorHttps(enlace) {
   return enlace.replace("http", "https")
@@ -43,6 +45,10 @@ export function borrarEntidad(entidad) {
 
 export function getEntidades(nombre) {
   return llamadaApi(`${host}/${nombre}`)
+}
+
+export function getEntidad(nombre, id) {
+  return llamadaApi(`${host}/${nombre}/${id}`)
 }
 
 export function getTotalEntidades(nombre) {

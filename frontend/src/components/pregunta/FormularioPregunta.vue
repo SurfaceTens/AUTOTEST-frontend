@@ -5,7 +5,7 @@ export default {
   props: {
     preguntaForm: {
       type: Object,
-      required: false,
+      required: true,
       default() {
         return {
           id: null,
@@ -112,6 +112,14 @@ export default {
 
     cerrarEdicion() {
       this.$emit("cerrar")
+    },
+  },
+  watch: {
+    preguntaForm: {
+      handler(nuevaPregunta) {
+        this.preguntaForm = nuevaPregunta
+      },
+      deep: true,
     },
   },
   created() {

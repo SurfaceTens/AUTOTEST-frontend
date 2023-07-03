@@ -22,7 +22,6 @@ export default {
       await this.precargarExamen()
       this.precargarExamenes()
       this.precargarAlumnos()
-      console.log("Precarga completa")
     },
   },
   async created() {

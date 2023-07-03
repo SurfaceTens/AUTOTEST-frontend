@@ -24,7 +24,6 @@ export default {
   },
   data() {
     return {
-      preguntaSeleccionada: null,
       modoEdicion: false,
       mostrarModalBorrado: false,
       mostrarModalEditar: false,
@@ -33,7 +32,7 @@ export default {
   },
   computed: {
     ...mapState(loginStore, ["isAdmin"]),
-    ...mapState(preguntasStore, ["preguntas"]),
+    ...mapState(preguntasStore, ["preguntas", "preguntaSeleccionada"]),
     pregunta() {
       return this.preguntas.find((p) => p.id == this.$route.params.id)
     },
@@ -43,12 +42,15 @@ export default {
     ordenarPreguntas() {
       this.preguntas.sort((a, b) => a.id - b.id)
     },
-    mostrarPregunta(pregunta) {
-      this.preguntaSeleccionada = pregunta
+
+    async mostrarPregunta(pregunta) {
+      this.preguntaSeleccionada = await this.getPreguntaPorId(pregunta.id)
+      console.log(this.preguntaSeleccionada)
+      console.log(this.preguntaSeleccionada.tematica)
       this.modoEdicion = true
     },
+
     cerrarFormulario() {
-      this.preguntaSeleccionada = null
       this.modoEdicion = false
     },
     cerrarPreguntasExamen() {
@@ -85,7 +87,7 @@ export default {
           this.preguntas.splice(index, 1)
         }
       } catch (error) {
-        console.error("Error al borrar la pregunta:", error)
+        index = 0
       }
       this.cargandoPreguntas = false
       this.cerrarModalBorrar()
@@ -94,18 +96,15 @@ export default {
       this.mostrarModalEditar = true
     },
     cerrarModalBorrar() {
-      this.preguntaSeleccionada = null
       this.mostrarModalBorrado = false
     },
     cerrarModalEditar() {
-      this.preguntaSeleccionada = null
       this.mostrarModalEditar = false
     },
     async iniciarPreguntas() {
       if (this.sonDeExamen) {
         const respuesta = await getPreguntasExamen(this.examenID)
         this.preguntas = this.setPreguntas(respuesta.data._embedded.preguntaExamenModels)
-        console.log(this.preguntas)
       } else {
         await this.getPreguntas()
       }
@@ -127,9 +126,9 @@ export default {
       <div class="card">
         <div class="card_content">
           <FormularioPregunta
-            :preguntaForm="preguntaSeleccionada"
+            :preguntaForm="this.preguntaSeleccionada"
             :modoEdicion="modoEdicion"
-            :titulo="`Editando pregunta ` + preguntaSeleccionada.id"
+            :titulo="`Editando pregunta ` + this.preguntaSeleccionada.id"
             @cerrar="cerrarFormulario"
             @confirmar="confirmarEditarPregunta"
           />
@@ -141,7 +140,7 @@ export default {
       <thead>
         <tr>
           <th>Nº</th>
-          <th v-if="sonDeExamen">Acetada</th>
+          <th v-if="sonDeExamen">Acertada</th>
           <th v-if="!sonDeExamen">Dificultad</th>
           <th>Enunciado</th>
           <th v-if="sonDeExamen">Correcta</th>
@@ -163,8 +162,10 @@ export default {
         <tr
           v-for="(pregunta, numero) in preguntas"
           :key="pregunta.id"
-          :class="{ 'fila-incorrecta': !pregunta.acertada && sonDeExamen, 'no-clickable': !pregunta.acertada && sonDeExamen }"
-
+          :class="{
+            'fila-incorrecta': !pregunta.acertada && sonDeExamen,
+            'no-clickable': !pregunta.acertada && sonDeExamen,
+          }"
         >
           <td>{{ numero + 1 }}</td>
           <td v-if="sonDeExamen">{{ mostrarAcierto(pregunta.acertada) }}</td>
