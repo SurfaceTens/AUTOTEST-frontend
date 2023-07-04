@@ -43,30 +43,9 @@ export default {
       reader.readAsDataURL(img)
     },
 
-    extraerIdVideoYoutube(url) {
-      if (url) {
-        if (url.includes("watch?v=")) {
-          const videoId = url.split("?v=")[1]
-          const ampersandPosition = videoId.indexOf("&")
-          if (ampersandPosition !== -1) {
-            return videoId.substring(0, ampersandPosition)
-          }
-          return videoId
-        } else if (url.includes("youtu.be/")) {
-          const videoId = url.split("youtu.be/")[1]
-          const ampersandPosition = videoId.indexOf("&")
-          if (ampersandPosition !== -1) {
-            return videoId.substring(0, ampersandPosition)
-          }
-          return videoId
-        }
-      }
-      return null
-    },
-
     entregarFormulario() {
       this.preguntaForm.adjunto = this.tipoArchivo
-      this.preguntaForm.videoURL = this.extraerIdVideoYoutube(this.preguntaForm.videoURL)
+      this.preguntaForm.videoURL = this.preguntaForm.videoURL
       this.preguntaForm.imagenBase64 = this.preguntaForm.imagenBase64
       if (this.modoEdicion) {
         actualizarPregunta(this.preguntaForm.id, this.preguntaForm)
