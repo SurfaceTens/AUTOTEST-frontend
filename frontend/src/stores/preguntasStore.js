@@ -10,7 +10,7 @@ export const preguntasStore = defineStore("preguntas", {
   }),
   actions: {
     async getPreguntaPorId(id) {
-      this.preguntaSeleccionada = (await getEntidad("preguntas",id)).data
+      this.preguntaSeleccionada = (await getEntidad("preguntas", id)).data
     },
     async getNumPreguntas() {
       try {

@@ -1,8 +1,7 @@
 import axios from "axios"
 
 //const host = 'https://autotestapi-serperdim45.b4a.run/api'
-const host = "http://localhost:8800/api"    // API local
-
+const host = "http://localhost:8800/api" // API local
 
 export function cambiarHttpPorHttps(enlace) {
   return enlace.replace("http", "https")
@@ -61,7 +60,7 @@ export async function getAlumnos() {
 }
 
 export async function crearExamen(numPreguntas, usuarioID, nivelDificultad) {
-  const extraer =  await llamadaApi(
+  const extraer = await llamadaApi(
     `${host}/preguntasExamen/generarExamen/${numPreguntas}/${usuarioID}/${nivelDificultad}`
   )
   return extraer.data._embedded.preguntaExamenModels
@@ -88,5 +87,5 @@ export function getPreguntasExamen(examenID) {
 }
 
 export function isPrecargaReady(precarga) {
-  return precarga.length !== 0;
+  return precarga.length !== 0
 }

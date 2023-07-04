@@ -61,11 +61,11 @@ export default {
     calcularCabeceraBase64(base64String) {
       const tiposMIME = {
         "/9j/": "image/jpeg",
-        "iVBORw0KG": "image/png",
-        "R0lGODlh": "image/gif",
-        "UklGR": "image/webp",
-        "Qk0x": "image/bmp",
-        "SUkq": "image/tiff",
+        iVBORw0KG: "image/png",
+        R0lGODlh: "image/gif",
+        UklGR: "image/webp",
+        Qk0x: "image/bmp",
+        SUkq: "image/tiff",
         "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj4KICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgc3R5bGU9ImZpbGw6cmVkOyIgLz4KPC9zdmc+":
           "image/svg+xml",
       }

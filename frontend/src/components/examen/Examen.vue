@@ -156,7 +156,7 @@ export default {
       this.tituloExamen = `Revisión del examen`
       this.notaExamen = [acertadas, resultado]
     },
-  }
+  },
 }
 </script>
 

@@ -172,7 +172,9 @@ export default {
           <td v-if="sonDeExamen">{{ pregunta.correcta }}</td>
           <td v-if="sonDeExamen">{{ pregunta.respuesta }}</td>
           <td>
-            <button v-if="!sonDeExamen" class="btn btn-primary" @click="mostrarPregunta(pregunta)">Editar</button>
+            <button v-if="!sonDeExamen" class="btn btn-primary" @click="mostrarPregunta(pregunta)">
+              Editar
+            </button>
 
             <button v-if="!sonDeExamen" class="btn btn-danger" @click="borrarPregunta(pregunta)">
               Eliminar

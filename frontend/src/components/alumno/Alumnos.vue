@@ -16,17 +16,14 @@ export default {
         <tr>
           <th>Nombre</th>
           <th>Apellidos</th>
-          <th>
-            Acciones
-          </th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="alumno in alumnos" :key="alumno.nombreAlumno">
           <td>{{ alumno.nombre }}</td>
           <td>{{ alumno.apellidos }}</td>
-          <td>
-          </td>
+          <td></td>
         </tr>
       </tbody>
     </table>

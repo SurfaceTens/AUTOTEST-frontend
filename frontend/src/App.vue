@@ -1,5 +1,5 @@
 <script>
-import { inject } from 'vue'
+import { inject } from "vue"
 import Navbar from "@/components/Navbar.vue"
 import Precarga from "@/components/Precarga.vue"
 
@@ -10,10 +10,10 @@ export default {
     Precarga,
   },
   setup() {
-    const tipoPrecarga = inject('tipoPrecarga')
+    const tipoPrecarga = inject("tipoPrecarga")
 
     return {
-      tipoPrecarga
+      tipoPrecarga,
     }
   },
 }
