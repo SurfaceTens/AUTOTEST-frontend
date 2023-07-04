@@ -88,7 +88,6 @@ export default {
       this.examenTerminado = false
       this.notaExamen = []
       window.scrollTo({ top: 0, behavior: "smooth" })
-      this.precargarExamenParams(this.numPreguntas, 1, this.nivelDificultad)
     },
 
     reiniciarRespuestas(preguntas) {

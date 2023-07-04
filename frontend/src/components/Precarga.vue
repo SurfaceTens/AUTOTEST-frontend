@@ -53,9 +53,6 @@ export default {
         case "alumnos":
           this.precargaDeAlumnos()
           break
-        case "examen":
-          await this.precargaDeExamen()
-          break
         case "examenes":
           this.precargaDeExamenes()
           break
