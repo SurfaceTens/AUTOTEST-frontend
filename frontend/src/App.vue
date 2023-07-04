@@ -9,13 +9,6 @@ export default {
     Navbar,
     Precarga,
   },
-  setup() {
-    const tipoPrecarga = inject("tipoPrecarga")
-
-    return {
-      tipoPrecarga,
-    }
-  },
 }
 </script>
 

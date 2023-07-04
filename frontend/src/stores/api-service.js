@@ -71,7 +71,7 @@ export async function getPreguntas() {
 
 export async function crearExamen(numPreguntas, usuarioID, nivelDificultad) {
   const extraer = await llamadaApi(
-    `${host}/preguntasExamen/generarExamen/${numPreguntas}/${usuarioID}/${nivelDificultad}`
+    `${host}/preguntasExamen/generarExamen?numPreguntas=${numPreguntas}&idAlumno=${usuarioID}&dificultad=${nivelDificultad}`
   )
   return extraer.data._embedded.preguntaExamenModels
 }
