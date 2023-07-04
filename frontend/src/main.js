@@ -15,7 +15,9 @@ import NuevaPregunta from "@/components/pregunta/NuevaPregunta.vue"
 import NuevoAlumno from "@/components/alumno/NuevoAlumno.vue"
 import ExitoFormulario from "@/components/ExitoFormulario.vue"
 
-// Importar Prime Icons y Font Awesome
+// Importar estilos e iconos
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import "primeicons/primeicons.css"
 import "@fortawesome/fontawesome-free/css/all.min.css"
 

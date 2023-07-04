@@ -52,7 +52,7 @@ export default {
             >
               Gestión de Preguntas
             </a>
-            <ul class="dropdown-menu" aria-labelledby="preguntasDropdown">
+            <ul class="dropdown-menu" aria-labelledby="preguntasDropdown" id="preguntasDropdown">
               <li>
                 <router-link class="dropdown-item" to="/nuevaPregunta">Crear Pregunta</router-link>
               </li>
