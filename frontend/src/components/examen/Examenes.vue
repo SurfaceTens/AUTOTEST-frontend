@@ -1,6 +1,6 @@
 <script>
 import { mapState } from "pinia"
-import { examenesStore } from "@/stores/examenesStore"
+import { examenStore } from "@/stores/examenStore"
 import Preguntas from "@/components/pregunta/Preguntas.vue"
 
 export default {
@@ -14,7 +14,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(examenesStore, ["examenes"]),
+    ...mapState(examenStore, ["examenes"]),
   },
   methods: {
     mostrarPreguntas(examenID) {

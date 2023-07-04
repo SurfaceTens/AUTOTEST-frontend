@@ -2,7 +2,6 @@
 import { mapActions } from "pinia"
 import { preguntasStore } from "@/stores/preguntasStore"
 import { examenStore } from "@/stores/examenStore"
-import { examenesStore } from "@/stores/examenesStore"
 import { alumnosStore } from "@/stores/alumnosStore"
 import Cargando from "@/components/Cargando.vue"
 
@@ -24,8 +23,12 @@ export default {
   },
   methods: {
     ...mapActions(preguntasStore, ["precargarPreguntas", "getNumPreguntas"]),
-    ...mapActions(examenStore, ["precargarExamen", "generadorExamen"]),
-    ...mapActions(examenesStore, ["precargarExamenes"]),
+    ...mapActions(examenStore, [
+      "precargarExamen",
+      "generadorExamen",
+      "precargarExamenes",
+      "cargarExamenes",
+    ]),
     ...mapActions(alumnosStore, ["cargarAlumnos", "getNumAlumnos"]),
 
     async precargaDePreguntas() {
@@ -41,7 +44,7 @@ export default {
       this.generadorExamen()
     },
     async precargaDeExamenes() {
-      await this.precargarExamenes()
+      await this.cargarExamenes()
     },
     async precarga(tipoPrecarga) {
       this.mostrarSpinner = true
@@ -67,7 +70,7 @@ export default {
         default:
           break
       }
-      this.mostrarSpinner = false;
+      this.mostrarSpinner = false
     },
   },
   async created() {
