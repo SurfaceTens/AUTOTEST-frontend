@@ -15,9 +15,7 @@ import NuevaPregunta from "@/components/pregunta/NuevaPregunta.vue"
 import NuevoAlumno from "@/components/alumno/NuevoAlumno.vue"
 import ExitoFormulario from "@/components/ExitoFormulario.vue"
 
-// Importar Prime Vue y Font Awesome
-import "primevue/resources/primevue.min.css"
-import "primevue/resources/themes/saga-blue/theme.css"
+// Importar Prime Icons y Font Awesome
 import "primeicons/primeicons.css"
 import "@fortawesome/fontawesome-free/css/all.min.css"
 

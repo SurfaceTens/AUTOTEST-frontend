@@ -1,26 +1,13 @@
 <script>
+import { mapActions } from "pinia"
 import { guardarPregunta, actualizarPregunta } from "@/stores/api-service"
+import { preguntasStore } from "@/stores/preguntasStore"
 
 export default {
   props: {
     preguntaForm: {
       type: Object,
       required: true,
-      default() {
-        return {
-          id: null,
-          tematica: "",
-          dificultad: 0,
-          enunciado: "",
-          opcionCorrecta: "",
-          opcionIncorrecta1: "",
-          opcionIncorrecta2: "",
-          opcionIncorrecta3: "",
-          imagenBase64: "",
-          videoURL: null,
-          adjunto: "ninguno",
-        }
-      },
     },
     modoEdicion: {
       type: Boolean,
@@ -42,6 +29,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(preguntasStore, ["getDificultadTexto"]),
     validarImagen(url) {
       if (url) {
         const extensionesPermitidas = [".jpg", ".jpeg", ".png", ".gif", ".bmp"]
@@ -98,7 +86,6 @@ export default {
 
     entregarFormulario() {
       this.preguntaForm.adjunto = this.tipoArchivo
-      this.preguntaForm.dificultad = this.dificultadMap[this.preguntaForm.dificultad] || 0
       this.preguntaForm.videoURL = this.extraerIdVideoYoutube(this.preguntaForm.videoURL)
       this.preguntaForm.imagenBase64 = this.quitarCabeceraBase64(this.preguntaForm.imagenBase64)
       if (this.modoEdicion) {
@@ -124,14 +111,17 @@ export default {
   <div class="card_content">
     <div class="form-group">
       <label for="dificultad" class="form-label">Dificultad:</label>
-      <div class="select-arrow">
-        <select id="dificultad" class="form-control" v-model="preguntaForm.dificultad">
-          <option value="facil">Fácil</option>
-          <option value="media">Media</option>
-          <option value="dificil">Difícil</option>
-        </select>
-      </div>
+      <input
+        type="range"
+        class="form-range"
+        id="dificultad"
+        v-model="preguntaForm.dificultad"
+        min="0"
+        max="100"
+      />
+      <div class="slider-value">{{ preguntaForm.dificultad }}</div>
     </div>
+
     <div class="form-group">
       <label for="tema" class="form-label">Tema:</label>
       <input

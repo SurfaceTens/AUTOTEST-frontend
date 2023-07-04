@@ -6,6 +6,23 @@ export default {
   components: {
     FormularioPregunta,
   },
+  data() {
+    return {
+      pregunta: {
+        id: null,
+        tematica: "",
+        dificultad: 0,
+        enunciado: "",
+        opcionCorrecta: "",
+        opcionIncorrecta1: "",
+        opcionIncorrecta2: "",
+        opcionIncorrecta3: "",
+        imagenBase64: "",
+        videoURL: null,
+        adjunto: "ninguno",
+      },
+    }
+  },
   methods: {
     mostrarMensajeExito() {
       this.$router.push("ExitoFormulario")

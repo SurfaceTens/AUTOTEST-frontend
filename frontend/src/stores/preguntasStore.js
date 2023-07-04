@@ -26,6 +26,23 @@ export const preguntasStore = defineStore("preguntas", {
         this.numPreguntas = 0
       }
     },
+
+    getDificultadTexto(dificultad) {
+      let texto
+      if (dificultad < 25) {
+        texto = "Muy fácil"
+      } else if (dificultad < 50) {
+        texto = "Fácil"
+      } else if (dificultad < 75) {
+        texto = "Medio"
+      } else if (dificultad < 100) {
+        texto = "Difícil"
+      } else {
+        texto = "Muy difícil"
+      }
+      return texto
+    },
+
     async cargarPreguntas() {
       if (isPrecargaReady(this.precarga)) {
         this.preguntas = this.precarga

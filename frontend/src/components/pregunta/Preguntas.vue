@@ -38,7 +38,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(preguntasStore, ["cargarPreguntas", "setPreguntas", "getPreguntaPorId"]),
+    ...mapActions(preguntasStore, ["cargarPreguntas", "setPreguntas", "getPreguntaPorId", "getDificultadTexto"]),
     ordenarPreguntas() {
       this.preguntas.sort((a, b) => a.id - b.id)
     },
@@ -57,19 +57,6 @@ export default {
     borrarPregunta(pregunta) {
       this.preguntaSeleccionada = pregunta
       this.mostrarModalBorrado = true
-    },
-    getDificultadTexto(dificultad) {
-      if (dificultad < 25) {
-        return "Muy fácil"
-      } else if (dificultad < 50) {
-        return "Fácil"
-      } else if (dificultad < 75) {
-        return "Medio"
-      } else if (dificultad < 100) {
-        return "Difícil"
-      } else {
-        return "Muy difícil"
-      }
     },
     mostrarAcierto(acierto) {
       if (acierto) {
@@ -167,7 +154,7 @@ export default {
         >
           <td>{{ numero + 1 }}</td>
           <td v-if="sonDeExamen">{{ mostrarAcierto(pregunta.acertada) }}</td>
-          <td v-if="!sonDeExamen">{{ getDificultadTexto(pregunta.dificultad) }}</td>
+          <td v-if="!sonDeExamen">{{ this.getDificultadTexto(pregunta.dificultad) }}</td>
           <td>{{ pregunta.enunciado }}</td>
           <td v-if="sonDeExamen">{{ pregunta.correcta }}</td>
           <td v-if="sonDeExamen">{{ pregunta.respuesta }}</td>
