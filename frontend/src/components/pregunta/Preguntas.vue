@@ -38,10 +38,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions(preguntasStore, ["cargarPreguntas", "setPreguntas", "getPreguntaPorId", "getDificultadTexto"]),
-    ordenarPreguntas() {
-      this.preguntas.sort((a, b) => a.id - b.id)
-    },
+    ...mapActions(preguntasStore, [
+      "cargarPreguntas",
+      "setPreguntas",
+      "getPreguntaPorId",
+      "getDificultadTexto",
+    ]),
 
     async mostrarPregunta(pregunta) {
       this.preguntaSeleccionada = await this.getPreguntaPorId(pregunta.id)
@@ -71,9 +73,7 @@ export default {
         if (index !== -1) {
           this.preguntas.splice(index, 1)
         }
-      } catch (error) {
-        index = 0
-      }
+      } catch (error) {}
       this.cargandoPreguntas = false
       this.cerrarModalBorrar()
     },
@@ -93,7 +93,6 @@ export default {
       } else {
         await this.cargarPreguntas()
       }
-      this.ordenarPreguntas()
       this.cargandoPreguntas = false
     },
   },

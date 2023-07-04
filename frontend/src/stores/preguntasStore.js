@@ -43,6 +43,10 @@ export const preguntasStore = defineStore("preguntas", {
       return texto
     },
 
+    ordenarPreguntas(preguntas) {
+      preguntas.sort((a, b) => a.id - b.id)
+    },
+
     async cargarPreguntas() {
       if (isPrecargaReady(this.precarga)) {
         this.preguntas = this.precarga
@@ -59,7 +63,8 @@ export const preguntasStore = defineStore("preguntas", {
       await actualizarPregunta(pregunta)
     },
     async precargarPreguntas() {
-      this.precarga = this.preguntas = await getPreguntas()
+      this.precarga = await getPreguntas()
+      this.ordenarPreguntas(this.precarga)
     },
   },
 })

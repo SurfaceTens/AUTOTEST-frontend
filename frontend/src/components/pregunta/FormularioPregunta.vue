@@ -119,7 +119,7 @@ export default {
         min="0"
         max="100"
       />
-      <div class="slider-value">{{ preguntaForm.dificultad }}</div>
+      <div class="slider-value">{{ this.getDificultadTexto(preguntaForm.dificultad) + "(" + preguntaForm.dificultad + ")" }}</div>
     </div>
 
     <div class="form-group">
@@ -219,7 +219,7 @@ export default {
       </div>
     </div>
     <div v-if="tipoArchivo === 'imagen'" class="form-group">
-      <label for="imagen" class="form-label">Enlace de la imagen:</label>
+      <label for="imagen" class="form-label">Subir una imagen:</label>
       <input type="file" id="imagen" class="form-control" @change="seleccionarImagen" />
     </div>
     <div v-if="tipoArchivo === 'video'" class="form-group">
