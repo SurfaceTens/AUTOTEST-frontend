@@ -76,20 +76,20 @@ export async function crearExamen(numPreguntas, usuarioID, nivelDificultad) {
   return extraer.data._embedded.preguntaExamenModels
 }
 
-export function corregirPreguntaExamen(preguntaID, pregunta) {
-  return llamadaApi(`${host}/preguntasExamen/${preguntaID}`, `put`, pregunta)
+export function corregirPreguntaExamen(pregunta) {
+  return llamadaApi(`${host}/preguntasExamen/${pregunta.id}`, `put`, pregunta)
 }
 
-export function actualizarPregunta(preguntaID, pregunta) {
-  return llamadaApi(`${host}/preguntas/${preguntaID}`, `put`, pregunta)
+export function actualizarPregunta(pregunta) {
+  return llamadaApi(`${host}/preguntas/${pregunta.id}`, `put`, pregunta)
 }
 
-export function actualizarAlumno(alumnoID, alumno) {
-  return llamadaApi(`${host}/preguntas/${alumnoID}`, `put`, alumno)
+export function actualizarAlumno(alumno) {
+  return llamadaApi(`${host}/preguntas/${alumno.id}`, `put`, alumno)
 }
 
-export function actualizarExamen(examenID, examen) {
-  return llamadaApi(`${host}/examenes/${examenID}`, `put`, examen)
+export function actualizarExamen(examen) {
+  return llamadaApi(`${host}/examenes/${examen.id}`, `put`, examen)
 }
 
 export function getPreguntasExamen(examenID) {

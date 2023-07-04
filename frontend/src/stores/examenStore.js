@@ -21,7 +21,7 @@ export const examenStore = defineStore("examenStore", {
       }
     },
     async corregirPregunta(pregunta) {
-      await corregirPreguntaExamen(pregunta.id, pregunta)
+      await corregirPreguntaExamen(pregunta)
     },
     desordenarArray(array) {
       // Algoritmo de Fisher-Yates para desordenar el array

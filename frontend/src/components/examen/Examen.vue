@@ -145,13 +145,14 @@ export default {
         resultado = "NO APTO"
       }
 
-      const notaObjeto = {
+      const examenObjeto = {
+        id: examenID,
         entregado: true,
         nota: resultado,
         aciertos: acertadas,
         fallos: falladas,
       }
-      actualizarExamen(examenID, notaObjeto)
+      actualizarExamen(examenObjeto)
 
       this.tituloExamen = `Revisión del examen`
       this.notaExamen = [acertadas, resultado]

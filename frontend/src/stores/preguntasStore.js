@@ -56,7 +56,7 @@ export const preguntasStore = defineStore("preguntas", {
       this.preguntas = preguntas
     },
     async editarPregunta(pregunta) {
-      await actualizarPregunta(pregunta.id, pregunta)
+      await actualizarPregunta(pregunta)
     },
     async precargarPreguntas() {
       this.precarga = this.preguntas = await getPreguntas()
