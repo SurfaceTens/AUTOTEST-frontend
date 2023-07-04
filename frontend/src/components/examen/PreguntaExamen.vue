@@ -58,26 +58,6 @@ export default {
     esEnlaceExterno(url) {
       return url.startsWith("http://") || url.startsWith("https://")
     },
-    calcularCabeceraBase64(base64String) {
-      const tiposMIME = {
-        "/9j/": "image/jpeg",
-        iVBORw0KG: "image/png",
-        R0lGODlh: "image/gif",
-        UklGR: "image/webp",
-        Qk0x: "image/bmp",
-        SUkq: "image/tiff",
-        "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj4KICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgc3R5bGU9ImZpbGw6cmVkOyIgLz4KPC9zdmc+":
-          "image/svg+xml",
-      }
-      const tipoMIME = Object.entries(tiposMIME).find(([inicio]) => base64String.startsWith(inicio))
-      if (tipoMIME) {
-        const [, tipo] = tipoMIME
-        return `data:${tipo};base64,`
-      }
-
-      console.log("No se encontró un tipo MIME válido.")
-      return ""
-    },
   },
 }
 </script>
@@ -90,7 +70,7 @@ export default {
         <img
           v-if="pregunta.adjunto === 'imagen'"
           class="preguntaImg img-fluid w-100"
-          :src="calcularCabeceraBase64(pregunta.adjuntoURL) + pregunta.adjuntoURL"
+          :src="pregunta.adjuntoURL"
           alt="Imagen de la pregunta"
         />
         <iframe

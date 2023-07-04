@@ -40,17 +40,6 @@ export default {
       }
       return "sinImagen.jpg"
     },
-    quitarCabeceraBase64(base64String) {
-      const cabeceraFin = ";base64,"
-      const finIndex = base64String.indexOf(cabeceraFin)
-      if (finIndex !== -1) {
-        const contenidoBase64 = base64String.slice(finIndex + cabeceraFin.length)
-        return contenidoBase64
-      } else {
-        console.log("No se encontró el terminador de cabecera válido.")
-        return ""
-      }
-    },
     seleccionarImagen(event) {
       const imagenSeleccionada = event.target.files[0]
       this.cargarImagen(imagenSeleccionada)
@@ -87,7 +76,7 @@ export default {
     entregarFormulario() {
       this.preguntaForm.adjunto = this.tipoArchivo
       this.preguntaForm.videoURL = this.extraerIdVideoYoutube(this.preguntaForm.videoURL)
-      this.preguntaForm.imagenBase64 = this.quitarCabeceraBase64(this.preguntaForm.imagenBase64)
+      this.preguntaForm.imagenBase64 = this.preguntaForm.imagenBase64
       if (this.modoEdicion) {
         actualizarPregunta(this.preguntaForm.id, this.preguntaForm)
       } else {
@@ -119,7 +108,9 @@ export default {
         min="0"
         max="100"
       />
-      <div class="slider-value">{{ this.getDificultadTexto(preguntaForm.dificultad) + "(" + preguntaForm.dificultad + ")" }}</div>
+      <div class="slider-value">
+        {{ this.getDificultadTexto(preguntaForm.dificultad) + "(" + preguntaForm.dificultad + ")" }}
+      </div>
     </div>
 
     <div class="form-group">
