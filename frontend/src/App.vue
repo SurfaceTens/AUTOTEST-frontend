@@ -29,7 +29,7 @@ export default {
         <router-view />
       </div>
     </div>
-    <Precarga :tipoPrecarga="tipoPrecarga" />
+    <Precarga />
   </div>
 </template>
 

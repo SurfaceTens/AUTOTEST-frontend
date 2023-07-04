@@ -24,7 +24,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(examenStore, ["preguntas"]),
+    ...mapState(examenStore, ["preguntas", "precargaExamenes"]),
     pregunta() {
       return this.preguntas.find((p) => p.id === this.$route.params.id)
     },
@@ -37,6 +37,7 @@ export default {
       "getNivelDificultad",
       "setNivelDificultad",
       "precargarExamenParams",
+      "cargarExamenes",
     ]),
 
     randomizarYLimitarPreguntas(preguntas) {
@@ -121,7 +122,7 @@ export default {
       return 0
     },
 
-    corregirExamen() {
+    async corregirExamen() {
       let acertadas = 0
       let falladas = 0
       let examenID = 0
@@ -152,7 +153,8 @@ export default {
         aciertos: acertadas,
         fallos: falladas,
       }
-      actualizarExamen(examenObjeto)
+      await actualizarExamen(examenObjeto)
+      this.precargarExamenes()
 
       this.tituloExamen = `Revisión del examen`
       this.notaExamen = [acertadas, resultado]

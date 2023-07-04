@@ -4,6 +4,7 @@ import "./style.css"
 import App from "@/App.vue"
 import { createPinia } from "pinia"
 import { loginStore } from "@/stores/loginStore.js"
+import { precargaStore } from '@/stores/precargaStore.js'
 
 // Importar las vistas
 import Home from "@/components/Home.vue"
@@ -36,9 +37,6 @@ const routes = [
   { path: "/exitoFormulario",       name: "ExitoFormulario",      component: ExitoFormulario                                    }
 ]
 
-// Declarar una variable para almacenar el tipo de precarga
-let tipoPrecarga = "todos"
-
 // Crear el enrutador
 const router = createRouter({
   history: createWebHashHistory(),
@@ -48,7 +46,8 @@ const router = createRouter({
 // Guarda de navegación
 router.beforeEach((to, from, next) => {
   const rutaEnMinusculas = to.name.toLowerCase()
-  tipoPrecarga = rutaEnMinusculas
+  const precarga = precargaStore()
+  precarga.setTipoPrecarga(rutaEnMinusculas)
 
   const login = loginStore()
   const rutaRequiereAdmin = to.meta.requiereAdmin
@@ -63,5 +62,4 @@ router.beforeEach((to, from, next) => {
 const app = createApp(App)
 app.use(router)
 app.use(pinia)
-app.provide('tipoPrecarga', tipoPrecarga)
 app.mount("#app")

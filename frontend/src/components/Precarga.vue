@@ -1,20 +1,18 @@
 <script>
-import { mapActions } from "pinia"
+import { mapActions, mapState } from "pinia"
+import { precargaStore } from "@/stores/precargaStore.js"
 import { preguntasStore } from "@/stores/preguntasStore"
 import { examenStore } from "@/stores/examenStore"
 import { alumnosStore } from "@/stores/alumnosStore"
 import Cargando from "@/components/Cargando.vue"
 
 export default {
-  name: "CargaPrecarga",
+  name: "Precarga",
   components: {
     Cargando,
   },
-  props: {
-    tipoPrecarga: {
-      type: String,
-      default: "",
-    },
+  computed: {
+    ...mapState(precargaStore, ["tipoPrecarga"]),
   },
   data() {
     return {
@@ -73,8 +71,13 @@ export default {
       this.mostrarSpinner = false
     },
   },
-  async created() {
-    this.precarga(this.tipoPrecarga)
+  created() {
+    this.precarga("todos")
+  },
+  watch: {
+    tipoPrecarga(newTipoPrecarga) {
+      this.precarga(newTipoPrecarga)
+    },
   },
 }
 </script>
