@@ -132,11 +132,6 @@ export default {
           <th v-if="sonDeExamen">Marcada</th>
           <th>
             Acciones
-            <router-link to="/NuevaPregunta">
-              <button v-if="!sonDeExamen" class="btn btn-sm btn-link">
-                <i class="fas fa-plus-square"></i>
-              </button>
-            </router-link>
             <button v-if="sonDeExamen" class="btn btn-sm btn-link" @click="cerrarPreguntasExamen">
               <i class="fas fa-right-from-bracket"></i>
             </button>
