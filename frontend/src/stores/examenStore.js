@@ -38,9 +38,6 @@ export const examenStore = defineStore("examenStore", {
       }
       return array
     },
-    getNivelDificultad() {
-      return this.nivelDificultad
-    },
     setNivelDificultad(nivelDificultad) {
       this.nivelDificultad = nivelDificultad
     },

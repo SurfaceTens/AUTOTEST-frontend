@@ -24,7 +24,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(examenStore, ["preguntas", "precargaExamenes"]),
+    ...mapState(examenStore, ["preguntas", "precargaExamenes", "nivelDificultad"]),
     pregunta() {
       return this.preguntas.find((p) => p.id === this.$route.params.id)
     },
@@ -34,9 +34,9 @@ export default {
       "generadorExamen",
       "desordenarArray",
       "corregirPregunta",
-      "getNivelDificultad",
       "setNivelDificultad",
       "precargarExamenParams",
+      "precargarExamenes",
       "cargarExamenes",
     ]),
 
@@ -88,7 +88,7 @@ export default {
       this.examenTerminado = false
       this.notaExamen = []
       window.scrollTo({ top: 0, behavior: "smooth" })
-      this.precargarExamenParams(this.numPreguntas, 1, this.getNivelDificultad())
+      this.precargarExamenParams(this.numPreguntas, 1, this.nivelDificultad)
     },
 
     reiniciarRespuestas(preguntas) {
@@ -105,7 +105,7 @@ export default {
 
     cambiarDificultad(nuevaDificultad) {
       this.setNivelDificultad(nuevaDificultad)
-      this.precargarExamenParams(this.numPreguntas, 1, this.getNivelDificultad())
+      this.precargarExamenParams(this.numPreguntas, 1, this.nivelDificultad)
       this.generarNuevoExamen(nuevaDificultad)
       this.cerrarModal()
       window.scrollTo({ top: 0, behavior: "smooth" })
@@ -220,10 +220,10 @@ export default {
       </ul>
       <div class="fin-examen">
         <button
-          @click="generarNuevoExamen(this.getNivelDificultad()), cerrarModal()"
+          @click="generarNuevoExamen(this.nivelDificultad), cerrarModal()"
           class="btn btn-success btn-lg"
         >
-          Hacer Otro {{ this.getNivelDificultad() }}
+          Hacer Otro {{ this.nivelDificultad }}
         </button>
         <button @click="mostrarCambiarDificultad" class="btn btn-secondary btn-lg">
           Escoger dificultad
@@ -242,7 +242,7 @@ export default {
         v-if="mostrarModal"
         :nota="notaExamen"
         :modalTipo="'revisarExamen'"
-        @generarNuevoExamen="generarNuevoExamen(this.getNivelDificultad())"
+        @generarNuevoExamen="generarNuevoExamen(this.nivelDificultad)"
         @cerrarModal="cerrarModal"
       />
     </div>
