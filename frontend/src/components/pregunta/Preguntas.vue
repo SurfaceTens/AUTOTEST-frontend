@@ -45,8 +45,6 @@ export default {
 
     async mostrarPregunta(pregunta) {
       this.preguntaSeleccionada = await this.getPreguntaPorId(pregunta.id)
-      console.log(this.preguntaSeleccionada)
-      console.log(this.preguntaSeleccionada.tematica)
       this.modoEdicion = true
     },
 
@@ -174,7 +172,7 @@ export default {
           <td v-if="sonDeExamen">{{ pregunta.correcta }}</td>
           <td v-if="sonDeExamen">{{ pregunta.respuesta }}</td>
           <td>
-            <button class="btn btn-primary" @click="mostrarPregunta(pregunta)">Editar</button>
+            <button v-if="!sonDeExamen" class="btn btn-primary" @click="mostrarPregunta(pregunta)">Editar</button>
 
             <button v-if="!sonDeExamen" class="btn btn-danger" @click="borrarPregunta(pregunta)">
               Eliminar

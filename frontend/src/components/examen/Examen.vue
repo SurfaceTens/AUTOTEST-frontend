@@ -5,14 +5,12 @@ import { actualizarExamen } from "@/stores/api-service"
 import Pregunta from "@/components/examen/PreguntaExamen.vue"
 import FinExamen from "@/components/modales/FinExamen.vue"
 import CambiarDificultad from "@/components/modales/CambiarDificultad.vue"
-import Cargando from "@/components/Cargando.vue"
 
 export default {
   components: {
     Pregunta,
     FinExamen,
     CambiarDificultad,
-    Cargando,
   },
   data() {
     return {
@@ -21,7 +19,6 @@ export default {
       examenTerminado: false, // Variable para controlar el estado del examen.
       tituloExamen: "", // Título del examen.
       notaExamen: [], // Nota del examen.
-      cargandoExamen: true, // Muestra el estado de carga cuando la api no esta lista.
       mostrarModal: false, // Controlar la visibilidad de FinExamen.
       cambioDificultad: false, // Controlar la visibilidad de Cambiar dificultad.
     }
@@ -83,9 +80,7 @@ export default {
     },
 
     async generarNuevoExamen(nivelDificultad) {
-      this.cargandoExamen = true
       await this.generarExamen(this.numPreguntas, 1, nivelDificultad)
-      this.cargandoExamen = false
       this.preguntas = this.randomizarYLimitarPreguntas(this.preguntas)
       this.respuestasExamen = []
       this.tituloExamen = `Lee detenidamente las preguntas y escoge la opción más adecuada`
@@ -161,23 +156,14 @@ export default {
       this.tituloExamen = `Revisión del examen`
       this.notaExamen = [acertadas, resultado]
     },
-  },
-  async created() {
-    await this.generarNuevoExamen(this.getNivelDificultad())
-    this.cargandoExamen = false
-  },
+  }
 }
 </script>
 
 <template>
   <div class="area-examen">
-    <!-- Mostrar aviso de carga -->
-    <div v-if="cargandoExamen">
-      <Cargando />
-    </div>
-
     <!-- Versión resoluble del examen -->
-    <div v-else-if="!examenTerminado">
+    <div v-if="!examenTerminado">
       <h1>{{ tituloExamen }}</h1>
       <ul>
         <li v-for="(pregunta, index) in this.preguntas" :key="pregunta.id">

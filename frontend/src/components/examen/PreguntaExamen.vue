@@ -59,7 +59,6 @@ export default {
       return url.startsWith("http://") || url.startsWith("https://")
     },
     calcularCabeceraBase64(base64String) {
-      console.log("base64String:", base64String)
       const tiposMIME = {
         "/9j/": "image/jpeg",
         "iVBORw0KG": "image/png",

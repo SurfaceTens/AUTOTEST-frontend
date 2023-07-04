@@ -55,10 +55,11 @@ export function getTotalEntidades(nombre) {
   return llamadaApi(`${host}/${nombre}/total`)
 }
 
-export function crearExamen(numPreguntas, usuarioID, nivelDificultad) {
-  return llamadaApi(
+export async function crearExamen(numPreguntas, usuarioID, nivelDificultad) {
+  const extraer =  await llamadaApi(
     `${host}/preguntasExamen/generarExamen/${numPreguntas}/${usuarioID}/${nivelDificultad}`
   )
+  return extraer.data._embedded.preguntaExamenModels
 }
 
 export function corregirPreguntaExamen(preguntaID, pregunta) {
@@ -79,4 +80,8 @@ export function actualizarExamen(examenID, examen) {
 
 export function getPreguntasExamen(examenID) {
   return llamadaApi(`${host}/examenes/${examenID}/preguntas`)
+}
+
+export function isPrecargaReady(precarga) {
+  return precarga.length !== 0;
 }

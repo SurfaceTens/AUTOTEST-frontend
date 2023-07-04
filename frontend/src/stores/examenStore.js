@@ -1,23 +1,21 @@
 import { defineStore } from "pinia"
-import { crearExamen, corregirPreguntaExamen } from "./api-service"
+import { crearExamen, corregirPreguntaExamen, isPrecargaReady } from "./api-service"
 
 export const examenStore = defineStore("examenStore", {
   state: () => ({
     preguntas: [],
     precarga: [],
     numPreguntasDefecto: 30,
-    usuarioDefecto: 1,
+    usuarioID: 1,
     nivelDificultad: "aleatorio",
   }),
   actions: {
     async generadorExamen(numeroPreguntas, usuario, nivelDificultad) {
-      if (this.isPrecargaReady()) {
+      if (isPrecargaReady(this.precarga)) {
         this.preguntas = this.precarga
         this.precarga = []
       } else {
-        this.preguntas = (
-          await crearExamen(numeroPreguntas, usuario, nivelDificultad)
-        ).data._embedded.preguntaExamenModels
+        precargarExamenParams(numeroPreguntas, usuario, nivelDificultad)
       }
     },
     async corregirPregunta(pregunta) {
@@ -44,22 +42,13 @@ export const examenStore = defineStore("examenStore", {
     setNivelDificultad(nivelDificultad) {
       this.nivelDificultad = nivelDificultad
     },
-    isPrecargaReady() {
-      if (this.precarga.length !== 0) {
-        return true
-      } else {
-        return false
-      }
-    },
     async precargarExamen() {
-      this.precarga = (
-        await crearExamen(this.numPreguntasDefecto, this.usuarioDefecto, this.nivelDificultad)
-      ).data._embedded.preguntaExamenModels
+      this.precargarExamenParams(this.numPreguntasDefecto, this.usuarioID, this.nivelDificultad)
     },
     async precargarExamenParams(numeroPreguntas, usuario, nivelDificultad) {
       this.precarga = (
         await crearExamen(numeroPreguntas, usuario, nivelDificultad)
-      ).data._embedded.preguntaExamenModels
+      )
     },
   },
 })

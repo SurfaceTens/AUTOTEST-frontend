@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     ...mapActions(preguntasStore, ["precargarPreguntas", "getNumPreguntas"]),
-    ...mapActions(examenStore, ["precargarExamen"]),
+    ...mapActions(examenStore, ["precargarExamen", "generadorExamen"]),
     ...mapActions(examenesStore, ["precargarExamenes"]),
     ...mapActions(alumnosStore, ["precargarAlumnos", "getNumAlumnos"]),
 
@@ -38,6 +38,7 @@ export default {
     },
     async precargaDeExamen() {
       await this.precargarExamen()
+      this.generadorExamen()
     },
     async precargaDeExamenes() {
       await this.precargarExamenes()
