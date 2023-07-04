@@ -30,16 +30,6 @@ export default {
   },
   methods: {
     ...mapActions(preguntasStore, ["getDificultadTexto"]),
-    validarImagen(url) {
-      if (url) {
-        const extensionesPermitidas = [".jpg", ".jpeg", ".png", ".gif", ".bmp"]
-        const extension = url.substring(url.lastIndexOf(".")).toLowerCase()
-        if (extensionesPermitidas.includes(extension)) {
-          return url
-        }
-      }
-      return "sinImagen.jpg"
-    },
     seleccionarImagen(event) {
       const imagenSeleccionada = event.target.files[0]
       this.cargarImagen(imagenSeleccionada)

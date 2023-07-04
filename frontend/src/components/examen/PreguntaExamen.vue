@@ -55,9 +55,6 @@ export default {
 
   methods: {
     ...mapActions(examenStore, ["desordenarArray"]),
-    esEnlaceExterno(url) {
-      return url.startsWith("http://") || url.startsWith("https://")
-    },
   },
 }
 </script>
