@@ -26,7 +26,7 @@ export default {
     ...mapActions(preguntasStore, ["precargarPreguntas", "getNumPreguntas"]),
     ...mapActions(examenStore, ["precargarExamen", "generadorExamen"]),
     ...mapActions(examenesStore, ["precargarExamenes"]),
-    ...mapActions(alumnosStore, ["precargarAlumnos", "getNumAlumnos"]),
+    ...mapActions(alumnosStore, ["cargarAlumnos", "getNumAlumnos"]),
 
     async precargaDePreguntas() {
       await this.getNumPreguntas()
@@ -34,7 +34,7 @@ export default {
     },
     async precargaDeAlumnos() {
       await this.getNumAlumnos()
-      await this.precargarAlumnos()
+      await this.cargarAlumnos()
     },
     async precargaDeExamen() {
       await this.precargarExamen()

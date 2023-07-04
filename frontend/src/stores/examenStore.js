@@ -15,7 +15,7 @@ export const examenStore = defineStore("examenStore", {
         this.preguntas = this.precarga
         this.precarga = []
       } else {
-        precargarExamenParams(numeroPreguntas, usuario, nivelDificultad)
+        this.precargarExamenParams(numeroPreguntas, usuario, nivelDificultad)
       }
     },
     async corregirPregunta(pregunta) {
@@ -43,7 +43,7 @@ export const examenStore = defineStore("examenStore", {
       this.nivelDificultad = nivelDificultad
     },
     async precargarExamen() {
-      this.precargarExamenParams(this.numPreguntasDefecto, this.usuarioID, this.nivelDificultad)
+      await this.precargarExamenParams(this.numPreguntasDefecto, this.usuarioID, this.nivelDificultad)
     },
     async precargarExamenParams(numeroPreguntas, usuario, nivelDificultad) {
       this.precarga = (

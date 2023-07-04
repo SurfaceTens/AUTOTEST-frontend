@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-import { getEntidades, actualizarAlumno, getTotalEntidades } from "./api-service"
+import { getAlumnos, actualizarAlumno, getTotalEntidades, isPrecargaReady } from "./api-service"
 
 export const alumnosStore = defineStore("alumnos", {
   state: () => ({
@@ -16,30 +16,24 @@ export const alumnosStore = defineStore("alumnos", {
         const response = await getTotalEntidades("alumnos")
         this.numAlumnos = response.data
       } catch (error) {
-        console.error("Error al obtener el número de preguntas:", error)
+        console.error("Error al obtener el número de alumnos:", error)
       }
     },
 
-    async getAlumnos() {
-      if (this.isPrecargaReady()) {
+    async cargarAlumnos() {
+      if (isPrecargaReady(this.precarga)) {
         this.alumnos = this.precarga
         this.precarga = []
       } else {
-        this.alumnos = (await getEntidades("alumnos")).data._embedded.alumnoModels
+        this.precargarAlumnos()
+        this.alumnos = this.precarga
       }
     },
     async editarAlumno(alumno) {
       await actualizarAlumno(alumno.id, alumno)
     },
-    isPrecargaReady() {
-      if (this.precarga.length !== 0) {
-        return true
-      } else {
-        return false
-      }
-    },
     async precargarAlumnos() {
-      this.precarga = this.alumnos = (await getEntidades("alumnos")).data._embedded.alumnoModels
+      this.precarga = this.alumnos = (await getAlumnos())
     },
   },
 })

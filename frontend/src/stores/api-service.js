@@ -55,6 +55,11 @@ export function getTotalEntidades(nombre) {
   return llamadaApi(`${host}/${nombre}/total`)
 }
 
+export async function getAlumnos() {
+  const extraer = await getEntidades("alumnos")
+  return extraer.data._embedded.alumnoModels
+}
+
 export async function crearExamen(numPreguntas, usuarioID, nivelDificultad) {
   const extraer =  await llamadaApi(
     `${host}/preguntasExamen/generarExamen/${numPreguntas}/${usuarioID}/${nivelDificultad}`
