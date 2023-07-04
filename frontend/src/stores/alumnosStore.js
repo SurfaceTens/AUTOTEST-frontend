@@ -33,7 +33,7 @@ export const alumnosStore = defineStore("alumnos", {
       await actualizarAlumno(alumno.id, alumno)
     },
     async precargarAlumnos() {
-      this.precarga = this.alumnos = (await getAlumnos())
+      this.precarga = this.alumnos = await getAlumnos()
     },
   },
 })

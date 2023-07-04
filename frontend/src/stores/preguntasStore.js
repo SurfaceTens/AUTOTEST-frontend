@@ -1,5 +1,11 @@
 import { defineStore } from "pinia"
-import { getPreguntas, getEntidad, actualizarPregunta, getTotalEntidades, isPrecargaReady } from "./api-service"
+import {
+  getPreguntas,
+  getEntidad,
+  actualizarPregunta,
+  getTotalEntidades,
+  isPrecargaReady,
+} from "./api-service"
 
 export const preguntasStore = defineStore("preguntas", {
   state: () => ({
@@ -36,7 +42,7 @@ export const preguntasStore = defineStore("preguntas", {
       await actualizarPregunta(pregunta.id, pregunta)
     },
     async precargarPreguntas() {
-      this.precarga = this.preguntas = (await getPreguntas())
+      this.precarga = this.preguntas = await getPreguntas()
     },
   },
 })

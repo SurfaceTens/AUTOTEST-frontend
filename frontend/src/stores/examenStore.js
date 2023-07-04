@@ -67,7 +67,7 @@ export const examenStore = defineStore("examenStore", {
       }
     },
     async precargarExamenes() {
-      this.precargaExamenes = this.examenes = (await getExamenes())
+      this.precargaExamenes = this.examenes = await getExamenes()
     },
   },
 })
