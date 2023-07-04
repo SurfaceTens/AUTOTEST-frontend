@@ -21,18 +21,19 @@ export default {
   data() {
     return {
       tipoArchivo: "ninguno",
-      dificultadMap: {
-        facil: 25,
-        media: 50,
-        dificil: 75,
-      },
+      pesoMaximoImagen: 1.02 * 1024 * 1024, // Tamaño máximo permitido: 1.02MB en bytes
     }
   },
   methods: {
     ...mapActions(preguntasStore, ["getDificultadTexto"]),
     seleccionarImagen(event) {
       const imagenSeleccionada = event.target.files[0]
-      this.cargarImagen(imagenSeleccionada)
+      if (imagenSeleccionada.size < this.pesoMaximoImagen) {
+        this.cargarImagen(imagenSeleccionada)
+      } else {
+        this.preguntaForm.adjunto = "ninguno"
+        this.tipoArchivo = "ninguno"
+      }
     },
     cargarImagen(img) {
       let reader = new FileReader()
