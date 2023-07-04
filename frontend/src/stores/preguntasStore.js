@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-import { getEntidades, getEntidad, actualizarPregunta, getTotalEntidades } from "./api-service"
+import { getPreguntas, getEntidad, actualizarPregunta, getTotalEntidades, isPrecargaReady } from "./api-service"
 
 export const preguntasStore = defineStore("preguntas", {
   state: () => ({
@@ -20,12 +20,13 @@ export const preguntasStore = defineStore("preguntas", {
         this.numPreguntas = 0
       }
     },
-    async getPreguntas() {
-      if (this.isPrecargaReady()) {
+    async cargarPreguntas() {
+      if (isPrecargaReady(this.precarga)) {
         this.preguntas = this.precarga
         this.precarga = []
       } else {
-        this.preguntas = (await getEntidades("preguntas")).data._embedded.preguntaQuickModels
+        this.precargarPreguntas()
+        this.preguntas = this.precarga
       }
     },
     setPreguntas(preguntas) {
@@ -34,17 +35,8 @@ export const preguntasStore = defineStore("preguntas", {
     async editarPregunta(pregunta) {
       await actualizarPregunta(pregunta.id, pregunta)
     },
-    isPrecargaReady() {
-      if (this.precarga.length !== 0) {
-        return true
-      } else {
-        return false
-      }
-    },
     async precargarPreguntas() {
-      this.precarga = this.preguntas = (
-        await getEntidades("preguntas")
-      ).data._embedded.preguntaModels
+      this.precarga = this.preguntas = (await getPreguntas())
     },
   },
 })

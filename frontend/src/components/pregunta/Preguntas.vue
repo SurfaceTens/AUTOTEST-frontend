@@ -38,7 +38,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(preguntasStore, ["getPreguntas", "setPreguntas", "getPreguntaPorId"]),
+    ...mapActions(preguntasStore, ["cargarPreguntas", "setPreguntas", "getPreguntaPorId"]),
     ordenarPreguntas() {
       this.preguntas.sort((a, b) => a.id - b.id)
     },
@@ -104,7 +104,7 @@ export default {
         const respuesta = await getPreguntasExamen(this.examenID)
         this.preguntas = this.setPreguntas(respuesta.data._embedded.preguntaExamenModels)
       } else {
-        await this.getPreguntas()
+        await this.cargarPreguntas()
       }
       this.ordenarPreguntas()
       this.cargandoPreguntas = false
