@@ -79,8 +79,10 @@ export default {
       this.cerrarModalBorrar()
     },
     async confirmarEditarPregunta() {
+      this.cargandoPreguntas = true
+      this.mostrarModalEditar = true
       await this.cargarPreguntas()
-      this.cerrarModalEditar()
+      this.cargandoPreguntas = false
     },
     cerrarModalBorrar() {
       this.mostrarModalBorrado = false
