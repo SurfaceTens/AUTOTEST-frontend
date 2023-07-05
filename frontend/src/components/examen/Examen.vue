@@ -5,39 +5,40 @@ import { actualizarExamen } from "@/stores/api-service"
 import Pregunta from "@/components/examen/PreguntaExamen.vue"
 import FinExamen from "@/components/modales/FinExamen.vue"
 import CambiarDificultad from "@/components/modales/CambiarDificultad.vue"
+import Cargando from "@/components/Cargando.vue"
 
 export default {
   components: {
     Pregunta,
     FinExamen,
     CambiarDificultad,
+    Cargando,
   },
   data() {
     return {
       numPreguntas: 30, // Numero de preguntas que debe tener el examen.
       umbralApto: 90, // Porcentaje con el que se aprueba el examen.
       examenTerminado: false, // Variable para controlar el estado del examen.
-      tituloExamen: "", // Título del examen.
-      notaExamen: [], // Nota del examen.
+      tituloExamen: "Lee detenidamente las preguntas y escoge la opción más adecuada",
+      notaExamen: [], // Nota del examen que recibe el modal.
       mostrarModal: false, // Controlar la visibilidad de FinExamen.
       cambioDificultad: false, // Controlar la visibilidad de Cambiar dificultad.
+      cargando: false, // Muestra el estado de carga cuando la api no esta lista.
     }
   },
   computed: {
-    ...mapState(examenStore, ["preguntas", "precargaExamenes", "nivelDificultad"]),
+    ...mapState(examenStore, ["preguntas", "nivelDificultad"]),
     pregunta() {
       return this.preguntas.find((p) => p.id === this.$route.params.id)
     },
   },
   methods: {
     ...mapActions(examenStore, [
-      "generadorExamen",
       "desordenarArray",
       "corregirPregunta",
-      "setNivelDificultad",
-      "precargarExamenParams",
-      "precargarExamenes",
+      "cargarExamen",
       "cargarExamenes",
+      "injectarDificultadExamen",
     ]),
 
     randomizarYLimitarPreguntas(preguntas) {
@@ -76,17 +77,15 @@ export default {
       })
     },
 
-    async generarExamen(numeroPreguntas, idAlumno, nivelDificultad) {
-      await this.generadorExamen(numeroPreguntas, idAlumno, nivelDificultad)
-    },
-
     async generarNuevoExamen(nivelDificultad) {
-      await this.generarExamen(this.numPreguntas, 1, nivelDificultad)
+      this.cargando = true
+      await this.injectarDificultadExamen(nivelDificultad)
       this.preguntas = this.randomizarYLimitarPreguntas(this.preguntas)
       this.respuestasExamen = []
       this.tituloExamen = `Lee detenidamente las preguntas y escoge la opción más adecuada`
       this.examenTerminado = false
       this.notaExamen = []
+      this.cargando = false
       window.scrollTo({ top: 0, behavior: "smooth" })
     },
 
@@ -103,8 +102,6 @@ export default {
     },
 
     cambiarDificultad(nuevaDificultad) {
-      this.setNivelDificultad(nuevaDificultad)
-      this.precargarExamenParams(this.numPreguntas, 1, this.nivelDificultad)
       this.generarNuevoExamen(nuevaDificultad)
       this.cerrarModal()
       window.scrollTo({ top: 0, behavior: "smooth" })
@@ -150,20 +147,26 @@ export default {
         entregado: true,
       }
       await actualizarExamen(examenObjeto)
-      this.precargarExamenes()
+      this.cargarExamenes()
 
       this.tituloExamen = `Revisión del examen`
       this.notaExamen = [acertadas, resultado]
     },
+  },
+  async created() {
+    this.cargando = true
+    await this.cargarExamen()
+    this.cargando = false
   },
 }
 </script>
 
 <template>
   <div class="area-examen">
+    <Cargando v-if="cargando" />
     <!-- Versión resoluble del examen -->
     <div v-if="!examenTerminado">
-      <h1>{{ tituloExamen }}</h1>
+      <h1 v-if="!cargando">{{ tituloExamen }}</h1>
       <ul>
         <li v-for="(pregunta, index) in this.preguntas" :key="pregunta.id">
           <Pregunta
@@ -186,7 +189,7 @@ export default {
           </b-button-group>
         </li>
       </ul>
-      <div class="fin-examen">
+      <div v-if="!cargando" class="fin-examen">
         <button @click="terminarExamen" class="btn btn-primary btn-lg">Terminar</button>
       </div>
 
@@ -202,7 +205,7 @@ export default {
 
     <!-- Versión del examen con respuestas resaltadas -->
     <div v-else-if="examenTerminado">
-      <h1>{{ tituloExamen }}</h1>
+      <h1 v-if="!cargando">{{ tituloExamen }}</h1>
       <ul>
         <li v-for="(pregunta, index) in this.preguntas" :key="pregunta.id">
           <Pregunta
@@ -214,7 +217,7 @@ export default {
           />
         </li>
       </ul>
-      <div class="fin-examen">
+      <div v-if="!cargando" class="fin-examen">
         <button
           @click="generarNuevoExamen(this.nivelDificultad), cerrarModal()"
           class="btn btn-success btn-lg"

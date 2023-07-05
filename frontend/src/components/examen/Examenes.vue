@@ -1,22 +1,26 @@
 <script>
-import { mapState } from "pinia"
+import { mapActions, mapState } from "pinia"
 import { examenStore } from "@/stores/examenStore"
 import Preguntas from "@/components/pregunta/Preguntas.vue"
+import Cargando from "@/components/Cargando.vue"
 
 export default {
   components: {
     Preguntas,
+    Cargando,
   },
   data() {
     return {
       verPreguntas: false,
       examenIDSeleccionado: null,
+      cargando: true, // Muestra el estado de carga cuando la api no esta lista.
     }
   },
   computed: {
     ...mapState(examenStore, ["examenes"]),
   },
   methods: {
+    ...mapActions(examenStore, ["cargarExamenes"]),
     mostrarPreguntas(examenID) {
       this.examenIDSeleccionado = examenID
       this.verPreguntas = true
@@ -25,11 +29,16 @@ export default {
       this.verPreguntas = false
     },
   },
+  async created() {
+    await this.cargarExamenes()
+    this.cargando = false
+  },
 }
 </script>
 
 <template>
   <div>
+    <Cargando v-if="cargando" />
     <div v-if="verPreguntas" class="container">
       <div class="card">
         <div class="card_content">

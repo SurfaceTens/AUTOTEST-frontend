@@ -27,7 +27,7 @@ export default {
       modoEdicion: false,
       mostrarModalBorrado: false,
       mostrarModalEditar: false,
-      cargandoPreguntas: true, // Muestra el estado de carga cuando la api no esta lista.
+      cargandoPreguntas: true,
     }
   },
   computed: {
@@ -103,7 +103,7 @@ export default {
 </script>
 
 <template>
-  <div v-if="isAdmin">
+  <div>
     <Cargando v-if="cargandoPreguntas" />
 
     <div v-else-if="modoEdicion" class="container">
@@ -175,10 +175,6 @@ export default {
       @cerrarModal="cerrarModalBorrar"
     />
     <ConfirmarEditar v-if="mostrarModalEditar" @cerrarModal="cerrarModalEditar" />
-  </div>
-
-  <div v-else>
-    <h1>No se dispone de los permisos para visualizar el listado de preguntas</h1>
   </div>
 </template>
 

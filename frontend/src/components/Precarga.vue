@@ -21,13 +21,8 @@ export default {
   },
   methods: {
     ...mapActions(preguntasStore, ["precargarPreguntas", "getNumPreguntas"]),
-    ...mapActions(examenStore, [
-      "precargarExamen",
-      "generadorExamen",
-      "precargarExamenes",
-      "cargarExamenes",
-    ]),
-    ...mapActions(alumnosStore, ["cargarAlumnos", "getNumAlumnos"]),
+    ...mapActions(examenStore, ["precargarExamen", "precargarExamenes"]),
+    ...mapActions(alumnosStore, ["precargarAlumnos", "getNumAlumnos"]),
 
     async precargaDePreguntas() {
       await this.getNumPreguntas()
@@ -35,13 +30,13 @@ export default {
     },
     async precargaDeAlumnos() {
       await this.getNumAlumnos()
-      await this.cargarAlumnos()
+      await this.precargarAlumnos()
     },
     async precargaDeExamen() {
-      await this.generadorExamen()
+      await this.precargarExamen()
     },
     async precargaDeExamenes() {
-      await this.cargarExamenes()
+      await this.precargarExamenes()
     },
     async precarga(tipoPrecarga) {
       this.mostrarSpinner = true
@@ -60,7 +55,7 @@ export default {
             await this.precargaDeExamen()
             break
           case "todos":
-            await this.precargarExamen()
+            await this.precargaDeExamen()
             await this.precargaDeAlumnos()
             await this.precargaDeExamenes()
             await this.precargaDePreguntas()
