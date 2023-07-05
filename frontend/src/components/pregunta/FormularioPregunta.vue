@@ -48,7 +48,7 @@ export default {
       this.preguntaForm.videoURL = this.preguntaForm.videoURL
       this.preguntaForm.imagenBase64 = this.preguntaForm.imagenBase64
       if (this.modoEdicion) {
-        actualizarPregunta(this.preguntaForm.id, this.preguntaForm)
+        actualizarPregunta(this.preguntaForm)
       } else {
         guardarPregunta(this.preguntaForm)
         this.$router.push("ExitoFormulario")

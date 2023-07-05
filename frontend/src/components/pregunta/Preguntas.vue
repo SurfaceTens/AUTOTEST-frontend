@@ -74,11 +74,13 @@ export default {
           this.preguntas.splice(index, 1)
         }
       } catch (error) {}
+      await this.cargarPreguntas()
       this.cargandoPreguntas = false
       this.cerrarModalBorrar()
     },
-    confirmarEditarPregunta() {
-      this.mostrarModalEditar = true
+    async confirmarEditarPregunta() {
+      await this.cargarPreguntas()
+      this.cerrarModalEditar()
     },
     cerrarModalBorrar() {
       this.mostrarModalBorrado = false
