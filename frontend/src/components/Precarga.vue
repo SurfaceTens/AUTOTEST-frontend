@@ -38,38 +38,42 @@ export default {
       await this.cargarAlumnos()
     },
     async precargaDeExamen() {
-      await this.precargarExamen()
-      this.generadorExamen()
+      await this.generadorExamen()
     },
     async precargaDeExamenes() {
       await this.cargarExamenes()
     },
     async precarga(tipoPrecarga) {
       this.mostrarSpinner = true
-      switch (tipoPrecarga) {
-        case "preguntas":
-          this.precargaDePreguntas()
-          break
-        case "alumnos":
-          this.precargaDeAlumnos()
-          break
-        case "examenes":
-          this.precargaDeExamenes()
-          break
-        case "todos":
-          await this.precargaDeExamen()
-          await this.precargaDeAlumnos()
-          await this.precargaDeExamenes()
-          await this.precargaDePreguntas()
-          break
-        default:
-          break
-      }
-      this.mostrarSpinner = false
+      setTimeout(async () => {
+        switch (tipoPrecarga) {
+          case "preguntas":
+            await this.precargaDePreguntas()
+            break
+          case "alumnos":
+            await this.precargaDeAlumnos()
+            break
+          case "examenes":
+            await this.precargaDeExamenes()
+            break
+          case "examen":
+            await this.precargaDeExamen()
+            break
+          case "todos":
+            await this.precargarExamen()
+            await this.precargaDeAlumnos()
+            await this.precargaDeExamenes()
+            await this.precargaDePreguntas()
+            break
+          default:
+            break
+        }
+        this.mostrarSpinner = false
+      }, 100)
     },
   },
   created() {
-    this.precarga("todos")
+    this.precarga(this.tipoPrecarga)
   },
   watch: {
     tipoPrecarga(newTipoPrecarga) {

@@ -5,8 +5,10 @@ export const examenStore = defineStore("examenStore", {
   state: () => ({
     preguntas: [],
     precargaPreguntas: [],
+
     examenes: [],
     precargaExamenes: [],
+
     numPreguntasDefecto: 30,
     usuarioID: 1,
     nivelDificultad: "aleatorio",
@@ -19,6 +21,9 @@ export const examenStore = defineStore("examenStore", {
       } else {
         this.precargarExamenParams(numeroPreguntas, usuario, nivelDificultad)
       }
+    },
+    async generadorExamen() {
+      await this.generadorExamen(this.numPreguntasDefecto, this.usuarioID, this.nivelDificultad)
     },
     async corregirPregunta(pregunta) {
       await corregirPreguntaExamen(pregunta)
@@ -59,12 +64,15 @@ export const examenStore = defineStore("examenStore", {
         this.examenes = this.precargaExamenes
         this.precargaExamenes = []
       } else {
-        this.precargarExamenes()
+        await this.precargarExamenes()
         this.examenes = this.precargaExamenes
+        this.precargaExamenes = []
       }
     },
     async precargarExamenes() {
-      this.precargaExamenes = await getExamenes()
+      if (!isPrecargaReady(this.precargaExamenes)) {
+        this.precargaExamenes = await getExamenes()
+      }
     },
   },
 })

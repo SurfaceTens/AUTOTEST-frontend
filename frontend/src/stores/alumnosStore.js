@@ -19,21 +19,24 @@ export const alumnosStore = defineStore("alumnos", {
         console.error("Error al obtener el número de alumnos:", error)
       }
     },
-
-    async cargarAlumnos() {
-      if (isPrecargaReady(this.precarga)) {
-        this.alumnos = this.precarga
-        this.precarga = []
-      } else {
-        this.precargarAlumnos()
-        this.alumnos = this.precarga
-      }
-    },
     async editarAlumno(alumno) {
       await actualizarAlumno(alumno)
     },
+
+    async cargarAlumnos() {
+      if (isPrecargaReady(this.precarga)) {
+        this.alumnos = this.precarga;
+        this.precarga = [];
+      } else {
+        await this.precargarAlumnos();
+        this.alumnos = this.precarga;
+        this.precarga = [];
+      }
+    },
     async precargarAlumnos() {
-      this.precarga = this.alumnos = await getAlumnos()
+      if (!isPrecargaReady(this.precarga)) {
+        this.precarga = await getAlumnos();
+      }
     },
   },
 })

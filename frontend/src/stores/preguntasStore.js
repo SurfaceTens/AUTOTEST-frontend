@@ -47,24 +47,29 @@ export const preguntasStore = defineStore("preguntas", {
       preguntas.sort((a, b) => a.id - b.id)
     },
 
-    async cargarPreguntas() {
-      if (isPrecargaReady(this.precarga)) {
-        this.preguntas = this.precarga
-        this.precarga = []
-      } else {
-        this.precargarPreguntas()
-        this.preguntas = this.precarga
-      }
-    },
     setPreguntas(preguntas) {
       this.preguntas = preguntas
     },
     async editarPregunta(pregunta) {
       await actualizarPregunta(pregunta)
     },
+    
+    async cargarPreguntas() {
+      if (isPrecargaReady(this.precarga)) {
+        this.preguntas = this.precarga
+        this.precarga = []
+      } else {
+        await this.precargarPreguntas()
+        this.preguntas = this.precarga
+        this.precarga = []
+      }
+    },
+
     async precargarPreguntas() {
-      this.precarga = await getPreguntas()
-      this.ordenarPreguntas(this.precarga)
+      if (!isPrecargaReady(this.precarga)) {
+        this.precarga = await getPreguntas()
+        this.ordenarPreguntas(this.precarga)
+      }
     },
   },
 })

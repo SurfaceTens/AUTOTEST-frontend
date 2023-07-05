@@ -148,9 +148,6 @@ export default {
       const examenObjeto = {
         id: examenID,
         entregado: true,
-        nota: resultado,
-        aciertos: acertadas,
-        fallos: falladas,
       }
       await actualizarExamen(examenObjeto)
       this.precargarExamenes()
