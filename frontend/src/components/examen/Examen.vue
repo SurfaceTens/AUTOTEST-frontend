@@ -142,15 +142,15 @@ export default {
         resultado = "NO APTO"
       }
 
+      this.tituloExamen = `Revisión del examen`
+      this.notaExamen = [acertadas, resultado]
+
       const examenObjeto = {
         id: examenID,
         entregado: true,
       }
       await actualizarExamen(examenObjeto)
       this.cargarExamenes()
-
-      this.tituloExamen = `Revisión del examen`
-      this.notaExamen = [acertadas, resultado]
     },
   },
   async created() {
