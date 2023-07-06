@@ -59,6 +59,11 @@ export async function getAlumnos() {
   return extraer.data._embedded.alumnoModels
 }
 
+export async function getExamen(id) {
+  const extraer = getEntidad("examenes", id)
+  return extraer.data
+}
+
 export async function getExamenes() {
   const extraer = await getEntidades("examenes")
   return extraer.data._embedded.examenModels
