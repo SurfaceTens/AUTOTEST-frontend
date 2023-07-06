@@ -1,13 +1,10 @@
 <script>
-import { inject } from "vue"
 import Navbar from "@/components/Navbar.vue"
-import Precarga from "@/components/Precarga.vue"
 
 export default {
   name: "App",
   components: {
     Navbar,
-    Precarga,
   },
 }
 </script>
@@ -22,7 +19,6 @@ export default {
         <router-view />
       </div>
     </div>
-    <Precarga />
   </div>
 </template>
 

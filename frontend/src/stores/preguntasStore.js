@@ -1,17 +1,11 @@
 import { defineStore } from "pinia"
-import {
-  getPreguntas,
-  getEntidad,
-  getTotalEntidades,
-  isPrecargaReady,
-} from "./api-service"
+import { getPreguntas, getEntidad, getTotalEntidades } from "./api-service"
 
 export const preguntasStore = defineStore("preguntas", {
   state: () => ({
     numPreguntas: 0,
     preguntas: [],
     preguntaSeleccionada: {},
-    precarga: [],
   }),
   actions: {
     async getPreguntaPorId(id) {
@@ -19,8 +13,8 @@ export const preguntasStore = defineStore("preguntas", {
     },
     async getNumPreguntas() {
       try {
-        const response = await getTotalEntidades("preguntas")
-        this.numPreguntas = response.data
+        const respuesta = await getTotalEntidades("preguntas")
+        this.numPreguntas = respuesta.data
       } catch (error) {
         this.numPreguntas = 0
       }
@@ -51,21 +45,8 @@ export const preguntasStore = defineStore("preguntas", {
     },
 
     async cargarPreguntas() {
-      if (isPrecargaReady(this.precarga)) {
-        this.preguntas = this.precarga
-        this.precarga = []
-      } else {
-        await this.precargarPreguntas()
-        this.preguntas = this.precarga
-        this.precarga = []
-      }
-    },
-
-    async precargarPreguntas() {
-      if (!isPrecargaReady(this.precarga)) {
-        this.precarga = await getPreguntas()
-        this.ordenarPreguntas(this.precarga)
-      }
+      this.preguntas = await getPreguntas()
+      this.ordenarPreguntas(this.preguntas)
     },
   },
 })
