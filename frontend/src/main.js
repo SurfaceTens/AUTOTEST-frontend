@@ -6,15 +6,15 @@ import { createPinia } from "pinia"
 import { loginStore } from "@/stores/loginStore.js"
 import { precargaStore } from '@/stores/precargaStore.js'
 
-// Importar las vistas
+// Importar y declarar las vistas
 import Home from "@/components/Home.vue"
-import Examen from "@/components/examen/Examen.vue"
-import Preguntas from "@/components/pregunta/Preguntas.vue"
-import Alumnos from "@/components/alumno/Alumnos.vue"
-import Examenes from "@/components/examen/Examenes.vue"
-import NuevaPregunta from "@/components/pregunta/NuevaPregunta.vue"
-import NuevoAlumno from "@/components/alumno/NuevoAlumno.vue"
-import ExitoFormulario from "@/components/ExitoFormulario.vue"
+const Examen = () => import('@/components/examen/Examen.vue')
+const Preguntas = () => import('@/components/pregunta/Preguntas.vue')
+const Alumnos = () => import('@/components/alumno/Alumnos.vue')
+const Examenes = () => import('@/components/examen/Examenes.vue')
+const NuevaPregunta = () => import('@/components/pregunta/NuevaPregunta.vue')
+const NuevoAlumno = () => import('@/components/alumno/NuevoAlumno.vue')
+const ExitoFormulario = () => import('@/components/ExitoFormulario.vue')
 
 // Importar estilos e iconos
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -36,6 +36,7 @@ const routes = [
   { path: "/nuevoAlumno",           name: "NuevoAlumno",          component: NuevoAlumno,       meta: { requiereAdmin: true }   },
   { path: "/exitoFormulario",       name: "ExitoFormulario",      component: ExitoFormulario                                    }
 ]
+
 
 // Crear el enrutador
 const router = createRouter({
