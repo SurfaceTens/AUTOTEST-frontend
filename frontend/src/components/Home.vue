@@ -1,6 +1,7 @@
 <script>
 import { mapState } from "pinia"
 import { loginStore } from "@/stores/loginStore"
+import { examenStore } from "@/stores/examenStore"
 import { preguntasStore } from "@/stores/preguntasStore"
 import { alumnosStore } from "@/stores/alumnosStore"
 
@@ -8,6 +9,7 @@ export default {
   name: "Home",
   computed: {
     ...mapState(loginStore, ["isAdmin"]),
+    ...mapState(examenStore, ["numExamenes"]),
     ...mapState(preguntasStore, ["numPreguntas"]),
     ...mapState(alumnosStore, ["numAlumnos"]),
   },
@@ -15,7 +17,7 @@ export default {
 </script>
 
 <template>
-  <div v-if="!isAdmin" class="welcome-section">
+  <div v-if="rol != 'administrador'" class="welcome-section">
     <div class="exam-section pregunta-card">
       <div class="exam-content card_header">
         <h1 class="card_title">Prepárate para tu examen de conducir</h1>
@@ -44,6 +46,7 @@ export default {
       <div class="exam-content card_header">
         <h1 class="card_title">Resumen de administración</h1>
         <ul>
+          <li>Hay un total de {{ this.numExamenes }} preguntas</li>
           <li>Hay un total de {{ this.numPreguntas }} preguntas</li>
           <li>Hay un total de {{ this.numAlumnos }} alumnos</li>
         </ul>
