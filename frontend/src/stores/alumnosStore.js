@@ -5,7 +5,6 @@ export const alumnosStore = defineStore("alumnos", {
   state: () => ({
     numAlumnos: 0,
     alumnos: [],
-    precarga: [],
   }),
   actions: {
     getAlumnoPorId(id) {
@@ -13,28 +12,21 @@ export const alumnosStore = defineStore("alumnos", {
     },
     async getNumAlumnos() {
       try {
-        const response = await getTotalEntidades("alumnos")
-        this.numAlumnos = response.data
-      } catch (error) {
-      }
+        const respuesta = await getTotalEntidades("alumnos")
+        this.numAlumnos = respuesta.data
+      } catch (error) {}
     },
     async editarAlumno(alumno) {
       await actualizarAlumno(alumno)
     },
 
-    async cargarAlumnos() {
-      if (isPrecargaReady(this.precarga)) {
-        this.alumnos = this.precarga;
-        this.precarga = [];
-      } else {
-        await this.precargarAlumnos();
-        this.alumnos = this.precarga;
-        this.precarga = [];
-      }
+    async forzarCargarAlumnos() {
+      this.alumnos = await getAlumnos()
     },
-    async precargarAlumnos() {
-      if (!isPrecargaReady(this.precarga)) {
-        this.precarga = await getAlumnos();
+
+    async cargarAlumnos() {
+      if (this.alumnos.length === 0) {
+        this.forzarCargarAlumnos()
       }
     },
   },

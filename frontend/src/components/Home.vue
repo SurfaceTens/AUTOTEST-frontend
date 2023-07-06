@@ -11,6 +11,14 @@ export default {
     ...mapState(preguntasStore, ["numPreguntas"]),
     ...mapState(alumnosStore, ["numAlumnos"]),
   },
+  methods: {
+    ...mapActions(alumnosStore, ["getNumAlumnos"]),
+    ...mapActions(preguntasStore, ["getNumPreguntas"]),
+  },
+  created() {
+    this.getNumAlumnos()
+    this.getNumPreguntas()
+  },
 }
 </script>
 

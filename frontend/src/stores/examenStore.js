@@ -4,10 +4,7 @@ import { crearExamen, corregirPreguntaExamen, isPrecargaReady, getExamenes } fro
 export const examenStore = defineStore("examenStore", {
   state: () => ({
     preguntas: [],
-    precargaPreguntas: [],
-
     examenes: [],
-    precargaExamenes: [],
 
     numPreguntasDefecto: 30,
     usuarioID: 1,
@@ -36,56 +33,31 @@ export const examenStore = defineStore("examenStore", {
       this.nivelDificultad = nivelDificultad
     },
 
-    async injectarDificultadExamen(nivelDificultad) {
+    injectarDificultadExamen(nivelDificultad) {
       this.preguntas = []
       this.precargaPreguntas = []
       this.nivelDificultad = nivelDificultad
-      await this.cargarExamen()
+      this.cargarExamen()
     },
 
-    async cargarExamen() {
-      if (isPrecargaReady(this.precargaPreguntas)) {
-        this.preguntas = this.precargaPreguntas
-        this.precargaPreguntas = []
-      } else {
-        await this.precargarExamen()
-        this.preguntas = this.precargaPreguntas
-        this.precargaPreguntas = []
-      }
+    async cargarExamenParams(numeroPreguntas, usuario, nivelDificultad) {
+      this.preguntas = await crearExamen(numeroPreguntas, usuario, nivelDificultad)
     },
 
-    async precargarExamenParams(numeroPreguntas, usuario, nivelDificultad) {
-      if (!isPrecargaReady(this.precargaPreguntas)) {
-        this.precargaPreguntas = await crearExamen(numeroPreguntas, usuario, nivelDificultad)
-      }
-    },
-
-    async precargarExamen() {
-      await this.precargarExamenParams(
-        this.numPreguntasDefecto,
-        this.usuarioID,
-        this.nivelDificultad
-      )
+    cargarExamen() {
+      this.cargarExamenParams(this.numPreguntasDefecto, this.usuarioID, this.nivelDificultad)
     },
 
     getExamenPorId(id) {
       return this.examenes.find((p) => p.id == id)
     },
 
-    async cargarExamenes() {
-      if (isPrecargaReady(this.precargaExamenes)) {
-        this.examenes = this.precargaExamenes
-        this.precargaExamenes = []
-      } else {
-        await this.precargarExamenes()
-        this.examenes = this.precargaExamenes
-        this.precargaExamenes = []
-      }
+    async forzarCargarExamenes() {
+      this.examenes = await getExamenes()
     },
-
-    async precargarExamenes() {
-      if (!isPrecargaReady(this.precargaExamenes)) {
-        this.precargaExamenes = await getExamenes()
+    async cargarExamenes() {
+      if (this.examenes.length === 0) {
+        this.forzarCargarExamenes()
       }
     },
   },

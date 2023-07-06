@@ -4,7 +4,6 @@ import "./style.css"
 import App from "@/App.vue"
 import { createPinia } from "pinia"
 import { loginStore } from "@/stores/loginStore.js"
-import { precargaStore } from '@/stores/precargaStore.js'
 
 // Importar y declarar las vistas
 import Home from "@/components/Home.vue"
@@ -46,10 +45,6 @@ const router = createRouter({
 
 // Guarda de navegación
 router.beforeEach((to, from, next) => {
-  const rutaEnMinusculas = to.name.toLowerCase()
-  const precarga = precargaStore()
-  precarga.setTipoPrecarga(rutaEnMinusculas)
-
   const login = loginStore()
   const rutaRequiereAdmin = to.meta.requiereAdmin
   if (rutaRequiereAdmin && !login.isAdmin) {

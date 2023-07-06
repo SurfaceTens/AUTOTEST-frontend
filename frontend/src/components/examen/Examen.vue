@@ -37,7 +37,7 @@ export default {
       "desordenarArray",
       "corregirPregunta",
       "cargarExamen",
-      "cargarExamenes",
+      "forzarCargarExamenes",
       "injectarDificultadExamen",
     ]),
 
@@ -151,7 +151,7 @@ export default {
         entregado: true,
       }
       actualizarExamen(examenObjeto)
-      this.cargarExamenes()
+      this.forzarCargarExamenes()
     },
   },
   async created() {
