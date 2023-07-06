@@ -20,7 +20,7 @@ export default {
       <div class="d-flex justify-content-start align-items-center">
         <div class="navbar-brand">
           <a href="#">
-            <img src="@/assets/logoAutotest.png" alt="Logo" />
+            <img src="/logoAutotest.png" alt="Logo" />
           </a>
         </div>
       </div>
