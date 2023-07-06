@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-import { crearExamen, corregirPreguntaExamen, getExamenes, getExamen } from "./api-service"
+import { crearExamen, corregirPreguntaExamen, getExamenes, getExamen, actualizarExamen } from "./api-service"
 
 export const examenStore = defineStore("examenStore", {
   state: () => ({
@@ -43,7 +43,11 @@ export const examenStore = defineStore("examenStore", {
 
     async cargarExamenParams(numeroPreguntas, usuario, nivelDificultad) {
       this.preguntas = await crearExamen(numeroPreguntas, usuario, nivelDificultad)
-      this.nuevoExamenID = this.preguntas[0]._links.examen.href.split("/").pop()
+      const examenID = this.preguntas[0]._links.examen.href.split("/").pop()
+      if (this.examenesCargados) {
+        const examenRecuperado = await getExamen(examenID)
+        examenStore().examenes.push(examenRecuperado)
+      }
     },
 
     cargarExamen() {
@@ -51,14 +55,9 @@ export const examenStore = defineStore("examenStore", {
     },
 
     editarExamen(examenObjeto) {
-      const examen = this.getExamenPorId(examenObjeto.id)
-      if (examen) {
-        examen.entregado = examenObjeto.entregado
-        examen.aciertos = examenObjeto.aciertos
-        examen.fallos = examenObjeto.fallos
-
-        actualizarExamen(examen)
-      }
+      examenObjeto.alumnoID = this.usuarioID
+      actualizarExamen(examenObjeto)
+      this.examenes.push(examenObjeto)
     },
 
     getExamenPorId(id) {

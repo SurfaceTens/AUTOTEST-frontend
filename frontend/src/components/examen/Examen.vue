@@ -1,7 +1,6 @@
 <script>
 import { mapActions, mapState } from "pinia"
 import { examenStore } from "@/stores/examenStore"
-import { actualizarExamen } from "@/stores/api-service"
 import Pregunta from "@/components/examen/PreguntaExamen.vue"
 import FinExamen from "@/components/modales/FinExamen.vue"
 import CambiarDificultad from "@/components/modales/CambiarDificultad.vue"
@@ -35,6 +34,7 @@ export default {
     ...mapActions(examenStore, [
       "desordenarArray",
       "corregirPregunta",
+      "editarExamen",
       "cargarExamen",
       "forzarCargarExamenes",
       "injectarDificultadExamen",
@@ -150,8 +150,11 @@ export default {
         entregado: true,
         aciertos: acertadas,
         fallos: falladas,
+        nota: resultado,
+        alumnoID: 0,
+        numPreguntas: this.numPreguntasDefecto,
       }
-      actualizarExamen(examenObjeto)
+      this.editarExamen(examenObjeto)
     },
   },
 }
