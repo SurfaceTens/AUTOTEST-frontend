@@ -108,14 +108,15 @@ export default {
     },
 
     getExamenID(pregunta) {
+      let retorno = 0
       const examenURL = pregunta._links.examen.href
       const examenIDRegex = /\/(\d+)$/
       const match = examenURL.match(examenIDRegex)
 
       if (match && match.length > 1) {
-        return parseInt(match[1])
+        retorno = parseInt(match[1])
       }
-      return 0
+      return retorno
     },
 
     async corregirExamen() {

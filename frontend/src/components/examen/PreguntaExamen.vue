@@ -27,12 +27,13 @@ export default {
   },
   computed: {
     alternativas() {
+      retorno = []
       if (this.pregunta) {
         const correcta = this.pregunta.correcta
         const incorrectas = this.pregunta.incorrectas
-        return [correcta, ...incorrectas]
+        retorno = [correcta, ...incorrectas]
       }
-      return []
+      return retorno
     },
 
     alternativasAleatorias() {

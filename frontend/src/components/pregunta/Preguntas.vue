@@ -61,9 +61,11 @@ export default {
       this.mostrarModalBorrado = true
     },
     mostrarAcierto(acierto) {
+      retorno = ""
       if (acierto) {
-        return "\u25CB"
-      } else return ""
+        retorno = "\u25CB"
+      }
+      return retorno
     },
     async confirmarBorrarPregunta() {
       this.cargandoPreguntas = true

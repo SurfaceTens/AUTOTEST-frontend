@@ -56,9 +56,18 @@ export default {
       this.$emit("confirmar")
     },
 
+    cargarTipoArchivo() {
+      if (this.modoEdicion) {
+        this.tipoArchivo = this.preguntaForm.adjunto
+      } 
+    },
+
     cerrarEdicion() {
       this.$emit("cerrar")
     },
+  },
+  created() {
+    this.cargarTipoArchivo()
   },
 }
 </script>
@@ -179,11 +188,11 @@ export default {
         </div>
       </div>
     </div>
-    <div v-if="preguntaForm.adjunto === 'imagen'" class="form-group">
+    <div v-if="tipoArchivo === 'imagen'" class="form-group">
       <label for="imagen" class="form-label">Subir una imagen:</label>
       <input type="file" id="imagen" class="form-control" @change="seleccionarImagen" />
     </div>
-    <div v-if="preguntaForm.adjunto === 'video'" class="form-group">
+    <div v-if="tipoArchivo === 'video'" class="form-group">
       <label for="video" class="form-label">Enlace de YouTube:</label>
       <input
         type="text"

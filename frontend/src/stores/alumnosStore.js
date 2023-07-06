@@ -16,7 +16,6 @@ export const alumnosStore = defineStore("alumnos", {
         const response = await getTotalEntidades("alumnos")
         this.numAlumnos = response.data
       } catch (error) {
-        console.error("Error al obtener el número de alumnos:", error)
       }
     },
     async editarAlumno(alumno) {
