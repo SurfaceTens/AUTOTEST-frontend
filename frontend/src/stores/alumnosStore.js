@@ -25,8 +25,8 @@ export const alumnosStore = defineStore("alumnos", {
     },
 
     async cargarAlumnos() {
-      if (this.alumnos.size == 0) {
-        forzarCargarAlumnos()
+      if (this.alumnos.length === 0) {
+        this.forzarCargarAlumnos()
       }
     },
   },

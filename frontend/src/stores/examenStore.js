@@ -56,8 +56,8 @@ export const examenStore = defineStore("examenStore", {
       this.examenes = await getExamenes()
     },
     async cargarExamenes() {
-      if (this.examenes.size == 0) {
-        forzarCargarExamenes()
+      if (this.examenes.length === 0) {
+        this.forzarCargarExamenes()
       }
     },
   },
