@@ -21,10 +21,11 @@ export default {
     return {
       tipoArchivo: "ninguno",
       pesoMaximoImagen: 1.02 * 1024 * 1024, // Tamaño máximo permitido: 1.02MB en bytes
+      vistaPreviaExistente: false,
     }
   },
   methods: {
-    ...mapActions(preguntasStore, ["getDificultadTexto", "crearPregunta","editarPregunta"]),
+    ...mapActions(preguntasStore, ["getDificultadTexto", "crearPregunta", "editarPregunta"]),
     seleccionarImagen(event) {
       const imagenSeleccionada = event.target.files[0]
       if (imagenSeleccionada.size < this.pesoMaximoImagen) {
@@ -43,9 +44,14 @@ export default {
     },
 
     entregarFormulario() {
-      this.preguntaForm.adjunto = this.tipoArchivo
-      this.preguntaForm.videoURL = this.preguntaForm.videoURL
-      this.preguntaForm.imagenBase64 = this.preguntaForm.imagenBase64
+      if (this.tipoArchivo !== "imagenExistente") {
+        this.preguntaForm.adjunto = this.tipoArchivo
+        this.preguntaForm.imagenBase64 =
+          this.tipoArchivo === "imagen" ? this.preguntaForm.imagenBase64 : null
+      }
+      if (this.tipoArchivo !== "videoExistente") {
+        this.preguntaForm.videoURL = this.tipoArchivo === "video" ? this.preguntaForm.videoURL : ""
+      }
       if (this.modoEdicion) {
         this.editarPregunta(this.preguntaForm)
       } else {
@@ -55,10 +61,30 @@ export default {
       this.$emit("confirmar")
     },
 
+    borrarImagenExistente() {
+      this.preguntaForm.imagenBase64 = null
+      this.tipoArchivo = "imagen"
+      this.vistaPreviaExistente = false
+    },
+
+    borrarVideoExistente() {
+      this.preguntaForm.videoURL = ""
+      this.tipoArchivo = "video"
+      this.vistaPreviaExistente = false
+    },
+
     cargarTipoArchivo() {
       if (this.modoEdicion) {
-        this.tipoArchivo = this.preguntaForm.adjunto
-      } 
+        if (this.preguntaForm.adjunto === "imagen") {
+          this.tipoArchivo = "imagenExistente"
+          this.vistaPreviaExistente = true
+        } else if (this.preguntaForm.adjunto === "video") {
+          this.tipoArchivo = "videoExistente"
+          this.vistaPreviaExistente = true
+        } else {
+          this.tipoArchivo = this.preguntaForm.adjunto
+        }
+      }
     },
 
     cerrarEdicion() {
@@ -187,20 +213,46 @@ export default {
         </div>
       </div>
     </div>
-    <div v-if="tipoArchivo === 'imagen'" class="form-group">
+    <div v-if="tipoArchivo === 'imagenExistente' || tipoArchivo === 'imagen'" class="form-group">
       <label for="imagen" class="form-label">Subir una imagen:</label>
-      <input type="file" id="imagen" class="form-control" @change="seleccionarImagen" />
+      <div v-if="tipoArchivo === 'imagenExistente' && vistaPreviaExistente" class="vista-previa">
+        <img :src="preguntaForm.imagenBase64" alt="Vista previa de la imagen" />
+        <button class="btn btn-link eliminar-previa" @click="borrarImagenExistente">
+          <i class="far fa-trash-alt"></i> Eliminar Imagen
+        </button>
+      </div>
+      <div v-else>
+        <input type="file" id="imagen" class="form-control" @change="seleccionarImagen" />
+      </div>
     </div>
-    <div v-if="tipoArchivo === 'video'" class="form-group">
+
+    <div v-if="tipoArchivo === 'videoExistente' || tipoArchivo === 'video'" class="form-group">
       <label for="video" class="form-label">Enlace de YouTube:</label>
-      <input
-        type="text"
-        id="video"
-        class="form-control"
-        v-model="preguntaForm.videoURL"
-        placeholder="Enlace de YouTube del video."
-      />
+      <div v-if="tipoArchivo === 'videoExistente' && vistaPreviaExistente" class="vista-previa">
+        <iframe
+          width="560"
+          height="315"
+          :src="'https://www.youtube.com/embed/' + preguntaForm.videoURL"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          autoplay="0"
+        ></iframe>
+        <button class="btn btn-link eliminar-previa" @click="borrarVideoExistente">
+          <i class="far fa-trash-alt"></i> Eliminar Video
+        </button>
+      </div>
+      <div v-else>
+        <input
+          type="text"
+          id="video"
+          class="form-control"
+          v-model="preguntaForm.videoURL"
+          placeholder="Enlace de YouTube del video."
+        />
+      </div>
     </div>
+
     <button type="submit" class="btn btn-primary" @click="entregarFormulario">
       Guardar pregunta
     </button>
@@ -208,3 +260,12 @@ export default {
     <button v-if="modoEdicion" class="btn btn-secondary" @click="cerrarEdicion">Cerrar</button>
   </div>
 </template>
+
+<style>
+.vista-previa img {
+  max-width: 560px;
+  max-height: 315px;
+  width: auto;
+  height: auto;
+}
+</style>

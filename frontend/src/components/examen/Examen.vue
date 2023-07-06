@@ -16,18 +16,17 @@ export default {
   },
   data() {
     return {
-      numPreguntas: 30, // Numero de preguntas que debe tener el examen.
       umbralApto: 90, // Porcentaje con el que se aprueba el examen.
       examenTerminado: false, // Variable para controlar el estado del examen.
       tituloExamen: "Lee detenidamente las preguntas y escoge la opción más adecuada",
       notaExamen: [], // Nota del examen que recibe el modal.
       mostrarModal: false, // Controlar la visibilidad de FinExamen.
       cambioDificultad: false, // Controlar la visibilidad de Cambiar dificultad.
-      cargando: false, // Muestra el estado de carga cuando la api no esta lista.
+      cargando: false, // Se necesita por la naturaleza de esta peticion.
     }
   },
   computed: {
-    ...mapState(examenStore, ["preguntas", "nivelDificultad"]),
+    ...mapState(examenStore, ["preguntas", "nivelDificultad","numPreguntasDefecto"]),
     pregunta() {
       return this.preguntas.find((p) => p.id === this.$route.params.id)
     },
@@ -43,7 +42,7 @@ export default {
 
     randomizarYLimitarPreguntas(preguntas) {
       const totalPreguntas = preguntas.length
-      const cantidadFactible = Math.min(totalPreguntas, this.numPreguntas)
+      const cantidadFactible = Math.min(totalPreguntas, this.numPreguntasDefecto)
 
       const preguntasDesorden = this.desordenarArray(preguntas)
       const preguntasReiniciadas = this.reiniciarRespuestas(preguntasDesorden)
@@ -149,15 +148,11 @@ export default {
       const examenObjeto = {
         id: examenID,
         entregado: true,
+        aciertos: acertadas,
+        fallos: falladas,
       }
       actualizarExamen(examenObjeto)
-      this.forzarCargarExamenes()
     },
-  },
-  async created() {
-    this.cargando = true
-    await this.cargarExamen()
-    this.cargando = false
   },
 }
 </script>

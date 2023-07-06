@@ -6,7 +6,7 @@ import { alumnosStore } from "@/stores/alumnosStore.js"
 import { examenStore } from "@/stores/examenStore.js"
 
 onMounted(async () => {
-  //await examenStore().cargarExamen()
+  await examenStore().cargarExamen()
   await examenStore().cargarExamenes()
   await preguntasStore().cargarPreguntas()
   await alumnosStore().cargarAlumnos()
