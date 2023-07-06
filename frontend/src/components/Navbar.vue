@@ -1,18 +1,26 @@
 <script>
 import { mapActions, mapState } from "pinia"
 import { loginStore } from "@/stores/loginStore"
+import { alumnosStore } from "@/stores/alumnosStore"
 
 export default {
   computed: {
-    ...mapState(loginStore, ["rol"]),
+    ...mapState(loginStore, ["rol", "alumnoID", "alumnoDatos"]),
+    ...mapState(alumnosStore, ["alumnos"]),
   },
   data() {
     return {
       nuevoRol: "invitado",
+      alumnoSeleccionado: null,
     }
   },
   methods: {
-    ...mapActions(loginStore, ["cambiarRol"]),
+    ...mapActions(loginStore, ["cambiarRol","cambiarAlumno"]),
+    seleccionarAlumno() {
+      if (this.alumnoSeleccionado) {
+        this.cambiarAlumno(this.alumnoSeleccionado)
+      }
+    },
   },
 }
 </script>
@@ -79,6 +87,12 @@ export default {
             <option value="invitado">Modo Invitado</option>
             <option value="administrador">Modo Administrador</option>
             <option value="alumno">Modo Alumno</option>
+          </select>
+          <select v-if="rol === 'alumno'" v-model="alumnoSeleccionado" @change="seleccionarAlumno">
+            <option value="">Seleccionar Alumno</option>
+            <option v-for="alumno in alumnos" :key="alumno.id" :value="alumno">
+              {{ alumno.nombre + " " + alumno.apellidos}}
+            </option>
           </select>
         </div>
       </div>

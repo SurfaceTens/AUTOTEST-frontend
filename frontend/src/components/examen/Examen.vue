@@ -152,6 +152,7 @@ export default {
         fallos: falladas,
         nota: resultado,
         alumnoID: 0,
+        alumnoDatos: "",
         numPreguntas: this.numPreguntasDefecto,
       }
       this.editarExamen(examenObjeto)

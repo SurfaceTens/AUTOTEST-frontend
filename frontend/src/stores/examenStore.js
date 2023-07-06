@@ -51,6 +51,7 @@ export const examenStore = defineStore("examenStore", {
 
     editarExamen(examenObjeto) {
       examenObjeto.alumnoID = loginStore().alumnoID
+      examenObjeto.alumnoDatos = loginStore().alumnoDatos
       console.log(examenObjeto.alumnoID)
       actualizarExamen(examenObjeto)
       this.examenes.push(examenObjeto)
