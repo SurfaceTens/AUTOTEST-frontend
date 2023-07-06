@@ -20,8 +20,14 @@ export const alumnosStore = defineStore("alumnos", {
       await actualizarAlumno(alumno)
     },
 
-    async cargarAlumnos() {
+    async forzarCargarAlumnos() {
       this.alumnos = await getAlumnos()
+    },
+
+    async cargarAlumnos() {
+      if (this.alumnos.size == 0) {
+        forzarCargarAlumnos()
+      }
     },
   },
 })

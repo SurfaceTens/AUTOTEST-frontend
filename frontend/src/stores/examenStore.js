@@ -52,8 +52,13 @@ export const examenStore = defineStore("examenStore", {
       return this.examenes.find((p) => p.id == id)
     },
 
-    async cargarExamenes() {
+    async forzarCargarExamenes() {
       this.examenes = await getExamenes()
+    },
+    async cargarExamenes() {
+      if (this.examenes.size == 0) {
+        forzarCargarExamenes()
+      }
     },
   },
 })

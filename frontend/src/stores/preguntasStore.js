@@ -44,9 +44,14 @@ export const preguntasStore = defineStore("preguntas", {
       this.preguntas = preguntas
     },
 
-    async cargarPreguntas() {
+    async forzarCargarPreguntas() {
       this.preguntas = await getPreguntas()
       this.ordenarPreguntas(this.preguntas)
+    },
+    async cargarPreguntas() {
+      if (this.preguntas.size == 0) {
+        forzarCargarPreguntas()
+      }
     },
   },
 })

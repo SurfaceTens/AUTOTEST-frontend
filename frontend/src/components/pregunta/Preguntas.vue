@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     ...mapActions(preguntasStore, [
-      "cargarPreguntas",
+      "forzarCargarPreguntas",
       "setPreguntas",
       "getPreguntaPorId",
       "getDificultadTexto",
@@ -76,14 +76,14 @@ export default {
           this.preguntas.splice(index, 1)
         }
       } catch (error) {}
-      await this.cargarPreguntas()
+      await this.forzarCargarPreguntas()
       this.cargandoPreguntas = false
       this.cerrarModalBorrar()
     },
     async confirmarEditarPregunta() {
       this.cargandoPreguntas = true
       this.mostrarModalEditar = true
-      await this.cargarPreguntas()
+      await this.forzarCargarPreguntas()
       this.cargandoPreguntas = false
     },
     cerrarModalBorrar() {
@@ -97,7 +97,7 @@ export default {
         const respuesta = await getPreguntasExamen(this.examenID)
         this.preguntas = this.setPreguntas(respuesta.data._embedded.preguntaExamenModels)
       } else {
-        await this.cargarPreguntas()
+        await this.forzarCargarPreguntas()
       }
       this.cargandoPreguntas = false
     },
