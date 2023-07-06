@@ -119,7 +119,7 @@ export default {
       return retorno
     },
 
-    async corregirExamen() {
+    corregirExamen() {
       let acertadas = 0
       let falladas = 0
       let examenID = 0
@@ -150,7 +150,7 @@ export default {
         id: examenID,
         entregado: true,
       }
-      await actualizarExamen(examenObjeto)
+      actualizarExamen(examenObjeto)
       this.cargarExamenes()
     },
   },
