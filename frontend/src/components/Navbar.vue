@@ -1,15 +1,18 @@
 <script>
 import { mapActions, mapState } from "pinia"
 import { loginStore } from "@/stores/loginStore"
-import { examenStore } from "@/stores/examenStore"
 
 export default {
   computed: {
-    ...mapState(loginStore, ["isAdmin"]),
+    ...mapState(loginStore, ["rol"]),
+  },
+  data() {
+    return {
+      nuevoRol: "invitado",
+    }
   },
   methods: {
-    ...mapActions(loginStore, ["toggleAdmin"]),
-    ...mapActions(examenStore, ["setNivelDificultad"]),
+    ...mapActions(loginStore, ["cambiarRol"]),
   },
 }
 </script>
@@ -37,11 +40,11 @@ export default {
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li v-if="!isAdmin" class="nav-item">
+          <li v-if="rol != 'administrador'" class="nav-item">
             <router-link class="nav-link" to="/Examen">Examen</router-link>
           </li>
 
-          <li v-if="isAdmin" class="nav-item dropdown">
+          <li v-if="rol == 'administrador'" class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -61,20 +64,22 @@ export default {
               </li>
             </ul>
           </li>
-          <li v-if="!isAdmin" class="nav-item">
+          <li v-if="rol != 'administrador'" class="nav-item">
             <router-link class="nav-link" to="/nuevaPregunta">Crear pregunta</router-link>
           </li>
-          <li v-if="isAdmin" class="nav-item">
+          <li v-if="rol == 'administrador'" class="nav-item">
             <router-link class="nav-link" to="/alumnos">Ver Alumnos</router-link>
           </li>
-          <li v-if="isAdmin" class="nav-item">
+          <li v-if="rol == 'administrador' || rol == 'alumno'" class="nav-item">
             <router-link class="nav-link" to="/Examenes">Ver Examenes</router-link>
           </li>
         </ul>
         <div class="toggle-login">
-          <a class="nav-link" href="#" v-on:click="toggleAdmin">{{
-            isAdmin ? "Modo Administrador" : "Modo Usuario"
-          }}</a>
+          <select v-model="nuevoRol" @change="cambiarRol(nuevoRol)">
+            <option value="invitado">Modo Invitado</option>
+            <option value="administrador">Modo Administrador</option>
+            <option value="alumno">Modo Alumno</option>
+          </select>
         </div>
       </div>
     </div>

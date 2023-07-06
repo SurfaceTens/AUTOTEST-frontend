@@ -30,7 +30,7 @@ const routes = [
   { path: "/examen",                name: "Examen",               component: Examen                                             },
   { path: "/preguntas",             name: "Preguntas",            component: Preguntas,         meta: { requiereAdmin: true }   },
   { path: "/alumnos",               name: "Alumnos",              component: Alumnos,           meta: { requiereAdmin: true }   },
-  { path: "/examenes",              name: "Examenes",             component: Examenes,          meta: { requiereAdmin: true }   },
+  { path: "/examenes",              name: "Examenes",             component: Examenes,                                          },
   { path: "/nuevaPregunta",         name: "NuevaPregunta",        component: NuevaPregunta                                      },
   { path: "/nuevoAlumno",           name: "NuevoAlumno",          component: NuevoAlumno,       meta: { requiereAdmin: true }   },
   { path: "/exitoFormulario",       name: "ExitoFormulario",      component: ExitoFormulario                                    }
@@ -47,12 +47,22 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const login = loginStore()
   const rutaRequiereAdmin = to.meta.requiereAdmin
-  if (rutaRequiereAdmin && !login.isAdmin) {
+  if (rutaRequiereAdmin && !login.rol=="administrador") {
     next({ name: "Home" })
   } else {
     next()
   }
 })
+
+/*router.beforeEach((to) => {
+  const login = loginStore()
+  const rutaRequiereAdmin = to.meta.requiereAdmin
+  if (rutaRequiereAdmin && !login.rol == "administrador") {
+    return { name: "Home" }
+  } else if ((login.rol != "alumno" && login.rol != "administrador") && to.name == "examenes") {
+    return { name: "Home" }
+  }
+})*/
 
 // Montar la aplicación
 const app = createApp(App)

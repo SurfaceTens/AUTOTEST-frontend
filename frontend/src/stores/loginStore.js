@@ -2,11 +2,18 @@ import { defineStore } from "pinia"
 
 export const loginStore = defineStore("login", {
   state: () => ({
-    isAdmin: false,
+    rol: "invitado",
+    alumnoID: "1",
   }),
   actions: {
-    toggleAdmin() {
-      this.isAdmin = !this.isAdmin
+    cambiarRol(nuevoRol) {
+      this.rol = nuevoRol
+      if (this.rol == "invitado") {
+        this. alumnoID = "1"
+      } else if (this.rol == "alumno") {
+        this. alumnoID = "15"
+      }
+      console.log(this.rol)
     },
   },
 })

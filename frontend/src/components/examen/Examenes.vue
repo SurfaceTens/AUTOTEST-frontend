@@ -1,6 +1,7 @@
 <script>
 import { mapActions, mapState } from "pinia"
 import { examenStore } from "@/stores/examenStore"
+import { loginStore } from "@/stores/loginStore"
 import Preguntas from "@/components/pregunta/Preguntas.vue"
 import Cargando from "@/components/Cargando.vue"
 
@@ -18,6 +19,19 @@ export default {
   },
   computed: {
     ...mapState(examenStore, ["examenes"]),
+    ...mapState(loginStore, ["alumnoID", "rol"]),
+    examenesFiltrados() {
+      let retorno = []
+      console.log("this.examenes",this.examenes)
+      console.log(this.alumnoID, this.rol)
+      if (this.rol === "administrador") {
+        retorno =  this.examenes
+      } else if (this.rol === "alumno") {
+        retorno =  this.examenes.filter((examen) => examen.alumnoID === this.alumnoID)
+        console.log(retorno)
+      }
+        return retorno
+    },
   },
   methods: {
     ...mapActions(examenStore, ["cargarExamenes"]),
@@ -65,7 +79,7 @@ export default {
           </tr>
         </thead>
         <tbody>
-          <tr v-for="examen in examenes" :key="examen.nombreExamen">
+          <tr v-for="examen in examenesFiltrados" :key="examen.nombreExamen">
             <td v-if="examen.entregado">{{ examen.alumnoDatos }}</td>
             <td v-if="examen.entregado">{{ examen.aciertos }}</td>
             <td v-if="examen.entregado">{{ examen.fallos }}</td>
