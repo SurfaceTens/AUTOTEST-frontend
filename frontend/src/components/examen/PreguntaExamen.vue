@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     alternativas() {
-      retorno = []
+      let retorno = []
       if (this.pregunta) {
         const correcta = this.pregunta.correcta
         const incorrectas = this.pregunta.incorrectas

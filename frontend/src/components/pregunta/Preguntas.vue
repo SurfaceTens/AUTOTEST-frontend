@@ -61,7 +61,7 @@ export default {
       this.mostrarModalBorrado = true
     },
     mostrarAcierto(acierto) {
-      retorno = ""
+      let retorno = ""
       if (acierto) {
         retorno = "\u25CB"
       }
