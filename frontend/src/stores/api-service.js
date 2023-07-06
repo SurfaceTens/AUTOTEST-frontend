@@ -1,7 +1,7 @@
 import axios from "axios"
 
 //const host = 'https://autotestapi-serperdim45.b4a.run/api'
-const host = "http://localhost:8800/api"    // API local
+const host = "http://localhost:8800/api" // API local
 
 export function cambiarHttpPorHttps(enlace) {
   return enlace.replace("http", "https")
@@ -34,7 +34,7 @@ export async function guardarPregunta(pregunta) {
   return llamadaApi(`${host}/preguntas`, "post", pregunta)
 }
 
-export async function eliminarPregunta(preguntaID) {
+export async function borrarPregunta(preguntaID) {
   return llamadaApi(`${host}/preguntas/${preguntaID}`, "delete")
 }
 
@@ -94,8 +94,4 @@ export function actualizarExamen(examen) {
 
 export function getPreguntasExamen(examenID) {
   return llamadaApi(`${host}/examenes/${examenID}/preguntas`)
-}
-
-export function isPrecargaReady(precarga) {
-  return precarga.length !== 0
 }

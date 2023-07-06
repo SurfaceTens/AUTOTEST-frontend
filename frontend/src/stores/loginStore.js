@@ -11,9 +11,8 @@ export const loginStore = defineStore("login", {
       if (this.rol == "invitado") {
         this. alumnoID = "1"
       } else if (this.rol == "alumno") {
-        this. alumnoID = "15"
+        this. alumnoID = "22"
       }
-      console.log(this.rol)
     },
   },
 })

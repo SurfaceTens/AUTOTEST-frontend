@@ -1,6 +1,5 @@
 <script>
 import { mapActions } from "pinia"
-import { guardarPregunta, actualizarPregunta } from "@/stores/api-service"
 import { preguntasStore } from "@/stores/preguntasStore"
 
 export default {
@@ -25,7 +24,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(preguntasStore, ["getDificultadTexto"]),
+    ...mapActions(preguntasStore, ["getDificultadTexto", "crearPregunta","editarPregunta"]),
     seleccionarImagen(event) {
       const imagenSeleccionada = event.target.files[0]
       if (imagenSeleccionada.size < this.pesoMaximoImagen) {
@@ -48,9 +47,9 @@ export default {
       this.preguntaForm.videoURL = this.preguntaForm.videoURL
       this.preguntaForm.imagenBase64 = this.preguntaForm.imagenBase64
       if (this.modoEdicion) {
-        actualizarPregunta(this.preguntaForm)
+        this.editarPregunta(this.preguntaForm)
       } else {
-        guardarPregunta(this.preguntaForm)
+        this.crearPregunta(this.preguntaForm)
         this.$router.push("ExitoFormulario")
       }
       this.$emit("confirmar")

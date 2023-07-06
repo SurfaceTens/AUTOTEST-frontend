@@ -1,5 +1,5 @@
 <script>
-import { mapActions, mapState } from "pinia"
+import { mapState } from "pinia"
 import { loginStore } from "@/stores/loginStore"
 import { preguntasStore } from "@/stores/preguntasStore"
 import { alumnosStore } from "@/stores/alumnosStore"
@@ -10,14 +10,6 @@ export default {
     ...mapState(loginStore, ["isAdmin"]),
     ...mapState(preguntasStore, ["numPreguntas"]),
     ...mapState(alumnosStore, ["numAlumnos"]),
-  },
-  methods: {
-    ...mapActions(alumnosStore, ["getNumAlumnos"]),
-    ...mapActions(preguntasStore, ["getNumPreguntas"]),
-  },
-  created() {
-    this.getNumAlumnos()
-    this.getNumPreguntas()
   },
 }
 </script>

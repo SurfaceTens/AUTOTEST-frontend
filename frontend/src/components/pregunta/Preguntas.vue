@@ -2,7 +2,7 @@
 import { mapActions, mapState } from "pinia"
 import { loginStore } from "@/stores/loginStore"
 import { preguntasStore } from "@/stores/preguntasStore"
-import { eliminarPregunta, getPreguntasExamen } from "@/stores/api-service"
+import { getPreguntasExamen } from "@/stores/api-service"
 import FormularioPregunta from "@/components/pregunta/FormularioPregunta.vue"
 import ConfirmarBorrar from "@/components/modales/ConfirmarBorrar.vue"
 import ConfirmarEditar from "@/components/modales/ConfirmarEditar.vue"
@@ -27,22 +27,28 @@ export default {
       modoEdicion: false,
       mostrarModalBorrado: false,
       mostrarModalEditar: false,
-      cargandoPreguntas: true,
+      cargando: false, // Se necesita porque tratamos dos tipos de preguntas
     }
   },
   computed: {
     ...mapState(loginStore, ["isAdmin"]),
-    ...mapState(preguntasStore, ["preguntas", "preguntaSeleccionada"]),
+    ...mapState(preguntasStore, [
+      "preguntas",
+      "preguntasTodas",
+      "preguntaSeleccionada",
+    ]),
     pregunta() {
       return this.preguntas.find((p) => p.id == this.$route.params.id)
     },
   },
   methods: {
     ...mapActions(preguntasStore, [
-      "forzarCargarPreguntas",
       "setPreguntas",
+      "setPreguntaSeleccionada",
       "getPreguntaPorId",
       "getDificultadTexto",
+      "editarPregunta",
+      "eliminarPregunta",
     ]),
 
     async mostrarPregunta(pregunta) {
@@ -57,7 +63,7 @@ export default {
       this.$emit("cerrar")
     },
     borrarPregunta(pregunta) {
-      this.preguntaSeleccionada = pregunta
+      this.setPreguntaSeleccionada(pregunta)
       this.mostrarModalBorrado = true
     },
     mostrarAcierto(acierto) {
@@ -67,24 +73,13 @@ export default {
       }
       return retorno
     },
-    async confirmarBorrarPregunta() {
-      this.cargandoPreguntas = true
-      try {
-        await eliminarPregunta(this.preguntaSeleccionada.id)
-        const index = this.preguntas.findIndex((p) => p.id === this.preguntaSeleccionada.id)
-        if (index !== -1) {
-          this.preguntas.splice(index, 1)
-        }
-      } catch (error) {}
-      await this.forzarCargarPreguntas()
-      this.cargandoPreguntas = false
+    confirmarBorrarPregunta() {
+      this.eliminarPregunta(this.preguntaSeleccionada)
       this.cerrarModalBorrar()
     },
+
     async confirmarEditarPregunta() {
-      this.cargandoPreguntas = true
       this.mostrarModalEditar = true
-      await this.forzarCargarPreguntas()
-      this.cargandoPreguntas = false
     },
     cerrarModalBorrar() {
       this.mostrarModalBorrado = false
@@ -93,13 +88,15 @@ export default {
       this.mostrarModalEditar = false
     },
     async iniciarPreguntas() {
+      this.cargando=true
       if (this.sonDeExamen) {
+        this.setPreguntas([])
         const respuesta = await getPreguntasExamen(this.examenID)
-        this.preguntas = this.setPreguntas(respuesta.data._embedded.preguntaExamenModels)
+        this.setPreguntas(respuesta.data._embedded.preguntaExamenModels)
       } else {
-        await this.forzarCargarPreguntas()
+        this.setPreguntas(this.preguntasTodas)
       }
-      this.cargandoPreguntas = false
+      this.cargando=false
     },
   },
   async created() {
@@ -110,7 +107,7 @@ export default {
 
 <template>
   <div>
-    <Cargando v-if="cargandoPreguntas" />
+    <Cargando v-if="cargando" />
 
     <div v-else-if="modoEdicion" class="container">
       <div class="card">

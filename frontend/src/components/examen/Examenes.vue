@@ -1,5 +1,5 @@
 <script>
-import { mapActions, mapState } from "pinia"
+import { mapState } from "pinia"
 import { examenStore } from "@/stores/examenStore"
 import { loginStore } from "@/stores/loginStore"
 import Preguntas from "@/components/pregunta/Preguntas.vue"
@@ -14,27 +14,22 @@ export default {
     return {
       verPreguntas: false,
       examenIDSeleccionado: null,
-      cargando: true, // Muestra el estado de carga cuando la api no esta lista.
     }
   },
   computed: {
-    ...mapState(examenStore, ["examenes"]),
+    ...mapState(examenStore, ["examenes","examenesCargados"]),
     ...mapState(loginStore, ["alumnoID", "rol"]),
     examenesFiltrados() {
       let retorno = []
-      console.log("this.examenes",this.examenes)
-      console.log(this.alumnoID, this.rol)
       if (this.rol === "administrador") {
-        retorno =  this.examenes
+        retorno = this.examenes
       } else if (this.rol === "alumno") {
-        retorno =  this.examenes.filter((examen) => examen.alumnoID === this.alumnoID)
-        console.log(retorno)
+        retorno = this.examenes.filter((examen) => examen.alumnoID == this.alumnoID)
       }
-        return retorno
+      return retorno
     },
   },
   methods: {
-    ...mapActions(examenStore, ["cargarExamenes"]),
     mostrarPreguntas(examenID) {
       this.examenIDSeleccionado = examenID
       this.verPreguntas = true
@@ -43,16 +38,12 @@ export default {
       this.verPreguntas = false
     },
   },
-  async created() {
-    await this.cargarExamenes()
-    this.cargando = false
-  },
 }
 </script>
 
 <template>
   <div>
-    <Cargando v-if="cargando" />
+    <Cargando v-if="!examenesCargados" />
     <div v-if="verPreguntas" class="container">
       <div class="card">
         <div class="card_content">

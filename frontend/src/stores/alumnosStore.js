@@ -1,32 +1,33 @@
 import { defineStore } from "pinia"
-import { getAlumnos, actualizarAlumno, getTotalEntidades, isPrecargaReady } from "./api-service"
+import { getAlumnos, actualizarAlumno } from "./api-service"
 
 export const alumnosStore = defineStore("alumnos", {
   state: () => ({
     numAlumnos: 0,
     alumnos: [],
+    alumnosCargados: false,
   }),
   actions: {
     getAlumnoPorId(id) {
       return this.alumnos.find((p) => p.id == id)
     },
-    async getNumAlumnos() {
-      try {
-        const respuesta = await getTotalEntidades("alumnos")
-        this.numAlumnos = respuesta.data
-      } catch (error) {}
-    },
-    async editarAlumno(alumno) {
-      await actualizarAlumno(alumno)
+    editarAlumno(alumno) {
+      actualizarAlumno(alumno)
+      const index = this.alumnos.findIndex((a) => a.id === alumno.id)
+      if (index !== -1) {
+        this.alumnos[index] = alumno
+      }
     },
 
     async forzarCargarAlumnos() {
       this.alumnos = await getAlumnos()
+      this.alumnosCargados = true
+      this.numAlumnos = this.alumnos.length
     },
 
     async cargarAlumnos() {
-      if (this.alumnos.length === 0) {
-        this.forzarCargarAlumnos()
+      if (!this.alumnosCargados) {
+        await this.forzarCargarAlumnos()
       }
     },
   },

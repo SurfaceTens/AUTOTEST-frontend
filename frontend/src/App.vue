@@ -1,12 +1,16 @@
-<script>
+<script setup>
+import { onMounted } from "vue"
 import Navbar from "@/components/Navbar.vue"
+import { preguntasStore } from "@/stores/preguntasStore.js"
+import { alumnosStore } from "@/stores/alumnosStore.js"
+import { examenStore } from "@/stores/examenStore.js"
 
-export default {
-  name: "App",
-  components: {
-    Navbar,
-  },
-}
+onMounted(async () => {
+  //await examenStore().cargarExamen()
+  await examenStore().cargarExamenes()
+  await preguntasStore().cargarPreguntas()
+  await alumnosStore().cargarAlumnos()
+})
 </script>
 
 <template>

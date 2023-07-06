@@ -1,11 +1,13 @@
 import { defineStore } from "pinia"
-import { crearExamen, corregirPreguntaExamen, isPrecargaReady, getExamenes } from "./api-service"
+import { crearExamen, corregirPreguntaExamen, getExamenes } from "./api-service"
 
 export const examenStore = defineStore("examenStore", {
   state: () => ({
-    preguntas: [],
+    numExamenes: 0,
     examenes: [],
+    examenesCargados: false,
 
+    preguntas: [],
     numPreguntasDefecto: 30,
     usuarioID: 1,
     nivelDificultad: "aleatorio",
@@ -35,7 +37,6 @@ export const examenStore = defineStore("examenStore", {
 
     injectarDificultadExamen(nivelDificultad) {
       this.preguntas = []
-      this.precargaPreguntas = []
       this.nivelDificultad = nivelDificultad
       this.cargarExamen()
     },
@@ -54,9 +55,11 @@ export const examenStore = defineStore("examenStore", {
 
     async forzarCargarExamenes() {
       this.examenes = await getExamenes()
+      this.examenesCargados = true
+      this.numExamenes = this.examenes.length
     },
     async cargarExamenes() {
-      if (this.examenes.length === 0) {
+      if (!this.examenesCargados) {
         this.forzarCargarExamenes()
       }
     },

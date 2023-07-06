@@ -1,23 +1,23 @@
 import { defineStore } from "pinia"
-import { getPreguntas, getEntidad, getTotalEntidades } from "./api-service"
+import {
+  getPreguntas,
+  getEntidad,
+  guardarPregunta,
+  borrarPregunta,
+  actualizarPregunta,
+} from "./api-service"
 
 export const preguntasStore = defineStore("preguntas", {
   state: () => ({
     numPreguntas: 0,
     preguntas: [],
+    preguntasTodas: [],
     preguntaSeleccionada: {},
+    preguntasCargadas: false,
   }),
   actions: {
     async getPreguntaPorId(id) {
       this.preguntaSeleccionada = (await getEntidad("preguntas", id)).data
-    },
-    async getNumPreguntas() {
-      try {
-        const respuesta = await getTotalEntidades("preguntas")
-        this.numPreguntas = respuesta.data
-      } catch (error) {
-        this.numPreguntas = 0
-      }
     },
 
     getDificultadTexto(dificultad) {
@@ -44,14 +44,43 @@ export const preguntasStore = defineStore("preguntas", {
       this.preguntas = preguntas
     },
 
+    setPreguntaSeleccionada(pregunta) {
+      this.preguntaSeleccionada = pregunta
+    },
+
     async forzarCargarPreguntas() {
-      this.preguntas = await getPreguntas()
+      this.preguntasTodas = await getPreguntas()
       this.ordenarPreguntas(this.preguntas)
+      this.preguntasCargadas = true
+      this.numPreguntas = this.preguntasTodas.length
     },
     async cargarPreguntas() {
-      if (this.preguntas.length === 0) {
-        this.forzarCargarPreguntas()
+      if (!this.preguntasCargadas) {
+        await this.forzarCargarPreguntas()
       }
+    },
+
+    crearPregunta(pregunta) {
+      guardarPregunta(pregunta)
+      this.preguntasTodas.push(pregunta)
+      this.numPreguntas = this.preguntasTodas.length
+    },
+
+    editarPregunta(pregunta) {
+      actualizarPregunta(pregunta)
+      const index = this.preguntasTodas.findIndex((p) => p.id === pregunta.id)
+      if (index !== -1) {
+        this.preguntasTodas[index] = pregunta
+      }
+    },
+
+    eliminarPregunta(pregunta) {
+      borrarPregunta(pregunta.id)
+      const index = this.preguntasTodas.findIndex((p) => p.id === pregunta.id)
+      if (index !== -1) {
+        this.preguntasTodas.splice(index, 1)
+      }
+      this.numPreguntas = this.preguntasTodas.length
     },
   },
 })
