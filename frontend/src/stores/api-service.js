@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const host = "http://localhost:8800/api"    // API local
+const host = 'https://autotestapi-serperdim45.b4a.run/api'
 
 export function cambiarHttpPorHttps(enlace) {
   return enlace.replace("http", "https")
