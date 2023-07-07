@@ -17,7 +17,7 @@ export default {
 </script>
 
 <template>
-  <h1 v-if="rol == 'alumno'" class="centrado">Hola {{ this.alumnoDatos }}</h1>
+  <h1 v-if="rol === 'alumno' && alumnoDatos !== 'Alumno Invitado'" class="centrado">Hola {{ this.alumnoDatos }}</h1>
   <div v-if="rol !== 'administrador'" class="welcome-section">
     <div class="exam-section pregunta-card">
       <div class="exam-content card_header">

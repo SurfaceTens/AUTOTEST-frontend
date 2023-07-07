@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       tipoArchivo: "ninguno",
-      pesoMaximoImagen: 1.02 * 1024 * 1024, // Tamaño máximo permitido: 1.02MB en bytes
+      pesoMaximoImagen: 0.82 * 1024 * 1024, // Tamaño máximo permitido: 820KB
       vistaPreviaExistente: false,
     }
   },

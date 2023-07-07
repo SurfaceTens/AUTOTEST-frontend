@@ -4,7 +4,7 @@ export const loginStore = defineStore("login", {
   state: () => ({
     rol: "invitado",
     alumnoID: "1",
-    alumnoDatos: "",
+    alumnoDatos: "Alumno Invitado",
   }),
   actions: {
     cambiarRol(nuevoRol) {
@@ -19,7 +19,7 @@ export const loginStore = defineStore("login", {
     },
     quitarAlumno() {
       this.alumnoID = 1
-      this.alumnoDatos = ""
+      this.alumnoDatos = "Alumno Invitado"
     },
   },
 })
