@@ -8,7 +8,7 @@ import { alumnosStore } from "@/stores/alumnosStore"
 export default {
   name: "Home",
   computed: {
-    ...mapState(loginStore, ["rol","alumnoDatos"]),
+    ...mapState(loginStore, ["rol", "alumnoDatos"]),
     ...mapState(examenStore, ["numExamenes"]),
     ...mapState(preguntasStore, ["numPreguntas"]),
     ...mapState(alumnosStore, ["numAlumnos"]),
@@ -17,7 +17,9 @@ export default {
 </script>
 
 <template>
-  <h1 v-if="rol === 'alumno' && alumnoDatos !== 'Alumno Invitado'" class="centrado">Hola {{ this.alumnoDatos }}</h1>
+  <h1 v-if="rol === 'alumno' && alumnoDatos !== 'Alumno Invitado'" class="centrado">
+    Hola {{ this.alumnoDatos }}
+  </h1>
   <div v-if="rol !== 'administrador'" class="welcome-section">
     <div class="exam-section pregunta-card">
       <div class="exam-content card_header">

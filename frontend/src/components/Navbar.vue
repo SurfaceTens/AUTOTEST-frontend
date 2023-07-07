@@ -8,7 +8,7 @@ export default {
     ...mapState(loginStore, ["rol", "alumnoID", "alumnoDatos"]),
     ...mapState(alumnosStore, ["alumnos"]),
     filtrarAlumnos() {
-      return this.alumnos.filter(alumno => alumno.id !== 1)
+      return this.alumnos.filter((alumno) => alumno.id !== 1)
     },
   },
   data() {
@@ -18,7 +18,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(loginStore, ["cambiarRol","cambiarAlumno"]),
+    ...mapActions(loginStore, ["cambiarRol", "cambiarAlumno"]),
     seleccionarAlumno() {
       if (this.alumnoSeleccionado) {
         this.cambiarAlumno(this.alumnoSeleccionado)
@@ -92,8 +92,8 @@ export default {
             <option value="alumno">Modo Alumno</option>
           </select>
           <select v-if="rol === 'alumno'" v-model="alumnoSeleccionado" @change="seleccionarAlumno">
-            <option v-for="alumno in filtrarAlumnos" :key="alumno.id" :value="alumno" >
-              {{ alumno.nombre + " " + alumno.apellidos}}
+            <option v-for="alumno in filtrarAlumnos" :key="alumno.id" :value="alumno">
+              {{ alumno.nombre + " " + alumno.apellidos }}
             </option>
           </select>
         </div>

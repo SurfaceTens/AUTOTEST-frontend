@@ -17,7 +17,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(examenStore, ["examenes","examenesCargados"]),
+    ...mapState(examenStore, ["examenes", "examenesCargados"]),
     ...mapState(loginStore, ["alumnoID", "rol"]),
     examenesFiltrados() {
       let retorno = []

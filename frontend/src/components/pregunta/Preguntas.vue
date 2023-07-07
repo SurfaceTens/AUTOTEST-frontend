@@ -1,6 +1,5 @@
 <script>
 import { mapActions, mapState } from "pinia"
-import { loginStore } from "@/stores/loginStore"
 import { preguntasStore } from "@/stores/preguntasStore"
 import { getPreguntasExamen } from "@/stores/api-service"
 import FormularioPregunta from "@/components/pregunta/FormularioPregunta.vue"
@@ -31,12 +30,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(loginStore, ["isAdmin"]),
-    ...mapState(preguntasStore, [
-      "preguntas",
-      "preguntasTodas",
-      "preguntaSeleccionada",
-    ]),
+    ...mapState(preguntasStore, ["preguntas", "preguntasTodas", "preguntaSeleccionada"]),
     pregunta() {
       return this.preguntas.find((p) => p.id == this.$route.params.id)
     },
@@ -88,7 +82,7 @@ export default {
       this.mostrarModalEditar = false
     },
     async iniciarPreguntas() {
-      this.cargando=true
+      this.cargando = true
       if (this.sonDeExamen) {
         this.setPreguntas([])
         const respuesta = await getPreguntasExamen(this.examenID)
@@ -96,7 +90,7 @@ export default {
       } else {
         this.setPreguntas(this.preguntasTodas)
       }
-      this.cargando=false
+      this.cargando = false
     },
   },
   async created() {
