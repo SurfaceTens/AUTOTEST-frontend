@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-import { crearExamen, corregirPreguntaExamen, getExamenes, getExamen, actualizarExamen } from "./api-service"
+import { crearExamen, corregirPreguntaExamen, getExamenes, actualizarExamen } from "./api-service"
 import { loginStore } from "@/stores/loginStore"
 
 export const examenStore = defineStore("examenStore", {
@@ -9,6 +9,7 @@ export const examenStore = defineStore("examenStore", {
     examenesCargados: false,
 
     preguntas: [],
+    preguntasPreparadas: [], // Necesitamos esta precarga para imposibilitar enviar el mismo examen 2 veces.
     numPreguntasDefecto: 30,
     nivelDificultad: "aleatorio",
   }),
@@ -35,24 +36,49 @@ export const examenStore = defineStore("examenStore", {
       this.nivelDificultad = nivelDificultad
     },
 
-    injectarDificultadExamen(nivelDificultad) {
+    async injectarDificultadExamen(nivelDificultad) {
       this.preguntas = []
+      this.preguntasPreparadas = []
       this.nivelDificultad = nivelDificultad
-      this.cargarExamen()
+      await this.cargarExamenParams(this.numPreguntasDefecto, loginStore().alumnoID, nivelDificultad)
     },
 
     async cargarExamenParams(numeroPreguntas, usuario, nivelDificultad) {
       this.preguntas = await crearExamen(numeroPreguntas, usuario, nivelDificultad)
     },
 
-    cargarExamen() {
-      this.cargarExamenParams(this.numPreguntasDefecto, loginStore().alumnoID, this.nivelDificultad)
+    async cargarExamen() {
+      if (this.preguntasPreparadas.length == 0) {
+        if (this.preguntas.length == 0) {
+          await this.cargarExamenParams(
+            this.numPreguntasDefecto,
+            loginStore().alumnoID,
+            this.nivelDificultad
+          )
+        } else {
+          await this.prepararExamen()
+        }
+      } else {
+        this.preguntas = this.preguntasPreparadas
+        await this.prepararExamen()
+      }
+    },
+
+    async prepararExamenParams(numeroPreguntas, usuario, nivelDificultad) {
+      this.preguntasPreparadas = await crearExamen(numeroPreguntas, usuario, nivelDificultad)
+    },
+
+    async prepararExamen() {
+      await this.prepararExamenParams(
+        this.numPreguntasDefecto,
+        loginStore().alumnoID,
+        this.nivelDificultad
+      )
     },
 
     editarExamen(examenObjeto) {
       examenObjeto.alumnoID = loginStore().alumnoID
       examenObjeto.alumnoDatos = loginStore().alumnoDatos
-      console.log(examenObjeto.alumnoID)
       actualizarExamen(examenObjeto)
       this.examenes.push(examenObjeto)
     },

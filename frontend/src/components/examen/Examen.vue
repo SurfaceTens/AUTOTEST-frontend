@@ -25,7 +25,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(examenStore, ["preguntas", "nivelDificultad","numPreguntasDefecto"]),
+    ...mapState(examenStore, ["preguntas", "nivelDificultad", "numPreguntasDefecto"]),
     pregunta() {
       return this.preguntas.find((p) => p.id === this.$route.params.id)
     },
@@ -33,10 +33,11 @@ export default {
   methods: {
     ...mapActions(examenStore, [
       "desordenarArray",
+      "setNivelDificultad",
       "corregirPregunta",
       "editarExamen",
       "cargarExamen",
-      "forzarCargarExamenes",
+      "prepararExamen",
       "injectarDificultadExamen",
     ]),
 
@@ -62,6 +63,7 @@ export default {
       this.mostrarRespuestas()
       this.corregirExamen()
       this.examenTerminado = true
+      this.prepararExamen()
       window.scrollTo({ top: 0, behavior: "smooth" })
     },
 
@@ -76,16 +78,25 @@ export default {
       })
     },
 
-    async generarNuevoExamen(nivelDificultad) {
-      this.cargando = true
-      await this.injectarDificultadExamen(nivelDificultad)
+    resetearExamen() {
       this.preguntas = this.randomizarYLimitarPreguntas(this.preguntas)
       this.respuestasExamen = []
       this.tituloExamen = `Lee detenidamente las preguntas y escoge la opción más adecuada`
       this.examenTerminado = false
       this.notaExamen = []
-      this.cargando = false
       window.scrollTo({ top: 0, behavior: "smooth" })
+    },
+
+    async generarNuevoExamen(nivelDificultad) {
+      this.cargando = true
+      await this.injectarDificultadExamen(nivelDificultad)
+      this.cargando = false
+      this.resetearExamen()
+    },
+
+    generarNuevoExamen() {
+      this.cargarExamen()
+      this.resetearExamen()
     },
 
     reiniciarRespuestas(preguntas) {
@@ -101,6 +112,7 @@ export default {
     },
 
     cambiarDificultad(nuevaDificultad) {
+      this.setNivelDificultad(nuevaDificultad)
       this.generarNuevoExamen(nuevaDificultad)
       this.cerrarModal()
       window.scrollTo({ top: 0, behavior: "smooth" })
@@ -157,6 +169,9 @@ export default {
       }
       this.editarExamen(examenObjeto)
     },
+  },
+  async created() {
+    await this.cargarExamen()
   },
 }
 </script>
@@ -219,7 +234,7 @@ export default {
       </ul>
       <div v-if="!cargando" class="fin-examen">
         <button
-          @click="generarNuevoExamen(this.nivelDificultad), cerrarModal()"
+          @click="generarNuevoExamen(), cerrarModal()"
           class="btn btn-success btn-lg"
         >
           Hacer Otro {{ this.nivelDificultad }}
@@ -241,7 +256,7 @@ export default {
         v-if="mostrarModal"
         :nota="notaExamen"
         :modalTipo="'revisarExamen'"
-        @generarNuevoExamen="generarNuevoExamen(this.nivelDificultad)"
+        @generarNuevoExamen="generarNuevoExamen()"
         @cerrarModal="cerrarModal"
       />
     </div>
