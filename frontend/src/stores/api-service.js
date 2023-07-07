@@ -1,6 +1,8 @@
 import axios from "axios"
 
-const host = 'https://autotestapi-serperdim45.b4a.run/api'
+const host = 'https://container-service-1.qhjvje6n3n75q.eu-west-3.cs.amazonlightsail.com/api'     //AWS
+//const host = 'https://autotestapi-serperdim45.b4a.run/api'                                      /Back4App
+//const host = 'http://localhost:8800/api'                                                        /Local
 
 export function cambiarHttpPorHttps(enlace) {
   return enlace.replace("http", "https")
