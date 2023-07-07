@@ -63,7 +63,7 @@ export default {
 <template>
   <div class="card pregunta-card">
     <div class="card_header">
-      <h3 class="card_title">{{ numero }} - {{ pregunta.dificultad }}</h3>
+      <h3 class="card_title">{{ numero }} - {{ pregunta.enunciado }}</h3>
       <div>
         <img
           v-if="pregunta.adjunto === 'imagen'"
