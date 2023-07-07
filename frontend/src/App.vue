@@ -6,10 +6,10 @@ import { alumnosStore } from "@/stores/alumnosStore.js"
 import { examenStore } from "@/stores/examenStore.js"
 
 onMounted(async () => {
+  await alumnosStore().cargarAlumnos()
   await examenStore().prepararExamen()
   await examenStore().cargarExamenes()
   await preguntasStore().cargarPreguntas()
-  await alumnosStore().cargarAlumnos()
 })
 </script>
 
